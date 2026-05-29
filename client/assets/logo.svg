@@ -1,0 +1,29 @@
+<svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Using the gradient for the 'Green' side as requested in your previous gradient -->
+    <linearGradient id="kenyanGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3fd693;stop-opacity:1" /> <!-- Teal-ish for a richer green effect -->
+      <stop offset="100%" style="stop-color:#51faaa;stop-opacity:1" /> <!-- Neon Mint Green -->
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" fill="#ffffff"/>
+
+  <!-- The main logo group, centered and scaled as desired -->
+  <g transform="translate(106, 56) scale(3)">
+    <!-- This path would define the entire shape on the left, which visually forms half of the house and part of the 'H' -->
+    <!-- The 'd' attribute here is a placeholder. It would be a very precise series of M, L commands. -->
+    <path d="M50 10 L20 40 V90 H40 V55 H50 Z" fill="url(#kenyanGradient)" />
+
+    <!-- This path would define the entire shape on the right, forming the other half of the house and completing the 'H' through its structure -->
+    <!-- The 'd' attribute here is also a placeholder. This path would need to include the "cutout" or shape of the other half of the 'H'. -->
+    <path d="M50 10 L80 40 V90 H60 V55 H50 Z" fill="#111827" />
+
+    <!-- IMPORTANT: The paths above are *extremely simplified placeholders* from your original code. -->
+    <!-- To accurately represent our logo, you would need to meticulously trace the exact geometry of the combined house and 'H' in vector software. -->
+    <!-- Each point and line segment would need to be translated into precise M (move to), L (line to), H (horizontal line to), V (vertical line to), Z (close path) commands. -->
+    <!-- The 'H' shape might be formed by the interaction of these two main paths, or as a separate white path if it were a cutout on top of a solid shape. -->
+    <!-- The beauty of the original logo is that the H is integrated, not simply layered. This means the 'd' attributes for the green and charcoal paths must be very carefully crafted together. -->
+
+  </g>
+</svg>

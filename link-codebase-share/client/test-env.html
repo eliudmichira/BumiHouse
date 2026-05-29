@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Environment Test</title>
+</head>
+<body>
+    <h1>Environment Variables Test</h1>
+    <div id="output"></div>
+    
+    <script type="module">
+        const output = document.getElementById('output');
+        
+        // Test environment variables
+        const envVars = {
+            'VITE_GOOGLE_MAPS_API_KEY': import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
+            'VITE_FIREBASE_API_KEY': import.meta.env.VITE_FIREBASE_API_KEY,
+            'MODE': import.meta.env.MODE,
+            'DEV': import.meta.env.DEV,
+            'PROD': import.meta.env.PROD
+        };
+        
+        output.innerHTML = '<pre>' + JSON.stringify(envVars, null, 2) + '</pre>';
+    </script>
+</body>
+</html>

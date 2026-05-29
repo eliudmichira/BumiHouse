@@ -1,0 +1,39 @@
+{
+    "project_info": {
+        "project_number": "1020344751483",
+        "project_id": "homeske",
+        "storage_bucket": "homeske.firebasestorage.app"
+    },
+    "client": [
+        {
+            "client_info": {
+                "mobilesdk_app_id": "1:1020344751483:android:d5e00747d8c06a8c5699de",
+                "android_client_info": {
+                    "package_name": "com.homeske.app"
+                }
+            },
+            "oauth_client": [
+                {
+                    "client_id": "1020344751483-gb77soij6v3ufnkbtm4a3tdkikojgec2.apps.googleusercontent.com",
+                    "client_type": 3
+                }
+            ],
+            "api_key": [
+                {
+                    "current_key": "REDACTED"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": [
+                        {
+                            "client_id": "1020344751483-gb77soij6v3ufnkbtm4a3tdkikojgec2.apps.googleusercontent.com",
+                            "client_type": 3
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "configuration_version": "1"
+}

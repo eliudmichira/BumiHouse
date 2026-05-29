@@ -1,0 +1,236 @@
+// darkTheme.scss - Standardized Gray-based Dark Theme
+// Import theme colors first
+@import './theme-colors.scss';
+
+// Dark theme root styles
+:root.dark,
+html.dark {
+  // Apply dark theme background
+  background: map-get($neutral-colors, 'gray-900') !important;
+  color: map-get($dark-theme, 'text-primary') !important;
+  min-height: 100vh;
+  position: relative;
+}
+
+// Dark theme body styles
+html.dark body {
+  background: transparent !important;
+  color: inherit !important;
+  min-height: 100vh;
+}
+
+// All containers should be transparent to show gradient
+html.dark {
+  #root,
+  .app,
+  .layout,
+  main,
+  .wrapper,
+  .container {
+    background: transparent !important;
+    color: inherit !important;
+  }
+}
+
+// Navbar styling
+html.dark {
+  nav,
+  .navbar,
+  .header {
+    background: rgba(31, 41, 55, 0.85) !important; // gray-800 with opacity
+    backdrop-filter: blur(20px) saturate(1.5);
+    border-bottom: 1px solid rgba(55, 65, 81, 0.2); // gray-700 with opacity
+    box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.3);
+    
+    a {
+      color: map-get($dark-theme, 'text-secondary') !important;
+      
+      &:hover {
+        color: map-get($primary-colors, 'emerald-400') !important;
+      }
+    }
+  }
+}
+
+// Cards and panels styling
+html.dark {
+  .card,
+  .panel,
+  .sidebar,
+  .modal-content,
+  .dropdown-menu,
+  .property-card,
+  .dashboard-section,
+  .settings-panel,
+  [class*="card"],
+  [class*="panel"] {
+    background: map-get($neutral-colors, 'gray-800') !important; // Secondary dark background
+    color: map-get($dark-theme, 'text-primary') !important;
+    border: 1px solid map-get($neutral-colors, 'gray-700') !important; // Primary border color
+    
+    * {
+      color: inherit;
+      border-color: map-get($dark-theme, 'border-secondary');
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      color: map-get($dark-theme, 'text-primary') !important;
+    }
+    
+    p {
+      color: map-get($dark-theme, 'text-secondary') !important;
+    }
+    
+    .text-muted {
+      color: map-get($dark-theme, 'text-tertiary') !important;
+    }
+  }
+}
+
+// Form elements
+html.dark {
+  input,
+  textarea,
+  select,
+  .form-control {
+    background: rgba(17, 24, 39, 0.6) !important; // gray-900 with opacity
+    border: 1px solid map-get($neutral-colors, 'gray-700') !important; // Primary border color
+    color: map-get($dark-theme, 'text-primary') !important;
+    
+    &:focus {
+      background: rgba(17, 24, 39, 0.8) !important; // gray-900 with opacity
+      border-color: map-get($primary-colors, 'emerald-400') !important;
+      box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.1) !important;
+      outline: none !important;
+    }
+    
+    &::placeholder {
+      color: map-get($neutral-colors, 'gray-400') !important;
+    }
+  }
+}
+
+// Buttons
+html.dark {
+  .btn,
+  button {
+    transition: all 0.3s ease;
+    
+    &.btn-primary,
+    &.primary {
+      background: map-get(map-get($button-styles, 'primary'), 'bg') !important;
+      color: map-get(map-get($button-styles, 'primary'), 'text') !important;
+      border: 1px solid map-get(map-get($button-styles, 'primary'), 'border');
+      
+      &:hover {
+        background: map-get(map-get($button-styles, 'primary'), 'hover-bg') !important;
+        box-shadow: 0 6px 20px 0 rgba(5, 150, 105, 0.4);
+      }
+    }
+    
+    &.btn-secondary,
+    &.secondary {
+      background: map-get(map-get($button-styles, 'secondary'), 'bg') !important;
+      color: map-get(map-get($button-styles, 'secondary'), 'text') !important;
+      border: 1px solid map-get(map-get($button-styles, 'secondary'), 'border');
+      
+      &:hover {
+        background: map-get(map-get($button-styles, 'secondary'), 'hover-bg') !important;
+      }
+    }
+  }
+}
+
+// Tables
+html.dark {
+  table {
+    background: transparent;
+    color: map-get($dark-theme, 'text-primary');
+    
+    th {
+      background: rgba(55, 65, 81, 0.3) !important; // gray-700 with opacity
+      color: map-get($primary-colors, 'emerald-400') !important;
+      border-color: map-get($neutral-colors, 'gray-700');
+    }
+    
+    td {
+      border-color: map-get($neutral-colors, 'gray-600'); // Secondary border color
+      color: map-get($dark-theme, 'text-secondary') !important;
+    }
+    
+    tr:hover {
+      background: rgba(55, 65, 81, 0.1) !important; // gray-700 with opacity
+    }
+  }
+}
+
+// Scrollbars
+html.dark {
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: rgba(17, 24, 39, 0.8); // gray-900 with opacity
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #059669 0%, #10b981 100%);
+    border-radius: 6px;
+    border: 2px solid rgba(17, 24, 39, 0.8); // gray-900 with opacity
+    
+    &:hover {
+      background: linear-gradient(180deg, #047857 0%, #059669 100%);
+    }
+  }
+}
+
+// Override any remaining light backgrounds
+html.dark {
+  [class*="bg-white"],
+  [class*="bg-light"],
+  [class*="bg-gray-50"],
+  [class*="bg-gray-100"] {
+    background: rgba(31, 41, 55, 0.1) !important; // gray-800 with opacity
+  }
+  
+  // Fix for Tailwind classes
+  .bg-white { background: rgba(31, 41, 55, 0.1) !important; } // gray-800 with opacity
+  .bg-gray-50 { background: rgba(31, 41, 55, 0.05) !important; } // gray-800 with opacity
+  .bg-gray-100 { background: rgba(31, 41, 55, 0.1) !important; } // gray-800 with opacity
+  
+  // Text color overrides
+  .text-gray-900 { color: map-get($dark-theme, 'text-primary') !important; }
+  .text-gray-800 { color: map-get($dark-theme, 'text-primary') !important; }
+  .text-gray-700 { color: map-get($dark-theme, 'text-secondary') !important; }
+  .text-gray-600 { color: map-get($dark-theme, 'text-secondary') !important; }
+  .text-gray-500 { color: map-get($dark-theme, 'text-tertiary') !important; }
+}
+
+// Utility classes for dark mode
+html.dark {
+  .glass-dark {
+    @include glassmorphism-dark;
+  }
+  
+  .shadow-emerald {
+    box-shadow: 0 6px 20px 0 rgba(5, 150, 105, 0.4);
+  }
+  
+  .shadow-purple {
+    box-shadow: 0 6px 20px 0 rgba(139, 92, 246, 0.4);
+  }
+  
+  .text-gradient-primary {
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .text-gradient-secondary {
+    background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environment Variables Test - Production</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-item { margin: 10px 0; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        .warning { background-color: #fff3cd; border-color: #ffeaa7; }
+    </style>
+</head>
+<body>
+    <h1>Environment Variables Test - Production</h1>
+    <p>This page tests if environment variables are properly loaded in production.</p>
+    
+    <div id="test-results"></div>
+
+    <script type="module">
+        const results = document.getElementById('test-results');
+        
+        // Test environment variables
+        const tests = [
+            {
+                name: 'Google Maps API Key',
+                value: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
+                expected: 'REDACTED'
+            },
+            {
+                name: 'Firebase API Key',
+                value: import.meta.env.VITE_FIREBASE_API_KEY,
+                expected: 'REDACTED'
+            },
+            {
+                name: 'Firebase Project ID',
+                value: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+                expected: 'dwellmate-285e8'
+            },
+            {
+                name: 'Environment Mode',
+                value: import.meta.env.MODE,
+                expected: 'production'
+            },
+            {
+                name: 'Is Production',
+                value: import.meta.env.PROD,
+                expected: true
+            }
+        ];
+        
+        tests.forEach(test => {
+            const div = document.createElement('div');
+            div.className = 'test-item';
+            
+            const isMatch = test.value === test.expected;
+            const hasValue = test.value !== undefined && test.value !== '';
+            
+            if (isMatch) {
+                div.className += ' success';
+                div.innerHTML = `✅ ${test.name}: ${test.value}`;
+            } else if (hasValue) {
+                div.className += ' warning';
+                div.innerHTML = `⚠️ ${test.name}: ${test.value} (expected: ${test.expected})`;
+            } else {
+                div.className += ' error';
+                div.innerHTML = `❌ ${test.name}: Not set or empty`;
+            }
+            
+            results.appendChild(div);
+        });
+        
+        // Show all environment variables
+        const envDiv = document.createElement('div');
+        envDiv.className = 'test-item';
+        envDiv.innerHTML = `<h3>All Environment Variables:</h3><pre>${JSON.stringify(import.meta.env, null, 2)}</pre>`;
+        results.appendChild(envDiv);
+    </script>
+</body>
+</html>

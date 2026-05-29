@@ -1,0 +1,13 @@
+{
+  "appId": "com.homeske.app",
+  "appName": "HomesKE",
+  "webDir": "dist",
+  "plugins": {
+    "FirebaseAuthentication": {
+      "skipNativeAuth": false,
+      "providers": [
+        "google.com"
+      ]
+    }
+  }
+}

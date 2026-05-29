@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "default": "homeske",
+    "development": "homeske"
+  },
+  "targets": {
+    "homeske": {
+      "hosting": {
+        "main": [
+          "homeske"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

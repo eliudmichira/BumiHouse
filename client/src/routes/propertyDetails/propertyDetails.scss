@@ -1,0 +1,105 @@
+.property-details {
+  .photo-gallery {
+    .main-image {
+      transition: transform 0.3s ease;
+      
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+    
+    .thumbnail {
+      transition: all 0.2s ease;
+      
+      &:hover {
+        transform: scale(1.05);
+      }
+      
+      &.active {
+        border-color: #3B82F6;
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+      }
+    }
+  }
+  
+  .property-card {
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  .agent-card {
+    .agent-avatar {
+      transition: transform 0.2s ease;
+      
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+  
+  .tab-content {
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .fullscreen-modal {
+    animation: fadeIn 0.2s ease;
+  }
+  
+  .similar-property {
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .property-details {
+    .photo-gallery {
+      .main-image {
+        height: 300px;
+      }
+      
+      .thumbnail {
+        width: 60px;
+        height: 45px;
+      }
+    }
+    
+    .property-stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+// Loading skeleton animations
+.skeleton {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+} 

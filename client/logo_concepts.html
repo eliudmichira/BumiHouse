@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Logo Concepts</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f9fafb;
+            color: #111827;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #6b7280;
+            margin-bottom: 40px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        .logo-container {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .logo-title {
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+
+        .logo-desc {
+            font-size: 0.875rem;
+            color: #6b7280;
+            text-align: center;
+        }
+
+        /* App Icon Preview */
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            background: white;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 24px;
+        }
+
+        /* Dark Mode Preview */
+        .dark-preview {
+            background: #111827;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Universal Logo Concepts</h1>
+    <p>Minimalist geometric marks designed for any brand name</p>
+
+    <div class="grid">
+        <!-- Concept 1: The Arrow Home -->
+        <div class="card">
+            <div class="logo-container">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#3fd693;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#51faaa;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <!-- Upward Arrow House Shape -->
+                    <path d="M50 20L20 50H35V80H65V50H80L50 20Z" fill="url(#grad1)" stroke="#3fd693" stroke-width="2"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+            <div class="logo-title">The Growth Home</div>
+            <div class="logo-desc">Classic symbol of an upward arrow merged with a house silhouette. Represents rising
+                property value and aspiration.</div>
+
+            <div class="app-icon">
+                <svg viewBox="0 0 100 100" width="40" height="40" fill="none">
+                    <path d="M50 20L20 50H35V80H65V50H80L50 20Z" fill="url(#grad1)" />
+                </svg>
+            </div>
+        </div>
+
+        <!-- Concept 2: The Abstract Shelter -->
+        <div class="card">
+            <div class="logo-container">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="grad2" x1="100%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#51faaa;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#2ebb7f;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <!-- Stylized Roof/Shelter -->
+                    <path d="M20 60 L50 30 L80 60" stroke="url(#grad2)" stroke-width="12" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <circle cx="50" cy="70" r="6" fill="#111827" />
+                </svg>
+            </div>
+            <div class="logo-title">The Modern Shelter</div>
+            <div class="logo-desc">Ultra-minimalist roofline with a dot representing the user/location. Clean, modern,
+                and very tech-forward.</div>
+            <div class="app-icon">
+                <svg viewBox="0 0 100 100" width="40" height="40" fill="none">
+                    <path d="M20 60 L50 30 L80 60" stroke="url(#grad2)" stroke-width="12" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <circle cx="50" cy="70" r="6" fill="#111827" />
+                </svg>
+            </div>
+        </div>
+
+        <!-- Concept 3: The Connected Block -->
+        <div class="card">
+            <div class="logo-container">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#3fd693;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#51faaa;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <!-- Geometric Interlocking Shapes -->
+                    <rect x="25" y="25" width="30" height="30" rx="6" fill="#111827" />
+                    <rect x="45" y="45" width="30" height="30" rx="6" fill="url(#grad3)" />
+                </svg>
+            </div>
+            <div class="logo-title">Connected Spaces</div>
+            <div class="logo-desc">Two overlapping rounded squares representing connection between people and property.
+                Abstract and very scalable.</div>
+            <div class="app-icon">
+                <svg viewBox="0 0 100 100" width="40" height="40" fill="none">
+                    <rect x="25" y="25" width="30" height="30" rx="6" fill="#111827" />
+                    <rect x="45" y="45" width="30" height="30" rx="6" fill="url(#grad3)" />
+                </svg>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

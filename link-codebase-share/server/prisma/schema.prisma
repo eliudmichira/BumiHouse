@@ -1,0 +1,205 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+model User {
+  id             String        @id @map("_id") @db.String
+  firebaseId     String?       
+  email          String        @unique
+  username       String?
+  name           String?
+  phone          String?
+  avatar         String?
+  createdAt      DateTime      @default(now())
+  provider       String?
+  role           String ?       @default("user")
+  favorites      String[]      @default([])
+  savedSearches  SavedSearch[] @relation("UserSavedSearches")
+  preferences    Preferences?  @relation("UserPreferences")
+}
+
+model Preferences {
+  id             String   @id @map("_id") @db.ObjectId
+  userId         String   @unique
+  user           User     @relation("UserPreferences", fields: [userId], references: [id])
+  notifications  Boolean  @default(true)
+  emailAlerts    Boolean  @default(true)
+  priceRange     Json     @default("{\"min\":0,\"max\":1000000}")
+  preferredAreas String[] @default([])
+  homeTypes      String[] @default([])
+}
+
+model SavedSearch {
+  id        String   @id @map("_id") @db.ObjectId
+  userId    String
+  user      User     @relation("UserSavedSearches", fields: [userId], references: [id])
+  query     Json
+  createdAt DateTime @default(now())
+}
+
+
+model Property {
+  id             String        @id @default(auto()) @map("_id") @db.ObjectId
+  title          String
+  price          Int
+  description    String
+  pricePerSqft   Int
+  bedrooms       Int
+  bathrooms      Float
+  area           Int
+  address        String
+  city           String?
+  state          String?
+  zipCode        String?
+  latitude       Float
+  longitude      Float
+  images         String[]
+  listing_type   String
+  property_type  String?
+  days_on_market Int
+  // agent              String? // agency name (e.g., Howard Hanna)
+  agent          Agent
+  listing_agent  ListingAgent?
+  favorite       Boolean?
+  open_house     String?
+  year_built     Int?
+  lot_size       String?
+  garage         Int?
+  features       String[]
+  schools        School[]
+  neighborhood   Neighborhood?
+  similar_properties SimilarProperty[]
+  schoolsInfo        SchoolInfo? // elementary/middle/high names
+  // neighborhood       String?
+  property_history   PropertyHistory[]
+  walk_score         Int?
+  transit_score      Int?
+  price_history      PriceHistory[]
+  virtual_tour       Boolean?
+  is_new             Boolean?
+  is_foreclosure     Boolean?
+  is_price_reduced   Boolean?
+  petFriendly        Boolean?
+  hasParking         Boolean?
+  
+  // Vacancy tracking for apartment complexes
+  totalUnits         Int?
+  availableUnits     Int?
+  unitTypes          UnitType[]
+  nextVacancyDate    DateTime?
+  waitlistCount      Int?
+  averageRent        Int?
+  lastVacancyUpdate  DateTime?
+  vacancyNotes       String?
+}
+
+model UnitType {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  type        String   // e.g., "Studio", "1BR", "2BR"
+  bedrooms    Int      @default(1)
+  bathrooms   Float    @default(1)
+  area        Int      // square footage
+  price       Int      // monthly rent
+  available   Int      @default(0) // number of available units of this type
+  total       Int      @default(0) // total number of units of this type
+  propertyId  String   @db.ObjectId
+  property    Property @relation(fields: [propertyId], references: [id])
+  
+  @@map("unit_types")
+}
+
+type Agent {
+  name       String
+  phone      String
+  email      String
+  avatar     String
+  rating     Float
+  reviews    Int
+  experience String
+}
+
+type ListingAgent {
+  name  String
+  phone String
+  email String
+  photo String
+}
+
+type SchoolInfo {
+  elementary String?
+  middle     String?
+  high       String?
+}
+
+type School {
+  name     String
+  distance String
+  rating   Float
+  type     String
+  grades   String
+}
+
+type PriceHistory {
+  date  String
+  price Int
+  event String
+}
+
+type PropertyHistory {
+  date  String
+  event String
+  price Int
+}
+
+type Neighborhood {
+  name         String
+  walkScore    Int
+  transitScore Int
+  bikeScore    Int
+  crimeRate    String
+  population   String
+  medianAge    Int
+  medianIncome String
+}
+
+type SimilarProperty {
+  id        Int
+  title     String
+  price     Int
+  bedrooms  Int
+  bathrooms Float
+  area      Int
+  address   String
+  image     String
+}
+
+/// Staging model for externally scraped listings before normalization/import
+model ExternalListing {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  source       String   // e.g., buyrentkenya, property24
+  sourceId     String?  // listing id from source site, if available
+  url          String   @unique
+  title        String?
+  price        Int?
+  bedrooms     Int?
+  bathrooms    Float?
+  area         Int?
+  address      String?
+  city         String?
+  latitude     Float?
+  longitude    Float?
+  images       String[]
+  listingType  String?  // rent | sale
+  propertyType String?
+  raw          Json     // raw scraped payload
+  normalized   Boolean  @default(false)
+  imported     Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([source, sourceId])
+}

@@ -1,0 +1,1 @@
+import{j as o}from"./react-vendor-DGfG09om.js";import{P as t}from"./PlaceholderDashboard-DLzyDbTi.js";import{bi as r}from"./ui-DINKT3WH.js";import"./vendor-CjofE4th.js";const s=()=>o.jsx(t,{title:"Document Storage",description:"Store leases, contracts, and important documents",icon:r});export{s as default};

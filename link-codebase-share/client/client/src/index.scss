@@ -1,0 +1,213 @@
+// index.scss or global.scss
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import './styles/theme-colors.scss';
+@import './darkTheme.scss';
+
+// Font Variables
+$font-primary: 'Manrope', sans-serif;
+$font-secondary: 'Lato', sans-serif;
+
+// Global Reset
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  
+  // Smooth transitions for theme changes
+  transition: background-color 0.3s ease, 
+              color 0.3s ease, 
+              border-color 0.3s ease;
+}
+
+// Remove default link styles
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+// Base body styles
+body {
+  font-family: $font-primary;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow: auto;
+  
+  // Hide scrollbars but keep functionality
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  
+  // Light theme defaults
+  background-color: map-get($light-theme, 'bg-primary');
+  color: map-get($light-theme, 'text-primary');
+  
+  // Dark theme
+  &.dark {
+    background-color: map-get($dark-theme, 'bg-primary');
+    color: map-get($dark-theme, 'text-primary');
+  }
+}
+
+// WebKit browsers scrollbar hiding
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none;
+}
+
+// Root CSS variables for theme colors
+:root {
+  // Light theme variables
+  --bg-primary: #{map-get($light-theme, 'bg-primary')};
+  --bg-secondary: #{map-get($light-theme, 'bg-secondary')};
+  --bg-tertiary: #{map-get($light-theme, 'bg-tertiary')};
+  --bg-card: #{map-get($light-theme, 'bg-card')};
+  --bg-hover: #{map-get($light-theme, 'bg-hover')};
+  
+  --text-primary: #{map-get($light-theme, 'text-primary')};
+  --text-secondary: #{map-get($light-theme, 'text-secondary')};
+  --text-tertiary: #{map-get($light-theme, 'text-tertiary')};
+  --text-inverse: #{map-get($light-theme, 'text-inverse')};
+  
+  --border-primary: #{map-get($light-theme, 'border-primary')};
+  --border-secondary: #{map-get($light-theme, 'border-secondary')};
+  
+  --accent-primary: #{map-get($light-theme, 'accent-primary')};
+  --accent-secondary: #{map-get($light-theme, 'accent-secondary')};
+}
+
+// Dark theme CSS variables
+:root.dark,
+html.dark {
+  --bg-primary: #{map-get($dark-theme, 'bg-primary')};
+  --bg-secondary: #{map-get($dark-theme, 'bg-secondary')};
+  --bg-tertiary: #{map-get($dark-theme, 'bg-tertiary')};
+  --bg-card: #{map-get($dark-theme, 'bg-card')};
+  --bg-hover: #{map-get($dark-theme, 'bg-hover')};
+  
+  --text-primary: #{map-get($dark-theme, 'text-primary')};
+  --text-secondary: #{map-get($dark-theme, 'text-secondary')};
+  --text-tertiary: #{map-get($dark-theme, 'text-tertiary')};
+  --text-inverse: #{map-get($dark-theme, 'text-inverse')};
+  
+  --border-primary: #{map-get($dark-theme, 'border-primary')};
+  --border-secondary: #{map-get($dark-theme, 'border-secondary')};
+  
+  --accent-primary: #{map-get($dark-theme, 'accent-primary')};
+  --accent-secondary: #{map-get($dark-theme, 'accent-secondary')};
+}
+
+// Utility classes using CSS variables
+.bg-primary { background-color: var(--bg-primary); }
+.bg-secondary { background-color: var(--bg-secondary); }
+.bg-tertiary { background-color: var(--bg-tertiary); }
+.bg-card { background-color: var(--bg-card); }
+
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary { color: var(--text-tertiary); }
+
+.border-primary { border-color: var(--border-primary); }
+.border-secondary { border-color: var(--border-secondary); }
+
+.accent-primary { color: var(--accent-primary); }
+.accent-secondary { color: var(--accent-secondary); }
+
+// Common component styles
+.card {
+  @include glassmorphism-dark;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px 0 rgba(5, 150, 105, 0.25);
+  }
+}
+
+// Button base styles
+.btn {
+  font-family: $font-primary;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+  
+  &-primary {
+    background: map-get(map-get($button-styles, 'primary'), 'bg');
+    color: map-get(map-get($button-styles, 'primary'), 'text');
+    border-color: map-get(map-get($button-styles, 'primary'), 'border');
+    
+    &:hover {
+      background: map-get(map-get($button-styles, 'primary'), 'hover-bg');
+      box-shadow: 0 6px 20px 0 rgba(5, 150, 105, 0.4);
+    }
+  }
+  
+  &-secondary {
+    background: map-get(map-get($button-styles, 'secondary'), 'bg');
+    color: map-get(map-get($button-styles, 'secondary'), 'text');
+    border-color: map-get(map-get($button-styles, 'secondary'), 'border');
+    
+    &:hover {
+      background: map-get(map-get($button-styles, 'secondary'), 'hover-bg');
+    }
+  }
+  
+  &-purple {
+    background: map-get(map-get($button-styles, 'purple'), 'bg');
+    color: map-get(map-get($button-styles, 'purple'), 'text');
+    border-color: map-get(map-get($button-styles, 'purple'), 'border');
+    
+    &:hover {
+      background: map-get(map-get($button-styles, 'purple'), 'hover-bg');
+      box-shadow: 0 6px 20px 0 rgba(139, 92, 246, 0.4);
+    }
+  }
+}
+
+// Form input styles
+input,
+textarea,
+select {
+  font-family: $font-primary;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-primary);
+  
+  &:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+  }
+  
+  &::placeholder {
+    color: var(--text-tertiary);
+  }
+}
+
+// Selection colors
+::selection {
+  background-color: var(--accent-primary);
+  color: white;
+}
+
+// Focus visible styles for accessibility
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+// Responsive font sizes
+@media (min-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+// Print styles
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+}

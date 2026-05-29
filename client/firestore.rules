@@ -1,0 +1,164 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Helpers ──────────────────────────────────────────────────
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && 
+        (
+          (request.auth.token.email != null && request.auth.token.email in ["eddmichira@gmail.com", "eliudsamwels7@gmail.com", "admin@bogani.com"]) ||
+          (exists(/databases/$(database)/documents/users/$(request.auth.uid)) && 
+           get(/databases/$(database)/documents/users/$(request.auth.uid)).data.get('role', '') == 'admin')
+        );
+    }
+
+    // ── Properties ──────────────────────────────────────────────
+    match /properties/{propertyId} {
+      allow read: if true;
+      allow create: if isSignedIn();
+      allow update: if isSignedIn();
+      allow delete: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+
+      // Reviews subcollection
+      match /reviews/{reviewId} {
+        allow read: if true;
+        allow create: if isSignedIn();
+        allow update, delete: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      }
+    }
+
+    // ── Agents ──────────────────────────────────────────────────
+    match /agents/{agentId} {
+      allow read: if true;
+      allow write: if isSignedIn() && (request.auth.uid == agentId || isAdmin());
+    }
+
+    // ── Users ───────────────────────────────────────────────────
+    match /users/{userId} {
+      allow read: if true;
+      allow write: if isSignedIn() && (request.auth.uid == userId || isAdmin());
+
+      match /favorites/{favoriteId} {
+        allow read, write: if isSignedIn() && (request.auth.uid == userId || isAdmin());
+      }
+
+      match /notifications/{notificationId} {
+        allow read, write: if isSignedIn() && (request.auth.uid == userId || isAdmin());
+      }
+    }
+
+    // ── Conversations & Messages ────────────────────────────────
+    match /conversations/{conversationId} {
+      allow read: if isSignedIn() && (request.auth.uid in resource.data.participants || isAdmin());
+      allow create: if isSignedIn();
+      allow update: if isSignedIn() && (request.auth.uid in resource.data.participants || isAdmin());
+      allow delete: if isAdmin();
+
+      match /messages/{messageId} {
+        allow read: if isSignedIn() && (request.auth.uid in get(/databases/$(database)/documents/conversations/$(conversationId)).data.participants || isAdmin());
+        allow create: if isSignedIn();
+        allow update, delete: if isAdmin();
+      }
+    }
+
+    // ── Inquiries ───────────────────────────────────────────────
+    match /inquiries/{inquiryId} {
+      allow read: if isSignedIn() && (resource.data.userId == request.auth.uid || resource.data.agentId == request.auth.uid || isAdmin());
+      allow create: if isSignedIn();
+      allow update: if isSignedIn() && (resource.data.userId == request.auth.uid || resource.data.agentId == request.auth.uid || isAdmin());
+      allow delete: if isAdmin();
+    }
+
+    // ── Bookings ────────────────────────────────────────────────
+    match /bookings/{bookingId} {
+      allow read: if isSignedIn() && (resource.data.userId == request.auth.uid || resource.data.agentId == request.auth.uid || isAdmin());
+      allow create: if isSignedIn();
+      allow update: if isSignedIn() && (resource.data.userId == request.auth.uid || resource.data.agentId == request.auth.uid || isAdmin());
+      allow delete: if isAdmin();
+    }
+
+    // ── Analytics (read-only for clients) ───────────────────────
+    match /pageViews/{document} {
+      allow read: if true;
+      allow create: if true;
+      allow update: if true;
+      allow delete: if isAdmin();
+    }
+
+    match /propertyViews/{document} {
+      allow read: if true;
+      allow create: if true;
+      allow update, delete: if isAdmin();
+    }
+
+    match /analytics/{document} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+
+    // ── Admin Settings ──────────────────────────────────────────
+    match /admin/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // ── Trial System ────────────────────────────────────────────
+    match /trialSignups/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow update, delete: if isAdmin();
+    }
+
+    match /trialSessions/{document} {
+      allow read, write: if true;
+    }
+
+    // ── Blog posts (public read; admin write) ───────────────────
+    match /blogPosts/{postId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /{collection}/{document} {
+      allow read, write: if (collection.matches('trial_properties_.*') ||
+                          collection.matches('trial_tenants_.*') ||
+                          collection.matches('trial_payments_.*')) || isAdmin();
+    }
+
+    // ── Email Queue ─────────────────────────────────────────────
+    match /emailQueue/{document} {
+      allow create: if true;
+      allow read: if isAdmin();
+      allow update, delete: if false;
+    }
+
+    // ── M-Pesa Payments ─────────────────────────────────────────
+    match /mpesaPayments/{document} {
+      allow create: if true;
+      allow read: if isAdmin();
+      allow update, delete: if false;
+    }
+
+    match /trialPayments/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow update, delete: if isAdmin();
+    }
+
+    // ── Testimonials ────────────────────────────────────────────
+    match /testimonials/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // ── Test collection (dev only, remove before prod) ──────────
+    match /test/{document} {
+      allow read, write: if isAdmin();
+    }
+  }
+}
+

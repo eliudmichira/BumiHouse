@@ -1,0 +1,106 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow read access to all users for properties
+    match /properties/{document} {
+      allow read: if true;
+      allow write: if request.auth != null;
+      // Allow anonymous updates for view counts only
+      allow update: if true;
+    }
+    
+    // Allow read access to all users for agents
+    match /agents/{document} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // Allow read/write access to all users for pageViews (including anonymous)
+    match /pageViews/{document} {
+      allow read, write: if true;
+    }
+    
+    // Allow read/write access to all users for propertyViews (including anonymous)
+    match /propertyViews/{document} {
+      allow read, write: if true;
+    }
+    
+    // Allow read/write access to all users for analytics collections
+    match /analytics/{document} {
+      allow read, write: if true;
+    }
+    
+    // Allow read access to all users for admin settings
+    match /admin/{document} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // Allow read access to all users for users
+    match /users/{document} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // Allow read access to all users for conversations and inquiries
+    match /conversations/{document} {
+      allow read, write: if true;
+      
+      // Allow read/write access to messages within conversations
+      match /messages/{messageId} {
+        allow read, write: if true;
+      }
+    }
+    
+    match /inquiries/{document} {
+      allow read, write: if true;
+    }
+    
+    // Allow read access to all users for test collection
+    match /test/{document} {
+      allow read: if true;
+      allow write: if true;
+    }
+    
+    // Trial signups - allow creation and reading by anyone for login purposes
+    match /trialSignups/{document} {
+      allow create: if true; // Anyone can create trial signups
+      allow read: if true; // Anyone can read trial signups for login
+      allow update, delete: if request.auth != null; // Only authenticated users can manage
+    }
+
+    // Email queue - system can write, authenticated users can read for monitoring
+    match /emailQueue/{document} {
+      allow create: if true; // System creates emails
+      allow read: if request.auth != null; // Authenticated users can monitor
+      allow update, delete: if false; // Only Firebase Functions can modify
+    }
+
+    // Trial sessions - allow public access for trial functionality
+    match /trialSessions/{document} {
+      allow read, write: if true; // Trial sessions accessible to everyone
+    }
+
+    // Trial data collections - allow public access for trial users
+    match /{collection}/{document} {
+      allow read, write: if collection.matches('trial_properties_.*') || 
+                         collection.matches('trial_tenants_.*') || 
+                         collection.matches('trial_payments_.*');
+    }
+
+    // M-Pesa payments - allow creation for tenant payments
+    match /mpesaPayments/{document} {
+      allow create: if true; // Anyone can initiate payments
+      allow read: if request.auth != null; // Authenticated users can read
+      allow update, delete: if false; // Only Firebase Functions can modify
+    }
+
+    // Trial payments collection for tenant portal
+    match /trialPayments/{document} {
+      allow create: if true; // Tenants can create payments
+      allow read: if true; // Anyone can read for trial purposes
+      allow update, delete: if false; // Only Firebase Functions can modify
+    }
+  }
+}
+

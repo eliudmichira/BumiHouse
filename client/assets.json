@@ -1,0 +1,25 @@
+{
+    "assets": {
+        "ios": {
+            "icon": {
+                "source": "assets/android-chrome-512x512.png",
+                "backgroundColor": "#111827"
+            },
+            "splash": {
+                "source": "assets/android-chrome-512x512.png",
+                "backgroundColor": "#111827"
+            }
+        },
+        "android": {
+            "icon": {
+                "source": "assets/adaptive_foreground.png",
+                "foreground": "assets/adaptive_foreground.png",
+                "background": "#111827"
+            },
+            "splash": {
+                "source": "assets/adaptive_foreground.png",
+                "backgroundColor": "#111827"
+            }
+        }
+    }
+}

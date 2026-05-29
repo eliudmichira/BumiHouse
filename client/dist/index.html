@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+
+  <!-- PWA Meta Tags -->
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="HomesKE" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="application-name" content="HomesKE" />
+
+  <!-- SEO & Social Meta Tags -->
+  <title>Bumihouse - Buy, Sell & Rent Properties in Kenya</title>
+  <meta name="description"
+    content="Find your dream property in Kenya. Buy, sell, and rent houses, apartments, and commercial properties with HomesKE." />
+  <meta name="keywords"
+    content="real estate, properties, houses, apartments, rent, buy, sell, Kenya, Nairobi, Mombasa, Kisumu" />
+  <meta name="author" content="HomesKE" />
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Bumihouse - Real Estate Platform" />
+  <meta property="og:description"
+    content="Find your dream property in Kenya. Buy, sell, and rent houses, apartments, and commercial properties." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bumihouse.com" />
+  <meta property="og:image" content="/logo.png" />
+  <meta property="og:site_name" content="Bumihouse" />
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="HomesKE - Real Estate Platform" />
+  <meta name="twitter:description"
+    content="Find your dream property in Kenya. Buy, sell, and rent houses, apartments, and commercial properties." />
+  <meta name="twitter:image" content="/logo.png" />
+
+  <!-- Performance: preconnect and dns-prefetch for critical origins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://firebasestorage.googleapis.com" crossorigin>
+  <link rel="dns-prefetch" href="https://firebasestorage.googleapis.com">
+  <link rel="preconnect" href="https://firestore.googleapis.com" crossorigin>
+  <link rel="dns-prefetch" href="https://firestore.googleapis.com">
+  <link rel="preconnect" href="https://maps.googleapis.com" crossorigin>
+  <link rel="dns-prefetch" href="https://maps.googleapis.com">
+
+  <!-- Optimized Fonts - Load asynchronously to prevent render blocking -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
+    as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </noscript>
+
+  <!-- Material Icons - Load asynchronously -->
+  <link rel="preload" href="https://fonts.googleapis.com/icon?family=Material+Icons" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </noscript>
+
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined&display=swap" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined&display=swap" rel="stylesheet">
+  </noscript>
+
+  <!-- PWA Icons -->
+  <link rel="apple-touch-icon" href="/logo.png" />
+  <!-- <link rel="mask-icon" href="/masked-icon.svg" color="#51faaa" /> -->
+
+  <!-- Google Maps API will be loaded by useJsApiLoader in React components -->
+  <!-- Ensure Google Maps is available before vendor bundles execute -->
+  <!-- Google Maps API will be loaded by useJsApiLoader in React components -->
+  <!-- Ensure Google Maps is available before vendor bundles execute -->
+  <script>
+    // Prevent early 'google is not defined' references from third-party bundles
+    (function () {
+      try {
+        if (typeof window !== 'undefined' && typeof window.google === 'undefined') {
+          window.google = { maps: {} };
+        } else if (typeof window !== 'undefined' && window.google && typeof window.google.maps === 'undefined') {
+          window.google.maps = {};
+        }
+        // Provide minimal enums used by vendor bundles until real API loads
+        var gm = window.google.maps;
+        if (typeof gm.MapTypeId === 'undefined') {
+          gm.MapTypeId = { ROADMAP: 'roadmap', SATELLITE: 'satellite', HYBRID: 'hybrid', TERRAIN: 'terrain' };
+        } else if (typeof gm.MapTypeId.HYBRID === 'undefined') {
+          gm.MapTypeId.HYBRID = 'hybrid';
+        }
+
+        // Minimal OverlayView placeholder (no-op) to avoid constructor errors before Maps loads
+        if (typeof gm.OverlayView === 'undefined') {
+          gm.OverlayView = function OverlayViewPlaceholder() { };
+          gm.OverlayView.prototype = {
+            constructor: gm.OverlayView,
+            onAdd: function () { },
+            onRemove: function () { },
+            draw: function () { },
+            setMap: function () { },
+            getPanes: function () { return {}; },
+            getProjection: function () {
+              return {
+                fromLatLngToDivPixel: function () { return { x: 0, y: 0 }; },
+                fromDivPixelToLatLng: function () { return { lat: function () { return 0; }, lng: function () { return 0; } }; }
+              };
+            }
+          };
+        }
+
+        // Provide placeholder for OverlappingMarkerSpiderfier to avoid vendor assignment crashes
+        if (typeof gm.OverlappingMarkerSpiderfier === 'undefined') {
+          gm.OverlappingMarkerSpiderfier = function PlaceholderOMS() {
+            return {
+              addMarker: function () { },
+              removeMarker: function () { },
+              clearMarkers: function () { },
+              addListener: function () { },
+              removeListener: function () { }
+            };
+          };
+        }
+      } catch (_) { }
+    })();
+
+    // Provide a global helper to remove the initial loader
+    window.removeAppLoader = function () {
+      try {
+        var loader = document.querySelector('.app-loading');
+        if (loader) loader.style.display = 'none';
+      } catch (_) { }
+    };
+
+    // Aggressively try to remove the loader for the first 8 seconds
+    (function aggressiveRemoveLoader() {
+      try { window.removeAppLoader && window.removeAppLoader(); } catch (_) { }
+      var start = Date.now();
+      var tries = 0;
+      var maxTries = 8;
+      (function tick() {
+        if (tries >= maxTries) return;
+        tries++;
+        try { window.removeAppLoader && window.removeAppLoader(); } catch (_) { }
+        setTimeout(tick, 1000);
+      })();
+    })();
+
+    // Hard-block any client-side GA4 Measurement Protocol calls from blocking UI
+    (function () {
+      try {
+        const MP_PATTERN = 'google-analytics.com/mp/collect';
+
+        // Wrap fetch
+        const originalFetch = window.fetch;
+        window.fetch = function (...args) {
+          try {
+            const url = typeof args[0] === 'string' ? args[0] : (args[0] && args[0].url);
+            if (url && url.includes(MP_PATTERN)) {
+              // return resolved promise so callers never block
+              return Promise.resolve(new Response(null, { status: 204 }));
+            }
+          } catch (_) { }
+          return originalFetch.apply(this, args);
+        };
+
+        // Wrap sendBeacon
+        if (navigator && navigator.sendBeacon) {
+          const originalBeacon = navigator.sendBeacon.bind(navigator);
+          navigator.sendBeacon = function (url, data) {
+            try {
+              if (typeof url === 'string' && url.includes(MP_PATTERN)) {
+                return true; // pretend success
+              }
+            } catch (_) { }
+            return originalBeacon(url, data);
+          };
+        }
+
+        // Wrap XMLHttpRequest
+        const OriginalXHR = window.XMLHttpRequest;
+        function WrappedXHR() {
+          const xhr = new OriginalXHR();
+          const originalOpen = xhr.open;
+          xhr.open = function (method, url, ...rest) {
+            try {
+              if (typeof url === 'string' && url.includes(MP_PATTERN)) {
+                // Short-circuit: never actually send
+                // Provide minimal interface for code expecting events
+                setTimeout(() => {
+                  try { xhr.onreadystatechange && xhr.onreadystatechange(); } catch (_) { }
+                }, 0);
+                // Use a no-op open to avoid throwing
+                return originalOpen.call(xhr, method, 'about:blank', ...rest);
+              }
+            } catch (_) { }
+            return originalOpen.call(xhr, method, url, ...rest);
+          };
+          return xhr;
+        }
+        window.XMLHttpRequest = WrappedXHR;
+      } catch (e) {
+        // no-op in production
+      }
+    })();
+
+    // Enhanced global error handler for production resilience
+    // One-time console note for maps init; then detach listener to avoid noise
+    (function () {
+      let mapsInitWarned = false;
+      function onWindowError(event) {
+        // Handle Google Maps API loading warnings
+        if (event.message && event.message.includes('google is not defined')) {
+          mapsInitWarned = true;
+          // After first occurrence, stop listening to avoid repeated logs
+          try { window.removeEventListener('error', onWindowError); } catch (_) { }
+          event.preventDefault();
+          return false;
+        }
+
+        // Suppress GA4 Measurement Protocol errors (should be handled server-side)
+        if (event.message && event.message.includes('mp/collect')) {
+          event.preventDefault();
+          return false;
+        }
+
+        // Suppress fetch errors for analytics endpoints
+        if (event.target && event.target.tagName === 'SCRIPT' &&
+          event.target.src && event.target.src.includes('google-analytics.com')) {
+          event.preventDefault();
+          return false;
+        }
+
+        // Handle network errors gracefully
+        if (event.message && event.message.includes('Failed to fetch')) {
+          event.preventDefault();
+          return false;
+        }
+
+        // Handle CORS errors gracefully
+        if (event.message && event.message.includes('CORS')) {
+          event.preventDefault();
+          return false;
+        }
+
+        // Allow other errors to surface so we can diagnose blank-page issues
+        // (Do not preventDefault here)
+      }
+      window.addEventListener('error', onWindowError);
+    })();
+
+    // Handle unhandled promise rejections for analytics
+    window.addEventListener('unhandledrejection', function (event) {
+      if (event.reason && event.reason.message &&
+        (event.reason.message.includes('mp/collect') ||
+          event.reason.message.includes('measurement_id'))) {
+        console.warn('⚠️ Analytics promise rejection (non-critical):', event.reason.message);
+        event.preventDefault();
+        return false;
+      }
+    });
+  </script>
+
+  <!-- Critical CSS inline for above-the-fold content -->
+  <style>
+    /* Critical CSS for initial render */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background-color: #0a0c19;
+      color: #ffffff;
+    }
+
+    #root {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Loading spinner */
+    .app-loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #0a0c19 0%, #10121e 100%);
+    }
+
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(81, 250, 170, 0.3);
+      border-top: 3px solid #2563eb;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+  <script type="module" crossorigin src="/index-BtHNjTde.js"></script>
+  <link rel="modulepreload" crossorigin href="/react-vendor-DGfG09om.js">
+  <link rel="modulepreload" crossorigin href="/utils-B2DvmiKJ.js">
+  <link rel="modulepreload" crossorigin href="/vendor-CjofE4th.js">
+  <link rel="modulepreload" crossorigin href="/ui-DINKT3WH.js">
+  <link rel="stylesheet" crossorigin href="/assets/css/vendor-Dgihpmma.css">
+  <link rel="stylesheet" crossorigin href="/assets/css/index-BC_ULBhD.css">
+</head>
+
+<body>
+  <div id="root">
+    <!-- Loading fallback -->
+    <div class="app-loading">
+      <div class="loading-spinner"></div>
+    </div>
+  </div>
+  <!-- Minimal diagnostics overlay for production blank-screen cases -->
+  <div id="boot-diagnostics"
+    style="display:none;position:fixed;z-index:99999;inset:0;background:rgba(10,12,25,0.96);color:#fff;padding:16px;overflow:auto;font-family:monospace;">
+    <div style="max-width:960px;margin:0 auto;">
+      <h3 style="margin:0 0 8px 0;color:green;">Bumihouse - Startup Diagnostics</h3>
+      <div id="boot-diag-message" style="white-space:pre-wrap;line-height:1.4"></div>
+      <button onclick="this.parentNode.parentNode.style.display='none'"
+        style="margin-top:12px;background:#2563eb;border:0;padding:8px 12px;border-radius:6px;cursor:pointer;">Dismiss</button>
+    </div>
+  </div>
+
+  <script>
+    // Safety: hide initial loader after 4s even if React hasn't mounted yet
+    (function () {
+      try {
+        setTimeout(function () {
+          var loader = document.querySelector('.app-loading');
+          if (loader) {
+            loader.style.display = 'none';
+          }
+        }, 4000);
+      } catch (e) { }
+    })();
+
+    // Unregister any existing service workers to avoid caching issues
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister()));
+    }
+
+    // Handle browser extension errors gracefully
+    window.addEventListener('error', (event) => {
+      if (event.message && event.message.includes('message channel closed')) {
+        event.preventDefault();
+        return false;
+      }
+    });
+
+    window.addEventListener('unhandledrejection', (event) => {
+      if (event.reason && event.reason.message && event.reason.message.includes('message channel closed')) {
+        event.preventDefault();
+        return false;
+      }
+    });
+
+    // Performance optimizations
+    // Note: Image preloading removed to prevent unused resource warnings
+
+    // Run optimizations after DOM is ready
+    // Image preloading removed to prevent unused resource warnings
+
+    // Optimize font loading
+    const optimizeFonts = () => {
+      if ('fonts' in document) {
+        document.fonts.ready.then(() => {
+          document.documentElement.classList.add('fonts-loaded');
+        });
+      }
+    };
+
+    optimizeFonts();
+
+    // Startup diagnostics: show overlay if React didn't mount or on runtime error
+    (function () {
+      var overlay = document.getElementById('boot-diagnostics');
+      var msg = document.getElementById('boot-diag-message');
+
+      function showOverlay(text) {
+        try {
+          if (!overlay || !msg) return;
+          msg.textContent = text;
+          overlay.style.display = 'block';
+        } catch (_) { }
+      }
+
+      // Expose for React to hide explicitly when ready
+      window.hideBootDiagnostics = function () {
+        try { if (overlay) overlay.style.display = 'none'; } catch (_) { }
+      };
+
+      // If app didn't mount within 5s, surface a basic status snapshot
+      setTimeout(function () {
+        try {
+          var root = document.getElementById('root');
+          var mounted = !!(root && root.firstElementChild && root.firstElementChild.id !== undefined && root.childElementCount > 0);
+          var hasGoogle = !!(window.google);
+          var hasGoogleMaps = !!(window.google && window.google.maps);
+          var envMode = (window && window.__ENV_MODE__) || 'prod';
+          if (!mounted) {
+            var lines = [
+              'The app did not finish mounting within 5 seconds.',
+              '',
+              'Quick status:',
+              '- window.google present: ' + hasGoogle,
+              '- window.google.maps present: ' + hasGoogleMaps,
+              '- document.readyState: ' + document.readyState,
+              '- env mode: ' + envMode,
+              '',
+              'If this persists, check DevTools > Network for maps.googleapis.com script errors and verify VITE_ envs.'
+            ];
+            showOverlay(lines.join('\n'));
+          }
+        } catch (_) { }
+      }, 5000);
+
+      // Capture and display first runtime error (do not suppress)
+      window.addEventListener('error', function (e) {
+        try {
+          var text = 'Runtime error: ' + (e.message || '') + '\n' + (e.filename || '') + ':' + (e.lineno || '') + '\n';
+          showOverlay(text);
+        } catch (_) { }
+      }, { once: true });
+
+      window.addEventListener('unhandledrejection', function (e) {
+        try {
+          var reason = e.reason && (e.reason.stack || e.reason.message || String(e.reason));
+          var text = 'Unhandled rejection: ' + (reason || 'unknown');
+          showOverlay(text);
+        } catch (_) { }
+      }, { once: true });
+    })();
+  </script>
+</body>
+
+</html>

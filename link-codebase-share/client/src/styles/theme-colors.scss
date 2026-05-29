@@ -1,0 +1,201 @@
+// Complete Theme Color System for Hama Estate
+// This file defines all colors used throughout the site
+
+// ===================================
+// BASE COLOR PALETTE
+// ===================================
+
+// Primary Colors - Standardized Gray-based Dark Theme
+$primary-colors: (
+  'dark-base': #111827, // gray-900
+  'dark-surface': #1f2937, // gray-800
+  'dark-elevated': #374151, // gray-700
+  'dark-overlay': #4b5563, // gray-600
+  'emerald-50': #ecfdf5,
+  'emerald-100': #d1fae5,
+  'emerald-200': #a7f3d0,
+  'emerald-300': #6ee7b7,
+  'emerald-400': #34d399,
+  'emerald-500': #10b981,
+  'emerald-600': #059669,
+  'emerald-700': #047857,
+  'emerald-800': #065f46,
+  'emerald-900': #064e3b,
+);
+
+// Secondary Colors - Purple/Violet Branding
+$secondary-colors: (
+  'purple-50': #f5f3ff,
+  'purple-100': #ede9fe,
+  'purple-200': #ddd6fe,
+  'purple-300': #c4b5fd,
+  'purple-400': #a78bfa,
+  'purple-500': #8b5cf6,
+  'purple-600': #7c3aed,
+  'purple-700': #6d28d9,
+  'purple-800': #5b21b6,
+  'purple-900': #4c1d95,
+);
+
+// Neutral Colors - Standardized Gray Scale
+$neutral-colors: (
+  'gray-50': #f9fafb,
+  'gray-100': #f3f4f6,
+  'gray-200': #e5e7eb,
+  'gray-300': #d1d5db,
+  'gray-400': #9ca3af,
+  'gray-500': #6b7280,
+  'gray-600': #4b5563,
+  'gray-700': #374151,
+  'gray-800': #1f2937,
+  'gray-900': #111827,
+);
+
+// Status Colors
+$status-colors: (
+  'success': #10b981,
+  'warning': #f59e0b,
+  'error': #ef4444,
+  'info': #3b82f6,
+);
+
+// ===================================
+// THEME DEFINITIONS
+// ===================================
+
+// Light Theme
+$light-theme: (
+  'bg-primary': #ffffff,
+  'bg-secondary': map-get($neutral-colors, 'gray-50'),
+  'bg-tertiary': map-get($neutral-colors, 'gray-100'),
+  'bg-card': #ffffff,
+  'bg-hover': map-get($neutral-colors, 'gray-50'),
+  'text-primary': map-get($neutral-colors, 'gray-900'),
+  'text-secondary': map-get($neutral-colors, 'gray-700'),
+  'text-tertiary': map-get($neutral-colors, 'gray-500'),
+  'text-inverse': #ffffff,
+  'border-primary': map-get($neutral-colors, 'gray-200'),
+  'border-secondary': map-get($neutral-colors, 'gray-100'),
+  'accent-primary': map-get($primary-colors, 'emerald-600'),
+  'accent-secondary': map-get($secondary-colors, 'purple-600'),
+);
+
+// Dark Theme - Standardized Gray-based
+$dark-theme: (
+  'bg-primary': map-get($neutral-colors, 'gray-900'), // Main dark background
+  'bg-secondary': map-get($neutral-colors, 'gray-800'), // Secondary dark background
+  'bg-tertiary': map-get($neutral-colors, 'gray-700'), // Tertiary dark background
+  'bg-card': map-get($neutral-colors, 'gray-800'), // Card background
+  'bg-hover': map-get($neutral-colors, 'gray-700'), // Hover background
+  'text-primary': #ffffff, // Primary text color
+  'text-secondary': map-get($neutral-colors, 'gray-100'), // Secondary text color
+  'text-tertiary': map-get($neutral-colors, 'gray-200'), // Tertiary text color
+  'text-inverse': map-get($neutral-colors, 'gray-900'), // Inverse text color
+  'border-primary': map-get($neutral-colors, 'gray-700'), // Primary border color
+  'border-secondary': map-get($neutral-colors, 'gray-600'), // Secondary border color
+  'accent-primary': map-get($primary-colors, 'emerald-500'), // Primary accent
+  'accent-secondary': map-get($secondary-colors, 'purple-500'), // Secondary accent
+);
+
+// ===================================
+// COMPONENT-SPECIFIC COLORS
+// ===================================
+
+// Navbar
+$navbar-colors: (
+  'light': (
+    'bg': #ffffff,
+    'text': map-get($neutral-colors, 'gray-700'),
+    'hover': map-get($secondary-colors, 'purple-600'),
+    'border': map-get($neutral-colors, 'gray-200'),
+  ),
+  'dark': (
+    'bg': rgba(31, 41, 55, 0.85), // gray-800 with opacity
+    'text': #e5e7eb, // gray-200
+    'hover': map-get($primary-colors, 'emerald-400'),
+    'border': rgba(55, 65, 81, 0.2), // gray-700 with opacity
+  )
+);
+
+// Cards & Panels
+$card-styles: (
+  'light': (
+    'bg': #ffffff,
+    'shadow': 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    'border': map-get($neutral-colors, 'gray-200'),
+  ),
+  'dark': (
+    'bg': map-get($neutral-colors, 'gray-800'), // Secondary dark background
+    'shadow': 0 8px 32px 0 rgba(0, 0, 0, 0.3),
+    'border': map-get($neutral-colors, 'gray-700'), // Primary border color
+    'backdrop': blur(20px) saturate(1.4),
+  )
+);
+
+// Buttons
+$button-styles: (
+  'primary': (
+    'bg': linear-gradient(135deg, #059669 0%, #10b981 100%),
+    'text': #ffffff,
+    'border': rgba(52, 211, 153, 0.4),
+    'hover-bg': linear-gradient(135deg, #047857 0%, #059669 100%),
+  ),
+  'secondary': (
+    'bg': rgba(55, 65, 81, 0.3), // gray-700 with opacity
+    'text': map-get($primary-colors, 'emerald-400'),
+    'border': rgba(52, 211, 153, 0.4),
+    'hover-bg': rgba(55, 65, 81, 0.5), // gray-700 with opacity
+  ),
+  'purple': (
+    'bg': linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%),
+    'text': #ffffff,
+    'border': rgba(167, 139, 250, 0.4),
+    'hover-bg': linear-gradient(135deg, #6d28d9 0%, #7c3aed 100%),
+  )
+);
+
+// ===================================
+// GLASSMORPHISM EFFECTS
+// ===================================
+
+@mixin glassmorphism-dark {
+  background: rgba(31, 41, 55, 0.8); // gray-800 with opacity
+  backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid rgba(55, 65, 81, 0.3); // gray-700 with opacity
+  box-shadow: 
+    0 8px 32px 0 rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 0 rgba(52, 211, 153, 0.1);
+}
+
+@mixin glassmorphism-light {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px) saturate(1.2);
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  box-shadow: 
+    0 8px 32px 0 rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+}
+
+// ===================================
+// CSS CUSTOM PROPERTIES
+// ===================================
+
+:root {
+  --color-primary-50: #{map-get($primary-colors, 'emerald-50')};
+  --color-primary-100: #{map-get($primary-colors, 'emerald-100')};
+  --color-primary-200: #{map-get($primary-colors, 'emerald-200')};
+  --color-primary-300: #{map-get($primary-colors, 'emerald-300')};
+  --color-primary-400: #{map-get($primary-colors, 'emerald-400')};
+  --color-primary-500: #{map-get($primary-colors, 'emerald-500')};
+  --color-primary-600: #{map-get($primary-colors, 'emerald-600')};
+  --color-primary-700: #{map-get($primary-colors, 'emerald-700')};
+  --color-primary-800: #{map-get($primary-colors, 'emerald-800')};
+  --color-primary-900: #{map-get($primary-colors, 'emerald-900')};
+  --color-secondary-500: #{map-get($secondary-colors, 'purple-500')};
+  --color-secondary-600: #{map-get($secondary-colors, 'purple-600')};
+  --color-dark-base: #{map-get($neutral-colors, 'gray-900')};
+  --color-dark-surface: #{map-get($neutral-colors, 'gray-800')};
+  --color-dark-elevated: #{map-get($neutral-colors, 'gray-700')};
+}
+
+// Usage notes and Tailwind config extension are in the documentation above. 

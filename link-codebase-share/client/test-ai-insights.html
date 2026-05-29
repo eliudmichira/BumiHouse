@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test AI Market Insights</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .loading {
+            color: #666;
+            font-style: italic;
+        }
+        .error {
+            color: #d32f2f;
+            background: #ffebee;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .success {
+            color: #2e7d32;
+            background: #e8f5e8;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        pre {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        button {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        input {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin: 5px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Market Insights Test</h1>
+        
+        <div class="test-section">
+            <h3>Test Market Insights API</h3>
+            <input type="text" id="locationInput" placeholder="Enter location (e.g., Nairobi, Kenya)" value="Nairobi, Kenya">
+            <button onclick="testMarketInsights()">Test Market Insights</button>
+            <div id="marketInsightsResult"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Import the function from the service
+        import { fetchMarketInsights, formatKes } from './src/services/aiInsights.js';
+
+        // Make functions available globally
+        window.testMarketInsights = async function() {
+            const location = document.getElementById('locationInput').value;
+            const resultDiv = document.getElementById('marketInsightsResult');
+            
+            if (!location.trim()) {
+                resultDiv.innerHTML = '<div class="error">Please enter a location</div>';
+                return;
+            }
+
+            resultDiv.innerHTML = '<div class="loading">Loading market insights...</div>';
+
+            try {
+                const insights = await fetchMarketInsights(location);
+                
+                let html = '<div class="success">✅ Market insights loaded successfully!</div>';
+                html += '<h4>Raw Data:</h4>';
+                html += '<pre>' + JSON.stringify(insights, null, 2) + '</pre>';
+                
+                html += '<h4>Formatted Display:</h4>';
+                html += '<div style="background: #f9f9f9; padding: 15px; border-radius: 5px;">';
+                
+                if (insights.area) {
+                    html += `<p><strong>Area:</strong> ${insights.area}</p>`;
+                }
+                
+                if (insights.summary) {
+                    html += `<p><strong>Summary:</strong> ${insights.summary}</p>`;
+                }
+                
+                if (insights.counts?.homes) {
+                    html += `<p><strong>Available Homes:</strong> ${insights.counts.homes}</p>`;
+                }
+                
+                if (insights.rent?.avg_range) {
+                    html += `<p><strong>Average Rent:</strong> ${formatKes(insights.rent.avg_range.min)} - ${formatKes(insights.rent.avg_range.max)}</p>`;
+                }
+                
+                if (insights.plot_prices?.avg_range) {
+                    html += `<p><strong>Plot Prices (1/8 acre):</strong> ${formatKes(insights.plot_prices.avg_range.min)} - ${formatKes(insights.plot_prices.avg_range.max)}</p>`;
+                }
+                
+                if (insights.seasonal_trends?.description) {
+                    html += `<p><strong>Market Trends:</strong> ${insights.seasonal_trends.description}</p>`;
+                }
+                
+                if (insights.hotspots?.length) {
+                    html += `<p><strong>Hotspot Areas:</strong> ${insights.hotspots.join(', ')}</p>`;
+                }
+                
+                html += '</div>';
+                
+                resultDiv.innerHTML = html;
+                
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">❌ Error: ${error.message}</div>`;
+                console.error('Market insights error:', error);
+            }
+        };
+    </script>
+</body>
+</html>

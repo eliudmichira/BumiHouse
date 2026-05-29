@@ -1,0 +1,331 @@
+[
+    {
+        "name": "Mombasa",
+        "capital": "Mombasa",
+        "lat": -4.0500,
+        "lng": 39.6667,
+        "code": 1
+    },
+    {
+        "name": "Kwale",
+        "capital": "Kwale",
+        "lat": -4.17639,
+        "lng": 39.45389,
+        "code": 2
+    },
+    {
+        "name": "Kilifi",
+        "capital": "Kilifi",
+        "lat": -3.6333,
+        "lng": 39.8500,
+        "code": 3
+    },
+    {
+        "name": "Tana River",
+        "capital": "Hola",
+        "lat": -1.48256,
+        "lng": 40.03341,
+        "code": 4
+    },
+    {
+        "name": "Lamu",
+        "capital": "Lamu",
+        "lat": -2.2713,
+        "lng": 40.9021,
+        "code": 5
+    },
+    {
+        "name": "Taita/Taveta",
+        "capital": "Voi",
+        "lat": -3.3967,
+        "lng": 38.5630,
+        "code": 6
+    },
+    {
+        "name": "Garissa",
+        "capital": "Garissa",
+        "lat": -0.4569,
+        "lng": 39.6583,
+        "code": 7
+    },
+    {
+        "name": "Wajir",
+        "capital": "Wajir",
+        "lat": 1.7471,
+        "lng": 40.05732,
+        "code": 8
+    },
+    {
+        "name": "Mandera",
+        "capital": "Mandera",
+        "lat": 3.93726,
+        "lng": 41.85688,
+        "code": 9
+    },
+    {
+        "name": "Marsabit",
+        "capital": "Marsabit",
+        "lat": 2.3276,
+        "lng": 37.9868,
+        "code": 10
+    },
+    {
+        "name": "Isiolo",
+        "capital": "Isiolo",
+        "lat": 0.355636,
+        "lng": 37.5833061,
+        "code": 11
+    },
+    {
+        "name": "Meru",
+        "capital": "Meru",
+        "lat": 0.053543,
+        "lng": 37.648399,
+        "code": 12
+    },
+    {
+        "name": "Tharaka-Nithi",
+        "capital": "Kathwana",
+        "lat": -0.317,
+        "lng": 37.867,
+        "code": 13
+    },
+    {
+        "name": "Embu",
+        "capital": "Embu",
+        "lat": -0.5362,
+        "lng": 37.4529,
+        "code": 14
+    },
+    {
+        "name": "Kitui",
+        "capital": "Kitui",
+        "lat": -1.36696,
+        "lng": 38.01055,
+        "code": 15
+    },
+    {
+        "name": "Machakos",
+        "capital": "Machakos",
+        "lat": -1.5200,
+        "lng": 37.2667,
+        "code": 16
+    },
+    {
+        "name": "Makueni",
+        "capital": "Wote",
+        "lat": -1.8000,
+        "lng": 37.6333,
+        "code": 17
+    },
+    {
+        "name": "Nyandarua",
+        "capital": "Ol Kalou",
+        "lat": -0.2667,
+        "lng": 36.3833,
+        "code": 18
+    },
+    {
+        "name": "Nyeri",
+        "capital": "Nyeri",
+        "lat": -0.42013,
+        "lng": 36.94759,
+        "code": 19
+    },
+    {
+        "name": "Kirinyaga",
+        "capital": "Kutus",
+        "lat": -0.5735225,
+        "lng": 37.3252767,
+        "code": 20
+    },
+    {
+        "name": "Murang'a",
+        "capital": "Murang'a",
+        "lat": -0.7125,
+        "lng": 37.1472,
+        "code": 21
+    },
+    {
+        "name": "Kiambu",
+        "capital": "Kiambu",
+        "lat": -1.1668,
+        "lng": 36.8198,
+        "code": 22
+    },
+    {
+        "name": "Turkana",
+        "capital": "Lodwar",
+        "lat": 3.1167,
+        "lng": 35.5919,
+        "code": 23
+    },
+    {
+        "name": "West Pokot",
+        "capital": "Kapenguria",
+        "lat": 1.23889,
+        "lng": 35.11194,
+        "code": 24
+    },
+    {
+        "name": "Samburu",
+        "capital": "Maralal",
+        "lat": 1.0931431,
+        "lng": 36.7018311,
+        "code": 25
+    },
+    {
+        "name": "Trans Nzoia",
+        "capital": "Kitale",
+        "lat": 1.0167,
+        "lng": 34.9833,
+        "code": 26
+    },
+    {
+        "name": "Uasin Gishu",
+        "capital": "Eldoret",
+        "lat": 0.5167,
+        "lng": 35.2833,
+        "code": 27
+    },
+    {
+        "name": "Elgeyo/Marakwet",
+        "capital": "Iten",
+        "lat": 0.67028,
+        "lng": 35.50806,
+        "code": 28
+    },
+    {
+        "name": "Nandi",
+        "capital": "Kapsabet",
+        "lat": 0.2000,
+        "lng": 35.1000,
+        "code": 29
+    },
+    {
+        "name": "Baringo",
+        "capital": "Kabarnet",
+        "lat": 0.4833,
+        "lng": 35.7333,
+        "code": 30
+    },
+    {
+        "name": "Laikipia",
+        "capital": "Rumuruti",
+        "lat": 0.2725,
+        "lng": 36.53806,
+        "code": 31
+    },
+    {
+        "name": "Nakuru",
+        "capital": "Nakuru",
+        "lat": -0.3000,
+        "lng": 36.0667,
+        "code": 32
+    },
+    {
+        "name": "Narok",
+        "capital": "Narok",
+        "lat": -1.0833,
+        "lng": 35.8833,
+        "code": 33
+    },
+    {
+        "name": "Kajiado",
+        "capital": "Kajiado",
+        "lat": -1.8500,
+        "lng": 36.7833,
+        "code": 34
+    },
+    {
+        "name": "Kericho",
+        "capital": "Kericho",
+        "lat": -0.3667,
+        "lng": 35.2833,
+        "code": 35
+    },
+    {
+        "name": "Bomet",
+        "capital": "Bomet",
+        "lat": -0.785561,
+        "lng": 35.339138,
+        "code": 36
+    },
+    {
+        "name": "Kakamega",
+        "capital": "Kakamega",
+        "lat": 0.2833,
+        "lng": 34.7500,
+        "code": 37
+    },
+    {
+        "name": "Vihiga",
+        "capital": "Mbale",
+        "lat": 0.081667,
+        "lng": 34.721389,
+        "code": 38
+    },
+    {
+        "name": "Bungoma",
+        "capital": "Bungoma",
+        "lat": 0.5667,
+        "lng": 34.5667,
+        "code": 39
+    },
+    {
+        "name": "Busia",
+        "capital": "Busia",
+        "lat": 0.4607,
+        "lng": 34.1065,
+        "code": 40
+    },
+    {
+        "name": "Siaya",
+        "capital": "Siaya",
+        "lat": 0.0667,
+        "lng": 34.2833,
+        "code": 41
+    },
+    {
+        "name": "Kisumu",
+        "capital": "Kisumu",
+        "lat": -0.0833,
+        "lng": 34.7667,
+        "code": 42
+    },
+    {
+        "name": "Homa Bay",
+        "capital": "Homa Bay",
+        "lat": -0.5298,
+        "lng": 34.4606,
+        "code": 43
+    },
+    {
+        "name": "Migori",
+        "capital": "Migori",
+        "lat": -0.9700,
+        "lng": 34.4700,
+        "code": 44
+    },
+    {
+        "name": "Kisii",
+        "capital": "Kisii",
+        "lat": -0.6833,
+        "lng": 34.7667,
+        "code": 45
+    },
+    {
+        "name": "Nyamira",
+        "capital": "Nyamira",
+        "lat": -0.5667,
+        "lng": 34.9167,
+        "code": 46
+    },
+    {
+        "name": "Nairobi",
+        "capital": "Nairobi City",
+        "lat": -1.2864,
+        "lng": 36.8172,
+        "code": 47
+    }
+]

@@ -1,0 +1,460 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String     @id @default(auto()) @map("_id") @db.ObjectId
+  name             String?
+  password         String
+  email            String     @unique
+  image            String?
+  role             Role       @default(user)
+  isVerified       Boolean    @default(false)
+  resetToken       String?
+  resetTokenExpiry DateTime?
+  bookedVisits     Json[]
+  favResidencesID  String[]   @db.ObjectId
+  // ownedResidencies Property[] @relation("Owner")
+}
+
+model Property {
+  id               String    @id @default(auto()) @map("_id") @db.ObjectId
+  title            String
+  description      String?
+  price            Int?
+  pricePerSqft     Int?
+  bedrooms         Int?
+  bathrooms        Int?
+  area             Int?
+  address          String?
+  city             String?
+  state            String?
+  zipCode          String?
+  country          String?
+  latitude         Float?
+  longitude        Float?
+  images           String[]
+  listing_type     String?
+  days_on_market   Int?
+  property_type    String?
+  agent            Agent?      @relation(fields: [agentId], references: [id])
+  agentId          String?
+  listing_agent    Json?
+  favorite         Boolean          @default(false)
+  open_house       String?
+  year_built       Int?
+  lot_size         String?
+  garage           Int?
+  features         String[]
+  schools          Json?
+  neighborhood     String?
+  walk_score       Int?
+  transit_score    Int?
+  parking_spaces   Int?
+  price_history    Json?
+  virtual_tour     Boolean          @default(false)
+  is_new           Boolean          @default(false)
+  is_foreclosure   Boolean          @default(false)
+  is_price_reduced Boolean          @default(false)
+  petFriendly      Boolean          @default(false)
+  hasParking       Boolean          @default(false)
+  userEmail        String?
+  owner            String?
+  // owner            User             @relation("Owner", fields: [userEmail], references: [email])
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+  propertyDetails  PropertyDetails?
+  // User             User?            @relation(fields: [userId], references: [id])
+  userId           String?          @db.ObjectId
+
+  @@unique(fields: [address, userEmail])
+}
+
+model PropertyDetails {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  description String
+  utilities   String
+  petPolicy   String
+  size        String
+  school      Int
+  bus         Int
+  restaurant  Int
+  propertyId  String   @unique @db.ObjectId
+  property    Property @relation(fields: [propertyId], references: [id])
+}
+
+enum Role {
+  user
+  tenant
+  landlord
+  agent
+  admin
+}
+
+model Propertyy {
+  id               String @id @default(auto()) @map("_id") @db.ObjectId
+  title           String
+  price           Int
+  pricePerSqft    Int
+  bedrooms        Int
+  bathrooms       Float
+  area            Int
+  address         String
+  latitude        Float
+  longitude       Float
+  listing_type    String
+  days_on_market  Int
+  description     String
+
+  // Relations
+  agent           Agent?        @relation(fields: [agentId], references: [id])
+  agentId         String?
+  images          Image[]
+  features        Feature[]
+  propertyHistory PropertyHistory[]
+  schools         School[]
+  neighborhood    Neighborhood?
+  neighborhoodId  String?
+  similar         SimilarProperty[]
+
+  @@map("properties")
+}
+
+model Agent {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  phone      String
+  email      String
+  avatar     String
+  rating     Float
+  reviews    Int
+  experience String
+
+  properties Property[]
+
+  @@map("agents")
+}
+
+model Image {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  url        String
+  property   Property @relation(fields: [propertyId], references: [id])
+  propertyId String
+}
+
+model Feature {
+  id               String @id @default(auto()) @map("_id") @db.ObjectId
+  description String
+  property    Property @relation(fields: [propertyId], references: [id])
+  propertyId  String
+}
+
+model PropertyHistory {
+  id               String @id @default(auto()) @map("_id") @db.ObjectId
+  date       DateTime
+  event      String
+  price      Int
+  property   Property @relation(fields: [propertyId], references: [id])
+  propertyId String @db.ObjectId
+}
+
+model School {
+  id               String @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  distance   String
+  rating     Float
+  type       String
+  grades     String
+  property   Property @relation(fields: [propertyId], references: [id])
+  propertyId  String  @db.ObjectId
+}
+
+model Neighborhood {
+  id               String @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  walkScore    Int
+  transitScore Int
+  bikeScore    Int
+  crimeRate    String
+  population   String
+  medianAge    Int
+  medianIncome String
+
+  properties   Property[]
+}
+
+model SimilarProperty {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  title      String
+  price      Int
+  bedrooms   Int
+  bathrooms  Float
+  area       Int
+  address    String
+  image      String
+
+  property   Property @relation(fields: [propertyId], references: [id])
+  propertyId String
+}
+
+
+second schema backup 
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String     @id @default(auto()) @map("_id") @db.ObjectId
+  name             String?
+  password         String
+  email            String     @unique
+  image            String?
+  role             Role       @default(user)
+  isVerified       Boolean    @default(false)
+  resetToken       String?
+  resetTokenExpiry DateTime?
+  bookedVisits     Json[]
+  favResidencesID  String[]   @db.ObjectId
+  ownedProperties  Property[] @relation("Owner")
+}
+
+model Property {
+  id               String           @id @default(auto()) @map("_id") @db.ObjectId
+  title            String
+  description      String?
+  price            Int?
+  pricePerSqft     Int?
+  bedrooms         Int?
+  bathrooms        Int?
+  area             Int?
+  address          String?
+  city             String?
+  state            String?
+  zipCode          String?
+  country          String?
+  latitude         Float?
+  longitude        Float?
+  images           String[]
+  listing_type     String?
+  days_on_market   Int?
+  property_type    String?
+  agent            Agent?           @relation(fields: [agentId], references: [id])
+  agentId          String?          @db.ObjectId
+  listing_agent    Json?
+  favorite         Boolean?         @default(false)
+  open_house       String?
+  year_built       Int?
+  lot_size         String?
+  garage           Int?
+  features         String[]
+  schools          Json?
+  neighborhood     String?
+  walk_score       Int?
+  transit_score    Int?
+  parking_spaces   Int?
+  price_history    Json?
+  virtual_tour     Boolean?         @default(false)
+  is_new           Boolean?         @default(false)
+  is_foreclosure   Boolean?         @default(false)
+  is_price_reduced Boolean?         @default(false)
+  petFriendly      Boolean?         @default(false)
+  hasParking       Boolean?         @default(false)
+  userEmail        String?
+  owner            User?            @relation("Owner", fields: [userEmail], references: [email])
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+  propertyDetails  PropertyDetails?
+  userId           String?          @db.ObjectId
+
+  imagesRel       Image[]
+  featuresRel     Feature[]
+  historyRel      PropertyHistory[]
+  schoolsRel      School[]
+  neighborhoodRel Neighborhood?     @relation(fields: [neighborhoodId], references: [id])
+  neighborhoodId  String?           @db.ObjectId
+  similarRel      SimilarProperty[]
+
+  @@unique(fields: [address, userEmail])
+}
+
+model PropertyDetails {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  description String
+  utilities   String
+  petPolicy   String
+  size        String
+  school      Int
+  bus         Int
+  restaurant  Int
+  propertyId  String   @unique @db.ObjectId
+  property    Property @relation(fields: [propertyId], references: [id])
+}
+
+enum Role {
+  user
+  tenant
+  landlord
+  agent
+  admin
+}
+
+model Agent {
+  id         String     @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  phone      String
+  email      String
+  avatar     String ?
+  rating     Float
+  reviews    Int
+  experience String
+  properties Property[]
+}
+
+model Image {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  url        String
+  property   Property @relation(fields: [propertyId], references: [id])
+  propertyId String   @db.ObjectId
+}
+
+model Feature {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  description String
+  property    Property @relation(fields: [propertyId], references: [id])
+  propertyId  String   @db.ObjectId
+}
+
+model PropertyHistory {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  date       DateTime
+  event      String
+  price      Int
+  property   Property @relation(fields: [propertyId], references: [id])
+  propertyId String   @db.ObjectId
+}
+
+model School {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  distance   String
+  rating     Float
+  type       String
+  grades     String
+  property   Property @relation(fields: [propertyId], references: [id])
+  propertyId String   @db.ObjectId
+}
+
+model Neighborhood {
+  id           String     @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  walkScore    Int
+  transitScore Int
+  bikeScore    Int
+  crimeRate    String
+  population   String
+  medianAge    Int
+  medianIncome String
+  properties   Property[]
+}
+
+model SimilarProperty {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  title      String
+  price      Int
+  bedrooms   Int
+  bathrooms  Int
+  area       Int
+  address    String
+  image      String
+  property   Property @relation(fields: [propertyId], references: [id])
+  propertyId String   @db.ObjectId
+}
+
+// schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Property {
+  id              String            @id @default(auto()) @map("_id") @db.ObjectId
+  title           String
+  price           Int
+  pricePerSqft    Int
+  bedrooms        Int
+  bathrooms       Float
+  area            Int
+  address         String
+  latitude        Float
+  longitude       Float
+  images          String[]
+  listing_type    String
+  days_on_market  Int
+  agent           Agent
+  description     String
+  features        String[]
+  property_history PropertyHistory[]
+  schools         School[]
+  neighborhood    Neighborhood
+  similar_properties SimilarProperty[]
+}
+
+type Agent {
+  name       String
+  phone      String
+  email      String
+  avatar     String
+  rating     Float
+  reviews    Int
+  experience String
+}
+
+type PropertyHistory {
+  date   String
+  event  String
+  price  Int
+}
+
+type School {
+  name     String
+  distance String
+  rating   Float
+  type     String
+  grades   String
+}
+
+type Neighborhood {
+  name         String
+  walkScore    Int
+  transitScore Int
+  bikeScore    Int
+  crimeRate    String
+  population   String
+  medianAge    Int
+  medianIncome String
+}
+
+type SimilarProperty {
+  id        Int
+  title     String
+  price     Int
+  bedrooms  Int
+  bathrooms Float
+  area      Int
+  address   String
+  image     String
+}
