@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -201,7 +201,7 @@ const TenantLogin = () => {
               <div className="flex items-center space-x-4">
                 <Logo variant="image" className="h-12 w-auto" />
                 <div>
-                  <h1 className="text-2xl font-bold bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] bg-clip-text text-transparent">
+                  <h1 className="text-2xl font-bold bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] bg-clip-text text-transparent">
                     BumiHouse
                   </h1>
                   <p className="text-sm text-gray-500 font-medium">Tenant Portal</p>
@@ -213,7 +213,7 @@ const TenantLogin = () => {
               onClick={() => setShowFeatures(!showFeatures)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 py-3 bg-gradient-to-r from-[#3b82f6]/10 to-[#06b6d4]/10 hover:from-[#3b82f6]/20 hover:to-[#06b6d4]/20 rounded-2xl text-[#3b82f6] font-semibold transition-all duration-300 border border-[#3b82f6]/20"
+              className="px-6 py-3 bg-gradient-to-r from-[#51faaa]/10 to-[#dbd5a4]/10 hover:from-[#51faaa]/20 hover:to-[#dbd5a4]/20 rounded-2xl text-[#51faaa] font-semibold transition-all duration-300 border border-[#51faaa]/20"
             >
               Why CRIBBY?
             </motion.button>
@@ -237,10 +237,10 @@ const TenantLogin = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.1 }}
-                className="inline-flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-[#3b82f6]/10 to-[#06b6d4]/10 rounded-full border border-[#3b82f6]/20 mb-6"
+                className="inline-flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-[#51faaa]/10 to-[#dbd5a4]/10 rounded-full border border-[#51faaa]/20 mb-6"
               >
-                <Sparkles className="w-4 h-4 text-[#3b82f6]" />
-                <span className="text-sm font-semibold text-[#3b82f6]">Welcome Home! 🏠</span>
+                <Sparkles className="w-4 h-4 text-[#51faaa]" />
+                <span className="text-sm font-semibold text-[#51faaa]">Welcome Home! 🏠</span>
               </motion.div>
 
               <motion.h2
@@ -250,7 +250,7 @@ const TenantLogin = () => {
                 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight"
               >
                 Access Your
-                <span className="block bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] bg-clip-text text-transparent">
+                <span className="block bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] bg-clip-text text-transparent">
                   Tenant Portal
                 </span>
               </motion.h2>
@@ -279,7 +279,7 @@ const TenantLogin = () => {
                   </label>
                   <div className="relative group">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <Phone className="w-5 h-5 text-gray-400 group-focus-within:text-[#3b82f6] transition-colors duration-300" />
+                      <Phone className="w-5 h-5 text-gray-400 group-focus-within:text-[#51faaa] transition-colors duration-300" />
                     </div>
                     <input
                       type="tel"
@@ -287,7 +287,7 @@ const TenantLogin = () => {
                       value={loginForm.phone}
                       onChange={handleInputChange}
                       placeholder="+254712345678"
-                      className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-[#3b82f6]/20 focus:border-[#3b82f6] transition-all duration-300 bg-gray-50/50 hover:bg-white"
+                      className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-[#51faaa]/20 focus:border-[#51faaa] transition-all duration-300 bg-gray-50/50 hover:bg-white"
                       required
                     />
                   </div>
@@ -299,7 +299,7 @@ const TenantLogin = () => {
                   </label>
                   <div className="relative group">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <Home className="w-5 h-5 text-gray-400 group-focus-within:text-[#3b82f6] transition-colors duration-300" />
+                      <Home className="w-5 h-5 text-gray-400 group-focus-within:text-[#51faaa] transition-colors duration-300" />
                     </div>
                     <input
                       type="text"
@@ -307,7 +307,7 @@ const TenantLogin = () => {
                       value={loginForm.apartment}
                       onChange={handleInputChange}
                       placeholder="e.g., Sunset Apartments, Green Valley"
-                      className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-[#3b82f6]/20 focus:border-[#3b82f6] transition-all duration-300 bg-gray-50/50 hover:bg-white"
+                      className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-[#51faaa]/20 focus:border-[#51faaa] transition-all duration-300 bg-gray-50/50 hover:bg-white"
                       required
                     />
                   </div>
@@ -319,7 +319,7 @@ const TenantLogin = () => {
                   </label>
                   <div className="relative group">
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <Lock className="w-5 h-5 text-gray-400 group-focus-within:text-[#3b82f6] transition-colors duration-300" />
+                      <Lock className="w-5 h-5 text-gray-400 group-focus-within:text-[#51faaa] transition-colors duration-300" />
                     </div>
                     <input
                       type="password"
@@ -328,7 +328,7 @@ const TenantLogin = () => {
                       onChange={handleInputChange}
                       placeholder="Your unit number (e.g., A-101, Main)"
                       maxLength="10"
-                      className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-[#3b82f6]/20 focus:border-[#3b82f6] transition-all duration-300 bg-gray-50/50 hover:bg-white"
+                      className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-[#51faaa]/20 focus:border-[#51faaa] transition-all duration-300 bg-gray-50/50 hover:bg-white"
                       required
                     />
                   </div>
@@ -339,7 +339,7 @@ const TenantLogin = () => {
                   disabled={isLoading}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full px-8 py-5 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] font-bold rounded-2xl hover:shadow-xl hover:shadow-[#3b82f6]/25 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 text-lg"
+                  className="w-full px-8 py-5 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] font-bold rounded-2xl hover:shadow-xl hover:shadow-[#51faaa]/25 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 text-lg"
                 >
                   {isLoading ? (
                     <div className="w-6 h-6 border-2 border-[#0a0c19] border-t-transparent rounded-full animate-spin" />
@@ -358,7 +358,7 @@ const TenantLogin = () => {
                 </p>
 
                 <div className="flex items-center justify-center gap-2 text-xs text-gray-500">
-                  <Shield className="w-4 h-4 text-[#3b82f6]" />
+                  <Shield className="w-4 h-4 text-[#51faaa]" />
                   <span className="font-medium">Secured with bank-grade encryption</span>
                 </div>
               </div>
@@ -369,10 +369,10 @@ const TenantLogin = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="mt-8 p-6 bg-gradient-to-r from-[#3b82f6]/10 to-[#06b6d4]/10 rounded-2xl border border-[#3b82f6]/30 backdrop-blur-sm"
+              className="mt-8 p-6 bg-gradient-to-r from-[#51faaa]/10 to-[#dbd5a4]/10 rounded-2xl border border-[#51faaa]/30 backdrop-blur-sm"
             >
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] rounded-xl flex items-center justify-center shadow-lg shadow-[#3b82f6]/25">
+                <div className="w-10 h-10 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] rounded-xl flex items-center justify-center shadow-lg shadow-[#51faaa]/25">
                   <Zap className="w-5 h-5 text-[#0a0c19]" />
                 </div>
                 <h4 className="font-bold text-gray-900 text-lg">Demo Access</h4>
@@ -392,7 +392,7 @@ const TenantLogin = () => {
                     <p className="text-gray-900 font-mono font-bold">A-101</p>
                   </div>
                 </div>
-                <div className="text-center pt-4 border-t border-[#3b82f6]/30">
+                <div className="text-center pt-4 border-t border-[#51faaa]/30">
                   <p className="text-xs text-gray-500 font-semibold mb-2">More demo accounts:</p>
                   <p className="text-xs text-gray-600 font-medium">Jane: +254707654321 | Sunset | B-205</p>
                   <p className="text-xs text-gray-600 font-medium">Mike: +254709876543 | Green Valley | Main</p>
@@ -414,10 +414,10 @@ const TenantLogin = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3 }}
-                className="inline-flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-[#3b82f6]/10 to-[#06b6d4]/10 rounded-full border border-[#3b82f6]/20 mb-6"
+                className="inline-flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-[#51faaa]/10 to-[#dbd5a4]/10 rounded-full border border-[#51faaa]/20 mb-6"
               >
-                <HeartHandshake className="w-4 h-4 text-[#3b82f6]" />
-                <span className="text-sm font-semibold text-[#3b82f6]">Why Tenants Love CRIBBY 💚</span>
+                <HeartHandshake className="w-4 h-4 text-[#51faaa]" />
+                <span className="text-sm font-semibold text-[#51faaa]">Why Tenants Love CRIBBY 💚</span>
               </motion.div>
 
               <motion.h3
@@ -427,7 +427,7 @@ const TenantLogin = () => {
                 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight"
               >
                 The Smartest Way to
-                <span className="block bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] bg-clip-text text-transparent">
+                <span className="block bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] bg-clip-text text-transparent">
                   Manage Your Rent
                 </span>
               </motion.h3>
@@ -450,9 +450,9 @@ const TenantLogin = () => {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 + index * 0.1 }}
-                  className="p-6 rounded-3xl bg-white/80 backdrop-blur-xl border border-gray-200/50 hover:border-[#3b82f6]/40 hover:shadow-xl hover:shadow-[#3b82f6]/10 transition-all duration-500 hover:-translate-y-2 group"
+                  className="p-6 rounded-3xl bg-white/80 backdrop-blur-xl border border-gray-200/50 hover:border-[#51faaa]/40 hover:shadow-xl hover:shadow-[#51faaa]/10 transition-all duration-500 hover:-translate-y-2 group"
                 >
-                  <div className="w-14 h-14 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-[#3b82f6]/25 group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-14 h-14 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-[#51faaa]/25 group-hover:scale-110 transition-transform duration-300">
                     <feature.icon className="w-7 h-7 text-[#0a0c19]" />
                   </div>
                   <h4 className="text-xl font-bold text-gray-900 mb-3">
@@ -474,29 +474,29 @@ const TenantLogin = () => {
             >
               <div className="grid grid-cols-3 gap-8">
                 <div className="text-center group">
-                  <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-transform duration-300">
                     99.9%
                   </div>
                   <div className="text-sm font-semibold text-gray-600 flex items-center justify-center gap-2">
-                    <Zap className="w-4 h-4 text-[#3b82f6]" />
+                    <Zap className="w-4 h-4 text-[#51faaa]" />
                     Uptime
                   </div>
                 </div>
                 <div className="text-center group">
-                  <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-transform duration-300">
                     10k+
                   </div>
                   <div className="text-sm font-semibold text-gray-600 flex items-center justify-center gap-2">
-                    <Users className="w-4 h-4 text-[#3b82f6]" />
+                    <Users className="w-4 h-4 text-[#51faaa]" />
                     Happy Tenants
                   </div>
                 </div>
                 <div className="text-center group">
-                  <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] bg-clip-text text-transparent mb-3 group-hover:scale-110 transition-transform duration-300">
                     24/7
                   </div>
                   <div className="text-sm font-semibold text-gray-600 flex items-center justify-center gap-2">
-                    <Clock className="w-4 h-4 text-[#3b82f6]" />
+                    <Clock className="w-4 h-4 text-[#51faaa]" />
                     Support
                   </div>
                 </div>

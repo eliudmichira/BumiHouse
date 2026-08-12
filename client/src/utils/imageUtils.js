@@ -2,6 +2,44 @@
  * Utility functions for handling image URLs and Firebase Storage
  */
 
+const PLACEHOLDER_IMAGE = 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=300&fit=crop';
+
+// Extract [lat, lng] from a property using any of the common field shapes
+export const getPropertyCoords = (property) => {
+  if (!property) return null;
+  const lat =
+    property.latitude ??
+    property.lat ??
+    property.location?.coordinates?.lat ??
+    property.location?.lat ??
+    property.coordinates?.lat;
+  const lng =
+    property.longitude ??
+    property.lng ??
+    property.location?.coordinates?.lng ??
+    property.location?.lng ??
+    property.coordinates?.lng;
+  const latNum = parseFloat(lat);
+  const lngNum = parseFloat(lng);
+  if (!Number.isFinite(latNum) || !Number.isFinite(lngNum)) return null;
+  if (latNum === 0 && lngNum === 0) return null;
+  return [latNum, lngNum];
+};
+
+// Build a Google Street View Static API URL for given coords
+export const getStreetViewUrl = (lat, lng, { width = 800, height = 500, fov = 80, pitch = 10 } = {}) => {
+  const key = import.meta.env?.VITE_GOOGLE_MAPS_API_KEY;
+  if (!key) return null;
+  return `https://maps.googleapis.com/maps/api/streetview?size=${width}x${height}&location=${lat},${lng}&fov=${fov}&pitch=${pitch}&key=${key}`;
+};
+
+// Street View fallback for a property (null if no coords or no API key)
+export const getStreetViewForProperty = (property, options) => {
+  const coords = getPropertyCoords(property);
+  if (!coords) return null;
+  return getStreetViewUrl(coords[0], coords[1], options);
+};
+
 // Transform old storage bucket URLs to new ones
 export const transformImageUrl = (imageUrl) => {
   if (!imageUrl || typeof imageUrl !== 'string') {
@@ -47,8 +85,12 @@ export const getPropertyImage = (property) => {
     return transformImageUrl(property.gallery[0]);
   }
   
+  // Fall back to Google Street View if we have coordinates
+  const sv = getStreetViewForProperty(property);
+  if (sv) return sv;
+
   // Return placeholder
-  return 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=300&fit=crop';
+  return PLACEHOLDER_IMAGE;
 };
 
 // Get all images for a property
@@ -78,22 +120,36 @@ export const getPropertyImages = (property) => {
   // Remove duplicates and filter out invalid URLs
   const uniqueImages = [...new Set(images)].filter(img => img && typeof img === 'string');
   
-  // Return images or placeholder
-  return uniqueImages.length > 0 ? uniqueImages : ['https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=300&fit=crop'];
+  if (uniqueImages.length > 0) return uniqueImages;
+
+  // Fall back to Google Street View if we have coordinates
+  const sv = getStreetViewForProperty(property);
+  if (sv) return [sv];
+
+  return [PLACEHOLDER_IMAGE];
 };
 
 // Handle image loading errors with fallback
-export const handleImageError = (event, fallbackUrl = null) => {
+export const handleImageError = (event, fallbackUrl = null, property = null) => {
   const img = event.target;
-  
+
   // Try fallback URL first
   if (fallbackUrl && img.src !== fallbackUrl) {
     img.src = fallbackUrl;
     return;
   }
-  
+
+  // Try Street View if we have property coords
+  if (property) {
+    const sv = getStreetViewForProperty(property);
+    if (sv && img.src !== sv) {
+      img.src = sv;
+      return;
+    }
+  }
+
   // Use default placeholder
-  img.src = 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=300&fit=crop';
+  img.src = PLACEHOLDER_IMAGE;
 };
 
 // Preload images for better UX

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../src/context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -34,7 +34,7 @@ export default function ProfilePage() {
         <img
           src={avatar || 'https://ui-avatars.com/api/?name=' + encodeURIComponent(name || email)}
           alt="Avatar"
-          className="w-24 h-24 rounded-full mb-2 border-2 border-blue-500 object-cover"
+          className="w-24 h-24 rounded-full mb-2 border-2 border-emerald-500 object-cover"
         />
         {editing ? (
           <input
@@ -68,7 +68,7 @@ export default function ProfilePage() {
           <>
             <button
               onClick={handleSave}
-              className="bg-blue-600 text-white px-6 py-2 rounded font-medium hover:bg-blue-700"
+              className="bg-emerald-600 text-white px-6 py-2 rounded font-medium hover:bg-emerald-700"
             >
               Save
             </button>
@@ -82,7 +82,7 @@ export default function ProfilePage() {
         ) : (
           <button
             onClick={() => setEditing(true)}
-            className="bg-blue-600 text-white px-6 py-2 rounded font-medium hover:bg-blue-700"
+            className="bg-emerald-600 text-white px-6 py-2 rounded font-medium hover:bg-emerald-700"
           >
             Edit Profile
           </button>

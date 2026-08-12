@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Download, X, Smartphone, Star } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
@@ -96,7 +96,7 @@ const PWAInstallPrompt = () => {
     <div className={`fixed bottom-0 left-0 right-0 z-50 lg:hidden pwa-install-prompt ${showPrompt ? 'show' : ''}`}>
       <div className={`relative p-4 rounded-t-2xl shadow-2xl ${
         isDark 
-          ? 'bg-gradient-to-br from-gray-900 to-gray-800 border-t border-[#3b82f6]/20' 
+          ? 'bg-gradient-to-br from-gray-900 to-gray-800 border-t border-[#51faaa]/20' 
           : 'bg-gradient-to-br from-white to-gray-50 border-t border-gray-200'
       }`}>
         {/* Close button */}
@@ -112,7 +112,7 @@ const PWAInstallPrompt = () => {
         <div className="flex items-start space-x-4 pr-8">
           {/* App Icon */}
           <div className="flex-shrink-0">
-            <div className="w-16 h-16 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] rounded-2xl flex items-center justify-center shadow-lg">
+            <div className="w-16 h-16 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] rounded-2xl flex items-center justify-center shadow-lg">
               <Smartphone className="w-8 h-8 text-[#0a0c19]" />
             </div>
           </div>
@@ -144,7 +144,7 @@ const PWAInstallPrompt = () => {
               <div className={`flex items-center space-x-2 text-xs ${
                 isDark ? 'text-gray-400' : 'text-gray-500'
               }`}>
-                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
                 <span>Faster Loading</span>
               </div>
               <div className={`flex items-center space-x-2 text-xs ${
@@ -165,7 +165,7 @@ const PWAInstallPrompt = () => {
             <div className="flex space-x-3">
               <button
                 onClick={handleInstall}
-                className="flex-1 flex items-center justify-center space-x-2 py-3 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] rounded-xl font-semibold shadow-lg transition-all hover:shadow-xl active:scale-95"
+                className="flex-1 flex items-center justify-center space-x-2 py-3 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] rounded-xl font-semibold shadow-lg transition-all hover:shadow-xl active:scale-95"
               >
                 <Download className="w-4 h-4" />
                 <span>Install App</span>

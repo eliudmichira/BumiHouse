@@ -1,12 +1,12 @@
-import React from 'react';
+﻿import React from 'react';
 
 const ProfileSkeleton = () => {
     return (
         <div className="min-h-screen p-6 pb-32">
             {/* Animated Background Elements */}
             <div className="fixed inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#3b82f6]/5 rounded-full blur-3xl animate-pulse" />
-                <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#06b6d4]/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+                <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#51faaa]/5 rounded-full blur-3xl animate-pulse" />
+                <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#dbd5a4]/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
             </div>
 
             {/* Profile Header Card */}

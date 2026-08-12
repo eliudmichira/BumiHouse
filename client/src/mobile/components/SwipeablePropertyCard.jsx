@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+﻿import React, { useState, useRef } from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { Heart, Share, MessageCircle, X } from 'lucide-react';
 import { PropertyMobileCard } from './PropertyMobileNav';
@@ -62,7 +62,7 @@ const SwipeablePropertyCard = ({
           className="flex items-center gap-2"
           style={{ opacity: useTransform(x, [-200, -50, 0], [1, 0.5, 0]) }}
         >
-          <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-full bg-emerald-500 flex items-center justify-center">
             {onMessage ? (
               <MessageCircle className="w-6 h-6 text-white" />
             ) : (

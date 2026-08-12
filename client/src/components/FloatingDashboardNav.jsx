@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+﻿import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
@@ -129,7 +129,7 @@ const FloatingDashboardNav = ({ variant = 'dashboard' }) => {
         {/* User Avatar */}
         <div className="relative z-10">
           <motion.div
-            className="w-10 h-10 rounded-full bg-gradient-to-br from-[#3b82f6] to-[#4fd69c] p-0.5"
+            className="w-10 h-10 rounded-full bg-gradient-to-br from-[#51faaa] to-[#4fd69c] p-0.5"
             animate={{
               rotate: isOpen ? 15 : 0
             }}
@@ -164,7 +164,7 @@ const FloatingDashboardNav = ({ variant = 'dashboard' }) => {
           transition={{ duration: 0.3, type: "spring" }}
           className="relative z-10"
         >
-          <ChevronDown className="w-4 h-4 transition-colors duration-300 group-hover:text-[#3b82f6]" />
+          <ChevronDown className="w-4 h-4 transition-colors duration-300 group-hover:text-[#51faaa]" />
         </motion.div>
       </motion.button>
 
@@ -202,11 +202,11 @@ const FloatingDashboardNav = ({ variant = 'dashboard' }) => {
             }}
           >
             {/* Elegant Header */}
-            <div className={`p-6 bg-gradient-to-r from-[#3b82f6]/10 to-[#4fd69c]/10 ${isDark ? 'border-b border-gray-700/30' : 'border-b border-gray-200/30'
+            <div className={`p-6 bg-gradient-to-r from-[#51faaa]/10 to-[#4fd69c]/10 ${isDark ? 'border-b border-gray-700/30' : 'border-b border-gray-200/30'
               }`}>
               <div className="flex items-center gap-4">
                 <div className="relative">
-                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#3b82f6] to-[#4fd69c] p-0.5">
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#51faaa] to-[#4fd69c] p-0.5">
                     <img
                       src={currentUser?.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(currentUser?.name || 'User')}&background=51faaa&color=0a0c19`}
                       alt={currentUser?.name || 'User'}
@@ -226,7 +226,7 @@ const FloatingDashboardNav = ({ variant = 'dashboard' }) => {
                     <span className={`inline-flex items-center gap-1 text-xs px-3 py-1 rounded-full font-medium ${isAdmin
                         ? 'bg-gradient-to-r from-purple-100 to-purple-200 text-purple-700 dark:from-purple-900/40 dark:to-purple-800/40 dark:text-purple-300'
                         : isAgent
-                          ? 'bg-gradient-to-r from-blue-100 to-blue-200 text-blue-700 dark:from-blue-900/40 dark:to-blue-800/40 dark:text-blue-300'
+                          ? 'bg-gradient-to-r from-emerald-100 to-emerald-200 text-emerald-700 dark:from-emerald-900/40 dark:to-emerald-800/40 dark:text-emerald-300'
                           : 'bg-gradient-to-r from-gray-100 to-gray-200 text-gray-700 dark:from-gray-700/40 dark:to-gray-600/40 dark:text-gray-300'
                       }`}>
                       {isAdmin && '👑'} {isAgent && '🏢'} {userRole}
@@ -285,10 +285,10 @@ const FloatingDashboardNav = ({ variant = 'dashboard' }) => {
                     className={`p-2 rounded-xl relative z-10 ${item.highlight
                         ? item.label === 'Admin Panel'
                           ? 'bg-gradient-to-br from-purple-500 to-purple-600 text-white'
-                          : 'bg-gradient-to-br from-[#3b82f6] to-[#4fd69c] text-[#0a0c19]'
+                          : 'bg-gradient-to-br from-[#51faaa] to-[#4fd69c] text-[#0a0c19]'
                         : isDark
-                          ? 'bg-gray-700/50 group-hover:bg-[#3b82f6]/20'
-                          : 'bg-gray-100 group-hover:bg-[#3b82f6]/20'
+                          ? 'bg-gray-700/50 group-hover:bg-[#51faaa]/20'
+                          : 'bg-gray-100 group-hover:bg-[#51faaa]/20'
                       }`}
                     whileHover={{
                       rotate: 5,

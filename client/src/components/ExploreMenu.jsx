@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     Home, Search, Building2, Key, Heart,
@@ -60,7 +60,7 @@ const ExploreMenu = ({ isOpen, onClose }) => {
                         {/* Header */}
                         <div className="p-6 pt-12 pb-4 border-b border-gray-100 dark:border-gray-800 flex justify-between items-start">
                             <div className="flex items-center gap-3">
-                                <div className="h-12 w-12 rounded-full bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center text-blue-600 font-bold text-xl">
+                                <div className="h-12 w-12 rounded-full bg-emerald-100 dark:bg-emerald-900/20 flex items-center justify-center text-emerald-600 font-bold text-xl">
                                     <UserCircle size={32} />
                                 </div>
                                 {currentUser ? (

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+﻿import React, { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Target, MapPin, Bed, Bath, DollarSign } from 'lucide-react';
 import { useProperties } from '../../hooks/useProperties';
@@ -69,10 +69,10 @@ const MobilePropertyMatchPage = () => {
                 </motion.div>
 
                 {isLoading ? (
-                    <div className="flex justify-center py-8"><div className="w-8 h-8 border-2 border-[#3b82f6] border-t-transparent rounded-full animate-spin" /></div>
+                    <div className="flex justify-center py-8"><div className="w-8 h-8 border-2 border-[#51faaa] border-t-transparent rounded-full animate-spin" /></div>
                 ) : matches.length === 0 ? (
                     <motion.div className={`rounded-2xl border p-8 text-center ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200'}`}>
-                        <Target className="w-12 h-12 text-[#3b82f6] mx-auto mb-3" />
+                        <Target className="w-12 h-12 text-[#51faaa] mx-auto mb-3" />
                         <p className={`font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>No properties match your criteria</p>
                         <p className={`text-sm mt-1 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Try relaxing beds, baths, or max price.</p>
                     </motion.div>
@@ -84,7 +84,7 @@ const MobilePropertyMatchPage = () => {
                                     <img src={p.images?.[0] || p.image || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=200'} alt="" className="w-24 h-24 rounded-xl object-cover flex-shrink-0" onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=200'; }} />
                                     <div className="flex-1 min-w-0">
                                         <h3 className={`font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>{p.title || p.name || 'Property'}</h3>
-                                        <p className="text-[#3b82f6] font-semibold mt-1">{formatPrice(p.price)}</p>
+                                        <p className="text-[#51faaa] font-semibold mt-1">{formatPrice(p.price)}</p>
                                         <div className="flex gap-3 mt-1 text-xs">
                                             {p.bedrooms != null && <span className={isDark ? 'text-gray-400' : 'text-gray-500'}><Bed size={12} className="inline" /> {p.bedrooms}</span>}
                                             {p.bathrooms != null && <span className={isDark ? 'text-gray-400' : 'text-gray-500'}><Bath size={12} className="inline" /> {p.bathrooms}</span>}

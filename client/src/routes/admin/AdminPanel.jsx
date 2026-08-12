@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { collection, getDocs, query, where, Timestamp } from 'firebase/firestore';
 import { db } from '../../lib/firebase';
 import { useAuth } from '../../context/AuthContext';
@@ -207,7 +207,7 @@ const AdminPanel = () => {
                     setMobileMenuOpen(false);
                   }}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-all duration-200 ${activeSection === section.id
-                    ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-700'
+                    ? 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-700'
                     : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white'
                     }`}
                 >
@@ -231,7 +231,7 @@ const AdminPanel = () => {
         >
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12" />
           <div className="relative z-10">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#3b82f6] to-[#4fd69c] p-1">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#51faaa] to-[#4fd69c] p-1">
               <img src="/logo.png" alt="BumiHouse" className="w-full h-full rounded-full object-cover" />
             </div>
           </div>
@@ -254,7 +254,7 @@ const AdminPanel = () => {
               </button>
 
               {/* Mobile-visible Logo */}
-              <div className="lg:hidden w-10 h-10 rounded-full bg-gradient-to-br from-[#3b82f6] to-[#4fd69c] p-1">
+              <div className="lg:hidden w-10 h-10 rounded-full bg-gradient-to-br from-[#51faaa] to-[#4fd69c] p-1">
                 <img src="/logo.png" alt="BumiHouse" className="w-full h-full rounded-full object-cover" />
               </div>
 
@@ -276,7 +276,7 @@ const AdminPanel = () => {
                   <div className="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Active</div>
                 </div>
                 <div className="text-center px-2 lg:px-0">
-                  <div className="text-xl lg:text-2xl font-bold text-blue-600">{stats.properties.toLocaleString()}</div>
+                  <div className="text-xl lg:text-2xl font-bold text-emerald-600">{stats.properties.toLocaleString()}</div>
                   <div className="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Properties</div>
                 </div>
                 <div className="text-center px-2 lg:px-0">
@@ -299,7 +299,7 @@ const AdminPanel = () => {
                     key={section.id}
                     onClick={() => setActiveSection(section.id)}
                     className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-all duration-200 ${activeSection === section.id
-                      ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-700'
+                      ? 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-700'
                       : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white'
                       }`}
                   >

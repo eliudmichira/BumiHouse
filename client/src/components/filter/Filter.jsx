@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom";
+﻿import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import { Search, MapPin, Home, Building2, DollarSign, Bed, Filter as FilterIcon } from "lucide-react";
 
@@ -42,7 +42,7 @@ function Filter() {
       <div className="text-center">
         <h2 className="text-2xl font-bold text-gray-800 mb-2">
           Search results for{' '}
-          <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-emerald-600 to-purple-600 bg-clip-text text-transparent">
             {searchParams.get("city") || "Properties"}
           </span>
         </h2>
@@ -65,7 +65,7 @@ function Filter() {
               placeholder="Enter city or location"
               value={query.city}
               onChange={handleChange}
-              className="w-full pl-10 pr-4 py-3 bg-white/80 border border-white/30 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+              className="w-full pl-10 pr-4 py-3 bg-white/80 border border-white/30 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300"
             />
           </div>
         </div>
@@ -83,7 +83,7 @@ function Filter() {
                 id="type" 
                 value={query.type}
                 onChange={handleChange}
-                className="w-full px-4 py-3 bg-white/80 border border-white/30 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 appearance-none"
+                className="w-full px-4 py-3 bg-white/80 border border-white/30 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300 appearance-none"
               >
                 <option value="">Any Type</option>
                 <option value="buy">Buy</option>
@@ -108,7 +108,7 @@ function Filter() {
                 id="property" 
                 value={query.property}
                 onChange={handleChange}
-                className="w-full px-4 py-3 bg-white/80 border border-white/30 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 appearance-none"
+                className="w-full px-4 py-3 bg-white/80 border border-white/30 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300 appearance-none"
               >
                 <option value="">Any Property</option>
                 <option value="apartment">Apartment</option>
@@ -137,7 +137,7 @@ function Filter() {
                 placeholder="Any"
                 value={query.bedroom}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-3 bg-white/80 border border-white/30 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                className="w-full pl-10 pr-4 py-3 bg-white/80 border border-white/30 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300"
               />
             </div>
           </div>
@@ -158,7 +158,7 @@ function Filter() {
                 placeholder="0"
                 value={query.minPrice}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-3 bg-white/80 border border-white/30 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                className="w-full pl-10 pr-4 py-3 bg-white/80 border border-white/30 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300"
               />
             </div>
           </div>
@@ -176,7 +176,7 @@ function Filter() {
                 placeholder="1000000"
                 value={query.maxPrice}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-3 bg-white/80 border border-white/30 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                className="w-full pl-10 pr-4 py-3 bg-white/80 border border-white/30 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300"
               />
             </div>
           </div>
@@ -186,7 +186,7 @@ function Filter() {
         <div className="flex flex-col sm:flex-row gap-4 pt-4">
           <button 
             onClick={handleFilter}
-            className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-3 px-6 rounded-xl hover:shadow-lg transform hover:scale-105 transition-all duration-300"
+            className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-600 to-purple-600 text-white font-semibold py-3 px-6 rounded-xl hover:shadow-lg transform hover:scale-105 transition-all duration-300"
           >
             <Search className="w-5 h-5" />
             Search Properties

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Calendar, Clock, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
 import { accountDashboardAPI, notificationsAPI } from '../../lib/firebaseAPI';
@@ -153,7 +153,7 @@ const BookingModal = ({ isOpen, onClose, property, agent }) => {
                                     </button>
                                 </div>
 
-                                <div className="flex items-center gap-4 p-4 rounded-2xl bg-[#3b82f6]/5 border border-[#3b82f6]/10">
+                                <div className="flex items-center gap-4 p-4 rounded-2xl bg-[#51faaa]/5 border border-[#51faaa]/10">
                                     <img 
                                         src={property.images?.[0] || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400&h=300'} 
                                         alt="" 
@@ -163,7 +163,7 @@ const BookingModal = ({ isOpen, onClose, property, agent }) => {
                                         <p className={`text-sm font-bold truncate ${isDark ? 'text-white' : 'text-gray-900'}`}>
                                             {property.title}
                                         </p>
-                                        <p className="text-xs text-[#3b82f6] font-medium">{property.location?.city || 'Nairobi'}</p>
+                                        <p className="text-xs text-[#51faaa] font-medium">{property.location?.city || 'Nairobi'}</p>
                                     </div>
                                 </div>
 
@@ -180,7 +180,7 @@ const BookingModal = ({ isOpen, onClose, property, agent }) => {
                                             Select Date
                                         </label>
                                         <div className="relative">
-                                            <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-[#3b82f6]" size={18} />
+                                            <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-[#51faaa]" size={18} />
                                             <input 
                                                 type="date" 
                                                 required
@@ -189,8 +189,8 @@ const BookingModal = ({ isOpen, onClose, property, agent }) => {
                                                 onChange={(e) => setDate(e.target.value)}
                                                 className={`w-full h-14 pl-12 pr-4 rounded-2xl border outline-none transition-all ${
                                                     isDark 
-                                                    ? 'bg-white/5 border-white/10 text-white focus:border-[#3b82f6]/50' 
-                                                    : 'bg-gray-50 border-gray-200 text-gray-900 focus:border-[#3b82f6]'
+                                                    ? 'bg-white/5 border-white/10 text-white focus:border-[#51faaa]/50' 
+                                                    : 'bg-gray-50 border-gray-200 text-gray-900 focus:border-[#51faaa]'
                                                 }`}
                                             />
                                         </div>
@@ -208,7 +208,7 @@ const BookingModal = ({ isOpen, onClose, property, agent }) => {
                                                     onClick={() => setTime(slot)}
                                                     className={`py-3 rounded-xl text-xs font-bold transition-all border ${
                                                         time === slot
-                                                        ? 'bg-[#3b82f6] border-[#3b82f6] text-[#0a0c19]'
+                                                        ? 'bg-[#51faaa] border-[#51faaa] text-[#0a0c19]'
                                                         : (isDark ? 'bg-white/5 border-white/10 text-gray-400' : 'bg-white border-gray-200 text-gray-600')
                                                     }`}
                                                 >
@@ -221,7 +221,7 @@ const BookingModal = ({ isOpen, onClose, property, agent }) => {
                                     <motion.button
                                         whileTap={{ scale: 0.98 }}
                                         disabled={loading || !date || !time}
-                                        className="w-full h-14 rounded-2xl bg-gradient-to-r from-[#3b82f6] to-[#45e89a] text-[#0a0c19] font-black shadow-lg shadow-[#3b82f6]/20 disabled:opacity-50 flex items-center justify-center gap-2"
+                                        className="w-full h-14 rounded-2xl bg-gradient-to-r from-[#51faaa] to-[#45e89a] text-[#0a0c19] font-black shadow-lg shadow-[#51faaa]/20 disabled:opacity-50 flex items-center justify-center gap-2"
                                     >
                                         {loading ? (
                                             <Loader2 size={20} className="animate-spin" />

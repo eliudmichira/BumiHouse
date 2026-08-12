@@ -1,4 +1,4 @@
-// Complete Theme Color System for Hama Estate
+﻿// Complete Theme Color System for Hama Estate
 // This file defines all colors used throughout the site
 
 // ===================================
@@ -11,16 +11,16 @@ $primary-colors: (
   'dark-surface': #1f2937, // gray-800
   'dark-elevated': #374151, // gray-700
   'dark-overlay': #4b5563, // gray-600
-  'emerald-50': #eff6ff,
-  'emerald-100': #dbeafe,
-  'emerald-200': #bfdbfe,
-  'emerald-300': #93c5fd,
-  'emerald-400': #60a5fa,
-  'emerald-500': #3b82f6,
-  'emerald-600': #2563eb,
-  'emerald-700': #1d4ed8,
-  'emerald-800': #1e40af,
-  'emerald-900': #1e3a8a,
+  'emerald-50': #f0fdf7,
+  'emerald-100': #dcfce7,
+  'emerald-200': #bbf7d0,
+  'emerald-300': #86efb8,
+  'emerald-400': #51faaa,
+  'emerald-500': #51faaa,
+  'emerald-600': #2dd284,
+  'emerald-700': #1fb372,
+  'emerald-800': #15803d,
+  'emerald-900': #0f5132,
 );
 
 // Secondary Colors - Purple/Violet Branding
@@ -53,10 +53,10 @@ $neutral-colors: (
 
 // Status Colors
 $status-colors: (
-  'success': #3b82f6,
+  'success': #51faaa,
   'warning': #f59e0b,
   'error': #ef4444,
-  'info': #3b82f6,
+  'info': #51faaa,
 );
 
 // ===================================
@@ -135,10 +135,10 @@ $card-styles: (
 // Buttons
 $button-styles: (
   'primary': (
-    'bg': linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%),
+    'bg': linear-gradient(135deg, #51faaa 0%, #dbd5a4 100%),
     'text': #ffffff,
     'border': rgba(59, 130, 246, 0.4),
-    'hover-bg': linear-gradient(135deg, #2563eb 0%, #0891b2 100%),
+    'hover-bg': linear-gradient(135deg, #2dd284 0%, #a59c47 100%),
   ),
   'secondary': (
     'bg': rgba(55, 65, 81, 0.3), // gray-700 with opacity

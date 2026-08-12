@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../../../lib/firebase';
 import { 
@@ -60,7 +60,7 @@ const SettingsPanel = () => {
     },
     appearance: {
       theme: 'auto',
-      primaryColor: '#3B82F6',
+      primaryColor: '#51faaa',
       secondaryColor: '#8B5CF6',
       logoUrl: '/logo.png',
       faviconUrl: '/favicon.png',
@@ -266,7 +266,7 @@ const SettingsPanel = () => {
             <button
               onClick={() => handleSettingChange('notifications', key, !value)}
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                value ? 'bg-blue-600' : 'bg-gray-200 dark:bg-dark-600'
+                value ? 'bg-emerald-600' : 'bg-gray-200 dark:bg-dark-600'
               }`}
             >
               <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
@@ -302,7 +302,7 @@ const SettingsPanel = () => {
               <button
                 onClick={() => handleSettingChange('security', key, !value)}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  value ? 'bg-blue-600' : 'bg-gray-200 dark:bg-dark-600'
+                  value ? 'bg-emerald-600' : 'bg-gray-200 dark:bg-dark-600'
                 }`}
               >
                 <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
@@ -385,7 +385,7 @@ const SettingsPanel = () => {
             <button
               onClick={() => handleSettingChange('appearance', key, !value)}
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                value ? 'bg-blue-600' : 'bg-gray-200 dark:bg-dark-600'
+                value ? 'bg-emerald-600' : 'bg-gray-200 dark:bg-dark-600'
               }`}
             >
               <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
@@ -421,7 +421,7 @@ const SettingsPanel = () => {
               <button
                 onClick={() => handleSettingChange('content', key, !value)}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  value ? 'bg-blue-600' : 'bg-gray-200 dark:bg-dark-600'
+                  value ? 'bg-emerald-600' : 'bg-gray-200 dark:bg-dark-600'
                 }`}
               >
                 <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
@@ -520,7 +520,7 @@ const SettingsPanel = () => {
         <button
           onClick={() => handleSettingChange('email', 'enableEmailNotifications', !settings.email.enableEmailNotifications)}
           className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-            settings.email.enableEmailNotifications ? 'bg-blue-600' : 'bg-gray-200 dark:bg-dark-600'
+            settings.email.enableEmailNotifications ? 'bg-emerald-600' : 'bg-gray-200 dark:bg-dark-600'
           }`}
         >
           <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
@@ -612,7 +612,7 @@ const SettingsPanel = () => {
         <button
           onClick={() => handleSettingChange('payment', 'enablePayments', !settings.payment.enablePayments)}
           className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-            settings.payment.enablePayments ? 'bg-blue-600' : 'bg-gray-200 dark:bg-dark-600'
+            settings.payment.enablePayments ? 'bg-emerald-600' : 'bg-gray-200 dark:bg-dark-600'
           }`}
         >
           <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
@@ -656,7 +656,7 @@ const SettingsPanel = () => {
           <button 
             onClick={() => handleSaveSettings(activeTab)}
             disabled={loading}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+            className="flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors disabled:opacity-50"
           >
             {loading ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
             Save Changes
@@ -677,7 +677,7 @@ const SettingsPanel = () => {
                     onClick={() => setActiveTab(tab.id)}
                     className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all duration-200 ${
                       activeTab === tab.id
-                        ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                        ? 'bg-gradient-to-r from-emerald-600 to-purple-600 text-white shadow-lg'
                         : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-dark-700'
                     }`}
                   >

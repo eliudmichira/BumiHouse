@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Moon, Sun, Bell, Mail, Shield, ChevronRight, Lock, Trash2 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
@@ -45,7 +45,7 @@ const MobileSettingsPage = () => {
                 <button 
                     onClick={onClick}
                     className={`relative w-14 h-8 rounded-full transition-all duration-500 ${
-                        value ? 'bg-gradient-to-r from-[#3b82f6] to-[#06b6d4]' : (isDark ? 'bg-white/10' : 'bg-gray-200')
+                        value ? 'bg-gradient-to-r from-[#51faaa] to-[#dbd5a4]' : (isDark ? 'bg-white/10' : 'bg-gray-200')
                     }`}
                 >
                     <motion.div 

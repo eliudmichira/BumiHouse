@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+﻿import React, { useMemo, useState } from 'react';
 import { History, CheckCircle, Download, Printer, Search } from 'lucide-react';
 
 const Receipts = ({ paymentHistory = [] }) => {
@@ -116,8 +116,8 @@ const Receipts = ({ paymentHistory = [] }) => {
             return (
               <div key={p.id} className="flex items-center justify-between p-5 bg-gray-50 rounded-2xl border border-gray-200">
                 <div className="flex items-center space-x-4">
-                  <div className="w-14 h-14 bg-gradient-to-br from-[#3b82f6]/20 to-[#06b6d4]/20 border border-[#3b82f6]/30 rounded-2xl flex items-center justify-center">
-                    <CheckCircle className="w-7 h-7 text-[#3b82f6]" />
+                  <div className="w-14 h-14 bg-gradient-to-br from-[#51faaa]/20 to-[#dbd5a4]/20 border border-[#51faaa]/30 rounded-2xl flex items-center justify-center">
+                    <CheckCircle className="w-7 h-7 text-[#51faaa]" />
                   </div>
                   <div>
                     <p className="text-2xl font-bold text-gray-900 mb-1">KSh {Number.isFinite(amount) ? amount.toLocaleString() : '—'}</p>

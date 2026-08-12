@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs, query, limit } from 'firebase/firestore';
 
 const firebaseConfig = {
-    apiKey: "REDACTED",
+    apiKey: process.env.VITE_FIREBASE_API_KEY || "YOUR_FIREBASE_API_KEY",
     authDomain: "homeske.firebaseapp.com",
     projectId: "homeske",
     storageBucket: "homeske.firebasestorage.app",

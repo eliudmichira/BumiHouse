@@ -1,0 +1,57 @@
+# Secrets
+serviceAccountKey.json
+**/serviceAccountKey.json
+**/homeske-firebase-adminsdk-*.json
+**/dwellmate-*-firebase-adminsdk-*.json
+.env
+.env.local
+.env.local.bak
+.env.production
+**/.env
+**/.env.local
+**/.env.local.bak
+**/.env.production
+
+# Node
+node_modules/
+**/node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Build output
+dist/
+**/dist/
+build/
+**/build/
+.cache/
+
+# Scrape artifacts (large, regenerated)
+server/jiji-scrape.json
+server/scrape-output/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Tool/agent directories
+.claude/
+.freebuff/
+.firebase/
+
+# Logs & caches
+server/scrape-wide*.log
+server/geocode-cache.json
+
+# Root-level design/review artifacts
+/*.png
+/*.jpeg
+
+# Flutter spike scratch files
+flutter-spike/.tmp-*.dart
+flutter-spike/review-*.png

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { collection, getDocs, getDoc, doc, updateDoc, deleteDoc, query, orderBy } from 'firebase/firestore';
 import { db } from '../../../lib/firebase';
 import { useAuth } from '../../../context/AuthContext';
@@ -224,7 +224,7 @@ const UserManagement = () => {
   const getRoleIcon = (role) => {
     switch (role) {
       case 'admin': return <Crown className="w-4 h-4 text-yellow-500" />;
-      case 'moderator': return <Shield className="w-4 h-4 text-blue-500" />;
+      case 'moderator': return <Shield className="w-4 h-4 text-emerald-500" />;
       case 'agent': return <Shield className="w-4 h-4 text-green-500" />;
       default: return <User className="w-4 h-4 text-gray-500" />;
     }
@@ -233,7 +233,7 @@ const UserManagement = () => {
   const getRoleBadgeColor = (role) => {
     switch (role) {
       case 'admin': return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
-      case 'moderator': return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
+      case 'moderator': return 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200';
       case 'agent': return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
       default: return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200';
     }
@@ -275,7 +275,7 @@ const UserManagement = () => {
             <Download className="w-4 h-4" />
             Export
           </button>
-          <button className="flex justify-center items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+          <button className="flex justify-center items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors">
             <Plus className="w-4 h-4" />
             Add User
           </button>
@@ -287,8 +287,8 @@ const UserManagement = () => {
         <StatCard
           title="Total Users"
           value={userStats.totalUsers}
-          icon={<Users className="w-5 h-5 md:w-6 md:h-6 text-blue-600" />}
-          color="bg-blue-100 dark:bg-blue-900/30"
+          icon={<Users className="w-5 h-5 md:w-6 md:h-6 text-emerald-600" />}
+          color="bg-emerald-100 dark:bg-emerald-900/30"
         />
         <StatCard
           title="Active Users"
@@ -316,7 +316,7 @@ const UserManagement = () => {
                 placeholder="Search users by name or email..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-dark-600 rounded-lg bg-white dark:bg-dark-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-dark-600 rounded-lg bg-white dark:bg-dark-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
               />
             </div>
           </div>
@@ -424,7 +424,7 @@ const UserManagement = () => {
                           setSelectedUser(user);
                           setShowUserModal(true);
                         }}
-                        className="p-1.5 text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded"
+                        className="p-1.5 text-emerald-600 hover:text-emerald-900 dark:text-emerald-400 dark:hover:text-emerald-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 rounded"
                         title="View Details"
                       >
                         <Eye className="w-4 h-4" />
@@ -521,7 +521,7 @@ const UserManagement = () => {
                       setSelectedUser(user);
                       setShowUserModal(true);
                     }}
-                    className="p-2 text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 bg-blue-50 dark:bg-blue-900/20 rounded-lg transition-colors"
+                    className="p-2 text-emerald-600 hover:text-emerald-900 dark:text-emerald-400 dark:hover:text-emerald-300 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg transition-colors"
                   >
                     <Eye className="w-4 h-4" />
                   </button>
@@ -598,7 +598,7 @@ const UserManagement = () => {
               </button>
               <button
                 onClick={handleRoleChange}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
               >
                 Update Role
               </button>

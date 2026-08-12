@@ -26,16 +26,19 @@ import {
 import { db, storage } from './firebase';
 import { getCountyFromCoords, getGeohash } from '../utils/locationUtils';
 
+// Dev-only logger — keeps the production console clean. console.error/warn are left intact.
+const devLog = (...args) => { if (import.meta.env.DEV) console.log(...args); };
+
 // Properties API
 export const propertiesAPI = {
   // Get all properties with pagination and filters
   getAll: async (params = {}) => {
     try {
-      console.log('🏠 Fetching properties from Firestore...');
+      devLog('🏠 Fetching properties from Firestore...');
 
       const {
         page = 1,
-        limit: pageSize = 100,
+        limit: pageSize = 500,
         propertyType,
         minPrice,
         maxPrice,
@@ -63,13 +66,16 @@ export const propertiesAPI = {
       if (bedrooms) {
         constraints.push(where('bedrooms', '>=', bedrooms));
       }
+      // Avoid combining county + geohash range — that requires a composite
+      // Firestore index. If both are present, query only by county and filter
+      // geohash client-side after the docs come back.
+      const geohashPrefix = geohash ? geohash.substring(0, 5) : null;
+      const filterGeohashClientSide = !!(county && geohashPrefix);
+
       if (county) {
         constraints.push(where('county', '==', county));
       }
-      if (geohash) {
-        // Query properties within the same geohash prefix (nearby)
-        // Usually, geohash queries are done as range queries
-        const geohashPrefix = geohash.substring(0, 5); // 5 chars ~ 4.9km x 4.9km
+      if (geohashPrefix && !filterGeohashClientSide) {
         constraints.push(where('geohash', '>=', geohashPrefix));
         constraints.push(where('geohash', '<=', geohashPrefix + '\uf8ff'));
       }
@@ -77,25 +83,18 @@ export const propertiesAPI = {
         constraints.push(where('location.city', '==', location));
       }
 
-      // Try with sorting first, fallback to no sorting if index doesn't exist
-      try {
-        constraints.push(orderBy(sortBy, sortOrder));
-      } catch (sortError) {
-        console.log('Sorting not available, fetching without orderBy:', sortError.message);
-      }
-
-      // Add pagination
+      // Add pagination — skip orderBy to avoid excluding docs without createdAt
       constraints.push(limit(pageSize));
 
-      if (page > 1) {
-        // For pagination, you'd need to implement cursor-based pagination
-        // This is a simplified version
-      }
+      let querySnapshot = await getDocs(query(q, ...constraints));
 
-      const querySnapshot = await getDocs(query(q, ...constraints));
+      // If very few results and no filters applied, retry without any constraints (get all)
+      if (querySnapshot.size < 5 && constraints.length === 1) {
+        querySnapshot = await getDocs(collection(db, 'properties'));
+      }
       const properties = [];
 
-      console.log('📊 Firestore query result:', {
+      devLog('📊 Firestore query result:', {
         size: querySnapshot.size,
         empty: querySnapshot.empty,
         hasDocs: querySnapshot.docs.length > 0
@@ -109,6 +108,19 @@ export const propertiesAPI = {
         });
       });
 
+      // Client-side geohash narrowing when we skipped it in the query to
+      // avoid the composite index requirement.
+      if (filterGeohashClientSide) {
+        const before = properties.length;
+        for (let i = properties.length - 1; i >= 0; i--) {
+          const gh = properties[i].geohash;
+          if (typeof gh !== 'string' || !gh.startsWith(geohashPrefix)) {
+            properties.splice(i, 1);
+          }
+        }
+        devLog(`📍 Geohash filtered client-side: ${before} → ${properties.length}`);
+      }
+
       // Sort manually if orderBy failed
       if (properties.length > 0 && sortBy === 'createdAt') {
         properties.sort((a, b) => {
@@ -118,7 +130,7 @@ export const propertiesAPI = {
         });
       }
 
-      console.log('✅ Properties fetched successfully:', {
+      devLog('✅ Properties fetched successfully:', {
         count: properties.length,
         firstProperty: properties[0] ? properties[0].title || properties[0].name : 'No properties'
       });
@@ -142,11 +154,11 @@ export const propertiesAPI = {
 
       // Fallback: try without any constraints if the above fails
       try {
-        console.log('🔄 Trying fallback query without any constraints...');
+        devLog('🔄 Trying fallback query without any constraints...');
         const querySnapshot = await getDocs(collection(db, 'properties'));
         const properties = [];
 
-        console.log('📊 Fallback query result:', {
+        devLog('📊 Fallback query result:', {
           size: querySnapshot.size,
           empty: querySnapshot.empty
         });
@@ -166,7 +178,7 @@ export const propertiesAPI = {
           return bTime - aTime;
         });
 
-        console.log('✅ Fallback query successful:', {
+        devLog('✅ Fallback query successful:', {
           count: properties.length
         });
 
@@ -183,7 +195,7 @@ export const propertiesAPI = {
         console.error('❌ Fallback query also failed:', fallbackError);
 
         // Return empty result instead of throwing to prevent app crash
-        console.log('🔄 Returning empty properties array to prevent app crash');
+        devLog('🔄 Returning empty properties array to prevent app crash');
         return {
           properties: [],
           pagination: {
@@ -200,7 +212,7 @@ export const propertiesAPI = {
   // Get featured properties
   getFeatured: async (limitCount = 6) => {
     try {
-      console.log('Fetching featured properties...');
+      devLog('Fetching featured properties...');
 
       // Try to get featured properties first
       let properties = [];
@@ -212,7 +224,7 @@ export const propertiesAPI = {
         );
 
         const querySnapshot = await getDocs(q);
-        console.log('Featured properties query result:', querySnapshot.size, 'documents found');
+        devLog('Featured properties query result:', querySnapshot.size, 'documents found');
 
         querySnapshot.forEach((doc) => {
           properties.push({
@@ -221,59 +233,64 @@ export const propertiesAPI = {
           });
         });
       } catch (featuredError) {
-        console.log('Featured properties query failed, trying fallback:', featuredError.message);
+        devLog('Featured properties query failed, trying fallback:', featuredError.message);
       }
 
-      // If no featured properties found, get some regular properties as fallback
-      if (properties.length === 0) {
-        console.log('No featured properties found, getting fallback properties...');
+      // Top up with regular listings whenever there are fewer featured than requested,
+      // so the carousel always shows a full row (featured first, padded with others).
+      if (properties.length < limitCount) {
+        const existingIds = new Set(properties.map((p) => p.id));
+
+        const addUntilFull = (snapshot) => {
+          snapshot.forEach((doc) => {
+            if (properties.length >= limitCount) return;
+            if (existingIds.has(doc.id)) return;
+            existingIds.add(doc.id);
+            properties.push({ id: doc.id, ...doc.data() });
+          });
+        };
+
+        devLog(`Only ${properties.length} featured; topping up to ${limitCount} with regular listings...`);
         try {
+          // Fetch extra to cover any overlap with the featured set before deduping.
           const fallbackQuery = query(
             collection(db, 'properties'),
-            limit(limitCount)
+            limit(limitCount + properties.length)
           );
 
           const fallbackSnapshot = await getDocs(fallbackQuery);
-          console.log('Fallback properties query result:', fallbackSnapshot.size, 'documents found');
-
-          fallbackSnapshot.forEach((doc) => {
-            properties.push({
-              id: doc.id,
-              ...doc.data()
-            });
-          });
+          devLog('Fallback properties query result:', fallbackSnapshot.size, 'documents found');
+          addUntilFull(fallbackSnapshot);
         } catch (fallbackError) {
-          console.log('Fallback query also failed, trying basic collection query:', fallbackError.message);
+          devLog('Fallback query failed, trying basic collection query:', fallbackError.message);
           // Last resort: get all properties without any query constraints
           const allSnapshot = await getDocs(collection(db, 'properties'));
-          console.log('Basic collection query result:', allSnapshot.size, 'documents found');
-
-          allSnapshot.forEach((doc) => {
-            properties.push({
-              id: doc.id,
-              ...doc.data()
-            });
-          });
+          devLog('Basic collection query result:', allSnapshot.size, 'documents found');
+          addUntilFull(allSnapshot);
         }
       }
 
-      // Sort by creation date if we have properties
+      // Sort featured first, then newest first within each group.
       if (properties.length > 0) {
         properties.sort((a, b) => {
+          const aFeatured = (a.featured || a.is_featured) ? 1 : 0;
+          const bFeatured = (b.featured || b.is_featured) ? 1 : 0;
+          if (aFeatured !== bFeatured) return bFeatured - aFeatured;
+
           const aTime = a.createdAt?.toDate?.() || a.createdAt || new Date(0);
           const bTime = b.createdAt?.toDate?.() || b.createdAt || new Date(0);
           return bTime - aTime;
         });
       }
 
-      console.log('Total properties to return:', properties.length);
+      devLog('Total properties to return:', properties.length);
       return { properties };
     } catch (error) {
       console.error('Error fetching featured properties:', error);
 
       // Return empty array if Firestore is not set up yet
       if (error.code === 'failed-precondition' || error.message.includes('400')) {
-        console.log('Firestore not set up yet, returning empty properties array');
+        devLog('Firestore not set up yet, returning empty properties array');
         return { properties: [] };
       }
 
@@ -527,14 +544,14 @@ export const storageAPI = {
         cacheControl: 'public, max-age=31536000'
       };
 
-      console.log('🔄 Uploading image to path:', path);
-      console.log('📁 File details:', { name: file.name, size: file.size, type: file.type });
+      devLog('🔄 Uploading image to path:', path);
+      devLog('📁 File details:', { name: file.name, size: file.size, type: file.type });
 
       const snapshot = await uploadBytes(storageRef, file, metadata);
-      console.log('✅ Upload successful, getting download URL...');
+      devLog('✅ Upload successful, getting download URL...');
 
       const downloadURL = await getDownloadURL(snapshot.ref);
-      console.log('🔗 Download URL obtained:', downloadURL);
+      devLog('🔗 Download URL obtained:', downloadURL);
 
       return downloadURL;
     } catch (error) {
@@ -1317,8 +1334,8 @@ export const trialAPI = {
   // Create a new trial signup
   create: async (formData) => {
     try {
-      console.log('🔥 Creating trial signup with Firebase...');
-      console.log('📝 Form data received:', formData);
+      devLog('🔥 Creating trial signup with Firebase...');
+      devLog('📝 Form data received:', formData);
 
       // Generate trial ID and credentials
       const trialId = `trial_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
@@ -1339,10 +1356,10 @@ export const trialAPI = {
       };
 
       // Save to Firestore
-      console.log('💾 Saving trial data to Firestore:', trialData);
+      devLog('💾 Saving trial data to Firestore:', trialData);
       const docRef = await addDoc(collection(db, 'trialSignups'), trialData);
-      console.log('✅ Trial signup created with Firestore ID:', docRef.id);
-      console.log('🔑 Generated credentials - Trial ID:', trialId, 'Password:', tempPassword);
+      devLog('✅ Trial signup created with Firestore ID:', docRef.id);
+      devLog('🔑 Generated credentials - Trial ID:', trialId, 'Password:', tempPassword);
 
       // Trigger email sending (this will be handled by Firebase Functions)
       await addDoc(collection(db, 'emailQueue'), {
@@ -1395,7 +1412,7 @@ export const trialAPI = {
         timestamp: serverTimestamp()
       });
 
-      console.log('✅ Trial signup process completed successfully');
+      devLog('✅ Trial signup process completed successfully');
 
       return {
         success: true,

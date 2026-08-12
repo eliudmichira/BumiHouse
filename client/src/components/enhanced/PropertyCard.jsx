@@ -1,4 +1,5 @@
-import React, { useState, useRef } from 'react';
+﻿import React, { useState, useRef } from 'react';
+import { getPropertyImages } from '../../utils/imageUtils';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Heart,
@@ -44,7 +45,7 @@ const PropertyCard = ({
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const cardRef = useRef(null);
 
-  const images = property.images || [property.image] || ['/placeholder-property.jpg'];
+  const images = getPropertyImages(property);
   const hasMultipleImages = images.length > 1;
 
   const formatPrice = (price) => {
@@ -195,7 +196,7 @@ const PropertyCard = ({
                     ? 'bg-green-500 text-white'
                     : property.status === 'featured'
                       ? 'bg-[#4066ff] text-[#0a0c19]'
-                      : 'bg-blue-500 text-white'
+                      : 'bg-emerald-500 text-white'
                     }`}>
                     {property.status === 'new' ? 'New' : property.status === 'featured' ? 'Featured' : property.status}
                   </span>
@@ -501,7 +502,7 @@ const PropertyCard = ({
                 ? 'bg-green-500 text-white'
                 : property.status === 'featured'
                   ? 'bg-[#4066ff] text-[#0a0c19]'
-                  : 'bg-blue-500 text-white'
+                  : 'bg-emerald-500 text-white'
                 }`}>
                 {property.status === 'featured' && <Star className="w-3 h-3 fill-current" />}
                 {property.status === 'new' ? 'New' : property.status === 'featured' ? 'Featured' : property.status}

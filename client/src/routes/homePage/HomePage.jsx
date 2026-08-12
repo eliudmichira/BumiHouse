@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
 import {
   Search, MapPin, Home, Award, Users, Building2, Star, Shield, Sparkles,
@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import Hero from '../../components/hero/Hero';
 import { useTheme } from '../../context/ThemeContext';
-import { useFeaturedProperties } from '../../hooks/useProperties';
+import { useFeaturedProperties, useProperties } from '../../hooks/useProperties';
 import { SpinnerLoader } from '../../components/Preloader';
 import { SimpleSpinner } from '../../components/SimpleLoadingStates';
 import {
@@ -21,6 +21,9 @@ import {
   GoogleLevelTestimonialCard
 } from '../../components/enhanced/GoogleLevelPropertyShowcase';
 import { testimonialsAPI } from '../../lib/firebaseAPI';
+import { getPropertyImage, handleImageError } from '../../utils/imageUtils';
+import { getAreasFromProperties, rankAreas } from '../../utils/popularAreas';
+import AreaImageCarousel from '../../components/AreaImageCarousel';
 
 // Custom hooks
 const useIntersectionObserver = (options = {}) => {
@@ -68,7 +71,7 @@ function PropertyCard({ property, index, onClick }) {
 
   // Debug logging to identify the issue
   React.useEffect(() => {
-    if (property && property.location && typeof property.location === 'object') {
+    if (import.meta.env.DEV && property && property.location && typeof property.location === 'object') {
       console.log('🔍 Property location object:', property.location);
       console.log('🔍 Property location type:', typeof property.location);
       console.log('🔍 Property location keys:', Object.keys(property.location));
@@ -92,23 +95,24 @@ function PropertyCard({ property, index, onClick }) {
   return (
     <div
       className={`group cursor-pointer rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 ${isDark
-        ? 'bg-[#10121e] shadow-lg hover:shadow-2xl hover:shadow-[#3b82f6]/20 hover:border hover:border-[#3b82f6]/30'
-        : 'bg-white shadow-lg hover:shadow-2xl hover:shadow-[#3b82f6]/20 hover:border hover:border-[#3b82f6]/30'
+        ? 'bg-[#10121e] shadow-lg hover:shadow-2xl hover:shadow-[#51faaa]/20 hover:border hover:border-[#51faaa]/30'
+        : 'bg-white shadow-lg hover:shadow-2xl hover:shadow-[#51faaa]/20 hover:border hover:border-[#51faaa]/30'
         }`}
       onClick={onClick}
     >
       <div className="relative h-64 overflow-hidden">
         <img
-          src={property.images?.[0] || "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600&q=80"}
+          src={getPropertyImage(property)}
           alt={property.title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
+          onError={(e) => handleImageError(e, null, property)}
         />
 
         {/* Featured Badge - only if property marks it */}
         {(property.featured || property.is_featured) && (
           <div className="absolute top-4 left-4">
-            <span className="px-3 py-1.5 rounded-full text-xs font-medium backdrop-blur-md bg-white/90 text-gray-900 shadow-sm group-hover:shadow-lg group-hover:shadow-[#3b82f6]/20 transition-all duration-300">
+            <span className="px-3 py-1.5 rounded-full text-xs font-medium backdrop-blur-md bg-white/90 text-gray-900 shadow-sm group-hover:shadow-lg group-hover:shadow-[#51faaa]/20 transition-all duration-300">
               ⭐ Featured
             </span>
           </div>
@@ -120,7 +124,7 @@ function PropertyCard({ property, index, onClick }) {
             e.stopPropagation();
             setIsSaved(!isSaved);
           }}
-          className="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-sm group-hover:shadow-lg group-hover:shadow-[#3b82f6]/20"
+          className="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-sm group-hover:shadow-lg group-hover:shadow-[#51faaa]/20"
         >
           <Heart className={`w-5 h-5 transition-colors ${isSaved ? 'fill-red-500 text-red-500' : 'text-gray-600'}`} />
         </button>
@@ -256,9 +260,22 @@ const HomePage = () => {
   const { data: featuredData, isLoading: featuredLoading } = useFeaturedProperties(6);
   const featuredProperties = featuredData?.properties || [];
 
+  // Popular areas — grouped from live listings so the home page reflects real
+  // inventory: top areas by listing count, each with a representative photo.
+  const { data: areasData } = useProperties();
+  const [areaCriteria, setAreaCriteria] = useState('popular');
+  const popularAreas = useMemo(
+    () => rankAreas(getAreasFromProperties(areasData?.properties || []), areaCriteria).slice(0, 12),
+    [areasData, areaCriteria]
+  );
+
   // Navigation handlers
   const handlePropertyTypeClick = (type) => {
     window.location.href = `/properties?propertyType=${type}`;
+  };
+
+  const handleAreaClick = (area) => {
+    window.location.href = `/properties?search=${encodeURIComponent(area)}`;
   };
 
   const handlePropertyCardClick = (propertyId) => {
@@ -404,7 +421,7 @@ const HomePage = () => {
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 25% 25%, ${isDark ? '#3b82f6' : '#3b82f6'} 2px, transparent 2px)`,
+            backgroundImage: `radial-gradient(circle at 25% 25%, ${isDark ? '#51faaa' : '#51faaa'} 2px, transparent 2px)`,
             backgroundSize: '50px 50px'
           }} />
         </div>
@@ -447,8 +464,8 @@ const HomePage = () => {
                 key={type.id}
                 onClick={() => handlePropertyTypeClick(type.id)}
                 className={`group p-6 rounded-2xl transition-all duration-300 relative overflow-hidden ${isDark
-                  ? 'bg-[#10121e] shadow-md hover:shadow-lg hover:shadow-[#3b82f6]/20 hover:border hover:border-[#3b82f6]/30'
-                  : 'bg-white shadow-md hover:shadow-lg hover:shadow-[#3b82f6]/20 hover:border hover:border-[#3b82f6]/30'
+                  ? 'bg-[#10121e] shadow-md hover:shadow-lg hover:shadow-[#51faaa]/20 hover:border hover:border-[#51faaa]/30'
+                  : 'bg-white shadow-md hover:shadow-lg hover:shadow-[#51faaa]/20 hover:border hover:border-[#51faaa]/30'
                   }`}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -459,19 +476,19 @@ const HomePage = () => {
               >
                 {/* Background Gradient on Hover */}
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-[#3b82f6]/5 to-[#06b6d4]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  className="absolute inset-0 bg-gradient-to-br from-[#51faaa]/5 to-[#dbd5a4]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   initial={{ scale: 0.8 }}
                   whileHover={{ scale: 1 }}
                 />
 
                 <div className="relative z-10">
                   <motion.div
-                    className={`w-12 h-12 mx-auto mb-4 rounded-xl flex items-center justify-center group-hover:bg-gradient-to-br from-[#3b82f6]/20 to-[#06b6d4]/20 group-hover:shadow-lg group-hover:shadow-[#3b82f6]/20 transition-all duration-300 ${isDark ? 'bg-white/5' : 'bg-gray-50'
+                    className={`w-12 h-12 mx-auto mb-4 rounded-xl flex items-center justify-center group-hover:bg-gradient-to-br from-[#51faaa]/20 to-[#dbd5a4]/20 group-hover:shadow-lg group-hover:shadow-[#51faaa]/20 transition-all duration-300 ${isDark ? 'bg-white/5' : 'bg-gray-50'
                       }`}
                     whileHover={{ rotate: 5, scale: 1.1 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <type.icon className={`w-6 h-6 transition-colors duration-300 group-hover:text-[#3b82f6] ${isDark ? 'text-white/80' : 'text-gray-600'
+                    <type.icon className={`w-6 h-6 transition-colors duration-300 group-hover:text-[#51faaa] ${isDark ? 'text-white/80' : 'text-gray-600'
                       }`} />
                   </motion.div>
 
@@ -489,6 +506,86 @@ const HomePage = () => {
           </div>
         </div>
       </motion.section>
+
+      {/* Popular Areas Section — top neighborhoods by live listing count */}
+      <section className={`py-24 transition-colors duration-500 ${isDark ? 'bg-[#10121e]' : 'bg-white'
+        }`}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${isDark ? 'text-white' : 'text-gray-900'
+              }`}>
+              Popular{' '}
+              <span className="bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent">
+                Areas
+              </span>
+            </h2>
+            <p className={`text-xl max-w-2xl mx-auto ${isDark ? 'text-white/80' : 'text-gray-600'
+              }`}>
+              Discover houses and apartments for rent and sale in our most popular locations
+            </p>
+          </div>
+
+          {/* Criteria tabs — the featured areas vary by the selected ranking
+              instead of always showing the same static list */}
+          <div className="flex flex-wrap justify-center gap-2 mb-12">
+            {AREA_CRITERIA.map((opt) => (
+              <button
+                key={opt.value}
+                onClick={() => setAreaCriteria(opt.value)}
+                className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 border ${areaCriteria === opt.value
+                  ? 'bg-[#51faaa] text-[#0a0c19] border-[#51faaa] shadow-lg shadow-[#51faaa]/20'
+                  : isDark
+                    ? 'bg-[#10121e] text-gray-300 border-gray-700/60 hover:border-[#51faaa]/40 hover:text-white'
+                    : 'bg-white text-gray-600 border-gray-200 hover:border-[#51faaa]/40 hover:text-gray-900'
+                  }`}
+              >
+                {opt.label}
+              </button>
+            ))}
+          </div>
+
+          {popularAreas.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-6">
+              {popularAreas.map((area) => (
+                <button
+                  key={area.name}
+                  onClick={() => handleAreaClick(area.name)}
+                  className="group text-left rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#51faaa]/10 focus:outline-none focus:ring-2 focus:ring-[#51faaa]/50"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden bg-gray-200 dark:bg-gray-800">
+                    <AreaImageCarousel images={area.images} name={area.name} />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    <span className="absolute bottom-3 left-3 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur text-white text-xs font-semibold">
+                      {area.count} listing{area.count === 1 ? '' : 's'}
+                    </span>
+                  </div>
+                  <div className={`px-1 pt-3 text-base md:text-lg font-semibold ${isDark ? 'text-white' : 'text-gray-900'
+                    }`}>
+                    {area.name}
+                  </div>
+                </button>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-6">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div key={i} className="rounded-2xl bg-gray-200 dark:bg-gray-800 animate-pulse aspect-[4/3]" />
+              ))}
+            </div>
+          )}
+
+          {/* Full area directory link */}
+          <div className="mt-12 text-center">
+            <a
+              href="/desktop/areas"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold transition-all duration-300 group/link bg-gradient-to-r from-primary-500 to-secondary-500 text-[#0a0c19] hover:shadow-lg hover:shadow-[#51faaa]/25 hover:scale-105"
+            >
+              Browse all areas
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1" />
+            </a>
+          </div>
+        </div>
+      </section>
 
       {/* Premium Featured Properties Section */}
       <section className={`py-24 transition-colors duration-500 relative ${isDark ? 'bg-[#0a0c19]' : 'bg-white'
@@ -543,10 +640,10 @@ const HomePage = () => {
               <div className="text-center space-y-4">
                 <div className="relative">
                   {/* Simple spinning ring */}
-                  <div className="w-16 h-16 rounded-full border-2 border-[#3b82f6]/20 border-t-[#3b82f6] animate-spin" style={{ animationDuration: '2s' }} />
+                  <div className="w-16 h-16 rounded-full border-2 border-[#51faaa]/20 border-t-[#51faaa] animate-spin" style={{ animationDuration: '2s' }} />
 
                   {/* Center logo */}
-                  <div className="absolute inset-4 w-8 h-8 rounded-full bg-[#3b82f6] flex items-center justify-center shadow-lg">
+                  <div className="absolute inset-4 w-8 h-8 rounded-full bg-[#51faaa] flex items-center justify-center shadow-lg">
                     <div className="text-[#0a0c19] font-bold text-sm">M</div>
                   </div>
                 </div>
@@ -557,7 +654,7 @@ const HomePage = () => {
                   {[0, 1, 2].map((i) => (
                     <div
                       key={i}
-                      className={`w-2 h-2 rounded-full bg-[#3b82f6] animate-pulse`}
+                      className={`w-2 h-2 rounded-full bg-[#51faaa] animate-pulse`}
                       style={{ animationDelay: `${i * 0.2}s` }}
                     />
                   ))}
@@ -639,7 +736,7 @@ const HomePage = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <button
                 onClick={() => window.location.href = '/contact'}
-                className="px-6 py-3 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] font-medium rounded-full hover:shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center gap-2"
+                className="px-6 py-3 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] font-medium rounded-full hover:shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center gap-2"
               >
                 <MessageCircle className="w-4 h-4" />
                 Contact Sales
@@ -647,8 +744,8 @@ const HomePage = () => {
               <button
                 onClick={() => window.location.href = '/properties'}
                 className={`px-6 py-3 border-2 font-medium rounded-full transition-all duration-300 flex items-center gap-2 ${isDark
-                  ? 'border-[#3b82f6] text-[#3b82f6] hover:bg-[#3b82f6] hover:text-[#111]'
-                  : 'border-[#3b82f6] text-[#3b82f6] hover:bg-[#3b82f6] hover:text-white'
+                  ? 'border-[#51faaa] text-[#51faaa] hover:bg-[#51faaa] hover:text-[#111]'
+                  : 'border-[#51faaa] text-[#51faaa] hover:bg-[#51faaa] hover:text-white'
                   }`}
               >
                 <Building2 className="w-4 h-4" />
@@ -744,7 +841,7 @@ const HomePage = () => {
           {[...Array(8)].map((_, i) => (
             <motion.div
               key={i}
-              className={`absolute w-2 h-2 rounded-full ${isDark ? 'bg-[#3b82f6]/30' : 'bg-[#3b82f6]/20'
+              className={`absolute w-2 h-2 rounded-full ${isDark ? 'bg-[#51faaa]/30' : 'bg-[#51faaa]/20'
                 }`}
               animate={{
                 x: [0, 100, 0],
@@ -806,7 +903,7 @@ const HomePage = () => {
           >
             <motion.button
               onClick={handleStartSearching}
-              className="group relative px-8 py-4 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] font-semibold rounded-full overflow-hidden"
+              className="group relative px-8 py-4 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] font-semibold rounded-full overflow-hidden"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -826,14 +923,14 @@ const HomePage = () => {
             <motion.button
               onClick={handleScheduleCall}
               className={`px-8 py-4 border-2 rounded-full font-semibold transition-all duration-300 relative overflow-hidden group ${isDark
-                ? 'border-[#3b82f6] text-[#3b82f6] hover:bg-[#3b82f6] hover:text-[#111]'
-                : 'border-[#3b82f6] text-[#3b82f6] hover:bg-[#3b82f6] hover:text-white'
+                ? 'border-[#51faaa] text-[#51faaa] hover:bg-[#51faaa] hover:text-[#111]'
+                : 'border-[#51faaa] text-[#51faaa] hover:bg-[#51faaa] hover:text-white'
                 }`}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
             >
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                className="absolute inset-0 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 initial={{ scale: 0.8 }}
                 whileHover={{ scale: 1 }}
               />
@@ -894,7 +991,7 @@ const HomePage = () => {
               </div>
               <div className="flex justify-end gap-3 pt-2">
                 <button onClick={() => setIsAddReviewOpen(false)} className={`px-4 py-2 rounded-lg ${isDark ? 'bg-white/10' : 'bg-gray-100'}`}>Cancel</button>
-                <button onClick={handleSubmitReview} className="px-4 py-2 rounded-lg bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] font-semibold">Submit</button>
+                <button onClick={handleSubmitReview} className="px-4 py-2 rounded-lg bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] font-semibold">Submit</button>
               </div>
             </div>
           </div>
@@ -917,6 +1014,15 @@ const HomePage = () => {
 };
 
 // Data
+const AREA_CRITERIA = [
+  { value: 'popular', label: 'Most popular' },
+  { value: 'trending', label: 'Trending' },
+  { value: 'rent', label: 'For rent' },
+  { value: 'sale', label: 'For sale' },
+  { value: 'affordable', label: 'Affordable' },
+  { value: 'premium', label: 'Premium' }
+];
+
 const propertyTypes = [
   { id: 'apartment', name: 'Apartments', icon: Building2 },
   { id: 'house', name: 'Houses', icon: Home },

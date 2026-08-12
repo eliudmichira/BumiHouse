@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Construction } from 'lucide-react';
@@ -19,7 +19,7 @@ const PlaceholderDashboard = ({ title, description, icon: Icon }) => {
               >
                 <ArrowLeft className="w-5 h-5" />
               </button>
-              <div className="w-10 h-10 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] rounded-xl flex items-center justify-center">
                 <Icon className="w-6 h-6 text-[#111]" />
               </div>
               <div>
@@ -41,7 +41,7 @@ const PlaceholderDashboard = ({ title, description, icon: Icon }) => {
           animate={{ opacity: 1, y: 0 }}
           className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-2xl p-12 border border-white/20 dark:border-gray-700/20 text-center"
         >
-          <div className="w-24 h-24 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] rounded-full flex items-center justify-center mx-auto mb-6">
+          <div className="w-24 h-24 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] rounded-full flex items-center justify-center mx-auto mb-6">
             <Construction className="w-12 h-12 text-[#111]" />
           </div>
           
@@ -54,25 +54,25 @@ const PlaceholderDashboard = ({ title, description, icon: Icon }) => {
             you'll have access to comprehensive {title.toLowerCase()} tools and analytics.
           </p>
           
-          <div className="bg-gradient-to-r from-[#3b82f6]/10 to-[#06b6d4]/10 rounded-xl p-6 mb-8">
+          <div className="bg-gradient-to-r from-[#51faaa]/10 to-[#dbd5a4]/10 rounded-xl p-6 mb-8">
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
               What to expect:
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
               <div className="flex items-start space-x-3">
-                <div className="w-2 h-2 bg-[#3b82f6] rounded-full mt-2"></div>
+                <div className="w-2 h-2 bg-[#51faaa] rounded-full mt-2"></div>
                 <p className="text-gray-700 dark:text-gray-300">Real-time data and analytics</p>
               </div>
               <div className="flex items-start space-x-3">
-                <div className="w-2 h-2 bg-[#3b82f6] rounded-full mt-2"></div>
+                <div className="w-2 h-2 bg-[#51faaa] rounded-full mt-2"></div>
                 <p className="text-gray-700 dark:text-gray-300">Advanced filtering and search</p>
               </div>
               <div className="flex items-start space-x-3">
-                <div className="w-2 h-2 bg-[#3b82f6] rounded-full mt-2"></div>
+                <div className="w-2 h-2 bg-[#51faaa] rounded-full mt-2"></div>
                 <p className="text-gray-700 dark:text-gray-300">Automated workflows</p>
               </div>
               <div className="flex items-start space-x-3">
-                <div className="w-2 h-2 bg-[#3b82f6] rounded-full mt-2"></div>
+                <div className="w-2 h-2 bg-[#51faaa] rounded-full mt-2"></div>
                 <p className="text-gray-700 dark:text-gray-300">Mobile app integration</p>
               </div>
             </div>
@@ -82,7 +82,7 @@ const PlaceholderDashboard = ({ title, description, icon: Icon }) => {
             onClick={() => navigate('/trial-dashboard')}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
+            className="bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
           >
             Back to Dashboard
           </motion.button>

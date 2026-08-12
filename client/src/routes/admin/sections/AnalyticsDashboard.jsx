@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { collection, getDocs, query, orderBy, limit } from 'firebase/firestore';
 import { db } from '../../../lib/firebase';
 import analyticsService from '../../../lib/analytics';
@@ -141,7 +141,7 @@ const AnalyticsDashboard = () => {
   const ActivityItem = ({ activity }) => {
     const getActivityIcon = (type) => {
       switch (type) {
-        case 'user_registered': return <Users className="w-4 h-4 text-blue-500" />;
+        case 'user_registered': return <Users className="w-4 h-4 text-emerald-500" />;
         case 'property_added': return <Home className="w-4 h-4 text-green-500" />;
         case 'property_viewed': return <Eye className="w-4 h-4 text-purple-500" />;
         case 'user_logged_in': return <Activity className="w-4 h-4 text-orange-500" />;
@@ -200,8 +200,8 @@ const AnalyticsDashboard = () => {
           title="Total Users"
           value={analyticsData.overview.totalUsers.toLocaleString()}
           change={analyticsData.overview.userGrowth}
-          icon={<Users className="w-5 h-5 lg:w-6 lg:h-6 text-blue-600" />}
-          color="bg-blue-100 dark:bg-blue-900/30"
+          icon={<Users className="w-5 h-5 lg:w-6 lg:h-6 text-emerald-600" />}
+          color="bg-emerald-100 dark:bg-emerald-900/30"
           trend="up"
         />
         <StatCard
@@ -311,7 +311,7 @@ const AnalyticsDashboard = () => {
             {analyticsData.topProperties.map((property, index) => (
               <div key={property.id} className="flex items-center justify-between p-3 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg transition-colors">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold shrink-0">
+                  <div className="w-8 h-8 bg-gradient-to-r from-emerald-500 to-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold shrink-0">
                     {index + 1}
                   </div>
                   <div>
@@ -359,8 +359,8 @@ const AnalyticsDashboard = () => {
             </div>
           </div>
           <div className="space-y-4">
-            <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-              <h4 className="font-medium text-blue-700 dark:text-blue-400 mb-2">Tracked Events</h4>
+            <div className="p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg">
+              <h4 className="font-medium text-emerald-700 dark:text-emerald-400 mb-2">Tracked Events</h4>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
                   <span className="text-gray-600 dark:text-gray-400">Page Views</span>

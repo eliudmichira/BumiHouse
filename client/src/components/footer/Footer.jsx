@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
@@ -35,19 +35,19 @@ const Footer = () => {
               Find your dream home with us.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className={`hover:text-[#3b82f6] transition-colors duration-300 ${isDark ? 'text-[#ccc]' : 'text-gray-300'
+              <a href="#" className={`hover:text-[#51faaa] transition-colors duration-300 ${isDark ? 'text-[#ccc]' : 'text-gray-300'
                 }`}>
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="#" className={`hover:text-[#3b82f6] transition-colors duration-300 ${isDark ? 'text-[#ccc]' : 'text-gray-300'
+              <a href="#" className={`hover:text-[#51faaa] transition-colors duration-300 ${isDark ? 'text-[#ccc]' : 'text-gray-300'
                 }`}>
                 <Twitter className="w-5 h-5" />
               </a>
-              <a href="#" className={`hover:text-[#3b82f6] transition-colors duration-300 ${isDark ? 'text-[#ccc]' : 'text-gray-300'
+              <a href="#" className={`hover:text-[#51faaa] transition-colors duration-300 ${isDark ? 'text-[#ccc]' : 'text-gray-300'
                 }`}>
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="#" className={`hover:text-[#3b82f6] transition-colors duration-300 ${isDark ? 'text-[#ccc]' : 'text-gray-300'
+              <a href="#" className={`hover:text-[#51faaa] transition-colors duration-300 ${isDark ? 'text-[#ccc]' : 'text-gray-300'
                 }`}>
                 <Linkedin className="w-5 h-5" />
               </a>
@@ -59,43 +59,43 @@ const Footer = () => {
             <h3 className="text-white font-outfit font-semibold text-lg">Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/" className={`hover:text-[#3b82f6] transition-colors duration-300 font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-300'
+                <Link to="/" className={`hover:text-[#51faaa] transition-colors duration-300 font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-300'
                   }`}>
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/desktop/properties" className={`hover:text-[#3b82f6] transition-colors duration-300 font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-300'
+                <Link to="/desktop/properties" className={`hover:text-[#51faaa] transition-colors duration-300 font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-300'
                   }`}>
                   Properties
                 </Link>
               </li>
               <li>
-                <Link to="/desktop/about" className={`hover:text-[#3b82f6] transition-colors duration-300 font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-300'
+                <Link to="/desktop/about" className={`hover:text-[#51faaa] transition-colors duration-300 font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-300'
                   }`}>
                   About Us
                 </Link>
               </li>
               <li>
-                <Link to="/desktop/contact" className={`hover:text-[#3b82f6] transition-colors duration-300 font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-300'
+                <Link to="/desktop/contact" className={`hover:text-[#51faaa] transition-colors duration-300 font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-300'
                   }`}>
                   Contact
                 </Link>
               </li>
               <li>
-                <Link to="/desktop/agents" className={`hover:text-[#3b82f6] transition-colors duration-300 font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-300'
+                <Link to="/desktop/agents" className={`hover:text-[#51faaa] transition-colors duration-300 font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-300'
                   }`}>
                   Agents
                 </Link>
               </li>
               <li>
-                <Link to="/desktop/blog" className={`hover:text-[#3b82f6] transition-colors duration-300 font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-300'
+                <Link to="/desktop/blog" className={`hover:text-[#51faaa] transition-colors duration-300 font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-300'
                   }`}>
                   Blog
                 </Link>
               </li>
               <li>
-                <Link to="/properties/add" className={`hover:text-[#3b82f6] transition-colors duration-300 font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-300'
+                <Link to="/properties/add" className={`hover:text-[#51faaa] transition-colors duration-300 font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-300'
                   }`}>
                   List Property
                 </Link>
@@ -108,31 +108,31 @@ const Footer = () => {
             <h3 className="text-white font-outfit font-semibold text-lg">Services</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/properties?type=buy" className={`hover:text-[#3b82f6] transition-colors duration-300 font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-300'
+                <Link to="/properties?type=buy" className={`hover:text-[#51faaa] transition-colors duration-300 font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-300'
                   }`}>
                   Buy Property
                 </Link>
               </li>
               <li>
-                <Link to="/properties?type=rent" className={`hover:text-[#3b82f6] transition-colors duration-300 font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-300'
+                <Link to="/properties?type=rent" className={`hover:text-[#51faaa] transition-colors duration-300 font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-300'
                   }`}>
                   Rent Property
                 </Link>
               </li>
               <li>
-                <Link to="/desktop/register" className={`hover:text-[#3b82f6] transition-colors duration-300 font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-300'
+                <Link to="/desktop/register" className={`hover:text-[#51faaa] transition-colors duration-300 font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-300'
                   }`}>
                   Sell Property
                 </Link>
               </li>
               <li>
-                <Link to="/desktop/contact" className={`hover:text-[#3b82f6] transition-colors duration-300 font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-300'
+                <Link to="/desktop/contact" className={`hover:text-[#51faaa] transition-colors duration-300 font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-300'
                   }`}>
                   Property Valuation
                 </Link>
               </li>
               <li>
-                <Link to="/desktop/contact" className={`hover:text-[#3b82f6] transition-colors duration-300 font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-300'
+                <Link to="/desktop/contact" className={`hover:text-[#51faaa] transition-colors duration-300 font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-300'
                   }`}>
                   M-Pesa Payments
                 </Link>
@@ -145,7 +145,7 @@ const Footer = () => {
             <h3 className="text-white font-outfit font-semibold text-lg">Contact Info</h3>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-[#3b82f6] mt-1 flex-shrink-0" />
+                <MapPin className="w-5 h-5 text-[#51faaa] mt-1 flex-shrink-0" />
                 <div>
                   <p className={`font-outfit text-sm ${isDark ? 'text-[#ccc]' : 'text-gray-300'
                     }`}>
@@ -155,15 +155,15 @@ const Footer = () => {
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-[#3b82f6] flex-shrink-0" />
-                <a href="tel:+254700000000" className={`hover:text-[#3b82f6] transition-colors duration-300 font-outfit text-sm ${isDark ? 'text-[#ccc]' : 'text-gray-300'
+                <Phone className="w-5 h-5 text-[#51faaa] flex-shrink-0" />
+                <a href="tel:+254700000000" className={`hover:text-[#51faaa] transition-colors duration-300 font-outfit text-sm ${isDark ? 'text-[#ccc]' : 'text-gray-300'
                   }`}>
                   +254 700 000 000
                 </a>
               </div>
               <div className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-[#3b82f6] flex-shrink-0" />
-                <a href="mailto:support@homeske.com" className={`hover:text-[#3b82f6] transition-colors duration-300 font-outfit text-sm ${isDark ? 'text-[#ccc]' : 'text-gray-300'
+                <Mail className="w-5 h-5 text-[#51faaa] flex-shrink-0" />
+                <a href="mailto:support@homeske.com" className={`hover:text-[#51faaa] transition-colors duration-300 font-outfit text-sm ${isDark ? 'text-[#ccc]' : 'text-gray-300'
                   }`}>
                   support@homeske.com
                 </a>
@@ -185,12 +185,12 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className={`flex-1 px-4 py-2 rounded-lg font-outfit text-sm focus:outline-none focus:border-[#3b82f6] transition-colors ${isDark
+                className={`flex-1 px-4 py-2 rounded-lg font-outfit text-sm focus:outline-none focus:border-[#51faaa] transition-colors ${isDark
                   ? 'bg-[#10121e] border border-[rgba(81,250,170,0.2)] text-white'
                   : 'bg-gray-800 border border-gray-600 text-white placeholder-gray-400'
                   }`}
               />
-              <button className="px-6 py-2 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] text-[#111] font-outfit font-semibold rounded-lg shadow-[0px_-2px_0px_rgba(17,17,17,0.32)_inset] hover:shadow-lg transition-all duration-300">
+              <button className="px-6 py-2 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] text-[#111] font-outfit font-semibold rounded-lg shadow-[0px_-2px_0px_rgba(17,17,17,0.32)_inset] hover:shadow-lg transition-all duration-300">
                 Subscribe
               </button>
             </div>
@@ -206,19 +206,19 @@ const Footer = () => {
               © 2024 HomesKE. All rights reserved.
             </p>
             <div className="flex gap-6">
-              <Link to="/privacy" className={`hover:text-[#3b82f6] transition-colors duration-300 font-outfit text-sm ${isDark ? 'text-[#ccc]' : 'text-gray-300'
+              <Link to="/privacy" className={`hover:text-[#51faaa] transition-colors duration-300 font-outfit text-sm ${isDark ? 'text-[#ccc]' : 'text-gray-300'
                 }`}>
                 Privacy Policy
               </Link>
-              <Link to="/terms" className={`hover:text-[#3b82f6] transition-colors duration-300 font-outfit text-sm ${isDark ? 'text-[#ccc]' : 'text-gray-300'
+              <Link to="/terms" className={`hover:text-[#51faaa] transition-colors duration-300 font-outfit text-sm ${isDark ? 'text-[#ccc]' : 'text-gray-300'
                 }`}>
                 Terms of Service
               </Link>
-              <Link to="/cookies" className={`hover:text-[#3b82f6] transition-colors duration-300 font-outfit text-sm ${isDark ? 'text-[#ccc]' : 'text-gray-300'
+              <Link to="/cookies" className={`hover:text-[#51faaa] transition-colors duration-300 font-outfit text-sm ${isDark ? 'text-[#ccc]' : 'text-gray-300'
                 }`}>
                 Cookie Policy
               </Link>
-              <Link to="/account-deletion" className={`hover:text-[#3b82f6] transition-colors duration-300 font-outfit text-sm ${isDark ? 'text-[#ccc]' : 'text-gray-300'
+              <Link to="/account-deletion" className={`hover:text-[#51faaa] transition-colors duration-300 font-outfit text-sm ${isDark ? 'text-[#ccc]' : 'text-gray-300'
                 }`}>
                 Delete Data
               </Link>

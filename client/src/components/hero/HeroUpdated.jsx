@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import {
     Search, MapPin, DollarSign, Home, Award, Users, Building2, Star, Shield, Sparkles,
     ChevronRight, Check, TrendingUp, Clock, Phone, Mail, MessageCircle, Play,
@@ -78,7 +78,7 @@ function ModernPropertyCard({ property, index, onClick }) {
                     {/* Status Badge */}
                     <div className="absolute top-6 left-6 flex items-center gap-2">
                         <span className={`px-3 py-1.5 rounded-full text-xs font-semibold backdrop-blur-md ${property.status === 'Featured'
-                            ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
+                            ? 'bg-gradient-to-r from-emerald-600 to-purple-600 text-white'
                             : property.status === 'New Listing'
                                 ? 'bg-emerald-500 text-white'
                                 : 'bg-orange-500 text-white'
@@ -163,7 +163,7 @@ function ModernPropertyCard({ property, index, onClick }) {
                                 e.stopPropagation();
                                 handleContactAgent(property.id);
                             }}
-                            className="text-blue-600 dark:text-blue-400 text-sm font-medium hover:underline"
+                            className="text-emerald-600 dark:text-emerald-400 text-sm font-medium hover:underline"
                         >
                             Contact Agent
                         </button>
@@ -321,7 +321,7 @@ const HomePage = () => {
                             }}
                         >
                             <div
-                                className={`w-1 h-1 rounded-full ${i % 3 === 0 ? 'bg-blue-400/30' : i % 3 === 1 ? 'bg-purple-400/30' : 'bg-cyan-400/30'
+                                className={`w-1 h-1 rounded-full ${i % 3 === 0 ? 'bg-emerald-400/30' : i % 3 === 1 ? 'bg-purple-400/30' : 'bg-secondary-200/30'
                                     }`}
                             />
                         </div>
@@ -336,9 +336,9 @@ const HomePage = () => {
                         {/* Left Content */}
                         <div className={`space-y-8 ${heroInView ? 'animate-slide-in-left' : 'opacity-0'}`}>
                             {/* Live Badge */}
-                            <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-gradient-to-r from-emerald-500/10 via-cyan-500/10 to-blue-500/10 backdrop-blur-xl rounded-full border border-emerald-500/20 animate-pulse-soft">
+                            <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-gradient-to-r from-emerald-500/10 via-secondary-300/10 to-emerald-500/10 backdrop-blur-xl rounded-full border border-emerald-500/20 animate-pulse-soft">
                                 <div className="w-2 h-2 bg-emerald-500 rounded-full animate-ping" />
-                                <span className="text-sm font-medium bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">
+                                <span className="text-sm font-medium bg-gradient-to-r from-emerald-600 to-secondary-400 bg-clip-text text-transparent">
                                     Live: 234 people searching now
                                 </span>
                             </div>
@@ -349,7 +349,7 @@ const HomePage = () => {
                                     <span className="text-gray-900 dark:text-white">Find Your</span>
                                     <br />
                                     <span className="relative inline-block mt-2">
-                                        <span className="bg-gradient-to-br from-blue-600 via-cyan-600 to-purple-600 bg-clip-text text-transparent animate-gradient">
+                                        <span className="bg-gradient-to-br from-emerald-600 via-secondary-400 to-purple-600 bg-clip-text text-transparent animate-gradient">
                                             Perfect Home
                                         </span>
                                         {/* Animated Underline */}
@@ -364,8 +364,8 @@ const HomePage = () => {
                                             />
                                             <defs>
                                                 <linearGradient id="gradient-underline" x1="0%" y1="0%" x2="100%" y2="0%">
-                                                    <stop offset="0%" stopColor="#3B82F6" />
-                                                    <stop offset="50%" stopColor="#06B6D4" />
+                                                    <stop offset="0%" stopColor="#51faaa" />
+                                                    <stop offset="50%" stopColor="#dbd5a4" />
                                                     <stop offset="100%" stopColor="#8B5CF6" />
                                                 </linearGradient>
                                             </defs>
@@ -387,7 +387,7 @@ const HomePage = () => {
                                             key={type}
                                             onClick={() => switchType(type)}
                                             className={`flex-1 py-3 px-6 rounded-2xl font-semibold transition-all duration-300 ${searchQuery.type === type
-                                                ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-lg shadow-blue-500/25 scale-105'
+                                                ? 'bg-gradient-to-r from-emerald-600 to-secondary-400 text-white shadow-lg shadow-emerald-500/25 scale-105'
                                                 : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                                                 }`}
                                         >
@@ -399,14 +399,14 @@ const HomePage = () => {
                                 {/* Main Search Input */}
                                 <div className="space-y-4">
                                     <div className="relative group">
-                                        <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
+                                        <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-emerald-600 transition-colors" />
                                         <input
                                             type="text"
                                             name="city"
                                             placeholder="Search by city, neighborhood, or area"
                                             value={searchQuery.city}
                                             onChange={handleSearchChange}
-                                            className="w-full pl-12 pr-4 py-4 bg-gray-50 dark:bg-gray-900/50 border-2 border-gray-200 dark:border-gray-700 rounded-2xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-500"
+                                            className="w-full pl-12 pr-4 py-4 bg-gray-50 dark:bg-gray-900/50 border-2 border-gray-200 dark:border-gray-700 rounded-2xl focus:ring-4 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-500"
                                         />
                                         {/* Quick Suggestions */}
                                         <div className="absolute top-full left-0 right-0 mt-2 p-2 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 opacity-0 invisible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-300 z-10">
@@ -416,7 +416,7 @@ const HomePage = () => {
                                                     <button
                                                         key={search}
                                                         onClick={() => setSearchQuery(prev => ({ ...prev, city: search }))}
-                                                        className="px-3 py-1.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-sm hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                                                        className="px-3 py-1.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-sm hover:bg-emerald-100 dark:hover:bg-emerald-900/30 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
                                                     >
                                                         {search}
                                                     </button>
@@ -432,7 +432,7 @@ const HomePage = () => {
                                                 name="propertyType"
                                                 value={searchQuery.propertyType}
                                                 onChange={handleSearchChange}
-                                                className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900/50 border-2 border-gray-200 dark:border-gray-700 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 appearance-none cursor-pointer"
+                                                className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900/50 border-2 border-gray-200 dark:border-gray-700 rounded-xl focus:ring-4 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all duration-300 appearance-none cursor-pointer"
                                             >
                                                 <option value="">Property Type</option>
                                                 <option value="house">House</option>
@@ -450,7 +450,7 @@ const HomePage = () => {
                                                 placeholder="Min Price (KSh)"
                                                 value={searchQuery.minPrice}
                                                 onChange={handleSearchChange}
-                                                className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900/50 border-2 border-gray-200 dark:border-gray-700 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300"
+                                                className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900/50 border-2 border-gray-200 dark:border-gray-700 rounded-xl focus:ring-4 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all duration-300"
                                             />
                                         </div>
 
@@ -461,7 +461,7 @@ const HomePage = () => {
                                                 placeholder="Max Price (KSh)"
                                                 value={searchQuery.maxPrice}
                                                 onChange={handleSearchChange}
-                                                className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900/50 border-2 border-gray-200 dark:border-gray-700 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300"
+                                                className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900/50 border-2 border-gray-200 dark:border-gray-700 rounded-xl focus:ring-4 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all duration-300"
                                             />
                                         </div>
 
@@ -470,7 +470,7 @@ const HomePage = () => {
                                                 name="beds"
                                                 value={searchQuery.beds}
                                                 onChange={handleSearchChange}
-                                                className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900/50 border-2 border-gray-200 dark:border-gray-700 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 appearance-none cursor-pointer"
+                                                className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900/50 border-2 border-gray-200 dark:border-gray-700 rounded-xl focus:ring-4 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all duration-300 appearance-none cursor-pointer"
                                             >
                                                 <option value="">Beds</option>
                                                 <option value="1">1+</option>
@@ -486,9 +486,9 @@ const HomePage = () => {
                                     {/* Search Button */}
                                     <button
                                         onClick={() => window.location.href = `/list?type=${searchQuery.type}&city=${searchQuery.city}&minPrice=${searchQuery.minPrice}&maxPrice=${searchQuery.maxPrice}`}
-                                        className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold py-4 px-8 rounded-2xl hover:shadow-2xl hover:shadow-blue-500/25 transform hover:scale-[1.02] transition-all duration-300 group relative overflow-hidden"
+                                        className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-emerald-600 to-secondary-400 text-white font-semibold py-4 px-8 rounded-2xl hover:shadow-2xl hover:shadow-emerald-500/25 transform hover:scale-[1.02] transition-all duration-300 group relative overflow-hidden"
                                     >
-                                        <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                        <div className="absolute inset-0 bg-gradient-to-r from-secondary-400 to-emerald-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                         <Search className="w-5 h-5 relative z-10" />
                                         <span className="relative z-10">Search Properties</span>
                                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform relative z-10" />
@@ -535,7 +535,7 @@ const HomePage = () => {
                             <div className="relative">
                                 {/* Main Property Card */}
                                 <div className="relative group cursor-pointer">
-                                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-500" />
+                                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-purple-600 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-500" />
                                     <div className="relative bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-2xl">
                                         <div className="relative h-[400px] overflow-hidden">
                                             <img
@@ -561,7 +561,7 @@ const HomePage = () => {
                                                 onClick={handleVirtualTour}
                                                 className="absolute top-6 right-6 w-14 h-14 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform group/play"
                                             >
-                                                <Play className="w-6 h-6 text-gray-900 dark:text-white ml-1 group-hover/play:text-blue-600 transition-colors" />
+                                                <Play className="w-6 h-6 text-gray-900 dark:text-white ml-1 group-hover/play:text-emerald-600 transition-colors" />
                                             </button>
 
                                             {/* Property Info Overlay */}
@@ -591,7 +591,7 @@ const HomePage = () => {
                                                 <p className="text-3xl font-bold text-gray-900 dark:text-white">KSh 85,000,000</p>
                                                 <p className="text-gray-600 dark:text-gray-400">KSh 26,500/sqft</p>
                                             </div>
-                                            <button className="px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300">
+                                            <button className="px-6 py-3 bg-gradient-to-r from-emerald-600 to-secondary-400 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300">
                                                 View Details
                                             </button>
                                         </div>
@@ -601,7 +601,7 @@ const HomePage = () => {
                                 {/* Floating Stats Cards */}
                                 <div className="absolute -top-4 -right-4 bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-xl animate-float-delayed">
                                     <div className="flex items-center gap-3">
-                                        <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-xl flex items-center justify-center">
+                                        <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-secondary-300 rounded-xl flex items-center justify-center">
                                             <TrendingUp className="w-6 h-6 text-white" />
                                         </div>
                                         <div>

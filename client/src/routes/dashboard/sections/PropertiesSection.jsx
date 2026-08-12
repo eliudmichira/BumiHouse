@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { propertiesAPI } from '../../../lib/firebaseAPI';
 import { Home, Eye, MessageCircle, Star, Edit, Trash2, Plus, Filter, Search, X, Calendar, MapPin, DollarSign, Bed, Bath, Square, Loader2, CheckCircle } from 'lucide-react';
 
@@ -233,7 +233,7 @@ const PropertiesSection = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-full">
-        <Loader2 className="w-8 h-8 text-blue-500 animate-spin" />
+        <Loader2 className="w-8 h-8 text-emerald-500 animate-spin" />
         <p className="ml-2 text-gray-600 dark:text-gray-400">Loading properties...</p>
       </div>
     );
@@ -261,7 +261,7 @@ const PropertiesSection = () => {
         </div>
         <button
           onClick={() => setShowAddModal(true)}
-          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          className="flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
         >
           <Plus className="w-4 h-4" />
           Add Property
@@ -277,13 +277,13 @@ const PropertiesSection = () => {
             placeholder="Search properties..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+            className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
           />
         </div>
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+          className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white"
         >
           <option value="all">All Status</option>
           <option value="Active">Active</option>
@@ -362,7 +362,7 @@ const PropertiesSection = () => {
                     setSelectedProperty(property);
                     setShowEditModal(true);
                   }}
-                  className="flex-1 flex items-center justify-center gap-1 px-3 py-2 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors text-sm"
+                  className="flex-1 flex items-center justify-center gap-1 px-3 py-2 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-lg hover:bg-emerald-100 dark:hover:bg-emerald-900/50 transition-colors text-sm"
                 >
                   <Edit className="w-3 h-3" />
                   Edit
@@ -385,7 +385,7 @@ const PropertiesSection = () => {
       {/* Stats Summary */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 text-center">
-          <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">{stats.totalProperties}</div>
+          <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">{stats.totalProperties}</div>
           <div className="text-sm text-gray-600 dark:text-gray-400">Total Properties</div>
         </div>
         <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 text-center">
@@ -418,12 +418,12 @@ const PropertiesSection = () => {
                 placeholder="Property Title"
                 value={newProperty.title}
                 onChange={(e) => setNewProperty({ ...newProperty, title: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white"
               />
               <select
                 value={newProperty.type}
                 onChange={(e) => setNewProperty({ ...newProperty, type: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white"
               >
                 <option value="Apartment">Apartment</option>
                 <option value="House">House</option>
@@ -435,14 +435,14 @@ const PropertiesSection = () => {
                 placeholder="Monthly Rent (KSh)"
                 value={newProperty.price}
                 onChange={(e) => setNewProperty({ ...newProperty, price: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white"
               />
               <input
                 type="text"
                 placeholder="Location"
                 value={newProperty.location}
                 onChange={(e) => setNewProperty({ ...newProperty, location: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white"
               />
               <div className="grid grid-cols-3 gap-2">
                 <input
@@ -450,35 +450,35 @@ const PropertiesSection = () => {
                   placeholder="Bedrooms"
                   value={newProperty.bedrooms}
                   onChange={(e) => setNewProperty({ ...newProperty, bedrooms: parseInt(e.target.value) })}
-                  className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                  className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white"
                 />
                 <input
                   type="number"
                   placeholder="Bathrooms"
                   value={newProperty.bathrooms}
                   onChange={(e) => setNewProperty({ ...newProperty, bathrooms: parseInt(e.target.value) })}
-                  className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                  className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white"
                 />
                 <input
                   type="number"
                   placeholder="Area (m²)"
                   value={newProperty.area}
                   onChange={(e) => setNewProperty({ ...newProperty, area: e.target.value })}
-                  className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                  className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white"
                 />
               </div>
               <textarea
                 placeholder="Description"
                 value={newProperty.description}
                 onChange={(e) => setNewProperty({ ...newProperty, description: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white"
                 rows="3"
               />
             </div>
             <div className="flex gap-2 mt-6">
               <button
                 onClick={handleAddProperty}
-                className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="flex-1 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
               >
                 Add Property
               </button>
@@ -509,12 +509,12 @@ const PropertiesSection = () => {
                 placeholder="Property Title"
                 value={selectedProperty.title}
                 onChange={(e) => setSelectedProperty({ ...selectedProperty, title: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white"
               />
               <select
                 value={selectedProperty.type}
                 onChange={(e) => setSelectedProperty({ ...selectedProperty, type: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white"
               >
                 <option value="Apartment">Apartment</option>
                 <option value="House">House</option>
@@ -526,20 +526,20 @@ const PropertiesSection = () => {
                 placeholder="Monthly Rent (KSh)"
                 value={selectedProperty.price}
                 onChange={(e) => setSelectedProperty({ ...selectedProperty, price: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white"
               />
               <input
                 type="text"
                 placeholder="Location"
                 value={selectedProperty.location}
                 onChange={(e) => setSelectedProperty({ ...selectedProperty, location: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white"
               />
             </div>
             <div className="flex gap-2 mt-6">
               <button
                 onClick={handleEditProperty}
-                className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="flex-1 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
               >
                 Save Changes
               </button>

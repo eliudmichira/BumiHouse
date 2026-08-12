@@ -13,44 +13,44 @@ export default {
         'primary': ['Manrope', 'sans-serif'],
       },
       colors: {
-        // Primary - Brand Cyan (Vibrant tech inspired)
+        // Primary - Brand Mint Green (#51faaa original BumiHouse)
         primary: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a'
+          50: '#f0fdf7',
+          100: '#dcfce7',
+          200: '#bbf7d0',
+          300: '#86efb8',
+          400: '#51faaa',
+          500: '#3fd693',
+          600: '#2dd284',
+          700: '#1fb372',
+          800: '#15803d',
+          900: '#0f5132'
         },
-        // Redefine as emerald/brand for consistency
+        // Emerald - actual Tailwind emerald green
         emerald: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a'
+          50: '#ecfdf5',
+          100: '#d1fae5',
+          200: '#a7f3d0',
+          300: '#6ee7b7',
+          400: '#34d399',
+          500: '#10b981',
+          600: '#059669',
+          700: '#047857',
+          800: '#065f46',
+          900: '#064e3b'
         },
-        // Secondary - Brand Gold/Yellow
+        // Secondary - Warm Gold/Beige (#dbd5a4 original BumiHouse)
         secondary: {
-          50: '#ecfeff',
-          100: '#cffafe',
-          200: '#a5f3fc',
-          300: '#67e8f9',
-          400: '#22d3ee',
-          500: '#06b6d4',
-          600: '#0891b2',
-          700: '#0e7490',
-          800: '#155e75',
-          900: '#164e63'
+          50: '#fefdf8',
+          100: '#fefbf3',
+          200: '#dbd5a4',
+          300: '#c9c285',
+          400: '#b7af66',
+          500: '#a59c47',
+          600: '#938952',
+          700: '#81764d',
+          800: '#6f6348',
+          900: '#5d5043'
         },
         // Redefine as purple for consistency
         purple: {
@@ -77,10 +77,10 @@ export default {
           600: '#4b5563', // gray-600
         },
         // Status colors
-        success: '#3b82f6',
+        success: '#10b981',
         warning: '#f59e0b',
         error: '#ef4444',
-        info: '#3b82f6',
+        info: '#51faaa',
       },
       backgroundColor: {
         'dark-base': '#111827', // gray-900
@@ -94,21 +94,22 @@ export default {
         'glass-light': 'rgba(229, 231, 235, 0.5)',
       },
       backgroundImage: {
-        'gradient-primary': 'linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%)',
-        'gradient-primary-hover': 'linear-gradient(135deg, #2563eb 0%, #0891b2 100%)',
+        'gradient-primary': 'linear-gradient(135deg, #059669 0%, #10b981 100%)',
+        'gradient-primary-hover': 'linear-gradient(135deg, #047857 0%, #059669 100%)',
+        'gradient-brand': 'linear-gradient(135deg, #51faaa 0%, #dbd5a4 100%)',
         'gradient-secondary': 'linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%)',
         'gradient-secondary-hover': 'linear-gradient(135deg, #6d28d9 0%, #7c3aed 100%)',
-        'gradient-dark': 'linear-gradient(135deg, #111827 0%, #374151 100%)', // gray-900 to gray-700
-        'gradient-emerald': 'linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%)',
+        'gradient-dark': 'linear-gradient(135deg, #111827 0%, #374151 100%)',
+        'gradient-emerald': 'linear-gradient(135deg, #059669 0%, #10b981 100%)',
         'gradient-purple': 'linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%)',
       },
       boxShadow: {
         'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.3)',
-        'glass-inset': 'inset 0 1px 0 0 rgba(59, 130, 246, 0.1)',
+        'glass-inset': 'inset 0 1px 0 0 rgba(81, 250, 170, 0.1)',
         'glass-hover': '0 12px 40px 0 rgba(0, 0, 0, 0.4)',
-        'primary': '0 10px 40px -10px rgba(59, 130, 246, 0.3)',
-        'secondary': '0 10px 40px -10px rgba(6, 182, 212, 0.3)',
-        'emerald': '0 6px 20px 0 rgba(59, 130, 246, 0.4)',
+        'primary': '0 10px 40px -10px rgba(81, 250, 170, 0.3)',
+        'secondary': '0 10px 40px -10px rgba(219, 213, 164, 0.3)',
+        'emerald': '0 6px 20px 0 rgba(16, 185, 129, 0.4)',
         'purple': '0 6px 20px 0 rgba(139, 92, 246, 0.4)',
         // Google Material 3 inspired shadows
         'elevation-1': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',

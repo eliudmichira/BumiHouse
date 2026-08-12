@@ -36,8 +36,8 @@ import EnhancedMap from '../../routes/listPage/listPage_fixed_useLocation';
 // Google Maps API Key - strict in dev, safe fallback in prod
 const IS_PROD = import.meta.env.PROD;
 const ENV_KEY = (import.meta.env.VITE_GOOGLE_MAPS_API_KEY || '').trim();
-const PROD_FALLBACK_KEY = 'REDACTED';
-const GOOGLE_MAPS_API_KEY = IS_PROD ? (ENV_KEY || PROD_FALLBACK_KEY) : ENV_KEY;
+// No hardcoded fallback key: the Maps key must be supplied via VITE_GOOGLE_MAPS_API_KEY in production.
+const GOOGLE_MAPS_API_KEY = ENV_KEY;
 const HAS_GOOGLE_MAPS_KEY = GOOGLE_MAPS_API_KEY.length > 0;
 
 // Keep libraries array stable to avoid unnecessary reloads
@@ -62,6 +62,70 @@ if (import.meta.env.DEV) {
 
 // Default map center (Nairobi, Kenya)
 const DEFAULT_CENTER = { lat: -1.2921, lng: 36.8219 };
+
+// ---------- Price-pill helpers ----------
+const formatPricePill = (price) => {
+    const n = typeof price === 'number' ? price : parseFloat(String(price || '').replace(/[^0-9.]/g, ''));
+    if (!n || isNaN(n)) return 'Ksh —';
+    if (n >= 1_000_000) {
+        const m = n / 1_000_000;
+        return `Ksh ${m >= 10 ? Math.round(m) : (Math.round(m * 10) / 10)}M`;
+    }
+    if (n >= 100_000) {
+        return `Ksh ${Math.round(n / 1000)}k`;
+    }
+    return `Ksh ${Math.round(n).toLocaleString()}`;
+};
+
+const buildPricePillSvg = (label, { featured = false, selected = false } = {}) => {
+    const bg = selected
+        ? (featured ? '#d97706' : '#10b981')
+        : (featured ? '#f59e0b' : '#3dd88a');
+    const ring = selected ? '#ffffff' : 'rgba(255,255,255,0.85)';
+    const ringW = selected ? 2.5 : 1.25;
+    const scale = selected ? 1.1 : 1;
+
+    // Approximate text width: ~7px per char + horizontal padding
+    const charW = 7.2;
+    const padX = 14;
+    const textW = Math.max(36, Math.ceil(label.length * charW));
+    const w = (textW + padX * 2);
+    const h = 30;
+    const totalH = h + 8; // tail
+    const cx = w / 2;
+    const tailY = h;
+
+    const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='${Math.ceil(w * scale)}' height='${Math.ceil(totalH * scale)}' viewBox='0 0 ${w} ${totalH}'>
+        <g filter='drop-shadow(0 2px 4px rgba(0,0,0,0.25))'>
+            <rect x='1' y='1' rx='15' ry='15' width='${w - 2}' height='${h - 2}' fill='${bg}' stroke='${ring}' stroke-width='${ringW}'/>
+            <path d='M ${cx - 6} ${tailY - 1} L ${cx} ${tailY + 7} L ${cx + 6} ${tailY - 1} Z' fill='${bg}' stroke='${ring}' stroke-width='${ringW}' stroke-linejoin='round'/>
+            <rect x='${cx - 6}' y='${tailY - 3}' width='12' height='3' fill='${bg}'/>
+            <text x='${cx}' y='${h / 2 + 5}' text-anchor='middle' font-family='-apple-system,BlinkMacSystemFont,Inter,Segoe UI,Roboto,sans-serif' font-size='13' font-weight='700' fill='#ffffff'>${label}</text>
+        </g>
+    </svg>`;
+    return {
+        url: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`,
+        size: { w: Math.ceil(w * scale), h: Math.ceil(totalH * scale) },
+        anchor: { x: Math.ceil((w * scale) / 2), y: Math.ceil(totalH * scale) }
+    };
+};
+
+const buildClusterSvg = (count) => {
+    const size = count < 10 ? 44 : count < 50 ? 54 : 64;
+    const fill = '#3dd88a';
+    const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='${size}' height='${size}' viewBox='0 0 ${size} ${size}'>
+        <circle cx='${size / 2}' cy='${size / 2}' r='${size / 2 - 4}' fill='${fill}' fill-opacity='0.25'/>
+        <circle cx='${size / 2}' cy='${size / 2}' r='${size / 2 - 8}' fill='${fill}' stroke='#ffffff' stroke-width='3'/>
+    </svg>`;
+    return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+};
+
+const CLUSTER_STYLES = [
+    { url: buildClusterSvg(5), height: 44, width: 44, textColor: '#ffffff', textSize: 13, fontWeight: 'bold' },
+    { url: buildClusterSvg(25), height: 54, width: 54, textColor: '#ffffff', textSize: 14, fontWeight: 'bold' },
+    { url: buildClusterSvg(75), height: 64, width: 64, textColor: '#ffffff', textSize: 16, fontWeight: 'bold' }
+];
+
 // const DEFAULT_CENTER = { lat: 40.7128, lng: -74.0060 }; // New York (commented out)
 
 const DEFAULT_ZOOM = 10; // Closer zoom for city view
@@ -140,8 +204,11 @@ const EnhancedMapComponent = ({ propertyData, highlightedProperty, onMarkerHover
         }
         setMap(mapInstance);
         try {
-            // Wait for Google Maps to be fully loaded with all required methods
-            if (!window.google || !window.google.maps || !window.google.maps.Map || !window.google.maps.Projection) {
+            // Wait for Google Maps to be fully loaded. NOTE: do NOT check
+            // window.google.maps.Projection — it's an interface (type), not a
+            // runtime property, so it's always undefined and the map would "fail"
+            // after retries even though mapInstance is valid and the map loaded fine.
+            if (!mapInstance || !window.google || !window.google.maps || !window.google.maps.Map) {
                 if (retryCountRef.current >= MAX_RETRIES) {
                     if (import.meta.env.DEV) {
                         console.error('Google Maps failed to load after', MAX_RETRIES, 'retries');
@@ -156,21 +223,7 @@ const EnhancedMapComponent = ({ propertyData, highlightedProperty, onMarkerHover
                 return;
             }
 
-            // Additional check for required projection methods
-            if (!window.google.maps.Projection.prototype.fromLatLngToDivPixel) {
-                if (retryCountRef.current >= MAX_RETRIES) {
-                    if (import.meta.env.DEV) {
-                        console.error('Google Maps projection methods failed to load after', MAX_RETRIES, 'retries');
-                    }
-                    return;
-                }
-                retryCountRef.current += 1;
-                if (import.meta.env.DEV) {
-                    console.warn('Google Maps projection methods not ready, retrying...', retryCountRef.current);
-                }
-                retryTimeoutRef.current = setTimeout(() => onLoad(mapInstance), 1000);
-                return;
-            }
+            // Removed invalid check on Projection.prototype.fromLatLngToDivPixel that caused 5-second initialization delay.
 
             // Reset retry count on success
             retryCountRef.current = 0;
@@ -447,7 +500,7 @@ const EnhancedMapComponent = ({ propertyData, highlightedProperty, onMarkerHover
                         </p>
                         <button
                             onClick={() => window.location.reload()}
-                            className="px-6 py-3 bg-[#3b82f6] text-[#0a0c19] rounded-lg hover:bg-[#45e595] transition-colors font-medium"
+                            className="px-6 py-3 bg-[#51faaa] text-[#0a0c19] rounded-lg hover:bg-[#45e595] transition-colors font-medium"
                         >
                             Refresh Page
                         </button>
@@ -496,6 +549,7 @@ const EnhancedMapComponent = ({ propertyData, highlightedProperty, onMarkerHover
                                         zoomOnClick: true,
                                         averageCenter: true,
                                         ignoreHidden: true,
+                                        styles: CLUSTER_STYLES,
                                         calculator: (markers, numStyles) => {
                                             const count = markers.length;
                                             const index = count < 10 ? 1 : count < 50 ? 2 : 3;
@@ -516,6 +570,18 @@ const EnhancedMapComponent = ({ propertyData, highlightedProperty, onMarkerHover
                                         return (
                                             <>
                                                 {normalizedProperties.map((property, index) => {
+                                                    const pid = property.id || property._id;
+                                                    const isSelected = selectedProperty && (selectedProperty.id || selectedProperty._id) === pid;
+                                                    const isHovered = highlightedProperty && highlightedProperty === pid;
+                                                    const active = isSelected || isHovered;
+                                                    const featured = !!(property.featured || property.isFeatured);
+                                                    const label = formatPricePill(property.price);
+                                                    const pill = buildPricePillSvg(label, { featured, selected: active });
+                                                    const icon = safeGoogle?.maps ? {
+                                                        url: pill.url,
+                                                        scaledSize: new safeGoogle.maps.Size(pill.size.w, pill.size.h),
+                                                        anchor: new safeGoogle.maps.Point(pill.anchor.x, pill.anchor.y)
+                                                    } : undefined;
                                                     return (
                                                         <Marker
                                                             key={property.id || property._id || `${property.latitude},${property.longitude}`}
@@ -525,6 +591,8 @@ const EnhancedMapComponent = ({ propertyData, highlightedProperty, onMarkerHover
                                                             onMouseOut={handleMarkerMouseOut}
                                                             title={property.title || 'Property'}
                                                             clusterer={clusterer}
+                                                            icon={icon}
+                                                            zIndex={active ? 9999 : (featured ? 500 : 100)}
                                                             onLoad={(marker) => {
                                                                 if (oms) { oms.addMarker(marker); }
                                                             }}
@@ -550,9 +618,9 @@ const EnhancedMapComponent = ({ propertyData, highlightedProperty, onMarkerHover
                                     options={{
                                         drawingControl: false,
                                         polygonOptions: {
-                                            fillColor: '#3B82F6',
+                                            fillColor: '#51faaa',
                                             fillOpacity: 0.1,
-                                            strokeColor: '#3B82F6',
+                                            strokeColor: '#51faaa',
                                             strokeWeight: 2,
                                             clickable: false,
                                             editable: true,
@@ -572,29 +640,28 @@ const EnhancedMapComponent = ({ propertyData, highlightedProperty, onMarkerHover
                                     onCloseClick={() => setSelectedProperty(null)}
                                     options={{
                                         pixelOffset: (typeof window !== 'undefined' && window.google && window.google.maps)
-                                            ? new window.google.maps.Size(0, 400)
+                                            ? new window.google.maps.Size(0, -20)
                                             : undefined,
                                         zIndex: 999
                                     }}
                                 >
-                                    <div className="p-3 w-56 bg-white rounded-xl shadow-xl border border-gray-200 overflow-visible" style={{ zIndex: 1000 }}>
+                                    <div className="p-2.5 w-60 bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden" style={{ zIndex: 1000 }}>
                                         <img
                                             src={selectedProperty.images?.[0] || '/placeholder-property.jpg'}
                                             alt={selectedProperty.title}
-                                            className="w-full h-32 object-cover rounded-lg mb-2"
+                                            className="w-full h-28 object-cover rounded-lg mb-2"
                                         />
-                                        <h3 className="text-base font-bold text-gray-900 mb-0 truncate">
-                                            {typeof selectedProperty.price === 'number' ? `Ksh ${selectedProperty.price.toLocaleString()}` : selectedProperty.price}
+                                        <h3 className="text-sm font-bold text-gray-900 truncate">
+                                            {formatPricePill(selectedProperty.price)}
                                         </h3>
-                                        <p className="text-xs text-gray-600 mb-0 truncate">{selectedProperty.address}</p>
-                                        <div className="flex flex-wrap items-center gap-2 text-[10px] text-gray-500 mb-2">
+                                        <p className="text-[11px] text-gray-600 truncate mb-1.5">{selectedProperty.address}</p>
+                                        <div className="flex items-center gap-3 text-[10px] text-gray-500 mb-2">
                                             <span>{selectedProperty.bedrooms} beds</span>
                                             <span>{selectedProperty.bathrooms} baths</span>
-                                            {/* {selectedProperty.area && <span>{selectedProperty.area.toLocaleString()} sqft</span>} */}
                                         </div>
                                         <button
                                             onClick={() => navigate(`/property/${selectedProperty.id}`)}
-                                            className="w-full px-3 py-1.5 bg-[#3b82f6] text-[#0a0c19] rounded-lg hover:bg-[#06b6d4] transition-colors text-xs font-semibold"
+                                            className="w-full px-3 py-1.5 bg-[#3dd88a] hover:bg-[#10b981] text-white rounded-lg transition-colors text-xs font-semibold"
                                         >
                                             View Details
                                         </button>
@@ -629,7 +696,7 @@ const EnhancedMapComponent = ({ propertyData, highlightedProperty, onMarkerHover
                     <button
                         onClick={() => setDrawingMode(!drawingMode)}
                         className={`p-3 rounded-xl transition-all duration-300 ${drawingMode
-                            ? 'bg-[#3b82f6] text-[#0a0c19] shadow-lg shadow-[#3b82f6]/20'
+                            ? 'bg-[#51faaa] text-[#0a0c19] shadow-lg shadow-[#51faaa]/20'
                             : 'hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200'
                             }`}
                         title="Draw boundary"
@@ -654,7 +721,7 @@ const EnhancedMapComponent = ({ propertyData, highlightedProperty, onMarkerHover
                     <button
                         onClick={() => setShowSchools(!showSchools)}
                         className={`p-3 rounded-xl transition-all duration-300 ${showSchools
-                            ? 'bg-[#3b82f6] text-[#0a0c19] shadow-lg shadow-[#3b82f6]/20'
+                            ? 'bg-[#51faaa] text-[#0a0c19] shadow-lg shadow-[#51faaa]/20'
                             : 'hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200'
                             }`}
                         title="Schools"
@@ -664,7 +731,7 @@ const EnhancedMapComponent = ({ propertyData, highlightedProperty, onMarkerHover
                     <button
                         onClick={() => setShowTransit(!showTransit)}
                         className={`p-3 rounded-xl transition-all duration-300 mt-1 ${showTransit
-                            ? 'bg-[#06b6d4] text-[#0a0c19] shadow-lg shadow-[#06b6d4]/20'
+                            ? 'bg-[#dbd5a4] text-[#0a0c19] shadow-lg shadow-[#dbd5a4]/20'
                             : 'hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200'
                             }`}
                         title="Transit"
@@ -686,7 +753,7 @@ const EnhancedMapComponent = ({ propertyData, highlightedProperty, onMarkerHover
                             key={theme.value}
                             onClick={() => setMapTheme(theme.value)}
                             className={`px-3 py-2 rounded-xl flex items-center gap-2 text-xs md:text-sm font-medium transition-all duration-300 ${mapTheme === theme.value
-                                ? 'bg-[#3b82f6] text-[#0a0c19] shadow-lg shadow-[#3b82f6]/20'
+                                ? 'bg-[#51faaa] text-[#0a0c19] shadow-lg shadow-[#51faaa]/20'
                                 : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
                                 }`}
                         >
@@ -698,14 +765,14 @@ const EnhancedMapComponent = ({ propertyData, highlightedProperty, onMarkerHover
             </div>
 
             {/* Property Count Badge */}
-            <div className="absolute bottom-4 left-4 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] px-6 py-3 rounded-2xl shadow-lg flex items-center gap-3">
+            <div className="absolute bottom-4 left-4 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] px-6 py-3 rounded-2xl shadow-lg flex items-center gap-3">
                 <Home className="w-5 h-5" />
                 <span className="font-semibold">{propertyData.length} properties</span>
             </div>
 
             {/* Drawing Mode Indicator */}
             {drawingMode && (
-                <div className="absolute bottom-4 right-4 bg-[#3b82f6] text-[#0a0c19] px-4 py-2 rounded-xl shadow-lg">
+                <div className="absolute bottom-4 right-4 bg-[#51faaa] text-[#0a0c19] px-4 py-2 rounded-xl shadow-lg">
                     <div className="flex items-center gap-2">
                         <Map className="w-4 h-4" />
                         <span className="text-sm font-medium">Click to draw boundary</span>

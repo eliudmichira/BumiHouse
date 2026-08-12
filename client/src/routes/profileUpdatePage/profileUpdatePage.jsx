@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+﻿import React, { useState, useEffect } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import { 
   User, Mail, Lock, Camera, ArrowLeft, Save, Shield, 
@@ -195,11 +195,11 @@ function ProfileUpdatePage() {
   }
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 transition-all duration-500">
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-gray-50 via-emerald-50 to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 transition-all duration-500">
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-300 dark:bg-purple-800 rounded-full mix-blend-multiply dark:mix-blend-overlay filter blur-3xl opacity-70 animate-blob"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-300 dark:bg-blue-800 rounded-full mix-blend-multiply dark:mix-blend-overlay filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-emerald-300 dark:bg-emerald-800 rounded-full mix-blend-multiply dark:mix-blend-overlay filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
         <div className="absolute top-40 left-1/2 w-80 h-80 bg-pink-300 dark:bg-pink-800 rounded-full mix-blend-multiply dark:mix-blend-overlay filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
       </div>
 
@@ -256,7 +256,7 @@ function ProfileUpdatePage() {
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center gap-2 px-6 py-3 rounded-2xl font-medium transition-all duration-300 ${
                     activeTab === tab.id
-                      ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/25 scale-105'
+                      ? 'bg-gradient-to-r from-emerald-600 to-purple-600 text-white shadow-lg shadow-emerald-500/25 scale-105'
                       : 'bg-white/70 dark:bg-gray-800/70 text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800'
                   }`}
                 >
@@ -279,13 +279,13 @@ function ProfileUpdatePage() {
                             {t('username')}
                           </label>
                           <div className="relative group">
-                            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
+                            <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-emerald-600 transition-colors" />
                             <input
                               name="username"
                               type="text"
                               value={formData.username}
                               onChange={handleInputChange}
-                              className="w-full pl-10 pr-4 py-3 bg-white/90 dark:bg-gray-900/90 border-2 border-gray-200 dark:border-gray-700 rounded-2xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 dark:text-gray-100"
+                              className="w-full pl-10 pr-4 py-3 bg-white/90 dark:bg-gray-900/90 border-2 border-gray-200 dark:border-gray-700 rounded-2xl focus:ring-4 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all duration-300 dark:text-gray-100"
                               placeholder={t('enter_username')}
                             />
                           </div>
@@ -296,13 +296,13 @@ function ProfileUpdatePage() {
                             {t('email_address')}
                           </label>
                           <div className="relative group">
-                            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
+                            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-emerald-600 transition-colors" />
                             <input
                               name="email"
                               type="email"
                               value={formData.email}
                               onChange={handleInputChange}
-                              className="w-full pl-10 pr-4 py-3 bg-white/90 dark:bg-gray-900/90 border-2 border-gray-200 dark:border-gray-700 rounded-2xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 dark:text-gray-100"
+                              className="w-full pl-10 pr-4 py-3 bg-white/90 dark:bg-gray-900/90 border-2 border-gray-200 dark:border-gray-700 rounded-2xl focus:ring-4 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all duration-300 dark:text-gray-100"
                               placeholder={t('enter_email')}
                             />
                           </div>
@@ -313,13 +313,13 @@ function ProfileUpdatePage() {
                             {t('phone_number')}
                           </label>
                           <div className="relative group">
-                            <Smartphone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
+                            <Smartphone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-emerald-600 transition-colors" />
                             <input
                               name="phone"
                               type="tel"
                               value={formData.phone}
                               onChange={handleInputChange}
-                              className="w-full pl-10 pr-4 py-3 bg-white/90 dark:bg-gray-900/90 border-2 border-gray-200 dark:border-gray-700 rounded-2xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 dark:text-gray-100"
+                              className="w-full pl-10 pr-4 py-3 bg-white/90 dark:bg-gray-900/90 border-2 border-gray-200 dark:border-gray-700 rounded-2xl focus:ring-4 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all duration-300 dark:text-gray-100"
                               placeholder={t('enter_phone_number')}
                             />
                           </div>
@@ -330,13 +330,13 @@ function ProfileUpdatePage() {
                             {t('location')}
                           </label>
                           <div className="relative group">
-                            <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
+                            <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-emerald-600 transition-colors" />
                             <input
                               name="location"
                               type="text"
                               value={formData.location}
                               onChange={handleInputChange}
-                              className="w-full pl-10 pr-4 py-3 bg-white/90 dark:bg-gray-900/90 border-2 border-gray-200 dark:border-gray-700 rounded-2xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 dark:text-gray-100"
+                              className="w-full pl-10 pr-4 py-3 bg-white/90 dark:bg-gray-900/90 border-2 border-gray-200 dark:border-gray-700 rounded-2xl focus:ring-4 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all duration-300 dark:text-gray-100"
                               placeholder={t('city_state')}
                             />
                           </div>
@@ -351,7 +351,7 @@ function ProfileUpdatePage() {
                             value={formData.bio}
                             onChange={handleInputChange}
                             rows={4}
-                            className="w-full px-4 py-3 bg-white/90 dark:bg-gray-900/90 border-2 border-gray-200 dark:border-gray-700 rounded-2xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 dark:text-gray-100 resize-none"
+                            className="w-full px-4 py-3 bg-white/90 dark:bg-gray-900/90 border-2 border-gray-200 dark:border-gray-700 rounded-2xl focus:ring-4 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all duration-300 dark:text-gray-100 resize-none"
                             placeholder={t('tell_about_yourself')}
                           />
                         </div>
@@ -365,13 +365,13 @@ function ProfileUpdatePage() {
                             {t('new_password')}
                           </label>
                           <div className="relative group">
-                            <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-blue-600 transition-colors" />
+                            <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-emerald-600 transition-colors" />
                             <input
                               name="password"
                               type={showPassword ? "text" : "password"}
                               value={formData.password}
                               onChange={handleInputChange}
-                              className="w-full pl-10 pr-12 py-3 bg-white/90 dark:bg-gray-900/90 border-2 border-gray-200 dark:border-gray-700 rounded-2xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 dark:text-gray-100"
+                              className="w-full pl-10 pr-12 py-3 bg-white/90 dark:bg-gray-900/90 border-2 border-gray-200 dark:border-gray-700 rounded-2xl focus:ring-4 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all duration-300 dark:text-gray-100"
                               placeholder={t('enter_new_password_optional')}
                             />
                             <button
@@ -410,16 +410,16 @@ function ProfileUpdatePage() {
                             <Key className="w-5 h-5" />
                             {t('two_factor_authentication')}
                           </h3>
-                          <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-2xl">
+                          <div className="p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl">
                             <div className="flex items-start gap-3">
-                              <Info className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5" />
+                              <Info className="w-5 h-5 text-emerald-600 dark:text-emerald-400 mt-0.5" />
                               <div className="space-y-2">
-                                <p className="text-sm text-blue-800 dark:text-blue-200">
+                                <p className="text-sm text-emerald-800 dark:text-emerald-200">
                                   {t('add_extra_security')}
                                 </p>
                                 <button
                                   type="button"
-                                  className="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                                  className="text-sm font-medium text-emerald-600 dark:text-emerald-400 hover:underline"
                                 >
                                   {t('enable_2fa')} →
                                 </button>
@@ -431,7 +431,7 @@ function ProfileUpdatePage() {
                         <div className="space-y-4">
                           <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">{t('login_history')}</h3>
                           <div className="space-y-2">
-                            <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
+                            <div className="p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl">
                               <div className="flex items-center justify-between">
                                 <div>
                                   <p className="font-medium text-gray-800 dark:text-gray-200">{t('current_session')}</p>
@@ -486,7 +486,7 @@ function ProfileUpdatePage() {
                                 checked={formData.preferences.notifications}
                                 onChange={() => handlePreferenceChange('notifications')}
                               />
-                              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-emerald-300 dark:peer-focus:ring-emerald-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-emerald-600"></div>
                             </label>
                           </label>
 
@@ -505,7 +505,7 @@ function ProfileUpdatePage() {
                                 checked={formData.preferences.newsletter}
                                 onChange={() => handlePreferenceChange('newsletter')}
                               />
-                              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-emerald-300 dark:peer-focus:ring-emerald-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-emerald-600"></div>
                             </label>
                           </label>
                         </div>
@@ -533,7 +533,7 @@ function ProfileUpdatePage() {
                                   toggleTheme();
                                 }}
                               />
-                              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-emerald-300 dark:peer-focus:ring-emerald-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-emerald-600"></div>
                             </label>
                           </label>
 
@@ -558,7 +558,7 @@ function ProfileUpdatePage() {
                                     changeLanguage(newLanguage);
                                   }
                                 }}
-                                className="w-full mt-2 px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="w-full mt-2 px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                               >
                                 <option value="en">English</option>
                                 <option value="sw">Kiswahili</option>
@@ -571,7 +571,7 @@ function ProfileUpdatePage() {
                     <button
                       onClick={handleSubmit}
                       disabled={isSubmitting}
-                      className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-4 px-6 rounded-2xl hover:shadow-lg transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none group"
+                      className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-600 to-purple-600 text-white font-semibold py-4 px-6 rounded-2xl hover:shadow-lg transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none group"
                     >
                       {isSubmitting ? (
                         <>
@@ -602,7 +602,7 @@ function ProfileUpdatePage() {
                       alt="Profile" 
                       className="w-40 h-40 rounded-full object-cover border-4 border-white dark:border-gray-700 shadow-xl mx-auto group-hover:scale-105 transition-transform duration-300"
                     />
-                    <div className="absolute bottom-2 right-2 w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <div className="absolute bottom-2 right-2 w-10 h-10 bg-gradient-to-r from-emerald-600 to-purple-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                       <Camera className="w-5 h-5 text-white" />
                     </div>
                   </div>
@@ -630,7 +630,7 @@ function ProfileUpdatePage() {
                     />
                     <label
                       htmlFor="avatar-upload"
-                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium py-3 px-6 rounded-xl hover:shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
+                      className="w-full bg-gradient-to-r from-emerald-600 to-purple-600 text-white font-medium py-3 px-6 rounded-xl hover:shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
                     >
                       <Upload className="w-5 h-5" />
                       {t('choose_file')}
@@ -673,15 +673,15 @@ function ProfileUpdatePage() {
                   </h3>
                   <div className="space-y-3">
                     <button className="w-full flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-900/70 transition-colors text-left group">
-                      <CreditCard className="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-blue-600 transition-colors" />
+                      <CreditCard className="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-emerald-600 transition-colors" />
                       <span className="text-gray-700 dark:text-gray-300">{t('billing_payments')}</span>
                     </button>
                     <button className="w-full flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-900/70 transition-colors text-left group">
-                      <Shield className="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-blue-600 transition-colors" />
+                      <Shield className="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-emerald-600 transition-colors" />
                       <span className="text-gray-700 dark:text-gray-300">{t('privacy_settings')}</span>
                     </button>
                     <button className="w-full flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-900/70 transition-colors text-left group">
-                      <AlertCircle className="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-blue-600 transition-colors" />
+                      <AlertCircle className="w-5 h-5 text-gray-600 dark:text-gray-400 group-hover:text-emerald-600 transition-colors" />
                       <span className="text-gray-700 dark:text-gray-300">{t('help_support')}</span>
                     </button>
                   </div>

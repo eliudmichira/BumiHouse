@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
     User,
@@ -59,7 +59,7 @@ const MobileMenuOverlay = ({ isOpen, onClose }) => {
                                 <div className={`p-4 rounded-xl ${isDark ? 'bg-gray-800' : 'bg-gray-100'
                                     }`}>
                                     <div className="flex items-center space-x-3">
-                                        <div className="w-12 h-12 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] rounded-full flex items-center justify-center">
+                                        <div className="w-12 h-12 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] rounded-full flex items-center justify-center">
                                             <User className="w-6 h-6 text-[#0a0c19]" />
                                         </div>
                                         <div>
@@ -137,7 +137,7 @@ const MobileMenuOverlay = ({ isOpen, onClose }) => {
                         ) : (
                             <div className="space-y-4">
                                 <div className={`p-8 rounded-2xl ${isDark ? 'bg-gray-800' : 'bg-gray-100'}`}>
-                                    <Sparkles className="w-12 h-12 mx-auto mb-4 text-[#3b82f6]" />
+                                    <Sparkles className="w-12 h-12 mx-auto mb-4 text-[#51faaa]" />
                                     <h3 className={`text-xl font-bold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
                                         Found your dream home?
                                     </h3>
@@ -148,7 +148,7 @@ const MobileMenuOverlay = ({ isOpen, onClose }) => {
                                         <Link
                                             to="/auth"
                                             onClick={onClose}
-                                            className="block w-full py-3 px-4 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] rounded-xl font-bold shadow-lg text-center"
+                                            className="block w-full py-3 px-4 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] rounded-xl font-bold shadow-lg text-center"
                                         >
                                             Sign In
                                         </Link>
@@ -156,7 +156,7 @@ const MobileMenuOverlay = ({ isOpen, onClose }) => {
                                             to="/auth"
                                             onClick={onClose}
                                             className={`block w-full py-3 px-4 rounded-xl font-bold border-2 text-center ${isDark
-                                                ? 'border-[#3b82f6] text-[#3b82f6]'
+                                                ? 'border-[#51faaa] text-[#51faaa]'
                                                 : 'border-gray-900 text-gray-900'
                                                 }`}
                                         >

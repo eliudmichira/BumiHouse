@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 // import ReactQuill from "react-quill";
 // import "react-quill/dist/quill.snow.css";
 import apiRequest from "../../lib/apiRequest";
@@ -120,7 +120,7 @@ function NewPostPage() {
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Enhanced animated background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-dark-900 dark:via-dark-800 dark:to-dark-900 transition-colors duration-300">
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-emerald-50 to-indigo-100 dark:from-dark-900 dark:via-dark-800 dark:to-dark-900 transition-colors duration-300">
         <div className="absolute inset-0">
           {isDark ? (
             <>
@@ -130,9 +130,9 @@ function NewPostPage() {
             </>
           ) : (
             <>
-              <div className="absolute top-0 -left-20 w-96 h-96 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob"></div>
+              <div className="absolute top-0 -left-20 w-96 h-96 bg-gradient-to-r from-emerald-400 to-purple-400 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob"></div>
               <div className="absolute top-0 -right-20 w-96 h-96 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob animation-delay-2000"></div>
-              <div className="absolute -bottom-20 left-20 w-96 h-96 bg-gradient-to-r from-pink-400 to-blue-400 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob animation-delay-4000"></div>
+              <div className="absolute -bottom-20 left-20 w-96 h-96 bg-gradient-to-r from-pink-400 to-emerald-400 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob animation-delay-4000"></div>
             </>
           )}
         </div>
@@ -175,7 +175,7 @@ function NewPostPage() {
                           id="title" 
                           name="title" 
                           type="text" 
-                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
                           placeholder="Enter property title"
                         />
                       </div>
@@ -191,7 +191,7 @@ function NewPostPage() {
                           id="price" 
                           name="price" 
                           type="number" 
-                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
                           placeholder="Enter price"
                         />
                       </div>
@@ -207,7 +207,7 @@ function NewPostPage() {
                           id="address" 
                           name="address" 
                           type="text" 
-                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
                           placeholder="Enter address"
                         />
                       </div>
@@ -223,7 +223,7 @@ function NewPostPage() {
                           id="city" 
                           name="city" 
                           type="text" 
-                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
                           placeholder="Enter city"
                         />
                       </div>
@@ -239,7 +239,7 @@ function NewPostPage() {
                           id="bedroom" 
                           name="bedroom" 
                           type="number" 
-                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
                           placeholder="Number of bedrooms"
                         />
                       </div>
@@ -255,7 +255,7 @@ function NewPostPage() {
                           id="bathroom" 
                           name="bathroom" 
                           type="number" 
-                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
                           placeholder="Number of bathrooms"
                         />
                       </div>
@@ -292,14 +292,14 @@ function NewPostPage() {
                           name="latitude" 
                           type="number" 
                           step="any"
-                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
                           placeholder="Enter latitude"
                         />
                       </div>
                       <button
                         type="button"
                         onClick={handleGetLocation}
-                        className="mt-2 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+                        className="mt-2 text-sm text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors"
                       >
                         Get Current Location
                       </button>
@@ -316,7 +316,7 @@ function NewPostPage() {
                           name="longitude" 
                           type="number" 
                           step="any"
-                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
                           placeholder="Enter longitude"
                         />
                       </div>
@@ -334,7 +334,7 @@ function NewPostPage() {
                         <select 
                           id="type" 
                           name="type" 
-                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 appearance-none dark:text-gray-100"
+                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300 appearance-none dark:text-gray-100"
                         >
                           <option value="">Select type</option>
                           <option value="buy">Buy</option>
@@ -352,7 +352,7 @@ function NewPostPage() {
                         <select 
                           id="property" 
                           name="property" 
-                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 appearance-none dark:text-gray-100"
+                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300 appearance-none dark:text-gray-100"
                         >
                           <option value="">Select property type</option>
                           <option value="apartment">Apartment</option>
@@ -372,7 +372,7 @@ function NewPostPage() {
                         <select 
                           id="utilities" 
                           name="utilities" 
-                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 appearance-none dark:text-gray-100"
+                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300 appearance-none dark:text-gray-100"
                         >
                           <option value="">Select utilities</option>
                           <option value="owner">Owner</option>
@@ -391,7 +391,7 @@ function NewPostPage() {
                         <select 
                           id="pet" 
                           name="pet" 
-                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 appearance-none dark:text-gray-100"
+                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300 appearance-none dark:text-gray-100"
                         >
                           <option value="">Select pet policy</option>
                           <option value="allowed">Allowed</option>
@@ -410,7 +410,7 @@ function NewPostPage() {
                           id="income" 
                           name="income" 
                           type="number" 
-                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
                           placeholder="Enter income"
                         />
                       </div>
@@ -426,7 +426,7 @@ function NewPostPage() {
                           id="size" 
                           name="size" 
                           type="number" 
-                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
                           placeholder="Enter size"
                         />
                       </div>
@@ -442,7 +442,7 @@ function NewPostPage() {
                           id="school" 
                           name="school" 
                           type="number" 
-                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
                           placeholder="Enter school rating"
                         />
                       </div>
@@ -458,7 +458,7 @@ function NewPostPage() {
                           id="bus" 
                           name="bus" 
                           type="number" 
-                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
                           placeholder="Enter bus rating"
                         />
                       </div>
@@ -474,7 +474,7 @@ function NewPostPage() {
                           id="restaurant" 
                           name="restaurant" 
                           type="number" 
-                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+                          className="w-full pl-10 pr-4 py-3 bg-white/80 dark:bg-dark-900/80 border border-white/30 dark:border-dark-700/30 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
                           placeholder="Enter restaurant rating"
                         />
                       </div>
@@ -486,7 +486,7 @@ function NewPostPage() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
+                      className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-purple-600 text-white px-8 py-3 rounded-xl font-semibold hover:from-emerald-700 hover:to-purple-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
                     >
                       <Save className="w-5 h-5" />
                       {isSubmitting ? "Creating..." : "Create Post"}

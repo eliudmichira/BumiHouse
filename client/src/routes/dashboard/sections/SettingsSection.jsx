@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { User, Bell, Shield, CreditCard, Palette, Globe, Save, Eye, EyeOff, Check, X, Camera, Upload, AlertCircle } from 'lucide-react';
 import { useAuth } from '../../../context/AuthContext';
 
@@ -249,7 +249,7 @@ const SettingsSection = () => {
         <button
           onClick={handleSaveSettings}
           disabled={isSaving}
-          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+          className="flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors disabled:opacity-50"
         >
           <Save className="w-4 h-4" />
           {isSaving ? 'Saving...' : 'Save Changes'}
@@ -263,7 +263,7 @@ const SettingsSection = () => {
             ? 'bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400'
             : statusMessage.type === 'error'
             ? 'bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400'
-            : 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
+            : 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400'
         }`}>
           {statusMessage.icon && <statusMessage.icon className="w-4 h-4" />}
           {statusMessage.message}
@@ -274,8 +274,8 @@ const SettingsSection = () => {
         {/* Profile Settings */}
         <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
-              <User className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+            <div className="w-10 h-10 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center">
+              <User className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
             </div>
             <h4 className="font-semibold text-gray-900 dark:text-white">Profile</h4>
           </div>
@@ -290,7 +290,7 @@ const SettingsSection = () => {
               />
               <button
                 onClick={() => setShowAvatarModal(true)}
-                className="absolute bottom-0 right-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors"
+                className="absolute bottom-0 right-0 w-8 h-8 bg-emerald-600 text-white rounded-full flex items-center justify-center hover:bg-emerald-700 transition-colors"
               >
                 <Camera className="w-4 h-4" />
               </button>
@@ -306,7 +306,7 @@ const SettingsSection = () => {
                 type="text"
                 value={settings.profile.fullName}
                 onChange={(e) => handleSettingChange('profile', 'fullName', e.target.value)}
-                className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
+                className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
                   errors['profile.fullName'] ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
                 }`}
               />
@@ -323,7 +323,7 @@ const SettingsSection = () => {
                 type="email"
                 value={settings.profile.email}
                 onChange={(e) => handleSettingChange('profile', 'email', e.target.value)}
-                className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
+                className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
                   errors['profile.email'] ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
                 }`}
               />
@@ -340,7 +340,7 @@ const SettingsSection = () => {
                 type="tel"
                 value={settings.profile.phone}
                 onChange={(e) => handleSettingChange('profile', 'phone', e.target.value)}
-                className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
+                className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
                   errors['profile.phone'] ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
                 }`}
               />
@@ -356,7 +356,7 @@ const SettingsSection = () => {
               <textarea
                 value={settings.profile.bio}
                 onChange={(e) => handleSettingChange('profile', 'bio', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                 rows="3"
                 placeholder="Tell us about yourself..."
               />
@@ -386,7 +386,7 @@ const SettingsSection = () => {
                   onChange={(e) => handleSettingChange('notifications', 'email', e.target.checked)}
                   className="sr-only peer" 
                 />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-emerald-300 dark:peer-focus:ring-emerald-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-emerald-600"></div>
               </label>
             </div>
             
@@ -402,7 +402,7 @@ const SettingsSection = () => {
                   onChange={(e) => handleSettingChange('notifications', 'sms', e.target.checked)}
                   className="sr-only peer" 
                 />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-emerald-300 dark:peer-focus:ring-emerald-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-emerald-600"></div>
               </label>
             </div>
             
@@ -418,7 +418,7 @@ const SettingsSection = () => {
                   onChange={(e) => handleSettingChange('notifications', 'propertyAlerts', e.target.checked)}
                   className="sr-only peer" 
                 />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-emerald-300 dark:peer-focus:ring-emerald-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-emerald-600"></div>
               </label>
             </div>
 
@@ -434,7 +434,7 @@ const SettingsSection = () => {
                   onChange={(e) => handleSettingChange('notifications', 'inquiryAlerts', e.target.checked)}
                   className="sr-only peer" 
                 />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-emerald-300 dark:peer-focus:ring-emerald-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-emerald-600"></div>
               </label>
             </div>
 
@@ -450,7 +450,7 @@ const SettingsSection = () => {
                   onChange={(e) => handleSettingChange('notifications', 'marketingEmails', e.target.checked)}
                   className="sr-only peer" 
                 />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-emerald-300 dark:peer-focus:ring-emerald-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-emerald-600"></div>
               </label>
             </div>
           </div>
@@ -478,13 +478,13 @@ const SettingsSection = () => {
                   onChange={(e) => handleSettingChange('security', 'twoFactorEnabled', e.target.checked)}
                   className="sr-only peer" 
                 />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-emerald-300 dark:peer-focus:ring-emerald-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-emerald-600"></div>
               </label>
             </div>
 
             <button 
               onClick={() => setShowPasswordModal(true)}
-              className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
+              className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-lg hover:bg-emerald-100 dark:hover:bg-emerald-900/50 transition-colors"
             >
               <Shield className="w-4 h-4" />
               Change Password
@@ -511,7 +511,7 @@ const SettingsSection = () => {
             onClick={() => handleThemeChange('light')}
             className={`flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium transition-colors ${
               settings.appearance.theme === 'light' 
-                ? 'border-2 border-blue-500 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' 
+                ? 'border-2 border-emerald-500 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400' 
                 : 'border-2 border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:border-gray-400 dark:hover:border-gray-500'
             }`}
           >
@@ -523,7 +523,7 @@ const SettingsSection = () => {
             onClick={() => handleThemeChange('dark')}
             className={`flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium transition-colors ${
               settings.appearance.theme === 'dark' 
-                ? 'border-2 border-blue-500 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' 
+                ? 'border-2 border-emerald-500 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400' 
                 : 'border-2 border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:border-gray-400 dark:hover:border-gray-500'
             }`}
           >
@@ -535,7 +535,7 @@ const SettingsSection = () => {
             onClick={() => handleThemeChange('auto')}
             className={`flex items-center justify-center gap-2 px-4 py-3 rounded-lg font-medium transition-colors ${
               settings.appearance.theme === 'auto' 
-                ? 'border-2 border-blue-500 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' 
+                ? 'border-2 border-emerald-500 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400' 
                 : 'border-2 border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:border-gray-400 dark:hover:border-gray-500'
             }`}
           >
@@ -552,7 +552,7 @@ const SettingsSection = () => {
             <select
               value={settings.appearance.language}
               onChange={(e) => handleSettingChange('appearance', 'language', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white"
             >
               <option value="English">English</option>
               <option value="Swahili">Swahili</option>
@@ -566,7 +566,7 @@ const SettingsSection = () => {
             <select
               value={settings.appearance.currency}
               onChange={(e) => handleSettingChange('appearance', 'currency', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white"
             >
               <option value="KES">Kenyan Shilling (KES)</option>
               <option value="USD">US Dollar (USD)</option>
@@ -595,7 +595,7 @@ const SettingsSection = () => {
                   type="password"
                   value={passwordData.current}
                   onChange={(e) => setPasswordData({...passwordData, current: e.target.value})}
-                  className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white ${
+                  className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white ${
                     errors.current ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
                   }`}
                 />
@@ -611,7 +611,7 @@ const SettingsSection = () => {
                   type="password"
                   value={passwordData.new}
                   onChange={(e) => setPasswordData({...passwordData, new: e.target.value})}
-                  className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white ${
+                  className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white ${
                     errors.new ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
                   }`}
                 />
@@ -627,7 +627,7 @@ const SettingsSection = () => {
                   type="password"
                   value={passwordData.confirm}
                   onChange={(e) => setPasswordData({...passwordData, confirm: e.target.value})}
-                  className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white ${
+                  className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white ${
                     errors.confirm ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
                   }`}
                 />
@@ -639,7 +639,7 @@ const SettingsSection = () => {
             <div className="flex gap-2 mt-6">
               <button
                 onClick={handlePasswordChange}
-                className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="flex-1 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
               >
                 Change Password
               </button>
@@ -681,7 +681,7 @@ const SettingsSection = () => {
                 type="file"
                 accept="image/*"
                 onChange={handleAvatarUpload}
-                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 dark:bg-gray-700 dark:text-white"
               />
               <p className="text-xs text-gray-500 dark:text-gray-400">
                 Maximum file size: 5MB. Supported formats: JPG, PNG, GIF
@@ -690,7 +690,7 @@ const SettingsSection = () => {
             <div className="flex gap-2 mt-6">
               <button
                 onClick={() => setShowAvatarModal(false)}
-                className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="flex-1 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
               >
                 Save Changes
               </button>

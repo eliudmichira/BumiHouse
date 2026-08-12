@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Heart, MapPin, Bed, Bath, Building2, DollarSign, Star, Filter, SortAsc, SortDesc, Grid, List, Trash2, Share2 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
@@ -84,7 +84,7 @@ function Favorites() {
           <p className="text-gray-600 dark:text-gray-300 mb-6">You need to be signed in to save and view your favorite properties.</p>
           <button
             onClick={() => navigate('/desktop/login')}
-            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
           >
             Sign In
           </button>
@@ -107,7 +107,7 @@ function Favorites() {
             </div>
             <button
               onClick={() => navigate('/list')}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
             >
               Browse More Properties
             </button>
@@ -126,7 +126,7 @@ function Favorites() {
                 <select
                   value={filterType}
                   onChange={(e) => setFilterType(e.target.value)}
-                  className="px-3 py-2 border border-gray-300 dark:border-dark-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-dark-900 dark:text-gray-100 transition-colors duration-300"
+                  className="px-3 py-2 border border-gray-300 dark:border-dark-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white dark:bg-dark-900 dark:text-gray-100 transition-colors duration-300"
                 >
                   <option value="all">All Types</option>
                   <option value="house">Houses</option>
@@ -142,7 +142,7 @@ function Favorites() {
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="px-3 py-2 border border-gray-300 dark:border-dark-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-dark-900 dark:text-gray-100 transition-colors duration-300"
+                  className="px-3 py-2 border border-gray-300 dark:border-dark-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white dark:bg-dark-900 dark:text-gray-100 transition-colors duration-300"
                 >
                   <option value="date-added">Date Added</option>
                   <option value="price-low">Price: Low to High</option>
@@ -157,14 +157,14 @@ function Favorites() {
             <div className="flex items-center border border-gray-300 dark:border-dark-700 rounded-lg bg-white dark:bg-dark-900 transition-colors duration-300">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-2 rounded-l-lg transition-colors ${viewMode === 'grid' ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-dark-700'
+                className={`p-2 rounded-l-lg transition-colors ${viewMode === 'grid' ? 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400' : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-dark-700'
                   }`}
               >
                 <Grid className="w-4 h-4" />
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className={`p-2 rounded-r-lg transition-colors ${viewMode === 'list' ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-dark-700'
+                className={`p-2 rounded-r-lg transition-colors ${viewMode === 'list' ? 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400' : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-dark-700'
                   }`}
               >
                 <List className="w-4 h-4" />
@@ -185,7 +185,7 @@ function Favorites() {
             </p>
             <button
               onClick={() => navigate('/list')}
-              className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
             >
               Browse Properties
             </button>

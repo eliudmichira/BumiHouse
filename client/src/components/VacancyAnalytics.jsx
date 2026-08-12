@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { 
   TrendingUp, 
   TrendingDown, 
@@ -286,7 +286,7 @@ const VacancyAnalytics = ({ properties = [] }) => {
                 : 'bg-gray-50 border-gray-200 text-gray-900 hover:bg-gray-100'
             }`}>
               <div className="flex items-center space-x-3">
-                <Target className="w-5 h-5 text-blue-500" />
+                <Target className="w-5 h-5 text-emerald-500" />
                 <span className="font-medium">Set Occupancy Targets</span>
               </div>
               <span className="text-sm text-gray-500">→</span>
@@ -344,7 +344,7 @@ const VacancyAnalytics = ({ properties = [] }) => {
             <div key={index} className="flex-1 flex flex-col items-center">
               <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-t">
                 <div 
-                  className="bg-gradient-to-t from-[#3b82f6] to-[#06b6d4] rounded-t transition-all duration-300"
+                  className="bg-gradient-to-t from-[#51faaa] to-[#dbd5a4] rounded-t transition-all duration-300"
                   style={{ height: `${data.occupancy}%` }}
                 />
               </div>
@@ -357,13 +357,13 @@ const VacancyAnalytics = ({ properties = [] }) => {
         
         <div className="flex items-center justify-center space-x-6 mt-4">
           <div className="flex items-center space-x-2">
-            <div className="w-3 h-3 bg-[#3b82f6] rounded-full" />
+            <div className="w-3 h-3 bg-[#51faaa] rounded-full" />
             <span className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
               Occupancy Rate
             </span>
           </div>
           <div className="flex items-center space-x-2">
-            <div className="w-3 h-3 bg-blue-500 rounded-full" />
+            <div className="w-3 h-3 bg-emerald-500 rounded-full" />
             <span className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
               Applications
             </span>

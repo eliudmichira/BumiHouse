@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import ApartmentVacancyDisplay from './ApartmentVacancyDisplay';
 import { useTheme } from '../context/ThemeContext';
 
@@ -81,26 +81,26 @@ const VacancyDemo = () => {
               Demo Property: {demoProperty.title}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-              <div className={`text-center p-4 rounded-xl ${isDark ? 'bg-[rgba(81,250,170,0.1)]' : 'bg-blue-50'}`}>
-                <div className={`text-2xl font-bold ${isDark ? 'text-[#3b82f6]' : 'text-blue-600'}`}>
+              <div className={`text-center p-4 rounded-xl ${isDark ? 'bg-[rgba(81,250,170,0.1)]' : 'bg-emerald-50'}`}>
+                <div className={`text-2xl font-bold ${isDark ? 'text-[#51faaa]' : 'text-emerald-600'}`}>
                   {demoProperty.totalUnits}
                 </div>
                 <div className={`text-sm ${isDark ? 'text-[#ccc]' : 'text-gray-600'}`}>Total Units</div>
               </div>
               <div className={`text-center p-4 rounded-xl ${isDark ? 'bg-[rgba(81,250,170,0.1)]' : 'bg-green-50'}`}>
-                <div className={`text-2xl font-bold ${isDark ? 'text-[#3b82f6]' : 'text-green-600'}`}>
+                <div className={`text-2xl font-bold ${isDark ? 'text-[#51faaa]' : 'text-green-600'}`}>
                   {demoProperty.availableUnits}
                 </div>
                 <div className={`text-sm ${isDark ? 'text-[#ccc]' : 'text-gray-600'}`}>Available</div>
               </div>
               <div className={`text-center p-4 rounded-xl ${isDark ? 'bg-[rgba(81,250,170,0.1)]' : 'bg-purple-50'}`}>
-                <div className={`text-2xl font-bold ${isDark ? 'text-[#3b82f6]' : 'text-purple-600'}`}>
+                <div className={`text-2xl font-bold ${isDark ? 'text-[#51faaa]' : 'text-purple-600'}`}>
                   {Math.round(((demoProperty.totalUnits - demoProperty.availableUnits) / demoProperty.totalUnits) * 100)}%
                 </div>
                 <div className={`text-sm ${isDark ? 'text-[#ccc]' : 'text-gray-600'}`}>Occupancy</div>
               </div>
               <div className={`text-center p-4 rounded-xl ${isDark ? 'bg-[rgba(81,250,170,0.1)]' : 'bg-orange-50'}`}>
-                <div className={`text-2xl font-bold ${isDark ? 'text-[#3b82f6]' : 'text-orange-600'}`}>
+                <div className={`text-2xl font-bold ${isDark ? 'text-[#51faaa]' : 'text-orange-600'}`}>
                   ${demoProperty.averageRent}
                 </div>
                 <div className={`text-sm ${isDark ? 'text-[#ccc]' : 'text-gray-600'}`}>Avg Rent</div>
@@ -122,25 +122,25 @@ const VacancyDemo = () => {
             </h3>
             <div className={`space-y-3 ${isDark ? 'text-[#ccc]' : 'text-gray-700'}`}>
               <div className="flex items-start space-x-3">
-                <div className="w-2 h-2 bg-[#3b82f6] rounded-full mt-2 flex-shrink-0"></div>
+                <div className="w-2 h-2 bg-[#51faaa] rounded-full mt-2 flex-shrink-0"></div>
                 <div>
                   <strong>Edit Mode:</strong> Click the "Edit" button to modify vacancy information
                 </div>
               </div>
               <div className="flex items-start space-x-3">
-                <div className="w-2 h-2 bg-[#3b82f6] rounded-full mt-2 flex-shrink-0"></div>
+                <div className="w-2 h-2 bg-[#51faaa] rounded-full mt-2 flex-shrink-0"></div>
                 <div>
                   <strong>Unit Types:</strong> Add, edit, or remove different unit configurations
                 </div>
               </div>
               <div className="flex items-start space-x-3">
-                <div className="w-2 h-2 bg-[#3b82f6] rounded-full mt-2 flex-shrink-0"></div>
+                <div className="w-2 h-2 bg-[#51faaa] rounded-full mt-2 flex-shrink-0"></div>
                 <div>
                   <strong>Availability:</strong> Update the number of available units for each type
                 </div>
               </div>
               <div className="flex items-start space-x-3">
-                <div className="w-2 h-2 bg-[#3b82f6] rounded-full mt-2 flex-shrink-0"></div>
+                <div className="w-2 h-2 bg-[#51faaa] rounded-full mt-2 flex-shrink-0"></div>
                 <div>
                   <strong>Real-time Updates:</strong> Changes are reflected immediately in the display
                 </div>
@@ -155,7 +155,7 @@ const VacancyDemo = () => {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-3">
-                <h4 className={`font-semibold ${isDark ? 'text-[#3b82f6]' : 'text-blue-600'}`}>For Agents</h4>
+                <h4 className={`font-semibold ${isDark ? 'text-[#51faaa]' : 'text-emerald-600'}`}>For Agents</h4>
                 <ul className={`space-y-2 ${isDark ? 'text-[#ccc]' : 'text-gray-700'}`}>
                   <li>• Real-time vacancy updates</li>
                   <li>• Unit type management</li>
@@ -165,7 +165,7 @@ const VacancyDemo = () => {
                 </ul>
               </div>
               <div className="space-y-3">
-                <h4 className={`font-semibold ${isDark ? 'text-[#3b82f6]' : 'text-green-600'}`}>For Tenants</h4>
+                <h4 className={`font-semibold ${isDark ? 'text-[#51faaa]' : 'text-green-600'}`}>For Tenants</h4>
                 <ul className={`space-y-2 ${isDark ? 'text-[#ccc]' : 'text-gray-700'}`}>
                   <li>• Clear availability status</li>
                   <li>• Unit type details</li>

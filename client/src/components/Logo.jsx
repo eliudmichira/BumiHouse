@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+﻿import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import logoPadded from '../assets/logo_padded.png';
 
@@ -161,7 +161,7 @@ const Logo = ({
               <span
                 className="font-bold tracking-tight green-glow-text"
                 style={{
-                  background: `linear-gradient(90deg, #2563eb 0%, #3b82f6 100%)`,
+                  background: `linear-gradient(90deg, #2dd284 0%, #51faaa 100%)`,
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   textShadow: isDark ? '0 0 20px rgba(81,250,170,0.6), 0 0 40px rgba(81,250,170,0.3)' : '0 0 15px rgba(81,250,170,0.4)',
@@ -170,19 +170,11 @@ const Logo = ({
                 Bumi
               </span>
               <span
-                className="font-semibold tracking-tight kenya-gradient-text"
+                className="font-semibold tracking-tight"
                 style={{
-                  background: `linear-gradient(135deg,
-                    #000000 0%, #000000 12%,
-                    #ffffff 13%, #ffffff 18%,
-                    #c1121f 19%, #c1121f 78%,
-                    #ffffff 79%, #ffffff 84%,
-                    #16a34a 85%, #22c55e 100%
-                  )`,
+                  background: 'linear-gradient(90deg, #c1121f 0%, #e63946 50%, #16a34a 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
-                  backgroundSize: '200% auto',
-                  animation: 'kenyaShine 4s ease-in-out 5',
                 }}
               >
                 House
@@ -215,7 +207,7 @@ const Logo = ({
                     #ffffff 16%, #ffffff 25%,
                     #c1121f 26%, #c1121f 75%,
                     #ffffff 76%, #ffffff 85%,
-                    #2563eb 86%, #3b82f6 100%
+                    #2dd284 86%, #51faaa 100%
                   )`,
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
@@ -257,7 +249,7 @@ const Logo = ({
                     #ffffff 11%, #ffffff 20%,
                     #c1121f 21%, #c1121f 80%,
                     #ffffff 81%, #ffffff 90%,
-                    #2563eb 91%, #3b82f6 100%
+                    #2dd284 91%, #51faaa 100%
                   )`,
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',

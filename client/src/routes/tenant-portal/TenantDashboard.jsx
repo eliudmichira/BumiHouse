@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { mpesaAPI } from '../../lib/mpesaAPI';
@@ -379,7 +379,7 @@ const TenantDashboard = () => {
           <div className="sticky top-6 h-[calc(100vh-3rem)] p-6 rounded-3xl bg-white dark:bg-gray-800 border border-gray-200/50 dark:border-gray-700/50 shadow-xl space-y-6">
             {/* Brand */}
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] rounded-2xl flex items-center justify-center shadow-lg">
+              <div className="w-12 h-12 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] rounded-2xl flex items-center justify-center shadow-lg">
                 <Home className="w-6 h-6 text-[#0a0c19]" />
               </div>
               <div>
@@ -392,7 +392,7 @@ const TenantDashboard = () => {
             <div className="p-4 rounded-2xl bg-gray-50 dark:bg-gray-700/50 border border-gray-200/50 dark:border-gray-600/50">
               <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">{tenantData.name}</p>
               <p className="text-xs text-gray-600 dark:text-gray-300">{tenantData.propertyName} • {tenantData.unitNumber}</p>
-              <span className="inline-block mt-2 px-3 py-1 rounded-full text-xs bg-[#3b82f6]/20 text-[#0a0c19] border border-[#3b82f6]/30">{tenantData.status || 'Active'}</span>
+              <span className="inline-block mt-2 px-3 py-1 rounded-full text-xs bg-[#51faaa]/20 text-[#0a0c19] border border-[#51faaa]/30">{tenantData.status || 'Active'}</span>
             </div>
 
             {/* Nav */}
@@ -433,11 +433,11 @@ const TenantDashboard = () => {
               </div>
               <div className="hidden lg:flex items-center gap-6">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-[#3b82f6]">{cribbyScore}</div>
+                  <div className="text-2xl font-bold text-[#51faaa]">{cribbyScore}</div>
                   <div className="text-sm text-gray-600 dark:text-gray-400 transition-colors duration-300">BumiHouse Score</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-[#06b6d4]">{streak}</div>
+                  <div className="text-2xl font-bold text-[#dbd5a4]">{streak}</div>
                   <div className="text-sm text-gray-600 dark:text-gray-400 transition-colors duration-300">Month Streak</div>
                 </div>
               </div>
@@ -449,15 +449,15 @@ const TenantDashboard = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="p-6 rounded-3xl bg-white dark:bg-gray-800 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 shadow-xl shadow-gray-900/5 dark:shadow-gray-900/20 hover:shadow-2xl hover:shadow-[#3b82f6]/10 transition-all duration-500 group"
+                className="p-6 rounded-3xl bg-white dark:bg-gray-800 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 shadow-xl shadow-gray-900/5 dark:shadow-gray-900/20 hover:shadow-2xl hover:shadow-[#51faaa]/10 transition-all duration-500 group"
               >
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-14 h-14 bg-gradient-to-br from-[#3b82f6]/20 to-[#06b6d4]/20 dark:from-[#3b82f6]/30 dark:to-[#06b6d4]/30 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <DollarSign className="w-7 h-7 text-[#3b82f6]" />
+                  <div className="w-14 h-14 bg-gradient-to-br from-[#51faaa]/20 to-[#dbd5a4]/20 dark:from-[#51faaa]/30 dark:to-[#dbd5a4]/30 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <DollarSign className="w-7 h-7 text-[#51faaa]" />
                   </div>
                   <div className={`w-4 h-4 rounded-full ${rentStatus === 'overdue' ? 'bg-red-500' :
                     rentStatus === 'due-soon' ? 'bg-yellow-500' :
-                      'bg-[#3b82f6]'
+                      'bg-[#51faaa]'
                     } shadow-lg`}></div>
                 </div>
                 <p className="text-3xl font-bold text-gray-900 dark:text-white mb-2 transition-colors duration-300">
@@ -470,11 +470,11 @@ const TenantDashboard = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="p-6 rounded-3xl bg-white dark:bg-gray-800 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 shadow-xl shadow-gray-900/5 dark:shadow-gray-900/20 hover:shadow-2xl hover:shadow-[#3b82f6]/10 transition-all duration-500 group"
+                className="p-6 rounded-3xl bg-white dark:bg-gray-800 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 shadow-xl shadow-gray-900/5 dark:shadow-gray-900/20 hover:shadow-2xl hover:shadow-[#51faaa]/10 transition-all duration-500 group"
               >
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-14 h-14 bg-gradient-to-br from-[#3b82f6]/20 to-[#06b6d4]/20 dark:from-[#3b82f6]/30 dark:to-[#06b6d4]/30 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Calendar className="w-7 h-7 text-[#3b82f6]" />
+                  <div className="w-14 h-14 bg-gradient-to-br from-[#51faaa]/20 to-[#dbd5a4]/20 dark:from-[#51faaa]/30 dark:to-[#dbd5a4]/30 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Calendar className="w-7 h-7 text-[#51faaa]" />
                   </div>
                 </div>
                 <p className="text-3xl font-bold text-gray-900 dark:text-white mb-2 transition-colors duration-300">
@@ -489,11 +489,11 @@ const TenantDashboard = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="p-6 rounded-3xl bg-white dark:bg-gray-800 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 shadow-xl shadow-gray-900/5 dark:shadow-gray-900/20 hover:shadow-2xl hover:shadow-[#3b82f6]/10 transition-all duration-500 group"
+                className="p-6 rounded-3xl bg-white dark:bg-gray-800 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 shadow-xl shadow-gray-900/5 dark:shadow-gray-900/20 hover:shadow-2xl hover:shadow-[#51faaa]/10 transition-all duration-500 group"
               >
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-14 h-14 bg-gradient-to-br from-[#3b82f6]/20 to-[#06b6d4]/20 dark:from-[#3b82f6]/30 dark:to-[#06b6d4]/30 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Star className="w-7 h-7 text-[#3b82f6]" />
+                  <div className="w-14 h-14 bg-gradient-to-br from-[#51faaa]/20 to-[#dbd5a4]/20 dark:from-[#51faaa]/30 dark:to-[#dbd5a4]/30 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Star className="w-7 h-7 text-[#51faaa]" />
                   </div>
                 </div>
                 <p className="text-3xl font-bold text-gray-900 dark:text-white mb-2 transition-colors duration-300">{cribbyScore}</p>
@@ -504,11 +504,11 @@ const TenantDashboard = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="p-6 rounded-3xl bg-white dark:bg-gray-800 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 shadow-xl shadow-gray-900/5 dark:shadow-gray-900/20 hover:shadow-2xl hover:shadow-[#3b82f6]/10 transition-all duration-500 group"
+                className="p-6 rounded-3xl bg-white dark:bg-gray-800 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 shadow-xl shadow-gray-900/5 dark:shadow-gray-900/20 hover:shadow-2xl hover:shadow-[#51faaa]/10 transition-all duration-500 group"
               >
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-14 h-14 bg-gradient-to-br from-[#3b82f6]/20 to-[#06b6d4]/20 dark:from-[#3b82f6]/30 dark:to-[#06b6d4]/30 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Target className="w-7 h-7 text-[#3b82f6]" />
+                  <div className="w-14 h-14 bg-gradient-to-br from-[#51faaa]/20 to-[#dbd5a4]/20 dark:from-[#51faaa]/30 dark:to-[#dbd5a4]/30 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Target className="w-7 h-7 text-[#51faaa]" />
                   </div>
                 </div>
                 <p className="text-3xl font-bold text-gray-900 dark:text-white mb-2 transition-colors duration-300">{streak}</p>
@@ -525,7 +525,7 @@ const TenantDashboard = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                className="p-8 rounded-3xl bg-white dark:bg-gray-800 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 shadow-xl shadow-gray-900/5 dark:shadow-gray-900/20 hover:shadow-2xl hover:shadow-[#3b82f6]/10 transition-all duration-500"
+                className="p-8 rounded-3xl bg-white dark:bg-gray-800 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 shadow-xl shadow-gray-900/5 dark:shadow-gray-900/20 hover:shadow-2xl hover:shadow-[#51faaa]/10 transition-all duration-500"
               >
                 <div className="flex items-center justify-between mb-8">
                   <div>
@@ -568,7 +568,7 @@ const TenantDashboard = () => {
                   onClick={handlePayRent}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full px-8 py-6 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] font-bold text-xl rounded-2xl hover:shadow-xl hover:shadow-[#3b82f6]/25 transition-all duration-300 flex items-center justify-center gap-4 group"
+                  className="w-full px-8 py-6 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] font-bold text-xl rounded-2xl hover:shadow-xl hover:shadow-[#51faaa]/25 transition-all duration-300 flex items-center justify-center gap-4 group"
                 >
                   <Zap className="w-7 h-7 group-hover:scale-110 transition-transform duration-300" />
                   <span>🔥 PAY RENT NOW</span>
@@ -581,7 +581,7 @@ const TenantDashboard = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className="p-8 rounded-3xl bg-white/80 backdrop-blur-xl border border-gray-200/50 shadow-xl shadow-gray-900/5 hover:shadow-2xl hover:shadow-[#3b82f6]/10 transition-all duration-500"
+                className="p-8 rounded-3xl bg-white/80 backdrop-blur-xl border border-gray-200/50 shadow-xl shadow-gray-900/5 hover:shadow-2xl hover:shadow-[#51faaa]/10 transition-all duration-500"
               >
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-3xl font-bold text-gray-900">
@@ -610,8 +610,8 @@ const TenantDashboard = () => {
                     {tenantData.paymentHistory.slice(0, 3).map((payment) => (
                       <div key={payment.id} className="flex items-center justify-between p-5 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-colors">
                         <div className="flex items-center space-x-4">
-                          <div className="w-14 h-14 bg-gradient-to-br from-[#3b82f6]/20 to-[#06b6d4]/20 border border-[#3b82f6]/30 rounded-2xl flex items-center justify-center">
-                            <CheckCircle className="w-7 h-7 text-[#3b82f6]" />
+                          <div className="w-14 h-14 bg-gradient-to-br from-[#51faaa]/20 to-[#dbd5a4]/20 border border-[#51faaa]/30 rounded-2xl flex items-center justify-center">
+                            <CheckCircle className="w-7 h-7 text-[#51faaa]" />
                           </div>
                           <div>
                             <p className="text-2xl font-bold text-gray-900 mb-1">
@@ -627,7 +627,7 @@ const TenantDashboard = () => {
                           </div>
                         </div>
                         <div className="text-right">
-                          <span className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#3b82f6]/10 to-[#06b6d4]/10 text-[#3b82f6] font-semibold rounded-xl border border-[#3b82f6]/30">
+                          <span className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-[#51faaa]/10 to-[#dbd5a4]/10 text-[#51faaa] font-semibold rounded-xl border border-[#51faaa]/30">
                             ✅ Paid
                           </span>
                           <p className="text-sm text-gray-500 mt-1">#{payment.reference || payment.id}</p>
@@ -637,7 +637,7 @@ const TenantDashboard = () => {
 
                     {tenantData.paymentHistory.length > 5 && (
                       <div className="text-center pt-6">
-                        <button className="px-6 py-3 text-[#3b82f6] font-medium hover:bg-gray-50 rounded-xl transition-colors">
+                        <button className="px-6 py-3 text-[#51faaa] font-medium hover:bg-gray-50 rounded-xl transition-colors">
                           View All Payments ({tenantData.paymentHistory.length})
                         </button>
                       </div>
@@ -654,14 +654,14 @@ const TenantDashboard = () => {
                 initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.7 }}
-                className="p-6 rounded-3xl bg-white/80 backdrop-blur-xl border border-gray-200/50 shadow-xl shadow-gray-900/5 hover:shadow-2xl hover:shadow-[#3b82f6]/10 transition-all duration-500"
+                className="p-6 rounded-3xl bg-white/80 backdrop-blur-xl border border-gray-200/50 shadow-xl shadow-gray-900/5 hover:shadow-2xl hover:shadow-[#51faaa]/10 transition-all duration-500"
               >
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-2xl font-bold text-gray-900 flex items-center">
-                    <Bell className="w-6 h-6 mr-3 text-[#3b82f6]" />
+                    <Bell className="w-6 h-6 mr-3 text-[#51faaa]" />
                     Notifications
                   </h3>
-                  <span className="px-3 py-1 bg-[#3b82f6] text-gray-900 text-sm font-bold rounded-full">
+                  <span className="px-3 py-1 bg-[#51faaa] text-gray-900 text-sm font-bold rounded-full">
                     {notifications.length}
                   </span>
                 </div>
@@ -672,12 +672,12 @@ const TenantDashboard = () => {
                       <div className="flex items-start space-x-4">
                         <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${notification.urgent
                           ? 'bg-yellow-50 border border-yellow-200'
-                          : 'bg-gradient-to-br from-[#3b82f6]/20 to-[#06b6d4]/20 border border-[#3b82f6]/30'
+                          : 'bg-gradient-to-br from-[#51faaa]/20 to-[#dbd5a4]/20 border border-[#51faaa]/30'
                           }`}>
                           {notification.urgent ? (
                             <AlertTriangle className="w-6 h-6 text-yellow-500" />
                           ) : (
-                            <CheckCircle className="w-6 h-6 text-[#3b82f6]" />
+                            <CheckCircle className="w-6 h-6 text-[#51faaa]" />
                           )}
                         </div>
                         <div className="flex-1">
@@ -702,7 +702,7 @@ const TenantDashboard = () => {
                 initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.9 }}
-                className="p-6 rounded-3xl bg-white/80 backdrop-blur-xl border border-gray-200/50 shadow-xl shadow-gray-900/5 hover:shadow-2xl hover:shadow-[#3b82f6]/10 transition-all duration-500"
+                className="p-6 rounded-3xl bg-white/80 backdrop-blur-xl border border-gray-200/50 shadow-xl shadow-gray-900/5 hover:shadow-2xl hover:shadow-[#51faaa]/10 transition-all duration-500"
               >
                 <h3 className="text-xl font-bold text-gray-900 mb-6">
                   ⚡ Quick Actions
@@ -713,9 +713,9 @@ const TenantDashboard = () => {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => setShowAutoPay(true)}
-                    className="w-full p-6 text-left bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-200 rounded-2xl transition-all duration-300 flex items-center space-x-4 border border-gray-200/50 hover:border-[#3b82f6]/40 group shadow-sm hover:shadow-lg"
+                    className="w-full p-6 text-left bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-200 rounded-2xl transition-all duration-300 flex items-center space-x-4 border border-gray-200/50 hover:border-[#51faaa]/40 group shadow-sm hover:shadow-lg"
                   >
-                    <div className="w-16 h-16 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-[#3b82f6]/25">
+                    <div className="w-16 h-16 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-[#51faaa]/25">
                       <RefreshCw className="w-8 h-8 text-[#0a0c19]" />
                     </div>
                     <div>
@@ -728,9 +728,9 @@ const TenantDashboard = () => {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => setShowMaintenance(true)}
-                    className="w-full p-6 text-left bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-200 rounded-2xl transition-all duration-300 flex items-center space-x-4 border border-gray-200/50 hover:border-[#3b82f6]/40 group shadow-sm hover:shadow-lg"
+                    className="w-full p-6 text-left bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-200 rounded-2xl transition-all duration-300 flex items-center space-x-4 border border-gray-200/50 hover:border-[#51faaa]/40 group shadow-sm hover:shadow-lg"
                   >
-                    <div className="w-16 h-16 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-[#3b82f6]/25">
+                    <div className="w-16 h-16 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-[#51faaa]/25">
                       <Settings className="w-8 h-8 text-[#0a0c19]" />
                     </div>
                     <div>
@@ -743,9 +743,9 @@ const TenantDashboard = () => {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={handleDownloadReceipts}
-                    className="w-full p-6 text-left bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-200 rounded-2xl transition-all duration-300 flex items-center space-x-4 border border-gray-200/50 hover:border-[#3b82f6]/40 group shadow-sm hover:shadow-lg"
+                    className="w-full p-6 text-left bg-gradient-to-r from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-200 rounded-2xl transition-all duration-300 flex items-center space-x-4 border border-gray-200/50 hover:border-[#51faaa]/40 group shadow-sm hover:shadow-lg"
                   >
-                    <div className="w-16 h-16 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-[#3b82f6]/25">
+                    <div className="w-16 h-16 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-[#51faaa]/25">
                       <History className="w-8 h-8 text-[#0a0c19]" />
                     </div>
                     <div>
@@ -768,7 +768,7 @@ const TenantDashboard = () => {
                 <p className="text-gray-600 mb-4">Need help with payments, maintenance, or your account?</p>
                 <div className="flex gap-3">
                   <button className="flex-1 py-3 border-2 border-gray-200 rounded-xl text-gray-700 hover:bg-gray-50">Help Center</button>
-                  <button className="flex-1 py-3 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] font-bold rounded-xl">Contact Support</button>
+                  <button className="flex-1 py-3 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] font-bold rounded-xl">Contact Support</button>
                 </div>
               </motion.div>
             </div>
@@ -803,14 +803,14 @@ const TenantDashboard = () => {
                   className="w-full p-6 bg-gray-50 border border-gray-200 rounded-2xl hover:border-gray-300 hover:bg-gray-100 transition-all duration-300"
                 >
                   <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#3b82f6]/20 to-[#06b6d4]/20 border border-[#3b82f6]/30 rounded-2xl flex items-center justify-center">
-                      <Smartphone className="w-6 h-6 text-[#3b82f6]" />
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#51faaa]/20 to-[#dbd5a4]/20 border border-[#51faaa]/30 rounded-2xl flex items-center justify-center">
+                      <Smartphone className="w-6 h-6 text-[#51faaa]" />
                     </div>
                     <div className="text-left flex-1">
                       <p className="font-bold text-gray-900 text-lg">M-Pesa (Instant)</p>
                       <p className="text-gray-600">STK Push to {tenantData.phone}</p>
                     </div>
-                    <div className="bg-gradient-to-r from-[#3b82f6]/10 to-[#06b6d4]/10 text-[#3b82f6] px-3 py-1 rounded-full text-sm font-medium border border-[#3b82f6]/30">
+                    <div className="bg-gradient-to-r from-[#51faaa]/10 to-[#dbd5a4]/10 text-[#51faaa] px-3 py-1 rounded-full text-sm font-medium border border-[#51faaa]/30">
                       Most Popular
                     </div>
                   </div>
@@ -857,8 +857,8 @@ const TenantDashboard = () => {
             >
               {paymentProcessing ? (
                 <>
-                  <div className="w-20 h-20 bg-gradient-to-br from-[#3b82f6]/20 to-[#06b6d4]/20 border border-[#3b82f6]/30 rounded-3xl flex items-center justify-center mx-auto mb-8">
-                    <Smartphone className="w-10 h-10 text-[#3b82f6] animate-pulse" />
+                  <div className="w-20 h-20 bg-gradient-to-br from-[#51faaa]/20 to-[#dbd5a4]/20 border border-[#51faaa]/30 rounded-3xl flex items-center justify-center mx-auto mb-8">
+                    <Smartphone className="w-10 h-10 text-[#51faaa] animate-pulse" />
                   </div>
                   <h2 className="text-3xl font-bold text-gray-900 mb-4">
                     Check Your Phone! 📱
@@ -868,9 +868,9 @@ const TenantDashboard = () => {
                     <strong>{tenantData.phone}</strong>
                   </p>
                   <div className="flex items-center justify-center space-x-2 mb-8">
-                    <div className="w-3 h-3 bg-[#3b82f6] rounded-full animate-bounce"></div>
-                    <div className="w-3 h-3 bg-[#3b82f6] rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                    <div className="w-3 h-3 bg-[#3b82f6] rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                    <div className="w-3 h-3 bg-[#51faaa] rounded-full animate-bounce"></div>
+                    <div className="w-3 h-3 bg-[#51faaa] rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                    <div className="w-3 h-3 bg-[#51faaa] rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                   </div>
                   <p className="text-gray-500 font-medium">
                     Enter your M-Pesa PIN to complete payment
@@ -878,17 +878,17 @@ const TenantDashboard = () => {
                 </>
               ) : paymentSuccess ? (
                 <>
-                  <div className="w-20 h-20 bg-gradient-to-br from-[#3b82f6]/20 to-[#06b6d4]/20 border border-[#3b82f6]/30 rounded-3xl flex items-center justify-center mx-auto mb-8">
-                    <CheckCircle className="w-10 h-10 text-[#3b82f6]" />
+                  <div className="w-20 h-20 bg-gradient-to-br from-[#51faaa]/20 to-[#dbd5a4]/20 border border-[#51faaa]/30 rounded-3xl flex items-center justify-center mx-auto mb-8">
+                    <CheckCircle className="w-10 h-10 text-[#51faaa]" />
                   </div>
-                  <h2 className="text-3xl font-bold text-[#3b82f6] mb-4">
+                  <h2 className="text-3xl font-bold text-[#51faaa] mb-4">
                     Payment Successful! 🎉
                   </h2>
                   <p className="text-xl text-gray-600 mb-8">
                     Your rent payment of <strong>KSh {tenantData.monthlyRent.toLocaleString()}</strong> has been processed successfully.
                   </p>
-                  <div className="p-6 bg-gradient-to-r from-[#3b82f6]/10 to-[#06b6d4]/10 rounded-2xl border border-[#3b82f6]/30 mb-4">
-                    <div className="space-y-2 text-[#3b82f6] font-medium">
+                  <div className="p-6 bg-gradient-to-r from-[#51faaa]/10 to-[#dbd5a4]/10 rounded-2xl border border-[#51faaa]/30 mb-4">
+                    <div className="space-y-2 text-[#51faaa] font-medium">
                       <p>✅ Landlord notified</p>
                       <p>✅ Receipt sent via SMS</p>
                       <p>✅ +25 BumiHouse Score points</p>
@@ -923,7 +923,7 @@ const TenantDashboard = () => {
                   <select
                     value={autoPay.method}
                     onChange={(e) => setAutoPay(prev => ({ ...prev, method: e.target.value }))}
-                    className="w-full p-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3b82f6]"
+                    className="w-full p-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#51faaa]"
                   >
                     <option>M-Pesa</option>
                     <option>Bank</option>
@@ -938,13 +938,13 @@ const TenantDashboard = () => {
                     max="28"
                     value={autoPay.day}
                     onChange={(e) => setAutoPay(prev => ({ ...prev, day: Number(e.target.value) }))}
-                    className="w-full p-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3b82f6]"
+                    className="w-full p-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#51faaa]"
                   />
                 </div>
               </div>
               <div className="flex gap-3">
                 <button onClick={() => setShowAutoPay(false)} className="flex-1 py-3 border-2 border-gray-200 rounded-xl text-gray-700 hover:bg-gray-50">Cancel</button>
-                <button onClick={handleSaveAutoPay} className="flex-1 py-3 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-gray-900 font-bold rounded-xl">Save</button>
+                <button onClick={handleSaveAutoPay} className="flex-1 py-3 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-gray-900 font-bold rounded-xl">Save</button>
               </div>
             </motion.div>
           </motion.div>
@@ -973,7 +973,7 @@ const TenantDashboard = () => {
                   <select
                     value={maintenance.category}
                     onChange={(e) => setMaintenance(prev => ({ ...prev, category: e.target.value }))}
-                    className="w-full p-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3b82f6]"
+                    className="w-full p-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#51faaa]"
                   >
                     <option>General</option>
                     <option>Plumbing</option>
@@ -990,13 +990,13 @@ const TenantDashboard = () => {
                     onChange={(e) => setMaintenance(prev => ({ ...prev, description: e.target.value }))}
                     rows={4}
                     placeholder="Describe the issue..."
-                    className="w-full p-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3b82f6]"
+                    className="w-full p-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#51faaa]"
                   />
                 </div>
               </div>
               <div className="flex gap-3">
                 <button onClick={() => setShowMaintenance(false)} className="flex-1 py-3 border-2 border-gray-200 rounded-xl text-gray-700 hover:bg-gray-50">Cancel</button>
-                <button onClick={handleSubmitMaintenance} className="flex-1 py-3 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-gray-900 font-bold rounded-xl">Submit</button>
+                <button onClick={handleSubmitMaintenance} className="flex-1 py-3 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-gray-900 font-bold rounded-xl">Submit</button>
               </div>
             </motion.div>
           </motion.div>

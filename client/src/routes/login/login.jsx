@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import logoImage from '../../../assets/android-chrome-512x512.png';
 import { User, Lock, Mail, Eye, EyeOff, ArrowRight, Building2, Check, Star, Shield, Sparkles, AlertCircle, Loader2, ChevronRight, Zap, Award, TrendingUp, UserCheck, Briefcase, Moon, Sun } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +16,7 @@ const showNotification = (options) => {
     <div class="relative overflow-hidden rounded-2xl p-5 min-w-[300px] max-w-[400px] ${options.color === 'red'
       ? 'bg-gradient-to-br from-red-500 via-red-600 to-red-700'
       : options.color === 'blue'
-        ? 'bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600'
+        ? 'bg-gradient-to-br from-emerald-500 via-emerald-600 to-indigo-600'
         : 'bg-gradient-to-br from-emerald-500 via-emerald-600 to-teal-600'
     } text-white shadow-2xl backdrop-blur-xl border border-white/20">
       <!-- Animated background pattern -->
@@ -487,7 +487,7 @@ function ModernLogin() {
             </h1>
             <p className={`text-lg font-medium tracking-wide transition-colors duration-700 ease-out ${isDark ? 'text-gray-300' : 'text-gray-700'
               }`}>
-              Sign in to access your executive dashboard
+              Sign in to find your perfect home in Kenya
             </p>
           </div>
 

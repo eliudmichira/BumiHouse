@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { 
@@ -41,7 +41,7 @@ const RentaKenyaPage = () => {
       title: "Individual Landlord",
       description: "Perfect for managing 1-5 rental properties",
       icon: Home,
-      color: "from-blue-500 to-cyan-500", 
+      color: "from-emerald-500 to-secondary-300", 
       features: ["Property tracking", "Rent collection", "Maintenance logs", "Basic reports"],
       action: () => navigate('/trial-login'),
       buttonText: "Start Free Trial"
@@ -69,7 +69,7 @@ const RentaKenyaPage = () => {
       icon: BarChart3,
       title: "Predictive Cash Flow",
       description: "AI-powered dashboard showing monthly income forecasts, payment patterns, and recommended actions.",
-      color: "from-blue-500 to-cyan-600"
+      color: "from-emerald-500 to-secondary-400"
     },
     {
       icon: Shield,
@@ -93,7 +93,7 @@ const RentaKenyaPage = () => {
       icon: Globe,
       title: "Market Intelligence",
       description: "Real-time market data, rent pricing suggestions, and expansion recommendations.",
-      color: "from-teal-500 to-cyan-600"
+      color: "from-teal-500 to-secondary-400"
     }
   ];
 
@@ -103,13 +103,13 @@ const RentaKenyaPage = () => {
       title: "SaaS Subscriptions",
       description: "KSh 999-4,999/month based on units",
       icon: CreditCard,
-      color: "bg-gradient-to-br from-[#3b82f6] to-[#2563eb]"
+      color: "bg-gradient-to-br from-[#51faaa] to-[#2dd284]"
     },
     {
       title: "Transaction Fees",
       description: "0.5% on M-Pesa collections",
       icon: DollarSign,
-      color: "bg-gradient-to-br from-[#06b6d4] to-[#a59c47]"
+      color: "bg-gradient-to-br from-[#dbd5a4] to-[#a59c47]"
     },
     {
       title: "Premium Services",
@@ -121,7 +121,7 @@ const RentaKenyaPage = () => {
       title: "Marketplace Commissions",
       description: "5% from verified service providers",
       icon: Building2,
-      color: "bg-gradient-to-br from-blue-500 to-cyan-600"
+      color: "bg-gradient-to-br from-emerald-500 to-secondary-400"
     }
   ];
 
@@ -143,7 +143,7 @@ const RentaKenyaPage = () => {
       {/* Hero Section */}
       <section className="relative pt-20 pb-16 overflow-hidden">
         {/* Background Pattern */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#3b82f6]/5 via-transparent to-[#06b6d4]/5" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#51faaa]/5 via-transparent to-[#dbd5a4]/5" />
         <div className="absolute inset-0 opacity-40" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
         }} />
@@ -151,8 +151,8 @@ const RentaKenyaPage = () => {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#3b82f6]/20 to-[#06b6d4]/20 border border-[#3b82f6]/30 mb-8">
-              <Building2 className="w-4 h-4 text-[#3b82f6]" />
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#51faaa]/20 to-[#dbd5a4]/20 border border-[#51faaa]/30 mb-8">
+              <Building2 className="w-4 h-4 text-[#51faaa]" />
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                 Africa's First AI-Powered Rental Management Platform
               </span>
@@ -160,7 +160,7 @@ const RentaKenyaPage = () => {
 
             {/* Main Heading */}
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-[#3b82f6] via-[#2563eb] to-[#06b6d4] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#51faaa] via-[#2dd284] to-[#dbd5a4] bg-clip-text text-transparent">
                 RentBuyKenya
               </span>
             </h1>
@@ -177,7 +177,7 @@ const RentaKenyaPage = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <button 
                 onClick={() => setIsTrialModalOpen(true)}
-                className="px-8 py-4 bg-gradient-to-r from-[#3b82f6] to-[#2563eb] text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2"
+                className="px-8 py-4 bg-gradient-to-r from-[#51faaa] to-[#2dd284] text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2"
               >
                 Start Free Trial
                 <ArrowRight className="w-5 h-5" />
@@ -200,7 +200,7 @@ const RentaKenyaPage = () => {
               The Critical Problem We're Solving
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Kenya's rental market is <span className="font-bold text-[#3b82f6]">KSh 2.1 trillion annually</span>, 
+              Kenya's rental market is <span className="font-bold text-[#51faaa]">KSh 2.1 trillion annually</span>, 
               but 85% of landlords still operate like it's 1990
             </p>
           </div>
@@ -214,7 +214,7 @@ const RentaKenyaPage = () => {
                   key={stat.label}
                   className="text-center p-6 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 border border-gray-200 dark:border-gray-600"
                 >
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-[#3b82f6] to-[#2563eb] flex items-center justify-center">
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-[#51faaa] to-[#2dd284] flex items-center justify-center">
                     <IconComponent className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
@@ -255,7 +255,7 @@ const RentaKenyaPage = () => {
       </section>
 
       {/* Solution Section */}
-      <section className="py-20 bg-gradient-to-br from-[#3b82f6]/5 via-transparent to-[#06b6d4]/5">
+      <section className="py-20 bg-gradient-to-br from-[#51faaa]/5 via-transparent to-[#dbd5a4]/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
@@ -326,7 +326,7 @@ const RentaKenyaPage = () => {
           </div>
 
           {/* Unit Economics */}
-          <div className="mt-16 p-8 rounded-2xl bg-gradient-to-br from-[#3b82f6]/10 to-[#06b6d4]/10 border border-[#3b82f6]/20">
+          <div className="mt-16 p-8 rounded-2xl bg-gradient-to-br from-[#51faaa]/10 to-[#dbd5a4]/10 border border-[#51faaa]/20">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
               Unit Economics
             </h3>
@@ -338,7 +338,7 @@ const RentaKenyaPage = () => {
                 { label: "Break-even", value: "Month 8" }
               ].map((metric, index) => (
                 <div key={index} className="text-center">
-                  <div className="text-3xl font-bold text-[#3b82f6] mb-2">
+                  <div className="text-3xl font-bold text-[#51faaa] mb-2">
                     {metric.value}
                   </div>
                   <div className="text-gray-600 dark:text-gray-300 font-medium">
@@ -373,7 +373,7 @@ const RentaKenyaPage = () => {
                   <h3 className="font-semibold text-gray-900 dark:text-white">
                     {tech.name}
                   </h3>
-                  <span className="px-2 py-1 text-xs font-medium bg-[#3b82f6]/20 text-[#3b82f6] rounded-full">
+                  <span className="px-2 py-1 text-xs font-medium bg-[#51faaa]/20 text-[#51faaa] rounded-full">
                     {tech.category}
                   </span>
                 </div>
@@ -384,7 +384,7 @@ const RentaKenyaPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-[#3b82f6] to-[#2563eb]">
+      <section className="py-20 bg-gradient-to-br from-[#51faaa] to-[#2dd284]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Ready to Transform Your Rental Business?
@@ -395,7 +395,7 @@ const RentaKenyaPage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button 
               onClick={() => setIsTrialModalOpen(true)}
-              className="px-8 py-4 bg-white text-[#3b82f6] font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2"
+              className="px-8 py-4 bg-white text-[#51faaa] font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2"
             >
               Start Free Trial
               <ArrowRight className="w-5 h-5" />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+﻿import React, { useState, useEffect, useMemo } from 'react';
 import { Search, MapPin, Clock, X, TrendingUp } from 'lucide-react';
 import BottomSheet from '../ui/BottomSheet';
 import countyData from '../../assets/data/kenya-counties.json';
@@ -121,7 +121,7 @@ const SearchBottomSheet = ({ isOpen, onClose, onSearch, currentLocation }) => {
                             placeholder="Search by location, price, or type..."
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
-                            className="w-full h-12 pl-12 pr-4 rounded-xl bg-gray-100 dark:bg-gray-800 border-none focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+                            className="w-full h-12 pl-12 pr-4 rounded-xl bg-gray-100 dark:bg-gray-800 border-none focus:ring-2 focus:ring-emerald-500 outline-none transition-all"
                             autoFocus
                         />
                     </form>
@@ -136,7 +136,7 @@ const SearchBottomSheet = ({ isOpen, onClose, onSearch, currentLocation }) => {
                         }}
                         className="w-full flex items-center gap-4 p-3 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-xl transition-colors text-left"
                     >
-                        <div className="h-10 w-10 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 flex items-center justify-center">
+                        <div className="h-10 w-10 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 flex items-center justify-center">
                             <MapPin size={20} />
                         </div>
                         <div>
@@ -159,7 +159,7 @@ const SearchBottomSheet = ({ isOpen, onClose, onSearch, currentLocation }) => {
                                     onClick={() => handleSuggestionClick(suggestion)}
                                     className="w-full flex items-center gap-4 p-3 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-xl transition-colors text-left"
                                 >
-                                    <div className="h-10 w-10 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 flex items-center justify-center">
+                                    <div className="h-10 w-10 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 flex items-center justify-center">
                                         <TrendingUp size={20} />
                                     </div>
                                     <div className="flex-1">

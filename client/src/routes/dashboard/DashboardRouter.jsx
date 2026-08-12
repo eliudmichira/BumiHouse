@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import UserDashboard from './UserDashboard';
@@ -56,7 +56,7 @@ const DashboardRouter = () => {
       return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-black dark:via-gray-900 dark:to-black">
           <div className="relative mx-auto w-20 h-20 mb-6">
-            <div className="w-20 h-20 rounded-full border-2 border-[#3b82f6]/20 border-t-[#3b82f6] animate-spin" style={{ animationDuration: '1.5s' }} />
+            <div className="w-20 h-20 rounded-full border-2 border-[#51faaa]/20 border-t-[#51faaa] animate-spin" style={{ animationDuration: '1.5s' }} />
             <div className="absolute inset-3 rounded-full bg-white dark:bg-gray-900 flex items-center justify-center overflow-hidden shadow-inner">
               <img src={logoPadded} alt="HomesKE" className="w-10 h-10 object-contain" />
             </div>
@@ -109,7 +109,7 @@ const DashboardRouter = () => {
               </p>
               <button
                 onClick={() => window.history.back()}
-                className="px-6 py-3 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] rounded-xl font-medium hover:shadow-lg transition-all"
+                className="px-6 py-3 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] rounded-xl font-medium hover:shadow-lg transition-all"
               >
                 Go Back
               </button>

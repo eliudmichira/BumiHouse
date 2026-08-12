@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -262,15 +262,14 @@ const MobileMessages = () => {
                             exit={{ opacity: 0, x: -50 }}
                             className="h-full"
                         >
-                            <div className="flex flex-col h-full bg-white dark:bg-[#0a0c19]">
-                                <div className="px-4 pb-4 relative overflow-hidden" style={{ paddingTop: 'max(1.5rem, calc(env(safe-area-inset-top, 0px) + 1rem))' }}>
-                                    <div className="absolute inset-0 bg-gradient-to-br from-[#3b82f6]/10 via-transparent to-[#06b6d4]/10 opacity-50" />
+                            <div className="flex flex-col min-h-screen bg-white dark:bg-[#0a0c19]">
+                                <div className="px-4 pb-4 relative" style={{ paddingTop: 'max(1.5rem, calc(env(safe-area-inset-top, 0px) + 1rem))' }}>
                                     <div className="relative z-10 flex flex-col gap-4">
                                         <h2 className="text-2xl font-black text-gray-900 dark:text-white font-outfit tracking-tight">Messages</h2>
 
                                         <div className="relative">
-                                            <div className="absolute inset-0 bg-[#3b82f6]/5 blur-xl rounded-full" />
-                                            <div className="relative flex items-center bg-gray-100/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl border border-gray-200/50 dark:border-gray-700/50 px-4 py-3 focus-within:border-[#3b82f6]/50 transition-all">
+                                            <div className="absolute inset-0 bg-[#51faaa]/5 blur-xl rounded-full" />
+                                            <div className="relative flex items-center bg-gray-100/80 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl border border-gray-200/50 dark:border-gray-700/50 px-4 py-3 focus-within:border-[#51faaa]/50 transition-all">
                                                 <Search className="w-5 h-5 text-gray-400 mr-3" />
                                                 <input
                                                     type="text"
@@ -287,7 +286,7 @@ const MobileMessages = () => {
                                 <div className="flex-1 overflow-y-auto overflow-x-hidden pt-2 no-scrollbar">
                                     {loading ? (
                                         <div className="flex flex-col items-center justify-center h-40">
-                                            <Loader2 className="w-6 h-6 animate-spin text-[#3b82f6]" />
+                                            <Loader2 className="w-6 h-6 animate-spin text-[#51faaa]" />
                                         </div>
                                     ) : filteredConversations.length === 0 ? (
                                         <div className="flex flex-col items-center justify-center h-64 px-8 text-center">
@@ -312,12 +311,12 @@ const MobileMessages = () => {
                                             >
                                                 {/* Unread Indicator Vertical Bar */}
                                                 {conv.unreadCount > 0 && (
-                                                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-3/4 bg-[#3b82f6] rounded-r-full shadow-[0_0_8px_rgba(81,250,170,0.5)]" />
+                                                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-3/4 bg-[#51faaa] rounded-r-full shadow-[0_0_8px_rgba(81,250,170,0.5)]" />
                                                 )}
 
                                                 <div className="relative flex-shrink-0">
-                                                    <div className="w-14 h-14 rounded-full overflow-hidden relative shadow-lg group-hover:shadow-[#3b82f6]/20 transition-all duration-300">
-                                                        <div className="absolute inset-0 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] opacity-80" />
+                                                    <div className="w-14 h-14 rounded-full overflow-hidden relative shadow-lg group-hover:shadow-[#51faaa]/20 transition-all duration-300">
+                                                        <div className="absolute inset-0 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] opacity-80" />
                                                         <div className="absolute inset-0 flex items-center justify-center">
                                                             <span className="text-[#0a0c19] font-black text-xl">
                                                                 {(conv.user?.name || conv.user?.username || 'U')[0]}
@@ -341,9 +340,9 @@ const MobileMessages = () => {
                                                         {conv.lastMessage || 'Sent a property inquiry'}
                                                     </p>
                                                     <div className="flex items-center gap-2">
-                                                        <div className="px-2 py-0.5 bg-[#3b82f6]/10 rounded-md flex items-center gap-1.5 border border-[#3b82f6]/20">
-                                                            <Home className="w-3 h-3 text-[#3b82f6]" />
-                                                            <span className="text-[10px] font-black text-[#3b82f6] truncate max-w-[120px] uppercase tracking-tighter">
+                                                        <div className="px-2 py-0.5 bg-[#51faaa]/10 rounded-md flex items-center gap-1.5 border border-[#51faaa]/20">
+                                                            <Home className="w-3 h-3 text-[#51faaa]" />
+                                                            <span className="text-[10px] font-black text-[#51faaa] truncate max-w-[120px] uppercase tracking-tighter">
                                                                 {conv.property?.title || 'General Inquiry'}
                                                             </span>
                                                         </div>
@@ -369,7 +368,7 @@ const MobileMessages = () => {
                             <div className="fixed inset-0 z-[60] flex flex-col bg-white dark:bg-gray-900">
                                 {/* Immersive Header - Chat View */}
                                 <div className="px-4 pb-4 relative overflow-hidden border-b border-gray-100 dark:border-gray-800" style={{ paddingTop: 'max(1rem, calc(env(safe-area-inset-top, 0px) + 1rem))' }}>
-                                    <div className="absolute inset-0 bg-gradient-to-br from-[#3b82f6]/10 via-transparent to-[#06b6d4]/10 opacity-30" />
+                                    <div className="absolute inset-0 bg-gradient-to-br from-[#51faaa]/10 via-transparent to-[#dbd5a4]/10 opacity-30" />
                                     <div className="relative z-10 flex items-center justify-between">
                                         <div className="flex items-center gap-3">
                                             <button
@@ -383,7 +382,7 @@ const MobileMessages = () => {
                                             </button>
                                             <div className="relative">
                                                 <div className="w-12 h-12 rounded-full overflow-hidden relative shadow-lg">
-                                                    <div className="absolute inset-0 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] opacity-80" />
+                                                    <div className="absolute inset-0 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] opacity-80" />
                                                     <div className="absolute inset-0 flex items-center justify-center">
                                                         <span className="text-[#0a0c19] pt-10 font-black text-lg">
                                                             {(selectedConversation.user?.name || selectedConversation.user?.username || 'U')[0]}
@@ -477,7 +476,7 @@ const MobileMessages = () => {
                                                         className={`flex ${isOwn ? 'justify-end' : 'justify-start'}`}
                                                     >
                                                         <div className={`max-w-[80%] px-4 py-3 rounded-2xl shadow-sm relative ${isOwn
-                                                            ? 'bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] rounded-tr-none'
+                                                            ? 'bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] rounded-tr-none'
                                                             : 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-100 dark:border-gray-700/50 rounded-tl-none'
                                                             }`}>
                                                             {msg.imageUrl && (
@@ -493,7 +492,7 @@ const MobileMessages = () => {
                                                                 </span>
                                                                 {isOwn && (
                                                                     msg.status === 'sending' ? <Clock size={10} className="animate-pulse" /> :
-                                                                        msg.read ? <CheckCheck size={10} className="text-blue-500" /> : <Check size={10} />
+                                                                        msg.read ? <CheckCheck size={10} className="text-emerald-500" /> : <Check size={10} />
                                                                 )}
                                                             </div>
                                                         </div>
@@ -506,7 +505,7 @@ const MobileMessages = () => {
                                 </div>
 
                                 {/* Premium Input Area */}
-                                <div className="px-4 pt-4 bg-white dark:bg-[#0a0c19] border-t border-gray-100 dark:border-gray-800" style={{ paddingBottom: 'max(1.5rem, calc(env(safe-area-inset-bottom, 0px) + 1rem))' }}>
+                                <div className="px-4 pt-4 bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800" style={{ paddingBottom: 'max(1.5rem, calc(env(safe-area-inset-bottom, 0px) + 1rem))' }}>
                                     <input
                                         ref={fileInputRef}
                                         type="file"
@@ -521,7 +520,7 @@ const MobileMessages = () => {
                                                     key={i}
                                                     type="button"
                                                     onClick={() => handleEmojiSelect(emoji)}
-                                                    className="w-9 h-9 flex items-center justify-center text-xl rounded-lg hover:bg-[#3b82f6]/20 transition-colors"
+                                                    className="w-9 h-9 flex items-center justify-center text-xl rounded-lg hover:bg-[#51faaa]/20 transition-colors"
                                                 >
                                                     {emoji}
                                                 </button>
@@ -535,12 +534,12 @@ const MobileMessages = () => {
                                             </button>
                                         </div>
                                     )}
-                                    <div className="flex items-end gap-3 p-2 bg-gray-100/50 dark:bg-gray-800/50 backdrop-blur-md rounded-2xl border border-gray-200/50 dark:border-gray-700/50 focus-within:border-[#3b82f6]/50 transition-all shadow-inner">
+                                    <div className="flex items-end gap-3 p-2 bg-gray-100/50 dark:bg-gray-800/50 backdrop-blur-md rounded-2xl border border-gray-200/50 dark:border-gray-700/50 focus-within:border-[#51faaa]/50 transition-all shadow-inner">
                                         <button
                                             type="button"
                                             onClick={() => fileInputRef.current?.click()}
                                             disabled={uploadingAttachment}
-                                            className="p-3 text-gray-400 hover:text-[#3b82f6] transition-colors disabled:opacity-50"
+                                            className="p-3 text-gray-400 hover:text-[#51faaa] transition-colors disabled:opacity-50"
                                             aria-label="Attach image"
                                         >
                                             {uploadingAttachment ? <Loader2 size={20} className="animate-spin" /> : <Paperclip size={20} />}
@@ -570,7 +569,7 @@ const MobileMessages = () => {
                                                     setShowEmojiPicker(prev => !prev);
                                                     hapticLight();
                                                 }}
-                                                className={`p-3 rounded-xl transition-colors ${showEmojiPicker ? 'text-[#3b82f6] bg-[#3b82f6]/10' : 'text-gray-400 hover:text-[#3b82f6]'}`}
+                                                className={`p-3 rounded-xl transition-colors ${showEmojiPicker ? 'text-[#51faaa] bg-[#51faaa]/10' : 'text-gray-400 hover:text-[#51faaa]'}`}
                                                 aria-label="Insert emoji"
                                             >
                                                 <Smile size={20} />
@@ -581,7 +580,7 @@ const MobileMessages = () => {
                                                     animate={{ scale: 1, opacity: 1 }}
                                                     onClick={handleSendMessage}
                                                     disabled={sendingMessage}
-                                                    className="p-3 bg-[#3b82f6] text-[#0a0c19] rounded-xl shadow-lg hover:shadow-[#3b82f6]/30 transition-shadow"
+                                                    className="p-3 bg-[#51faaa] text-[#0a0c19] rounded-xl shadow-lg hover:shadow-[#51faaa]/30 transition-shadow"
                                                 >
                                                     {sendingMessage ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
                                                 </motion.button>

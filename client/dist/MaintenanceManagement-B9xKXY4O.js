@@ -1,1 +1,0 @@
-import{j as a}from"./react-vendor-DGfG09om.js";import{P as e}from"./PlaceholderDashboard-DLzyDbTi.js";import{bh as r}from"./ui-DINKT3WH.js";import"./vendor-CjofE4th.js";const t=()=>a.jsx(e,{title:"Maintenance Management",description:"Handle tenant maintenance requests and track repairs",icon:r});export{t as default};

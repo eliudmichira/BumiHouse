@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import MaterialIcon from './MaterialIcon';
 
 const MaterialIconExample = () => {
@@ -14,7 +14,7 @@ const MaterialIconExample = () => {
           Basic Icons (Outlined)
         </h3>
         <div className="flex flex-wrap gap-4">
-          <MaterialIcon icon="home" size={24} className="text-blue-500" />
+          <MaterialIcon icon="home" size={24} className="text-emerald-500" />
           <MaterialIcon icon="search" size={24} className="text-green-500" />
           <MaterialIcon icon="favorite" size={24} className="text-red-500" />
           <MaterialIcon icon="settings" size={24} className="text-purple-500" />
@@ -28,11 +28,11 @@ const MaterialIconExample = () => {
           Different Variants
         </h3>
         <div className="flex flex-wrap gap-4">
-          <MaterialIcon icon="home" variant="filled" size={24} className="text-blue-500" />
-          <MaterialIcon icon="home" variant="outlined" size={24} className="text-blue-500" />
-          <MaterialIcon icon="home" variant="rounded" size={24} className="text-blue-500" />
-          <MaterialIcon icon="home" variant="sharp" size={24} className="text-blue-500" />
-          <MaterialIcon icon="home" variant="twoTone" size={24} className="text-blue-500" />
+          <MaterialIcon icon="home" variant="filled" size={24} className="text-emerald-500" />
+          <MaterialIcon icon="home" variant="outlined" size={24} className="text-emerald-500" />
+          <MaterialIcon icon="home" variant="rounded" size={24} className="text-emerald-500" />
+          <MaterialIcon icon="home" variant="sharp" size={24} className="text-emerald-500" />
+          <MaterialIcon icon="home" variant="twoTone" size={24} className="text-emerald-500" />
         </div>
       </div>
 
@@ -65,7 +65,7 @@ const MaterialIconExample = () => {
           <MaterialIcon 
             icon="thumb_up" 
             size={32} 
-            className="text-blue-500 cursor-pointer hover:text-blue-700 transition-colors" 
+            className="text-emerald-500 cursor-pointer hover:text-emerald-700 transition-colors" 
             onClick={() => alert('Thumbs up clicked!')}
           />
           <MaterialIcon 
@@ -98,7 +98,7 @@ const MaterialIconExample = () => {
         </h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="flex flex-col items-center space-y-2 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <MaterialIcon icon="home" size={32} className="text-blue-500" />
+            <MaterialIcon icon="home" size={32} className="text-emerald-500" />
             <span className="text-sm text-gray-600 dark:text-gray-400">Home</span>
           </div>
           <div className="flex flex-col items-center space-y-2 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
@@ -126,7 +126,7 @@ const MaterialIconExample = () => {
             <span className="text-sm text-gray-600 dark:text-gray-400">Parking</span>
           </div>
           <div className="flex flex-col items-center space-y-2 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <MaterialIcon icon="wifi" size={32} className="text-cyan-500" />
+            <MaterialIcon icon="wifi" size={32} className="text-secondary-300" />
             <span className="text-sm text-gray-600 dark:text-gray-400">WiFi</span>
           </div>
         </div>

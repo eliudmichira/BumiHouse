@@ -1,4 +1,4 @@
-import * as React from 'react';
+﻿import * as React from 'react';
 import { RMap, RMarker, RPopup, RMapContextProvider } from 'maplibre-react-components';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
@@ -27,15 +27,15 @@ function MapLibreMapComponent({ data = [], highlightedProperty, onMarkerHover })
             >
               <div
                 style={{
-                  background: highlightedProperty === property.id ? '#2563eb' : 'white',
-                  border: '2px solid #2563eb',
+                  background: highlightedProperty === property.id ? '#2dd284' : 'white',
+                  border: '2px solid #2dd284',
                   borderRadius: '50%',
                   width: 24,
                   height: 24,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: highlightedProperty === property.id ? 'white' : '#2563eb',
+                  color: highlightedProperty === property.id ? 'white' : '#2dd284',
                   fontWeight: 700,
                   fontSize: 12,
                   boxShadow: '0 2px 6px rgba(0,0,0,0.15)',

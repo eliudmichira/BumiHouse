@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../../context/AuthContext';
@@ -210,8 +210,8 @@ const UserDashboard = () => {
 
         <div className={`p-6 rounded-2xl ${isDark ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center">
-              <Search className="w-6 h-6 text-blue-500" />
+            <div className="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/20 flex items-center justify-center">
+              <Search className="w-6 h-6 text-emerald-500" />
             </div>
             <div>
               <p className="text-sm text-gray-600 dark:text-gray-400">Saved Searches</p>
@@ -251,7 +251,7 @@ const UserDashboard = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <button
             onClick={() => navigate('/desktop/properties')}
-            className="flex items-center gap-3 p-4 rounded-xl bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] hover:shadow-lg transition-all"
+            className="flex items-center gap-3 p-4 rounded-xl bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] hover:shadow-lg transition-all"
           >
             <Search className="w-5 h-5" />
             <span className="font-medium">Search Properties</span>
@@ -303,14 +303,14 @@ const UserDashboard = () => {
                   </div>
                 </div>
                 <div className="mt-3">
-                  <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-[#3b82f6] transition-colors">
+                  <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-[#51faaa] transition-colors">
                     {property.title}
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-1 mt-1">
                     <MapPin className="w-3 h-3" />
                     {property.location?.address || 'Location not specified'}
                   </p>
-                  <p className="text-lg font-bold text-[#3b82f6] mt-2">
+                  <p className="text-lg font-bold text-[#51faaa] mt-2">
                     KES {property.price?.toLocaleString() || '0'}
                   </p>
                 </div>
@@ -326,7 +326,7 @@ const UserDashboard = () => {
             </p>
             <button
               onClick={() => navigate('/desktop/properties')}
-              className="px-6 py-3 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] rounded-xl font-medium hover:shadow-lg transition-all"
+              className="px-6 py-3 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] rounded-xl font-medium hover:shadow-lg transition-all"
             >
               Browse Properties
             </button>
@@ -358,7 +358,7 @@ const UserDashboard = () => {
                     </p>
                   </div>
                 </div>
-                <button className="px-4 py-2 bg-[#3b82f6] text-[#111] rounded-lg hover:bg-[#45e595] transition-colors">
+                <button className="px-4 py-2 bg-[#51faaa] text-[#111] rounded-lg hover:bg-[#45e595] transition-colors">
                   Search Again
                 </button>
               </div>
@@ -373,7 +373,7 @@ const UserDashboard = () => {
             </p>
             <button
               onClick={() => navigate('/desktop/properties')}
-              className="px-6 py-3 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] rounded-xl font-medium hover:shadow-lg transition-all"
+              className="px-6 py-3 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] rounded-xl font-medium hover:shadow-lg transition-all"
             >
               Start Searching
             </button>
@@ -400,8 +400,8 @@ const UserDashboard = () => {
 
               return (
                 <div key={activity.id} className="flex items-center gap-4 p-4 rounded-xl bg-gray-50 dark:bg-gray-700">
-                  <div className="w-10 h-10 rounded-full bg-[#3b82f6]/20 flex items-center justify-center">
-                    <IconComponent className="w-5 h-5 text-[#3b82f6]" />
+                  <div className="w-10 h-10 rounded-full bg-[#51faaa]/20 flex items-center justify-center">
+                    <IconComponent className="w-5 h-5 text-[#51faaa]" />
                   </div>
                   <div className="flex-1">
                     <p className="font-medium text-gray-900 dark:text-white">
@@ -451,14 +451,14 @@ const UserDashboard = () => {
                   </div>
                   {property.reason && (
                     <div className="absolute bottom-3 left-3">
-                      <div className="px-2 py-1 rounded-full bg-[#3b82f6]/90 text-[#0a0c19] text-xs font-medium">
+                      <div className="px-2 py-1 rounded-full bg-[#51faaa]/90 text-[#0a0c19] text-xs font-medium">
                         {property.reason}
                       </div>
                     </div>
                   )}
                 </div>
                 <div className="mt-3">
-                  <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-[#3b82f6] transition-colors">
+                  <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-[#51faaa] transition-colors">
                     {property.title}
                   </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-1 mt-1">
@@ -466,7 +466,7 @@ const UserDashboard = () => {
                     {property.location?.address || property.location?.city || 'Location not specified'}
                   </p>
                   <div className="flex items-center justify-between mt-2">
-                    <p className="text-lg font-bold text-[#3b82f6]">
+                    <p className="text-lg font-bold text-[#51faaa]">
                       KES {property.price?.toLocaleString() || '0'}
                     </p>
                     <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
@@ -494,7 +494,7 @@ const UserDashboard = () => {
             </p>
             <button
               onClick={() => navigate('/desktop/properties')}
-              className="px-6 py-3 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] rounded-xl font-medium hover:shadow-lg transition-all"
+              className="px-6 py-3 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] rounded-xl font-medium hover:shadow-lg transition-all"
             >
               Explore Properties
             </button>
@@ -533,11 +533,11 @@ const UserDashboard = () => {
                 
                 <div className="space-y-3 mb-4">
                   <div className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
-                    <Calendar className="w-4 h-4 text-[#3b82f6]" />
+                    <Calendar className="w-4 h-4 text-[#51faaa]" />
                     <span>{booking.viewingDate}</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
-                    <Clock className="w-4 h-4 text-[#3b82f6]" />
+                    <Clock className="w-4 h-4 text-[#51faaa]" />
                     <span>{booking.viewingTime}</span>
                   </div>
                   <div className="flex items-center gap-2">
@@ -574,7 +574,7 @@ const UserDashboard = () => {
             </p>
             <button
               onClick={() => navigate('/desktop/properties')}
-              className="px-6 py-3 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] rounded-xl font-medium hover:shadow-lg transition-all"
+              className="px-6 py-3 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] rounded-xl font-medium hover:shadow-lg transition-all"
             >
               Explore Properties
             </button>
@@ -620,8 +620,8 @@ const UserDashboard = () => {
       <div className="space-y-6">
         <div className={`p-6 rounded-2xl ${isDark ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 rounded-xl bg-[#3b82f6]/20 flex items-center justify-center">
-              <TrendingUp className="w-6 h-6 text-[#3b82f6]" />
+            <div className="w-12 h-12 rounded-xl bg-[#51faaa]/20 flex items-center justify-center">
+              <TrendingUp className="w-6 h-6 text-[#51faaa]" />
             </div>
             <div>
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Market Insights</h2>
@@ -636,7 +636,7 @@ const UserDashboard = () => {
             </div>
             <div className={`p-6 rounded-xl border ${isDark ? 'bg-gray-700 border-gray-600' : 'bg-gray-50 border-gray-200'}`}>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Average Market Price</p>
-              <p className="text-3xl font-bold text-[#3b82f6]">
+              <p className="text-3xl font-bold text-[#51faaa]">
                 {stats.avgPrice ? new Intl.NumberFormat('en-KE', { style: 'currency', currency: 'KES', maximumFractionDigits: 0 }).format(stats.avgPrice) : '—'}
               </p>
             </div>
@@ -655,7 +655,7 @@ const UserDashboard = () => {
                                 cursor={{fill: isDark ? '#374151' : '#f3f4f6'}}
                                 contentStyle={{ backgroundColor: isDark ? '#1f2937' : '#ffffff', borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
                             />
-                            <Bar dataKey="count" name="Properties" fill="#3b82f6" radius={[4, 4, 0, 0]} maxBarSize={40} />
+                            <Bar dataKey="count" name="Properties" fill="#51faaa" radius={[4, 4, 0, 0]} maxBarSize={40} />
                         </BarChart>
                     </ResponsiveContainer>
                  </div>

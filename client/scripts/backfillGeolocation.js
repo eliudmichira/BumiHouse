@@ -19,7 +19,7 @@ const countyData = [
 ];
 
 const firebaseConfig = {
-    apiKey: "REDACTED",
+    apiKey: process.env.VITE_FIREBASE_API_KEY || "YOUR_FIREBASE_API_KEY",
     authDomain: "homeske.firebaseapp.com",
     projectId: "homeske",
     storageBucket: "homeske.firebasestorage.app",
@@ -60,7 +60,7 @@ function getCountyFromCoords(lat, lng) {
 async function backfill() {
     console.log('🚀 Starting Geolocation Backfill (Authenticated)...');
     try {
-        await signInWithEmailAndPassword(auth, "support@homeske.com", "REDACTED");
+        await signInWithEmailAndPassword(auth, process.env.FIREBASE_ADMIN_EMAIL || "YOUR_ADMIN_EMAIL", process.env.FIREBASE_ADMIN_PASSWORD || "YOUR_ADMIN_PASSWORD");
         console.log("✅ Authenticated as Admin.");
 
         const snap = await getDocs(collection(db, 'properties'));

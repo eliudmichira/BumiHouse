@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Camera, Loader2 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
@@ -84,7 +84,7 @@ const MobileEditProfilePage = () => {
                     <button 
                         onClick={handleSave} 
                         disabled={saving} 
-                        className="px-4 py-1.5 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] font-bold rounded-full disabled:opacity-50 text-sm shadow-lg shadow-[#3b82f6]/20"
+                        className="px-4 py-1.5 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] font-bold rounded-full disabled:opacity-50 text-sm shadow-lg shadow-[#51faaa]/20"
                     >
                         {saving ? <Loader2 size={18} className="animate-spin" /> : 'Save'}
                     </button>
@@ -109,7 +109,7 @@ const MobileEditProfilePage = () => {
                         whileHover={{ scale: 1.05 }}
                         transition={{ type: 'spring', stiffness: 300 }}
                     >
-                        <div className="w-32 h-32 rounded-full overflow-hidden p-1 bg-gradient-to-br from-[#3b82f6] via-[#45e695] to-[#06b6d4] shadow-2xl">
+                        <div className="w-32 h-32 rounded-full overflow-hidden p-1 bg-gradient-to-br from-[#51faaa] via-[#45e695] to-[#dbd5a4] shadow-2xl">
                             <div className={`w-full h-full rounded-full overflow-hidden flex items-center justify-center text-4xl font-black ${isDark ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}`}>
                                 {photoSrc ? (
                                     <img src={photoSrc} alt="" className="w-full h-full object-cover" />
@@ -119,7 +119,7 @@ const MobileEditProfilePage = () => {
                             </div>
                         </div>
                         <motion.span 
-                            className="absolute bottom-1 right-1 w-10 h-10 rounded-full bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] flex items-center justify-center shadow-xl border-4 border-[#0a0c19]"
+                            className="absolute bottom-1 right-1 w-10 h-10 rounded-full bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] flex items-center justify-center shadow-xl border-4 border-[#0a0c19]"
                             whileHover={{ rotate: 15 }}
                         >
                             <Camera size={20} />
@@ -130,40 +130,34 @@ const MobileEditProfilePage = () => {
                 </div>
 
                 {/* Form Fields */}
-                <div className="space-y-6">
-                    <div className="space-y-2">
-                        <label className={`block text-xs font-black uppercase tracking-widest ml-1 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Display Name</label>
-                        <div className="relative group">
-                            <input 
-                                type="text" 
-                                value={displayName} 
-                                onChange={(e) => setDisplayName(e.target.value)} 
-                                placeholder="Enter your name" 
-                                className={`w-full rounded-2xl border px-5 py-4 transition-all outline-none ${
-                                    isDark 
-                                    ? 'bg-white/5 border-white/10 text-white placeholder-gray-600 focus:border-[#3b82f6]/50 focus:bg-white/10' 
-                                    : 'bg-white border-gray-200 text-gray-900 focus:border-[#3b82f6]'
-                                }`} 
-                            />
-                        </div>
+                <div className="space-y-8">
+                    <div>
+                        <label className={`block text-[10px] font-semibold uppercase tracking-[0.18em] mb-2 ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>Display name</label>
+                        <input
+                            type="text"
+                            value={displayName}
+                            onChange={(e) => setDisplayName(e.target.value)}
+                            placeholder="Enter your name"
+                            className={`w-full bg-transparent border-0 border-b py-3 text-[15px] outline-none transition-colors ${
+                                isDark
+                                ? 'border-white/10 text-white placeholder-gray-600 focus:border-[#51faaa]'
+                                : 'border-gray-200 text-gray-900 placeholder-gray-400 focus:border-[#51faaa]'
+                            }`}
+                        />
                     </div>
 
-                    <div className="space-y-2">
-                        <label className={`block text-xs font-black uppercase tracking-widest ml-1 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Account Email</label>
-                        <div className={`rounded-2xl px-5 py-4 border ${isDark ? 'bg-white/5 border-white/5 text-gray-500' : 'bg-gray-100 border-gray-200 text-gray-500'}`}>
-                            <p className="text-sm font-medium">{currentUser?.email || '—'}</p>
+                    <div>
+                        <label className={`block text-[10px] font-semibold uppercase tracking-[0.18em] mb-2 ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>Account email</label>
+                        <div className={`w-full border-b py-3 text-[15px] ${isDark ? 'border-white/10 text-gray-500' : 'border-gray-200 text-gray-500'}`}>
+                            {currentUser?.email || '—'}
                         </div>
-                        <p className="text-[10px] text-gray-500 ml-1">Email cannot be changed for security reasons.</p>
+                        <p className={`mt-2 text-[11px] ${isDark ? 'text-gray-600' : 'text-gray-400'}`}>Email cannot be changed for security reasons.</p>
                     </div>
                 </div>
 
-                {/* Extra info/Help */}
-                <div className={`rounded-3xl p-6 ${isDark ? 'bg-gradient-to-br from-[#3b82f6]/10 to-transparent border border-[#3b82f6]/20' : 'bg-blue-50 border border-blue-100'}`}>
-                    <h4 className={`text-sm font-bold mb-2 ${isDark ? 'text-blue-400' : 'text-blue-900'}`}>Tip</h4>
-                    <p className={`text-xs leading-relaxed ${isDark ? 'text-gray-400' : 'text-blue-700'}`}>
-                        Your display name is visible to agents and other users. Use your real name to build trust within the BumiHouse community.
-                    </p>
-                </div>
+                <p className={`text-[12px] leading-relaxed ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>
+                    Your display name is visible to agents and other users. Use your real name to build trust within the BumiHouse community.
+                </p>
             </div>
         </div>
     );

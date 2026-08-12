@@ -1,23 +1,23 @@
-// Enterprise-level Design System
+﻿// Enterprise-level Design System
 export const designTokens = {
   // Brand Colors (Google Material Design 3 inspired)
   colors: {
     primary: {
-      50: '#eff6ff',
-      100: '#dbeafe',
-      200: '#bfdbfe',
-      300: '#93c5fd',
-      400: '#60a5fa',
-      500: '#3b82f6',
-      600: '#2563eb',
-      700: '#1d4ed8',
-      800: '#1e40af',
-      900: '#1e3a8a'
+      50: '#f0fdf7',
+      100: '#dcfce7',
+      200: '#bbf7d0',
+      300: '#86efb8',
+      400: '#51faaa',
+      500: '#51faaa',
+      600: '#2dd284',
+      700: '#1fb372',
+      800: '#15803d',
+      900: '#0f5132'
     },
     secondary: {
       50: '#fefdf8',
       100: '#fefbf3',
-      200: '#06b6d4',
+      200: '#dbd5a4',
       300: '#c9c285',
       400: '#b7af66',
       500: '#a59c47'
@@ -53,9 +53,9 @@ export const designTokens = {
         dark: '#b91c1c'
       },
       info: {
-        light: '#dbeafe',
-        base: '#2563eb',
-        dark: '#1d4ed8'
+        light: '#dcfce7',
+        base: '#2dd284',
+        dark: '#1fb372'
       }
     }
   },
@@ -210,10 +210,10 @@ export const designTokens = {
 export const componentVariants = {
   button: {
     primary: {
-      bg: 'bg-gradient-to-r from-blue-500 to-cyan-500',
+      bg: 'bg-gradient-to-r from-emerald-500 to-secondary-300',
       text: 'text-white',
-      hover: 'hover:from-blue-600 hover:to-cyan-600',
-      focus: 'focus:ring-4 focus:ring-blue-500/25',
+      hover: 'hover:from-emerald-600 hover:to-secondary-400',
+      focus: 'focus:ring-4 focus:ring-emerald-500/25',
       shadow: 'shadow-primary'
     },
     secondary: {

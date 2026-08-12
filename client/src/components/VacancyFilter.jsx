@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { 
   Filter, 
   Users, 
@@ -51,8 +51,8 @@ const VacancyFilter = ({ onFilterChange, activeFilters = {} }) => {
       key: 'waitlist',
       label: 'Waitlist Only',
       icon: Users,
-      color: 'text-blue-500',
-      bgColor: 'bg-blue-100 dark:bg-blue-900/20',
+      color: 'text-emerald-500',
+      bgColor: 'bg-emerald-100 dark:bg-emerald-900/20',
       description: 'Join waitlist for future availability'
     }
   ];
@@ -82,7 +82,7 @@ const VacancyFilter = ({ onFilterChange, activeFilters = {} }) => {
         onClick={() => setIsOpen(!isOpen)}
         className={`flex items-center space-x-2 px-4 py-2 rounded-lg border transition-all ${
           activeFilterCount > 0
-            ? 'bg-[#3b82f6] text-[#0a0c19] border-[#3b82f6]'
+            ? 'bg-[#51faaa] text-[#0a0c19] border-[#51faaa]'
             : isDark
               ? 'bg-gray-800 text-gray-300 border-gray-600 hover:bg-gray-700'
               : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
@@ -91,7 +91,7 @@ const VacancyFilter = ({ onFilterChange, activeFilters = {} }) => {
         <Filter className="w-4 h-4" />
         <span className="text-sm font-medium">Vacancy Filter</span>
         {activeFilterCount > 0 && (
-          <span className="bg-[#0a0c19] text-[#3b82f6] text-xs font-bold px-2 py-0.5 rounded-full">
+          <span className="bg-[#0a0c19] text-[#51faaa] text-xs font-bold px-2 py-0.5 rounded-full">
             {activeFilterCount}
           </span>
         )}
@@ -140,7 +140,7 @@ const VacancyFilter = ({ onFilterChange, activeFilters = {} }) => {
                     onClick={() => handleFilterToggle(option.key)}
                     className={`w-full flex items-start space-x-3 p-3 rounded-lg transition-all ${
                       isActive
-                        ? `${option.bgColor} border-2 border-[#3b82f6]`
+                        ? `${option.bgColor} border-2 border-[#51faaa]`
                         : isDark
                           ? 'hover:bg-gray-700 border border-gray-600'
                           : 'hover:bg-gray-50 border border-gray-200'
@@ -162,7 +162,7 @@ const VacancyFilter = ({ onFilterChange, activeFilters = {} }) => {
                           {option.label}
                         </span>
                         {isActive && (
-                          <div className="w-2 h-2 bg-[#3b82f6] rounded-full" />
+                          <div className="w-2 h-2 bg-[#51faaa] rounded-full" />
                         )}
                       </div>
                       <p className={`text-xs mt-1 ${

@@ -1,4 +1,4 @@
-.property-details {
+﻿.property-details {
   .photo-gallery {
     .main-image {
       transition: transform 0.3s ease;
@@ -16,7 +16,7 @@
       }
       
       &.active {
-        border-color: #3B82F6;
+        border-color: #51faaa;
         box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
       }
     }

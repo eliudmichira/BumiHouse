@@ -1637,7 +1637,7 @@ export const trialAPI = {
       // Send notification to sales team
       await addDoc(collection(db, 'emailQueue'), {
         type: 'sales_notification',
-        recipientEmail: 'eliudmichira7@gmail.com',
+        recipientEmail: 'your-email@gmail.com',
         templateData: {
           fullName: formData.fullName,
           email: formData.email,

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
 import {
   Home,
@@ -37,7 +37,7 @@ export const PropertyMobileNavItem = ({
         flex flex-col items-center justify-center w-16 h-16 rounded-xl
         transition-all duration-200 relative
         ${active
-          ? 'bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] shadow-lg shadow-[#3b82f6]/30'
+          ? 'bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] shadow-lg shadow-[#51faaa]/30'
           : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
         }
       `}
@@ -89,14 +89,14 @@ export const PropertyCenterActionButton = ({
           className="absolute inset-0 rounded-full"
           animate={{
             background: [
-              "linear-gradient(45deg, #3b82f6, #06b6d4, #3b82f6, #06b6d4)",
-              "linear-gradient(90deg, #06b6d4, #3b82f6, #06b6d4, #3b82f6)",
-              "linear-gradient(135deg, #3b82f6, #06b6d4, #3b82f6, #06b6d4)",
-              "linear-gradient(180deg, #06b6d4, #3b82f6, #06b6d4, #3b82f6)",
-              "linear-gradient(225deg, #3b82f6, #06b6d4, #3b82f6, #06b6d4)",
-              "linear-gradient(270deg, #06b6d4, #3b82f6, #06b6d4, #3b82f6)",
-              "linear-gradient(315deg, #3b82f6, #06b6d4, #3b82f6, #06b6d4)",
-              "linear-gradient(360deg, #06b6d4, #3b82f6, #06b6d4, #3b82f6)"
+              "linear-gradient(45deg, #51faaa, #dbd5a4, #51faaa, #dbd5a4)",
+              "linear-gradient(90deg, #dbd5a4, #51faaa, #dbd5a4, #51faaa)",
+              "linear-gradient(135deg, #51faaa, #dbd5a4, #51faaa, #dbd5a4)",
+              "linear-gradient(180deg, #dbd5a4, #51faaa, #dbd5a4, #51faaa)",
+              "linear-gradient(225deg, #51faaa, #dbd5a4, #51faaa, #dbd5a4)",
+              "linear-gradient(270deg, #dbd5a4, #51faaa, #dbd5a4, #51faaa)",
+              "linear-gradient(315deg, #51faaa, #dbd5a4, #51faaa, #dbd5a4)",
+              "linear-gradient(360deg, #dbd5a4, #51faaa, #dbd5a4, #51faaa)"
             ]
           }}
           transition={{
@@ -118,7 +118,7 @@ export const PropertyCenterActionButton = ({
             ease: "linear"
           }}
           style={{
-            background: "conic-gradient(from 0deg, #3b82f6, #06b6d4, #3b82f6)",
+            background: "conic-gradient(from 0deg, #51faaa, #dbd5a4, #51faaa)",
             mask: "radial-gradient(circle, transparent 60%, black 70%)",
             WebkitMask: "radial-gradient(circle, transparent 60%, black 70%)"
           }}
@@ -400,9 +400,9 @@ export const PropertyMobileButton = ({
   const { isDark } = useTheme();
 
   const variantClasses = {
-    primary: 'bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] hover:shadow-lg',
+    primary: 'bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] hover:shadow-lg',
     secondary: isDark ? 'bg-gray-700 text-white hover:bg-gray-600' : 'bg-gray-200 text-gray-900 hover:bg-gray-300',
-    outline: 'border-2 border-[#3b82f6] text-[#3b82f6] hover:bg-[#3b82f6] hover:text-[#0a0c19]',
+    outline: 'border-2 border-[#51faaa] text-[#51faaa] hover:bg-[#51faaa] hover:text-[#0a0c19]',
     ghost: isDark ? 'text-gray-400 hover:text-white hover:bg-gray-800' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100',
     danger: 'bg-red-500 text-white hover:bg-red-600'
   };

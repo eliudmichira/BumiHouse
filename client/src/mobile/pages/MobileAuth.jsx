@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+﻿import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import logoImage from '../../../assets/android-chrome-512x512.png';
 import { useTheme } from '../../context/ThemeContext';
@@ -17,7 +17,7 @@ import { Chrome, Loader2, X, Sun, Moon, ArrowLeft, Check, AlertCircle, User, Use
 import { showToast, ToastContainer } from '../../components/Toast';
 import { Capacitor } from '@capacitor/core';
 import Logo from '../../components/Logo';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import AgentVerificationRequest from '../../components/AgentVerificationRequest';
 import Privacy from '../../../pages/Privacy';
 import Terms from '../../../pages/Terms';
@@ -64,7 +64,7 @@ const AnimatedBackground = React.memo(({ isDark, showGradients }) => (
                 <div
                     className="absolute w-[500px] h-[500px] rounded-full opacity-20 blur-3xl"
                     style={{
-                        background: 'radial-gradient(circle, #2563eb 0%, transparent 70%)',
+                        background: 'radial-gradient(circle, #2dd284 0%, transparent 70%)',
                         top: '-15%',
                         right: '-10%',
                         animation: 'float 8s ease-in-out infinite'
@@ -74,7 +74,7 @@ const AnimatedBackground = React.memo(({ isDark, showGradients }) => (
                 <div
                     className="absolute w-[400px] h-[400px] rounded-full opacity-15 blur-3xl"
                     style={{
-                        background: 'radial-gradient(circle, #3b82f6 0%, transparent 70%)',
+                        background: 'radial-gradient(circle, #51faaa 0%, transparent 70%)',
                         bottom: '-10%',
                         left: '-15%',
                         animation: 'float 10s ease-in-out infinite reverse'
@@ -140,8 +140,11 @@ const MobileAuth = () => {
     }, []);
 
     // State
+    const [searchParams] = useSearchParams();
     const [isLoading, setIsLoading] = useState(false);
-    const [isSignUp, setIsSignUp] = useState(false);
+    const [isSignUp, setIsSignUp] = useState(
+        ['signup', 'register'].includes((searchParams.get('mode') || '').toLowerCase())
+    );
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -355,17 +358,16 @@ const MobileAuth = () => {
                 <AnimatedBackground isDark={isDark} showGradients={isSignUp && !showForgotPassword} />
             </div>
 
-            {/* Top Controls */}
+            {/* Top Controls — toggle between Sign In and Create Account */}
             <div className="absolute top-[calc(1rem+env(safe-area-inset-top))] left-6 z-50">
                 <button
-                    onClick={() => navigate(-1)}
-                    className={`p-2 rounded-full backdrop-blur-md border transition-all duration-300 ${isDark
+                    onClick={() => { setShowForgotPassword(false); setIsSignUp(prev => !prev); }}
+                    className={`px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-md border transition-all duration-300 ${isDark
                         ? 'bg-white/10 border-white/10 text-white hover:bg-white/20'
                         : 'bg-black/5 border-black/5 text-black hover:bg-black/10'
                         }`}
-                    aria-label="Back"
                 >
-                    <ArrowLeft size={24} />
+                    {isSignUp ? 'Sign In' : 'Create Account'}
                 </button>
             </div>
 
@@ -564,7 +566,7 @@ const MobileAuth = () => {
                             disabled={isLoading || !email || !password || (isSignUp && (!confirmPassword || password !== confirmPassword || !acceptedTerms))}
                             className="w-full py-4 px-6 font-bold text-[15px] lg:text-base text-white rounded-full border-0 outline-none cursor-pointer transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed mt-2"
                             style={{
-                                background: 'linear-gradient(180deg, #3b82f6 0%, #3b82f6 50%, #2563eb 100%)', // Emerald gradient
+                                background: 'linear-gradient(180deg, #51faaa 0%, #51faaa 50%, #2dd284 100%)', // Emerald gradient
                                 boxShadow: `0px 8px 20px ${isDark ? 'rgba(16, 185, 129, 0.3)' : 'rgba(16, 185, 129, 0.4)'}, inset 0px 1px 0px rgba(255, 255, 255, 0.4)`
                             }}
                             onMouseEnter={(e) => {
@@ -604,7 +606,7 @@ const MobileAuth = () => {
                             disabled={isLoading || !resetEmail}
                             className="w-full py-4 px-4 font-bold text-[15px] lg:text-base text-white rounded-xl border-0 outline-none cursor-pointer transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                             style={{
-                                background: 'linear-gradient(180deg, #3b82f6 0%, #3b82f6 50%, #2563eb 100%)', // Emerald gradient
+                                background: 'linear-gradient(180deg, #51faaa 0%, #51faaa 50%, #2dd284 100%)', // Emerald gradient
                                 boxShadow: `0px 8px 20px ${isDark ? 'rgba(16, 185, 129, 0.3)' : 'rgba(16, 185, 129, 0.4)'}, inset 0px 1px 0px rgba(255, 255, 255, 0.4)`
                             }}
                         >
@@ -675,7 +677,7 @@ const MobileAuth = () => {
 
 // SVG Illustration Component
 const AuthIllustration = ({ mode, isDark, onToggleTheme }) => {
-    const primaryColor = isDark ? "#3b82f6" : "#3b82f6"; // Emerald-400 : Emerald-500
+    const primaryColor = isDark ? "#51faaa" : "#51faaa"; // Emerald-400 : Emerald-500
     const secondaryColor = isDark ? "#064e3b" : "#d1fae5"; // Emerald-900 : Emerald-100
     const accentColor = isDark ? "#fbbf24" : "#f59e0b"; // Amber-400 : Amber-500
 
@@ -737,8 +739,8 @@ const AuthIllustration = ({ mode, isDark, onToggleTheme }) => {
                     <motion.rect
                         x="85" y="80" width="20" height="20" rx="1"
                         animate={{
-                            fill: isDark ? '#3b82f6' : '#f4f4f5',
-                            stroke: isDark ? '#3b82f6' : primaryColor,
+                            fill: isDark ? '#51faaa' : '#f4f4f5',
+                            stroke: isDark ? '#51faaa' : primaryColor,
                         }}
                         transition={springConfig}
                         strokeWidth="2"
@@ -760,7 +762,7 @@ const AuthIllustration = ({ mode, isDark, onToggleTheme }) => {
     }
 
     if (mode === 'register') {
-        const joinColor = isDark ? "#3b82f6" : "#2563eb";
+        const joinColor = isDark ? "#51faaa" : "#2dd284";
         return (
             <div className="w-full h-44 relative flex items-center justify-center mb-4 overflow-hidden">
                 <motion.div

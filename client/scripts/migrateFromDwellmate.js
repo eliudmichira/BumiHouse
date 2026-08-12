@@ -20,7 +20,7 @@ import {
 
 // Source: Dwellmate
 const sourceConfig = {
-    apiKey: "REDACTED",
+    apiKey: process.env.DWELLMATE_API_KEY || "YOUR_SOURCE_FIREBASE_API_KEY",
     authDomain: "dwellmate-285e8.firebaseapp.com",
     projectId: "dwellmate-285e8",
     storageBucket: "dwellmate-285e8.firebasestorage.app",
@@ -30,7 +30,7 @@ const sourceConfig = {
 
 // Destination: HomesKE
 const destConfig = {
-    apiKey: "REDACTED",
+    apiKey: process.env.HOMESKE_API_KEY || "YOUR_DEST_FIREBASE_API_KEY",
     authDomain: "homeske.firebaseapp.com",
     projectId: "homeske",
     storageBucket: "homeske.firebasestorage.app",
@@ -102,12 +102,12 @@ async function runMigration() {
 
         try {
             // Try to create the admin user first
-            await createUserWithEmailAndPassword(destAuth, "support@homeske.com", "REDACTED");
+            await createUserWithEmailAndPassword(destAuth, process.env.FIREBASE_ADMIN_EMAIL || "YOUR_ADMIN_EMAIL", process.env.FIREBASE_ADMIN_PASSWORD || "YOUR_ADMIN_PASSWORD");
             console.log("✅ Created and authenticated as Admin.");
         } catch (createError) {
             if (createError.code === 'auth/email-already-in-use') {
                 console.log("ℹ️ Admin exists, signing in...");
-                await signInWithEmailAndPassword(destAuth, "support@homeske.com", "REDACTED");
+                await signInWithEmailAndPassword(destAuth, process.env.FIREBASE_ADMIN_EMAIL || "YOUR_ADMIN_EMAIL", process.env.FIREBASE_ADMIN_PASSWORD || "YOUR_ADMIN_PASSWORD");
                 console.log("✅ Authenticated as Admin.");
             } else {
                 throw createError;

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+﻿import React, { useContext, useState } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { MapPin, Heart, MessageCircle, Share2, Home, Car, Utensils, GraduationCap, Bus, Users, Bath, Bed, Ruler, DollarSign, Star, Shield, Building2, CheckCircle, AlertCircle } from "lucide-react";
 import Slider from "../../components/Slider/Slider";
@@ -99,7 +99,7 @@ function SinglePage() {
           <p className="text-gray-600 mb-6">The property you're looking for doesn't exist or has been removed.</p>
           <button 
             onClick={() => navigate("/")}
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+            className="bg-emerald-600 text-white px-6 py-3 rounded-lg hover:bg-emerald-700 transition-colors"
           >
             Go Back Home
           </button>
@@ -244,18 +244,18 @@ function SinglePage() {
       {/* Mesh blobs for green glassmorphic dark theme */}
       {isDark && (
         <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="mesh-blob" style={{top: '10%', left: '5%', width: '420px', height: '420px', background: 'radial-gradient(circle, #2563eb 0%, transparent 70%)', position: 'absolute'}} />
-          <div className="mesh-blob" style={{top: '60%', left: '70%', width: '500px', height: '500px', background: 'radial-gradient(circle, #3b82f6 0%, transparent 70%)', position: 'absolute'}} />
-          <div className="mesh-blob" style={{top: '30%', left: '60%', width: '320px', height: '320px', background: 'radial-gradient(circle, #3b82f6 0%, transparent 70%)', position: 'absolute'}} />
+          <div className="mesh-blob" style={{top: '10%', left: '5%', width: '420px', height: '420px', background: 'radial-gradient(circle, #2dd284 0%, transparent 70%)', position: 'absolute'}} />
+          <div className="mesh-blob" style={{top: '60%', left: '70%', width: '500px', height: '500px', background: 'radial-gradient(circle, #51faaa 0%, transparent 70%)', position: 'absolute'}} />
+          <div className="mesh-blob" style={{top: '30%', left: '60%', width: '320px', height: '320px', background: 'radial-gradient(circle, #51faaa 0%, transparent 70%)', position: 'absolute'}} />
         </div>
       )}
 
       {/* Enhanced animated background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-dark-900 dark:via-dark-800 dark:to-dark-700">
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-emerald-50 to-indigo-100 dark:from-dark-900 dark:via-dark-800 dark:to-dark-700">
         <div className="absolute inset-0">
-          <div className="absolute top-0 -left-20 w-96 h-96 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob"></div>
+          <div className="absolute top-0 -left-20 w-96 h-96 bg-gradient-to-r from-emerald-400 to-purple-400 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob"></div>
           <div className="absolute top-0 -right-20 w-96 h-96 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-20 left-20 w-96 h-96 bg-gradient-to-r from-pink-400 to-blue-400 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob animation-delay-4000"></div>
+          <div className="absolute -bottom-20 left-20 w-96 h-96 bg-gradient-to-r from-pink-400 to-emerald-400 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob animation-delay-4000"></div>
         </div>
       </div>
 
@@ -278,10 +278,10 @@ function SinglePage() {
                       {post.title}
                     </h1>
                     <div className="flex items-center gap-2 mb-4">
-                      <MapPin className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                      <MapPin className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                       <span className="text-xl font-semibold text-gray-700 dark:text-gray-200">{post.address}</span>
                     </div>
-                    <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
+                    <div className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-purple-600 dark:from-emerald-400 dark:to-purple-400 bg-clip-text text-transparent">
                       Ksh {post.price?.toLocaleString()}
                     </div>
                   </div>
@@ -415,7 +415,7 @@ function SinglePage() {
                   <button 
                     onClick={handleSendMessage}
                     disabled={isSending}
-                    className={`w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 ${
+                    className={`w-full flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-600 to-purple-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 ${
                       isSending 
                         ? 'opacity-50 cursor-not-allowed' 
                         : 'hover:shadow-lg transform hover:scale-105'
@@ -511,7 +511,7 @@ function SinglePage() {
 // Feature Card Component
 function FeatureCard({ icon: Icon, title, description, color }) {
   const colorClasses = {
-    blue: 'text-blue-600 bg-blue-100 dark:text-blue-400 dark:bg-blue-900/30',
+    blue: 'text-emerald-600 bg-emerald-100 dark:text-emerald-400 dark:bg-emerald-900/30',
     green: 'text-green-600 bg-green-100 dark:text-green-400 dark:bg-green-900/30',
     purple: 'text-purple-600 bg-purple-100 dark:text-purple-400 dark:bg-purple-900/30',
     orange: 'text-orange-600 bg-orange-100 dark:text-orange-400 dark:bg-orange-900/30'
@@ -533,7 +533,7 @@ function FeatureCard({ icon: Icon, title, description, color }) {
 // Size Card Component
 function SizeCard({ icon: Icon, value, label, color }) {
   const colorClasses = {
-    blue: 'text-blue-600 bg-blue-100 dark:text-blue-400 dark:bg-blue-900/30',
+    blue: 'text-emerald-600 bg-emerald-100 dark:text-emerald-400 dark:bg-emerald-900/30',
     purple: 'text-purple-600 bg-purple-100 dark:text-purple-400 dark:bg-purple-900/30',
     pink: 'text-pink-600 bg-pink-100 dark:text-pink-400 dark:bg-pink-900/30'
   };
@@ -554,7 +554,7 @@ function SizeCard({ icon: Icon, value, label, color }) {
 // Nearby Card Component
 function NearbyCard({ icon: Icon, title, distance, color }) {
   const colorClasses = {
-    blue: 'text-blue-600 bg-blue-100 dark:text-blue-400 dark:bg-blue-900/30',
+    blue: 'text-emerald-600 bg-emerald-100 dark:text-emerald-400 dark:bg-emerald-900/30',
     green: 'text-green-600 bg-green-100 dark:text-green-400 dark:bg-green-900/30',
     orange: 'text-orange-600 bg-orange-100 dark:text-orange-400 dark:bg-orange-900/30'
   };

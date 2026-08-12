@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
 
 // Enhanced Skeleton Property Card for Grid View
@@ -38,7 +38,7 @@ export const PropertyCardSkeleton = ({ index = 0 }) => {
           }}
         />
         {/* Featured badge skeleton */}
-        <div className="absolute top-4 left-4 h-6 bg-gradient-to-r from-[#3b82f6]/20 to-[#06b6d4]/20 rounded-full w-20 animate-pulse" />
+        <div className="absolute top-4 left-4 h-6 bg-gradient-to-r from-[#51faaa]/20 to-[#dbd5a4]/20 rounded-full w-20 animate-pulse" />
         {/* Heart icon skeleton */}
         <div className="absolute top-4 right-4 h-8 w-8 bg-white/20 dark:bg-gray-800/20 rounded-full animate-pulse" />
       </div>
@@ -55,7 +55,7 @@ export const PropertyCardSkeleton = ({ index = 0 }) => {
             />
             <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-24 animate-pulse" />
           </div>
-          <div className="h-5 bg-gradient-to-r from-[#3b82f6]/20 to-[#06b6d4]/20 rounded-full w-16 animate-pulse" />
+          <div className="h-5 bg-gradient-to-r from-[#51faaa]/20 to-[#dbd5a4]/20 rounded-full w-16 animate-pulse" />
         </div>
 
         {/* Enhanced Title */}
@@ -89,15 +89,15 @@ export const PropertyCardSkeleton = ({ index = 0 }) => {
 
         {/* Enhanced Amenities */}
         <div className="flex items-center gap-2">
-          <div className="h-7 bg-gradient-to-r from-[#3b82f6]/10 to-[#06b6d4]/10 rounded-full w-20 animate-pulse" />
-          <div className="h-7 bg-gradient-to-r from-[#3b82f6]/10 to-[#06b6d4]/10 rounded-full w-24 animate-pulse" />
-          <div className="h-7 bg-gradient-to-r from-[#3b82f6]/10 to-[#06b6d4]/10 rounded-full w-16 animate-pulse" />
+          <div className="h-7 bg-gradient-to-r from-[#51faaa]/10 to-[#dbd5a4]/10 rounded-full w-20 animate-pulse" />
+          <div className="h-7 bg-gradient-to-r from-[#51faaa]/10 to-[#dbd5a4]/10 rounded-full w-24 animate-pulse" />
+          <div className="h-7 bg-gradient-to-r from-[#51faaa]/10 to-[#dbd5a4]/10 rounded-full w-16 animate-pulse" />
         </div>
 
         {/* Enhanced Action Buttons */}
         <div className="flex items-center gap-3">
           <motion.div 
-            className="flex-1 h-11 bg-gradient-to-r from-[#3b82f6]/20 to-[#06b6d4]/20 rounded-xl"
+            className="flex-1 h-11 bg-gradient-to-r from-[#51faaa]/20 to-[#dbd5a4]/20 rounded-xl"
             animate={{ opacity: [0.5, 1, 0.5] }}
             transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
           />
@@ -217,7 +217,7 @@ export const MapSkeleton = () => {
 
       {/* Map Center Indicator */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-8 h-8 bg-[#3b82f6] rounded-full animate-pulse" />
+        <div className="w-8 h-8 bg-[#51faaa] rounded-full animate-pulse" />
       </div>
     </div>
   );
@@ -293,7 +293,7 @@ export const PropertyLoadingSpinner = ({ size = 'md' }) => {
   return (
     <div className="flex items-center justify-center py-8">
       <motion.div
-        className={`${sizeClasses[size]} border-4 border-gray-200 dark:border-gray-700 border-t-[#3b82f6] rounded-full`}
+        className={`${sizeClasses[size]} border-4 border-gray-200 dark:border-gray-700 border-t-[#51faaa] rounded-full`}
         animate={{ rotate: 360 }}
         transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
       />

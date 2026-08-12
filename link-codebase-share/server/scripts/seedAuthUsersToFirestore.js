@@ -46,7 +46,7 @@ async function upsertUserDoc(userRecord) {
   const created = userRecord.metadata.creationTime ? new Date(userRecord.metadata.creationTime) : new Date();
   const lastSignIn = userRecord.metadata.lastSignInTime ? new Date(userRecord.metadata.lastSignInTime) : created;
 
-  const isAdmin = userRecord.uid === '5AMgkzuy36cA75gYTkQJSbvDC3n2' || (userRecord.email || '').toLowerCase() === 'eliudmichira7@gmail.com';
+  const isAdmin = userRecord.uid === '5AMgkzuy36cA75gYTkQJSbvDC3n2' || (userRecord.email || '').toLowerCase() === 'your-email@gmail.com';
 
   const payload = {
     email: userRecord.email || '',

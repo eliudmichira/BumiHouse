@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { MessageCircle, Phone, Mail, MapPin, Send, ArrowLeft, Clock, Shield, Award, Users, CheckCircle, AlertCircle } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
 import { useAuth } from '../../context/AuthContext';
@@ -115,7 +115,7 @@ function ContactPage() {
       {notification && (
         <div className={`fixed top-32 right-6 z-50 p-6 rounded-2xl shadow-2xl transform transition-all duration-500 max-w-md ${
           notification.type === 'success' 
-            ? 'bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111]' 
+            ? 'bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111]' 
             : 'bg-red-500 text-white'
         }`}>
           <div className="flex items-start justify-between">
@@ -148,7 +148,7 @@ function ContactPage() {
           <button
             onClick={handleBackNavigation}
             className={`flex items-center gap-3 mb-6 transition-colors group font-outfit ${
-              isDark ? 'text-[#ccc] hover:text-[#3b82f6]' : 'text-gray-600 hover:text-[#3b82f6]'
+              isDark ? 'text-[#ccc] hover:text-[#51faaa]' : 'text-gray-600 hover:text-[#51faaa]'
             }`}
           >
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
@@ -171,13 +171,13 @@ function ContactPage() {
             <div className={`${isDark ? 'bg-[#10121e] border-[rgba(81,250,170,0.2)]' : 'bg-white border-gray-200 shadow-lg'} rounded-2xl p-8 border transition-colors duration-300`}>
               <div className="mb-8">
                 <h2 className={`text-2xl font-outfit font-bold mb-3 ${isDark ? 'text-[#feffff]' : 'text-gray-900'}`}>Send Us a Message</h2>
-                <div className="w-20 h-1 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] rounded-full"></div>
+                <div className="w-20 h-1 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] rounded-full"></div>
               </div>
               
               {contactData?.propertyTitle && (
-                <div className={`${isDark ? 'bg-[rgba(81,250,170,0.1)] border-[rgba(81,250,170,0.2)]' : 'bg-blue-50 border-blue-200'} border-l-4 border-[#3b82f6] rounded-xl p-6 mb-8 transition-colors duration-300`}>
+                <div className={`${isDark ? 'bg-[rgba(81,250,170,0.1)] border-[rgba(81,250,170,0.2)]' : 'bg-emerald-50 border-emerald-200'} border-l-4 border-[#51faaa] rounded-xl p-6 mb-8 transition-colors duration-300`}>
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="w-10 h-10 bg-[#3b82f6] rounded-full flex items-center justify-center">
+                    <div className="w-10 h-10 bg-[#51faaa] rounded-full flex items-center justify-center">
                       <MapPin className="w-5 h-5 text-[#111]" />
                     </div>
                     <h3 className={`font-outfit font-bold text-lg ${isDark ? 'text-[#feffff]' : 'text-gray-900'}`}>Property Inquiry</h3>
@@ -194,7 +194,7 @@ function ContactPage() {
                       type="text"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${
+                      className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${
                         isDark 
                           ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50' 
                           : 'border-gray-300 bg-white text-gray-900 placeholder-gray-500'
@@ -209,7 +209,7 @@ function ContactPage() {
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${
+                      className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${
                         isDark 
                           ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50' 
                           : 'border-gray-300 bg-white text-gray-900 placeholder-gray-500'
@@ -227,7 +227,7 @@ function ContactPage() {
                       type="tel"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${
+                      className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${
                         isDark 
                           ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50' 
                           : 'border-gray-300 bg-white text-gray-900 placeholder-gray-500'
@@ -240,7 +240,7 @@ function ContactPage() {
                     <select
                       value={formData.preferredContact}
                       onChange={(e) => setFormData({ ...formData, preferredContact: e.target.value })}
-                      className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${
+                      className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${
                         isDark 
                           ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff]' 
                           : 'border-gray-300 bg-white text-gray-900'
@@ -260,7 +260,7 @@ function ContactPage() {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     rows={5}
-                    className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit resize-none ${
+                    className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit resize-none ${
                       isDark 
                         ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50' 
                         : 'border-gray-300 bg-white text-gray-900 placeholder-gray-500'
@@ -277,14 +277,14 @@ function ContactPage() {
                       id="scheduleTour"
                       checked={formData.scheduleTour}
                       onChange={(e) => setFormData({ ...formData, scheduleTour: e.target.checked })}
-                      className={`w-5 h-5 rounded focus:ring-2 focus:ring-[#3b82f6] ${
+                      className={`w-5 h-5 rounded focus:ring-2 focus:ring-[#51faaa] ${
                         isDark 
-                          ? 'text-[#3b82f6] bg-[#0a0c19] border-[rgba(81,250,170,0.3)] focus:ring-offset-[#0a0c19]' 
-                          : 'text-[#3b82f6] bg-white border-gray-300 focus:ring-offset-white'
+                          ? 'text-[#51faaa] bg-[#0a0c19] border-[rgba(81,250,170,0.3)] focus:ring-offset-[#0a0c19]' 
+                          : 'text-[#51faaa] bg-white border-gray-300 focus:ring-offset-white'
                       }`}
                     />
                     <label htmlFor="scheduleTour" className={`text-lg font-outfit font-semibold flex items-center gap-2 ${isDark ? 'text-[#feffff]' : 'text-gray-900'}`}>
-                      <Clock className="w-5 h-5 text-[#3b82f6]" />
+                      <Clock className="w-5 h-5 text-[#51faaa]" />
                       Schedule a Property Tour
                     </label>
                   </div>
@@ -297,7 +297,7 @@ function ContactPage() {
                           type="date"
                           value={formData.tourDate}
                           onChange={(e) => setFormData({ ...formData, tourDate: e.target.value })}
-                          className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${
+                          className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${
                             isDark 
                               ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff]' 
                               : 'border-gray-300 bg-white text-gray-900'
@@ -310,7 +310,7 @@ function ContactPage() {
                         <select
                           value={formData.tourTime}
                           onChange={(e) => setFormData({ ...formData, tourTime: e.target.value })}
-                          className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${
+                          className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${
                             isDark 
                               ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff]' 
                               : 'border-gray-300 bg-white text-gray-900'
@@ -330,7 +330,7 @@ function ContactPage() {
                   type="button"
                   onClick={handleSubmit}
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] font-outfit font-semibold py-4 px-8 rounded-xl hover:shadow-lg hover:shadow-[#3b82f6]/25 transform hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-3 text-lg"
+                  className="w-full bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] font-outfit font-semibold py-4 px-8 rounded-xl hover:shadow-lg hover:shadow-[#51faaa]/25 transform hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-3 text-lg"
                 >
                   {isSubmitting ? (
                     <>
@@ -356,12 +356,12 @@ function ContactPage() {
               
               <div className="text-center mb-8">
                 <div className="relative inline-block">
-                  <div className="w-20 h-20 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] rounded-full flex items-center justify-center shadow-lg mb-4">
+                  <div className="w-20 h-20 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] rounded-full flex items-center justify-center shadow-lg mb-4">
                     <span className="text-[#111] font-outfit font-bold text-2xl">
                       {contactData?.agentName?.[0] || 'G'}
                     </span>
                   </div>
-                  <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-[#3b82f6] rounded-full border-4 border-white flex items-center justify-center">
+                  <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-[#51faaa] rounded-full border-4 border-white flex items-center justify-center">
                     <div className="w-2 h-2 bg-[#111] rounded-full animate-pulse"></div>
                   </div>
                 </div>
@@ -369,7 +369,7 @@ function ContactPage() {
                   {contactData?.agentName || 'Grace Wanjiku'}
                 </h3>
                 <p className={`font-outfit font-medium ${isDark ? 'text-[#ccc]' : 'text-gray-600'}`}>Senior Real Estate Professional</p>
-                <p className="text-sm text-[#3b82f6] font-outfit font-semibold mt-1">● Available Now</p>
+                <p className="text-sm text-[#51faaa] font-outfit font-semibold mt-1">● Available Now</p>
               </div>
 
               <div className="space-y-4 mb-8">
@@ -377,9 +377,9 @@ function ContactPage() {
                   isDark ? 'bg-[#0a0c19]' : 'bg-gray-50'
                 }`}>
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                    isDark ? 'bg-[rgba(81,250,170,0.2)]' : 'bg-blue-100'
+                    isDark ? 'bg-[rgba(81,250,170,0.2)]' : 'bg-emerald-100'
                   }`}>
-                    <Mail className="w-5 h-5 text-[#3b82f6]" />
+                    <Mail className="w-5 h-5 text-[#51faaa]" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className={`font-outfit font-medium truncate ${isDark ? 'text-[#feffff]' : 'text-gray-900'}`}>
@@ -394,7 +394,7 @@ function ContactPage() {
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
                     isDark ? 'bg-[rgba(81,250,170,0.2)]' : 'bg-green-100'
                   }`}>
-                    <Phone className="w-5 h-5 text-[#3b82f6]" />
+                    <Phone className="w-5 h-5 text-[#51faaa]" />
                   </div>
                   <div className="flex-1">
                     <p className={`font-outfit font-medium ${isDark ? 'text-[#feffff]' : 'text-gray-900'}`}>+254 712 345 678</p>
@@ -407,7 +407,7 @@ function ContactPage() {
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
                     isDark ? 'bg-[rgba(81,250,170,0.2)]' : 'bg-purple-100'
                   }`}>
-                    <MessageCircle className="w-5 h-5 text-[#3b82f6]" />
+                    <MessageCircle className="w-5 h-5 text-[#51faaa]" />
                   </div>
                   <div className="flex-1">
                     <p className={`font-outfit font-medium ${isDark ? 'text-[#feffff]' : 'text-gray-900'}`}>WhatsApp: +254 712 345 678</p>
@@ -420,7 +420,7 @@ function ContactPage() {
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
                     isDark ? 'bg-[rgba(81,250,170,0.2)]' : 'bg-red-100'
                   }`}>
-                    <MapPin className="w-5 h-5 text-[#3b82f6]" />
+                    <MapPin className="w-5 h-5 text-[#51faaa]" />
                   </div>
                   <div className="flex-1">
                     <p className={`font-outfit font-medium ${isDark ? 'text-[#feffff]' : 'text-gray-900'}`}>Nairobi, Kenya</p>
@@ -430,24 +430,24 @@ function ContactPage() {
 
               {/* Stats */}
               <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className={`${isDark ? 'bg-[rgba(81,250,170,0.1)]' : 'bg-blue-50'} rounded-xl p-4 text-center transition-colors duration-300`}>
-                  <div className={`text-xl font-outfit font-bold ${isDark ? 'text-[#3b82f6]' : 'text-blue-700'}`}>200+</div>
-                  <div className={`text-sm font-outfit ${isDark ? 'text-[#ccc]' : 'text-blue-600'}`}>Properties Sold</div>
+                <div className={`${isDark ? 'bg-[rgba(81,250,170,0.1)]' : 'bg-emerald-50'} rounded-xl p-4 text-center transition-colors duration-300`}>
+                  <div className={`text-xl font-outfit font-bold ${isDark ? 'text-[#51faaa]' : 'text-emerald-700'}`}>200+</div>
+                  <div className={`text-sm font-outfit ${isDark ? 'text-[#ccc]' : 'text-emerald-600'}`}>Properties Sold</div>
                 </div>
                 <div className={`${isDark ? 'bg-[rgba(81,250,170,0.1)]' : 'bg-emerald-50'} rounded-xl p-4 text-center transition-colors duration-300`}>
-                  <div className={`text-xl font-outfit font-bold ${isDark ? 'text-[#3b82f6]' : 'text-emerald-700'}`}>4.8★</div>
+                  <div className={`text-xl font-outfit font-bold ${isDark ? 'text-[#51faaa]' : 'text-emerald-700'}`}>4.8★</div>
                   <div className={`text-sm font-outfit ${isDark ? 'text-[#ccc]' : 'text-emerald-600'}`}>Client Rating</div>
                 </div>
               </div>
             </div>
 
             {/* Why Choose Us */}
-            <div className={`${isDark ? 'bg-[#10121e] border-[rgba(81,250,170,0.2)]' : 'bg-gradient-to-br from-blue-50 via-purple-50 to-blue-50 border-blue-200'} rounded-2xl p-6 border transition-colors duration-300`}>
+            <div className={`${isDark ? 'bg-[#10121e] border-[rgba(81,250,170,0.2)]' : 'bg-gradient-to-br from-emerald-50 via-purple-50 to-emerald-50 border-emerald-200'} rounded-2xl p-6 border transition-colors duration-300`}>
               <h3 className={`text-xl font-outfit font-bold mb-6 text-center ${isDark ? 'text-[#feffff]' : 'text-gray-900'}`}>Why Choose Our Team?</h3>
               
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] rounded-full flex items-center justify-center flex-shrink-0">
                     <Award className="w-6 h-6 text-[#111]" />
                   </div>
                   <div>
@@ -457,7 +457,7 @@ function ContactPage() {
                 </div>
                 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] rounded-full flex items-center justify-center flex-shrink-0">
                     <Users className="w-6 h-6 text-[#111]" />
                   </div>
                   <div>
@@ -467,7 +467,7 @@ function ContactPage() {
                 </div>
                 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] rounded-full flex items-center justify-center flex-shrink-0">
                     <Shield className="w-6 h-6 text-[#111]" />
                   </div>
                   <div>
@@ -485,7 +485,7 @@ function ContactPage() {
                 <p className={`text-center text-sm font-outfit font-medium ${
                   isDark ? 'text-[#ccc]' : 'text-gray-700'
                 }`}>
-                  <Clock className="w-4 h-4 inline-block mr-2 text-[#3b82f6]" />
+                  <Clock className="w-4 h-4 inline-block mr-2 text-[#51faaa]" />
                   We typically respond within <strong>2 hours</strong>
                 </p>
               </div>

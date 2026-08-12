@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, MessageCircle, Mail, ChevronRight, Calendar, ShieldCheck, CreditCard, ChevronDown, Phone, CheckCircle } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
@@ -42,9 +42,9 @@ const MobileSupportPage = () => {
         >
             <div className="flex items-center gap-4">
                 <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${
-                    isDark ? `bg-blue-500/10` : `bg-blue-50`
+                    isDark ? `bg-emerald-500/10` : `bg-emerald-50`
                 }`}>
-                    <Icon className={isDark ? `text-blue-400` : `text-blue-500`} size={22} />
+                    <Icon className={isDark ? `text-emerald-400` : `text-emerald-500`} size={22} />
                 </div>
                 <div className="text-left">
                     <p className={`font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>{label}</p>
@@ -97,7 +97,7 @@ const MobileSupportPage = () => {
                                 >
                                     <div className="flex items-center gap-4">
                                         <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${isDark ? 'bg-white/5' : 'bg-gray-50'}`}>
-                                            <faq.icon size={18} className="text-[#3b82f6]" />
+                                            <faq.icon size={18} className="text-[#51faaa]" />
                                         </div>
                                         <span className={`text-sm font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>{faq.q}</span>
                                     </div>

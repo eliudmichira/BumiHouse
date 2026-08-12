@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+﻿import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -146,7 +146,7 @@ const EnhancedMobilePropertyCard = ({
     if (s === 'pending') return { label: 'Pending', color: 'bg-yellow-500', icon: Clock };
     if (s === 'new') return { label: 'New', color: 'bg-[#4066ff]', icon: Zap };
     if (s === 'featured') return { label: 'Featured', color: 'bg-[#4066ff]', icon: Crown };
-    if (s.includes('rent')) return { label: 'For Rent', color: 'bg-blue-500', icon: Home };
+    if (s.includes('rent')) return { label: 'For Rent', color: 'bg-emerald-500', icon: Home };
     if (s.includes('sale')) return { label: 'For Sale', color: 'bg-[#4066ff]', icon: TrendingUp };
     return { label: property.status || 'Available', color: 'bg-gray-500', icon: CheckCircle };
   };
@@ -156,7 +156,7 @@ const EnhancedMobilePropertyCard = ({
   // Get property type color
   const getPropertyTypeColor = () => {
     const types = {
-      'apartment': 'from-blue-500 to-blue-600',
+      'apartment': 'from-emerald-500 to-emerald-600',
       'house': 'from-[#4066ff] to-[#40f2ff]',
       'villa': 'from-purple-500 to-purple-600',
       'land': 'from-orange-500 to-orange-600',

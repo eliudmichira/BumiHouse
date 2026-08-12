@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+﻿import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Menu, X, Search, User, LogOut, Sun, Moon, Settings, Heart, Home, MessageCircle, ChevronDown, Shield, BarChart3, Building2, FileText, Users, Crown } from "lucide-react";
@@ -31,6 +31,13 @@ const Navbar = () => {
 
   // Get user role
   const userRole = getUserRole ? getUserRole() : 'user';
+
+  // Top-level navigation links (desktop + mobile menu)
+  const navItems = [
+    { label: 'Properties', to: '/properties' },
+    { label: 'Blog', to: '/blog' },
+    { label: 'More Locations', to: '/desktop/areas' },
+  ];
 
   // Search suggestions data
   const locationSuggestions = [
@@ -231,7 +238,7 @@ const Navbar = () => {
                 >
                   <Search
                     className={`w-5 h-5 transition-colors duration-300 ${isSearchFocused
-                      ? (isDark ? "text-[#3b82f6]" : "text-[#3b82f6]")
+                      ? (isDark ? "text-[#51faaa]" : "text-[#51faaa]")
                       : (isDark ? "text-white/60" : "text-gray-400")
                       }`}
                   />
@@ -242,9 +249,9 @@ const Navbar = () => {
                   onChange={(e) => handleSearchChange(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSearchSubmit()}
                   placeholder={`Search properties in ${typedText}${typedText.length < 1 ? '' : '…'}`}
-                  className={`w-full pl-12 pr-6 py-3.5 rounded-full focus:outline-none focus:ring-2 focus:ring-[#3b82f6]/20 focus:border-[#3b82f6]/30 transition-all duration-300 hover:shadow-lg ${isDark
+                  className={`w-full pl-12 pr-6 py-3.5 rounded-full focus:outline-none focus:ring-2 focus:ring-[#51faaa]/20 focus:border-[#51faaa]/30 transition-all duration-300 hover:shadow-lg ${isDark
                     ? "bg-white/5 border border-white/10 text-white placeholder-white/60 hover:bg-white/10 hover:border-white/20"
-                    : "bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-500 hover:bg-white hover:border-gray-300 hover:shadow-[#3b82f6]/10"
+                    : "bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-500 hover:bg-white hover:border-gray-300 hover:shadow-[#51faaa]/10"
                     }`}
                   onFocus={() => setIsSearchFocused(true)}
                   onBlur={() => setIsSearchFocused(false)}
@@ -266,7 +273,7 @@ const Navbar = () => {
                       <motion.button
                         key={index}
                         onClick={() => handleSuggestionClick(suggestion)}
-                        className={`w-full px-4 py-3 text-left transition-all duration-200 ${isDark ? 'text-white hover:text-[#3b82f6]' : 'text-gray-700 hover:text-[#3b82f6]'
+                        className={`w-full px-4 py-3 text-left transition-all duration-200 ${isDark ? 'text-white hover:text-[#51faaa]' : 'text-gray-700 hover:text-[#51faaa]'
                           } ${index === 0 ? 'rounded-t-xl' : ''} ${index === searchSuggestions.length - 1 ? 'rounded-b-xl' : ''}`}
                         whileHover={{
                           backgroundColor: isDark ? 'rgba(59, 130, 246, 0.1)' : 'rgba(16, 185, 129, 0.1)',
@@ -297,15 +304,15 @@ const Navbar = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              {["Properties", "Blog"].map((item, index) => (
+              {navItems.map((item, index) => (
                 <motion.div
-                  key={item}
+                  key={item.label}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
                 >
                   <Link
-                    to={`/${item.toLowerCase()}`}
+                    to={item.to}
                     className={`font-medium transition-all duration-300 relative group ${isDark
                       ? "text-white/80 hover:text-white"
                       : "text-gray-600 hover:text-gray-900"
@@ -315,17 +322,17 @@ const Navbar = () => {
                       whileHover={{ y: -2 }}
                       transition={{ duration: 0.2 }}
                     >
-                      {item}
+                      {item.label}
                     </motion.span>
                     <motion.span
-                      className="absolute -bottom-1 left-0 h-0.5 bg-[#3b82f6]"
+                      className="absolute -bottom-1 left-0 h-0.5 bg-[#51faaa]"
                       initial={{ width: 0 }}
                       whileHover={{ width: "100%" }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     />
                     {/* Subtle glow effect on hover */}
                     <motion.div
-                      className="absolute -bottom-1 left-0 h-0.5 bg-[#3b82f6] opacity-0"
+                      className="absolute -bottom-1 left-0 h-0.5 bg-[#51faaa] opacity-0"
                       whileHover={{
                         width: "100%",
                         opacity: 0.3,
@@ -402,7 +409,7 @@ const Navbar = () => {
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 >
                   {/* User Avatar */}
-                  <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-[#3b82f6]/30 group-hover:border-[#3b82f6] transition-colors">
+                  <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-[#51faaa]/30 group-hover:border-[#51faaa] transition-colors">
                     {/* Enhanced animated ring border with brand colors */}
                     <motion.div
                       className="absolute -inset-1 rounded-full"
@@ -415,7 +422,7 @@ const Navbar = () => {
                         ease: "linear"
                       }}
                       style={{
-                        background: "conic-gradient(from 0deg, #3b82f6, #06b6d4, #3b82f6)",
+                        background: "conic-gradient(from 0deg, #51faaa, #dbd5a4, #51faaa)",
                         mask: "radial-gradient(circle, transparent 55%, black 72%)",
                         WebkitMask: "radial-gradient(circle, transparent 55%, black 72%)"
                       }}
@@ -448,7 +455,7 @@ const Navbar = () => {
                           draggable={false}
                         />
                       ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] flex items-center justify-center">
+                        <div className="w-full h-full bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] flex items-center justify-center">
                           <span className="text-[#111] font-bold text-lg">
                             {currentUser.displayName ? currentUser.displayName.charAt(0).toUpperCase() : currentUser.email.charAt(0).toUpperCase()}
                           </span>
@@ -482,7 +489,7 @@ const Navbar = () => {
                     {/* User Header */}
                     <div className="p-4 border-b border-gray-200 dark:border-gray-700">
                       <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[#3b82f6]/30">
+                        <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[#51faaa]/30">
                           {currentUser.photoURL ? (
                             <img
                               src={currentUser.photoURL}
@@ -490,7 +497,7 @@ const Navbar = () => {
                               className="w-full h-full object-cover"
                             />
                           ) : (
-                            <div className="w-full h-full bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] flex items-center justify-center">
+                            <div className="w-full h-full bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] flex items-center justify-center">
                               <span className="text-[#111] font-bold text-lg">
                                 {currentUser.displayName ? currentUser.displayName.charAt(0).toUpperCase() : currentUser.email.charAt(0).toUpperCase()}
                               </span>
@@ -587,7 +594,7 @@ const Navbar = () => {
                             onClick={() => setIsProfileDropdownOpen(false)}
                             className="flex items-center gap-3 px-3 py-2 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                           >
-                            <BarChart3 className="w-4 h-4 text-blue-500" />
+                            <BarChart3 className="w-4 h-4 text-emerald-500" />
                             <span>Agent Dashboard</span>
                           </Link>
 
@@ -674,7 +681,7 @@ const Navbar = () => {
                         <Link
                           to="/agent-verification"
                           onClick={() => setIsProfileDropdownOpen(false)}
-                          className="flex items-center gap-3 px-3 py-2 rounded-xl text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
+                          className="flex items-center gap-3 px-3 py-2 rounded-xl text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors"
                         >
                           <Building2 className="w-4 h-4" />
                           <span>Become an Agent</span>
@@ -711,7 +718,7 @@ const Navbar = () => {
                 >
                   <Link
                     to="/login"
-                    className={`${isDark ? "text-white/80" : "text-gray-600"} hover:text-[#3b82f6] transition-colors duration-300`}
+                    className={`${isDark ? "text-white/80" : "text-gray-600"} hover:text-[#51faaa] transition-colors duration-300`}
                   >
                     Sign In
                   </Link>
@@ -726,7 +733,7 @@ const Navbar = () => {
                 >
                   <Link
                     to="/register"
-                    className="px-5 py-2 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] text-[#111] rounded-xl font-medium hover:shadow-lg transition-all duration-300 relative overflow-hidden block"
+                    className="px-5 py-2 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] text-[#111] rounded-xl font-medium hover:shadow-lg transition-all duration-300 relative overflow-hidden block"
                   >
                     {/* Shimmer effect */}
                     <motion.div
@@ -759,7 +766,7 @@ const Navbar = () => {
                 onChange={(e) => handleSearchChange(e.target.value, true)}
                 onKeyPress={(e) => e.key === 'Enter' && handleSearchSubmit(null, true)}
                 placeholder="Search properties, locations..."
-                className={`w-full pl-12 pr-6 py-3.5 rounded-full focus:outline-none focus:ring-2 focus:ring-[#3b82f6]/20 focus:border-[#3b82f6]/30 transition-all ${isDark
+                className={`w-full pl-12 pr-6 py-3.5 rounded-full focus:outline-none focus:ring-2 focus:ring-[#51faaa]/20 focus:border-[#51faaa]/30 transition-all ${isDark
                   ? "bg-white/5 border border-white/10 text-white placeholder-white/60"
                   : "bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-500"
                   }`}
@@ -775,7 +782,7 @@ const Navbar = () => {
                     <button
                       key={index}
                       onClick={() => handleSuggestionClick(suggestion, true)}
-                      className={`w-full px-4 py-3 text-left hover:bg-[#3b82f6]/10 transition-colors ${isDark ? 'text-white hover:text-[#3b82f6]' : 'text-gray-700 hover:text-[#3b82f6]'
+                      className={`w-full px-4 py-3 text-left hover:bg-[#51faaa]/10 transition-colors ${isDark ? 'text-white hover:text-[#51faaa]' : 'text-gray-700 hover:text-[#51faaa]'
                         } ${index === 0 ? 'rounded-t-xl' : ''} ${index === searchSuggestions.length - 1 ? 'rounded-b-xl' : ''}`}
                     >
                       <div className="flex items-center gap-3">
@@ -790,17 +797,17 @@ const Navbar = () => {
 
             {/* Mobile Navigation */}
             <nav className="space-y-4">
-              {["Properties", "Blog"].map((item) => (
+              {navItems.map((item) => (
                 <Link
-                  key={item}
-                  to={`/${item.toLowerCase()}`}
+                  key={item.label}
+                  to={item.to}
                   onClick={() => setIsMenuOpen(false)}
                   className={`block font-medium transition-colors ${isDark
                     ? "text-white/80 hover:text-white"
                     : "text-gray-600 hover:text-gray-900"
                     }`}
                 >
-                  {item}
+                  {item.label}
                 </Link>
               ))}
             </nav>
@@ -809,7 +816,7 @@ const Navbar = () => {
             {currentUser ? (
               <div className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-700 rounded-xl">
-                  <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#3b82f6]/30">
+                  <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-[#51faaa]/30">
                     {currentUser.photoURL ? (
                       <img
                         src={currentUser.photoURL}
@@ -817,7 +824,7 @@ const Navbar = () => {
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] flex items-center justify-center">
+                      <div className="w-full h-full bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] flex items-center justify-center">
                         <span className="text-[#111] font-bold text-lg">
                           {currentUser.displayName ? currentUser.displayName.charAt(0).toUpperCase() : currentUser.email.charAt(0).toUpperCase()}
                         </span>
@@ -892,7 +899,7 @@ const Navbar = () => {
                         onClick={() => setIsMenuOpen(false)}
                         className="flex items-center gap-3 px-3 py-2 rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                       >
-                        <BarChart3 className="w-4 h-4 text-blue-500" />
+                        <BarChart3 className="w-4 h-4 text-emerald-500" />
                         <span>Agent Dashboard</span>
                       </Link>
 
@@ -979,7 +986,7 @@ const Navbar = () => {
                     <Link
                       to="/agent-verification"
                       onClick={() => setIsMenuOpen(false)}
-                      className="flex items-center gap-3 px-3 py-2 rounded-xl text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
+                      className="flex items-center gap-3 px-3 py-2 rounded-xl text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors"
                     >
                       <Building2 className="w-4 h-4" />
                       <span>Become an Agent</span>
@@ -1003,14 +1010,14 @@ const Navbar = () => {
                 <Link
                   to="/desktop/login"
                   onClick={() => setIsMenuOpen(false)}
-                  className={`block font-medium ${isDark ? "text-white/80" : "text-gray-600"} hover:text-[#3b82f6]`}
+                  className={`block font-medium ${isDark ? "text-white/80" : "text-gray-600"} hover:text-[#51faaa]`}
                 >
                   Sign In
                 </Link>
                 <Link
                   to="/desktop/register"
                   onClick={() => setIsMenuOpen(false)}
-                  className="block w-full text-center px-5 py-3 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] text-[#111] rounded-xl font-medium hover:shadow-lg transition-all"
+                  className="block w-full text-center px-5 py-3 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] text-[#111] rounded-xl font-medium hover:shadow-lg transition-all"
                 >
                   Get Started
                 </Link>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+﻿import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, MapPin, Home, DollarSign, Filter, X, Sparkles } from 'lucide-react';
 import { useDebounce } from '../../hooks/useDebounce';
@@ -282,13 +282,13 @@ const SmartSearch = ({
                 >
                   <div className={`p-2 rounded-lg ${
                     suggestion.type === 'ai' ? 'bg-primary-100 dark:bg-primary-900/30' :
-                    suggestion.type === 'location' ? 'bg-blue-100 dark:bg-blue-900/30' :
+                    suggestion.type === 'location' ? 'bg-emerald-100 dark:bg-emerald-900/30' :
                     suggestion.type === 'property' ? 'bg-green-100 dark:bg-green-900/30' :
                     'bg-yellow-100 dark:bg-yellow-900/30'
                   }`}>
                     <suggestion.icon className={`w-4 h-4 ${
                       suggestion.type === 'ai' ? 'text-primary-600 dark:text-primary-400' :
-                      suggestion.type === 'location' ? 'text-blue-600 dark:text-blue-400' :
+                      suggestion.type === 'location' ? 'text-emerald-600 dark:text-emerald-400' :
                       suggestion.type === 'property' ? 'text-green-600 dark:text-green-400' :
                       'text-yellow-600 dark:text-yellow-400'
                     }`} />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+﻿import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   User, Mail, LogOut, Plus, Heart, Settings, MessageCircle, Building2, Star,
@@ -189,7 +189,7 @@ const ProfilePage = () => {
       title: "First Listing",
       description: "Created your first property listing",
       icon: Home,
-      color: "from-[#3b82f6] to-[#06b6d4]",
+      color: "from-[#51faaa] to-[#dbd5a4]",
       unlocked: userStats.listings > 0
     },
     {
@@ -205,7 +205,7 @@ const ProfilePage = () => {
       title: "Active User",
       description: "Logged in for 7 consecutive days",
       icon: Zap,
-      color: "from-[#06b6d4] to-yellow-500",
+      color: "from-[#dbd5a4] to-yellow-500",
       unlocked: false
     },
     {
@@ -213,7 +213,7 @@ const ProfilePage = () => {
       title: "Social Butterfly",
       description: "Connected social media accounts",
       icon: Users,
-      color: "from-[#29df99] to-[#3b82f6]",
+      color: "from-[#29df99] to-[#51faaa]",
       unlocked: !!(currentUser?.social?.instagram || currentUser?.social?.twitter || currentUser?.social?.linkedin)
     }
   ];
@@ -226,8 +226,8 @@ const ProfilePage = () => {
     <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-all duration-500 pt-20">
       {/* Animated Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#3b82f6]/10 dark:bg-[#3b82f6]/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#06b6d4]/10 dark:bg-[#06b6d4]/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#51faaa]/10 dark:bg-[#51faaa]/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#dbd5a4]/10 dark:bg-[#dbd5a4]/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
       </div>
 
       {/* Content */}
@@ -246,12 +246,12 @@ const ProfilePage = () => {
                       className="w-32 h-32 rounded-full object-cover border-4 border-white dark:border-gray-700 shadow-xl group-hover:scale-105 transition-transform duration-300"
                     />
                     <Link to="/profile/update">
-                      <button className="absolute bottom-2 right-2 w-10 h-10 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] rounded-full flex items-center justify-center shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-300 text-gray-900 ring-2 ring-white dark:ring-gray-800">
+                      <button className="absolute bottom-2 right-2 w-10 h-10 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] rounded-full flex items-center justify-center shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-300 text-gray-900 ring-2 ring-white dark:ring-gray-800">
                         <Camera className="w-5 h-5" />
                       </button>
                     </Link>
                     {currentUser?.verified && (
-                      <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-[#3b82f6] to-[#45e695] rounded-full flex items-center justify-center shadow-lg text-gray-900 border-2 border-white dark:border-gray-800">
+                      <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-[#51faaa] to-[#45e695] rounded-full flex items-center justify-center shadow-lg text-gray-900 border-2 border-white dark:border-gray-800">
                         <CheckCircle className="w-5 h-5" />
                       </div>
                     )}
@@ -263,7 +263,7 @@ const ProfilePage = () => {
                         {currentUser?.name || currentUser?.username || 'User'}
                       </h1>
                       {currentUser?.role === 'premium' && (
-                        <span className="px-3 py-1 bg-gradient-to-r from-[#3b82f6]/30 to-[#45e695]/30 border border-[#3b82f6]/40 text-[#0a0c19] dark:text-[#3b82f6] text-xs font-bold rounded-full flex items-center gap-1 shadow-sm backdrop-blur-sm">
+                        <span className="px-3 py-1 bg-gradient-to-r from-[#51faaa]/30 to-[#45e695]/30 border border-[#51faaa]/40 text-[#0a0c19] dark:text-[#51faaa] text-xs font-bold rounded-full flex items-center gap-1 shadow-sm backdrop-blur-sm">
                           <Award className="w-3 h-3" />
                           PREMIUM
                         </span>
@@ -300,14 +300,14 @@ const ProfilePage = () => {
                 {/* Action Buttons */}
                 <div className="flex flex-wrap gap-3">
                   <Link to={isAgent ? "/profile/edit/agent" : "/profile/edit"}>
-                    <button className="flex items-center gap-2 bg-gradient-to-r from-[#3b82f6] to-[#45e695] text-gray-900 font-bold py-2.5 px-5 rounded-xl hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+                    <button className="flex items-center gap-2 bg-gradient-to-r from-[#51faaa] to-[#45e695] text-gray-900 font-bold py-2.5 px-5 rounded-xl hover:shadow-lg transform hover:scale-105 transition-all duration-300">
                       <Settings className="w-4 h-4" />
                       {isAgent ? 'Edit Agent Profile' : 'Edit Profile'}
                     </button>
                   </Link>
                   <button
                     onClick={() => setShowShareModal(true)}
-                    className="flex items-center gap-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 font-bold py-2.5 px-5 rounded-xl hover:shadow-lg hover:border-[#3b82f6] dark:hover:border-[#3b82f6] transition-all duration-300"
+                    className="flex items-center gap-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 font-bold py-2.5 px-5 rounded-xl hover:shadow-lg hover:border-[#51faaa] dark:hover:border-[#51faaa] transition-all duration-300"
                   >
                     <Share2 className="w-4 h-4" />
                     Share Profile
@@ -325,14 +325,14 @@ const ProfilePage = () => {
               {/* Stats Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-4 lg:w-64">
                 {isAgent && (
-                  <div className="bg-[#3b82f6]/10 rounded-2xl p-4 text-center hover:scale-105 transition-transform duration-300 border border-[#3b82f6]/20 shadow-sm">
-                    <Building2 className="w-6 h-6 mx-auto mb-1 text-[#3b82f6]" />
+                  <div className="bg-[#51faaa]/10 rounded-2xl p-4 text-center hover:scale-105 transition-transform duration-300 border border-[#51faaa]/20 shadow-sm">
+                    <Building2 className="w-6 h-6 mx-auto mb-1 text-[#51faaa]" />
                     <p className="text-2xl font-black text-gray-800 dark:text-white">{userStats.listings}</p>
                     <p className="text-xs text-gray-600 dark:text-gray-400 uppercase tracking-wider font-semibold">Listings</p>
                   </div>
                 )}
-                <div className="bg-[#06b6d4]/10 rounded-2xl p-4 text-center hover:scale-105 transition-transform duration-300 border border-[#06b6d4]/20 shadow-sm">
-                  <Heart className="w-6 h-6 mx-auto mb-1 text-[#06b6d4]" />
+                <div className="bg-[#dbd5a4]/10 rounded-2xl p-4 text-center hover:scale-105 transition-transform duration-300 border border-[#dbd5a4]/20 shadow-sm">
+                  <Heart className="w-6 h-6 mx-auto mb-1 text-[#dbd5a4]" />
                   <p className="text-2xl font-black text-gray-800 dark:text-white">{userStats.saved}</p>
                   <p className="text-xs text-gray-600 dark:text-gray-400 uppercase tracking-wider font-semibold">Saved</p>
                 </div>
@@ -361,7 +361,7 @@ const ProfilePage = () => {
               </div>
               <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
                 <div
-                  className="h-full bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] rounded-full transition-all duration-1000 relative overflow-hidden"
+                  className="h-full bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] rounded-full transition-all duration-1000 relative overflow-hidden"
                   style={{ width: `${profileCompletion}%` }}
                 >
                   <div className="absolute inset-0 bg-white/30 animate-shimmer"></div>
@@ -383,7 +383,7 @@ const ProfilePage = () => {
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold whitespace-nowrap transition-all duration-300 ${activeTab === tab.id
-                    ? 'bg-gradient-to-r from-[#3b82f6] via-[#45e695] to-[#06b6d4] text-gray-900 shadow-xl shadow-[#3b82f6]/30'
+                    ? 'bg-gradient-to-r from-[#51faaa] via-[#45e695] to-[#dbd5a4] text-gray-900 shadow-xl shadow-[#51faaa]/30'
                     : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100/80 dark:hover:bg-gray-700/80'
                     }`}
                 >
@@ -450,7 +450,7 @@ const ProfilePage = () => {
                 {recentActivity.length > 0 && (
                   <div className="backdrop-blur-xl bg-white/80 dark:bg-gray-800/80 border border-white/50 dark:border-gray-700/50 shadow-2xl rounded-3xl p-8">
                     <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 flex items-center gap-3">
-                      <Activity className="w-7 h-7 text-blue-500" />
+                      <Activity className="w-7 h-7 text-emerald-500" />
                       Recent Activity
                     </h2>
                     <div className="space-y-4">
@@ -459,7 +459,7 @@ const ProfilePage = () => {
                           key={activity.id}
                           className="flex items-start gap-4 p-4 rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all duration-300 group"
                         >
-                          <div className="w-10 h-10 bg-gradient-to-br from-[#3b82f6] to-[#45e695] rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                          <div className="w-10 h-10 bg-gradient-to-br from-[#51faaa] to-[#45e695] rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                             <Activity className="w-5 h-5 text-gray-900" />
                           </div>
                           <div className="flex-1">
@@ -488,20 +488,20 @@ const ProfilePage = () => {
                   <div className="space-y-3">
                     {isAgent && (
                       <Link to="/add-property" className="block">
-                        <button className="w-full flex items-center gap-3 p-3 bg-gradient-to-r from-[#3b82f6] to-[#45e695] text-gray-900 font-bold rounded-xl hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+                        <button className="w-full flex items-center gap-3 p-3 bg-gradient-to-r from-[#51faaa] to-[#45e695] text-gray-900 font-bold rounded-xl hover:shadow-lg transform hover:scale-105 transition-all duration-300">
                           <Plus className="w-5 h-5 text-gray-900" />
                           Create New Listing
                         </button>
                       </Link>
                     )}
                     <Link to="/desktop/properties" className="block">
-                      <button className="w-full flex items-center gap-3 p-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl hover:border-[#3b82f6] dark:hover:border-[#3b82f6] hover:shadow-lg transition-all duration-300 text-gray-700 dark:text-gray-200 font-bold">
+                      <button className="w-full flex items-center gap-3 p-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl hover:border-[#51faaa] dark:hover:border-[#51faaa] hover:shadow-lg transition-all duration-300 text-gray-700 dark:text-gray-200 font-bold">
                         <Search className="w-5 h-5" />
                         Browse Properties
                       </button>
                     </Link>
                     {isAgent && (
-                      <button className="w-full flex items-center gap-3 p-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl hover:border-[#3b82f6] dark:hover:border-[#3b82f6] hover:shadow-lg transition-all duration-300 text-gray-700 dark:text-gray-200 font-bold">
+                      <button className="w-full flex items-center gap-3 p-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-xl hover:border-[#51faaa] dark:hover:border-[#51faaa] hover:shadow-lg transition-all duration-300 text-gray-700 dark:text-gray-200 font-bold">
                         <FileText className="w-5 h-5" />
                         Generate Report
                       </button>
@@ -524,7 +524,7 @@ const ProfilePage = () => {
                       )}
                       {currentUser.social?.twitter && (
                         <a href={`https://twitter.com/${currentUser.social.twitter.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                          <Twitter className="w-5 h-5 text-blue-400" />
+                          <Twitter className="w-5 h-5 text-emerald-400" />
                           <span className="text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white">
                             {currentUser.social.twitter}
                           </span>
@@ -532,7 +532,7 @@ const ProfilePage = () => {
                       )}
                       {currentUser.social?.linkedin && (
                         <a href={`https://linkedin.com/in/${currentUser.social.linkedin}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
-                          <Linkedin className="w-5 h-5 text-blue-600" />
+                          <Linkedin className="w-5 h-5 text-emerald-600" />
                           <span className="text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white">
                             {currentUser.social.linkedin}
                           </span>
@@ -557,12 +557,12 @@ const ProfilePage = () => {
             <div className="backdrop-blur-xl bg-white/80 dark:bg-gray-800/80 border border-white/50 dark:border-gray-700/50 shadow-2xl rounded-3xl p-8">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-bold text-gray-800 dark:text-white flex items-center gap-3">
-                  <Building2 className="w-7 h-7 text-blue-500" />
+                  <Building2 className="w-7 h-7 text-emerald-500" />
                   My Listings ({userStats.listings})
                 </h2>
                 <div className="flex gap-3">
                   <Link to="/add-property">
-                    <button className="flex items-center gap-2 bg-gradient-to-r from-[#3b82f6] to-[#45e695] text-gray-900 font-bold py-2 px-4 rounded-xl hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+                    <button className="flex items-center gap-2 bg-gradient-to-r from-[#51faaa] to-[#45e695] text-gray-900 font-bold py-2 px-4 rounded-xl hover:shadow-lg transform hover:scale-105 transition-all duration-300">
                       <Plus className="w-4 h-4" />
                       Add New
                     </button>
@@ -669,7 +669,7 @@ const ProfilePage = () => {
 
               <div className="backdrop-blur-xl bg-white/80 dark:bg-gray-800/80 border border-white/50 dark:border-gray-700/50 shadow-2xl rounded-3xl p-8">
                 <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-6 flex items-center gap-3">
-                  <Eye className="w-6 h-6 text-blue-500" />
+                  <Eye className="w-6 h-6 text-emerald-500" />
                   Views Analytics
                 </h3>
                 <div className="h-64 flex items-center justify-center text-gray-500 dark:text-gray-400">
@@ -744,13 +744,13 @@ const ProfilePage = () => {
                   onClick={() => handleShare('twitter')}
                   className="flex-1 p-4 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
                 >
-                  <Twitter className="w-5 h-5 mx-auto text-blue-400" />
+                  <Twitter className="w-5 h-5 mx-auto text-emerald-400" />
                 </button>
                 <button
                   onClick={() => handleShare('linkedin')}
                   className="flex-1 p-4 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
                 >
-                  <Linkedin className="w-5 h-5 mx-auto text-blue-600" />
+                  <Linkedin className="w-5 h-5 mx-auto text-emerald-600" />
                 </button>
                 <button
                   onClick={() => handleShare('instagram')}
@@ -823,14 +823,14 @@ const ProfilePage = () => {
 function EmptyState({ title, description, icon: Icon, actionText, actionLink }) {
   return (
     <div className="text-center py-12">
-      <div className="w-16 h-16 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm pb-[1px] pr-[1px]">
+      <div className="w-16 h-16 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm pb-[1px] pr-[1px]">
         <Icon className="w-8 h-8 text-gray-900 drop-shadow-sm" />
       </div>
       <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-2">{title}</h3>
       <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-md mx-auto">{description}</p>
       {actionText && actionLink && (
         <Link to={actionLink}>
-          <button className="bg-gradient-to-br from-[#3b82f6] to-[#45e695] text-gray-900 px-6 py-3 rounded-xl font-bold hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+          <button className="bg-gradient-to-br from-[#51faaa] to-[#45e695] text-gray-900 px-6 py-3 rounded-xl font-bold hover:shadow-lg transform hover:scale-105 transition-all duration-300">
             {actionText}
           </button>
         </Link>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { 
@@ -275,7 +275,7 @@ const PaymentRecording = () => {
               >
                 <ArrowLeft className="w-5 h-5" />
               </button>
-              <div className="w-10 h-10 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] rounded-xl flex items-center justify-center">
                 <DollarSign className="w-6 h-6 text-[#111]" />
               </div>
               <div>
@@ -291,7 +291,7 @@ const PaymentRecording = () => {
               onClick={() => setShowPaymentForm(true)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] px-4 py-2 rounded-xl font-medium hover:shadow-lg transition-all flex items-center space-x-2"
+              className="bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] px-4 py-2 rounded-xl font-medium hover:shadow-lg transition-all flex items-center space-x-2"
             >
               <Plus className="w-4 h-4" />
               <span>Record Payment</span>
@@ -407,7 +407,7 @@ const PaymentRecording = () => {
                     <tr key={tenant.id} className="hover:bg-gray-50 dark:hover:bg-gray-700/30">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
-                          <div className="w-8 h-8 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] rounded-full flex items-center justify-center">
+                          <div className="w-8 h-8 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] rounded-full flex items-center justify-center">
                             <User className="w-4 h-4 text-[#111]" />
                           </div>
                           <div className="ml-4">
@@ -446,7 +446,7 @@ const PaymentRecording = () => {
                           onClick={() => handleQuickPayment(tenant)}
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
-                          className="bg-[#3b82f6] text-white px-3 py-1 rounded-lg text-sm font-medium hover:shadow-lg transition-all"
+                          className="bg-[#51faaa] text-white px-3 py-1 rounded-lg text-sm font-medium hover:shadow-lg transition-all"
                         >
                           Record Payment
                         </motion.button>
@@ -510,7 +510,7 @@ const PaymentRecording = () => {
                       <div className="flex items-center space-x-2">
                         <button
                           onClick={() => handleEditPayment(payment)}
-                          className="p-2 text-gray-500 hover:text-blue-600 transition-colors"
+                          className="p-2 text-gray-500 hover:text-emerald-600 transition-colors"
                           title="Edit Payment"
                         >
                           <Edit3 className="w-4 h-4" />
@@ -657,7 +657,7 @@ const PaymentRecording = () => {
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-3 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] rounded-xl font-medium hover:shadow-lg transition-all"
+                  className="px-6 py-3 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] rounded-xl font-medium hover:shadow-lg transition-all"
                 >
                   Record Payment
                 </button>
@@ -792,7 +792,7 @@ const PaymentRecording = () => {
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-3 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] rounded-xl font-medium hover:shadow-lg transition-all"
+                  className="px-6 py-3 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] rounded-xl font-medium hover:shadow-lg transition-all"
                 >
                   Update Payment
                 </button>

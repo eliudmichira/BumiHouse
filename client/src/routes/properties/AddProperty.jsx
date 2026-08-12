@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useTheme } from '../../context/ThemeContext';
@@ -30,9 +30,7 @@ import { httpsCallable } from 'firebase/functions';
 import { collection, addDoc, serverTimestamp, doc, setDoc } from 'firebase/firestore';
 import { useMutation } from '@tanstack/react-query';
 import { propertiesAPI, agentsAPI, storageAPI } from '../../lib/firebaseAPI';
-
-// Google Maps Geocoding API key
-const GOOGLE_MAPS_API_KEY = (import.meta.env.VITE_GOOGLE_MAPS_API_KEY || '').trim();
+import { geocodeAddress } from '../../utils/geocode';
 
 // Toast notification system
 const showToast = (options) => {
@@ -647,19 +645,20 @@ const DesktopAddProperty = () => {
         showToast({ type: 'error', title: 'Missing address', message: 'Enter address/city before geocoding.' });
         return;
       }
-      const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(parts)}&region=ke&components=country:KE&key=${GOOGLE_MAPS_API_KEY}`;
-      const res = await fetch(url);
-      const data = await res.json();
-      if (data.status !== 'OK' || !data.results?.length) {
-        showToast({ type: 'error', title: 'Geocoding failed', message: data.error_message || 'No results found for the address.' });
+      // Google Maps first, then the free OpenStreetMap/Nominatim fallback in
+      // utils/geocode when the key is missing, quota is exceeded, or Google
+      // returns no results.
+      const coords = await geocodeAddress(parts);
+      if (!coords) {
+        showToast({ type: 'error', title: 'Geocoding failed', message: 'Could not find that address. Try a more specific location, e.g. "Westlands, Nairobi".' });
         return;
       }
-      const { lat, lng } = data.results[0].geometry.location;
+      const via = coords.source === 'nominatim' ? ' · via OpenStreetMap' : '';
       setFormData(prev => ({
         ...prev,
-        location: { ...prev.location, coordinates: { lat: String(lat), lng: String(lng) } }
+        location: { ...prev.location, coordinates: { lat: String(coords.lat), lng: String(coords.lng) } }
       }));
-      showToast({ type: 'success', title: 'Location found', message: `Lat: ${lat.toFixed(6)}, Lng: ${lng.toFixed(6)}` });
+      showToast({ type: 'success', title: 'Location found', message: `Lat: ${coords.lat.toFixed(6)}, Lng: ${coords.lng.toFixed(6)}${via}` });
     } catch (e) {
       console.error('Geocode error:', e);
       showToast({ type: 'error', title: 'Geocoding error', message: 'Unable to fetch coordinates. Try again.' });
@@ -970,8 +969,8 @@ const DesktopAddProperty = () => {
               <button
                 onClick={handleCancel}
                 className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-colors ${isDark
-                  ? 'text-[#ccc] hover:text-[#3b82f6] hover:bg-[rgba(81,250,170,0.1)]'
-                  : 'text-gray-600 hover:text-[#3b82f6] hover:bg-gray-100'
+                  ? 'text-[#ccc] hover:text-[#51faaa] hover:bg-[rgba(81,250,170,0.1)]'
+                  : 'text-gray-600 hover:text-[#51faaa] hover:bg-gray-100'
                   }`}
               >
                 <X className="w-4 h-4" />
@@ -991,8 +990,8 @@ const DesktopAddProperty = () => {
           {/* Basic Information */}
           <div className={`${isDark ? 'bg-[#10121e] border-[rgba(81,250,170,0.2)]' : 'bg-white border-gray-200 shadow-lg'} rounded-2xl p-8 border`}>
             <h2 className={`text-xl font-outfit font-semibold mb-6 flex items-center gap-3 ${isDark ? 'text-[#feffff]' : 'text-gray-900'}`}>
-              <div className="w-10 h-10 bg-[#3b82f6]/20 rounded-lg flex items-center justify-center">
-                <Building2 className="w-5 h-5 text-[#3b82f6]" />
+              <div className="w-10 h-10 bg-[#51faaa]/20 rounded-lg flex items-center justify-center">
+                <Building2 className="w-5 h-5 text-[#51faaa]" />
               </div>
               Basic Information
             </h2>
@@ -1006,7 +1005,7 @@ const DesktopAddProperty = () => {
                   type="text"
                   value={formData.title}
                   onChange={(e) => handleInputChange('title', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${errors.title
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${errors.title
                     ? 'border-red-500'
                     : isDark
                       ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50'
@@ -1029,7 +1028,7 @@ const DesktopAddProperty = () => {
                 <select
                   value={formData.propertyType}
                   onChange={(e) => handleInputChange('propertyType', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${errors.propertyType
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${errors.propertyType
                     ? 'border-red-500'
                     : isDark
                       ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff]'
@@ -1057,12 +1056,12 @@ const DesktopAddProperty = () => {
                     Price (KES) *
                   </label>
                   <div className="relative">
-                    <DollarSign className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 ${isDark ? 'text-[#3b82f6]' : 'text-gray-400'}`} />
+                    <DollarSign className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 ${isDark ? 'text-[#51faaa]' : 'text-gray-400'}`} />
                     <input
                       type="number"
                       value={formData.price}
                       onChange={(e) => handleInputChange('price', e.target.value)}
-                      className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${errors.price
+                      className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${errors.price
                         ? 'border-red-500'
                         : isDark
                           ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50'
@@ -1087,7 +1086,7 @@ const DesktopAddProperty = () => {
                 <select
                   value={formData.status}
                   onChange={(e) => handleInputChange('status', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${isDark
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${isDark
                     ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff]'
                     : 'border-gray-300 bg-white text-gray-900'
                     }`}
@@ -1103,11 +1102,11 @@ const DesktopAddProperty = () => {
             {/* Multi-Unit Toggle (Only for Apartments/Commercial) */}
             {(formData.propertyType === 'apartment' || formData.propertyType === 'commercial') && (
               <div className={`mt-8 p-6 rounded-2xl border flex items-center justify-between transition-all ${formData.hasMultipleUnits
-                ? isDark ? 'bg-[#3b82f6]/10 border-[#3b82f6]/30' : 'bg-[#3b82f6]/5 border-[#3b82f6]/20'
+                ? isDark ? 'bg-[#51faaa]/10 border-[#51faaa]/30' : 'bg-[#51faaa]/5 border-[#51faaa]/20'
                 : isDark ? 'bg-[#0a0c19] border-[rgba(81,250,170,0.1)]' : 'bg-gray-50 border-gray-200'
                 }`}>
                 <div className="flex items-center gap-4">
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${formData.hasMultipleUnits ? 'bg-[#3b82f6] text-[#111]' : 'bg-gray-200 dark:bg-gray-800 text-gray-500'}`}>
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${formData.hasMultipleUnits ? 'bg-[#51faaa] text-[#111]' : 'bg-gray-200 dark:bg-gray-800 text-gray-500'}`}>
                     <Layers className="w-6 h-6" />
                   </div>
                   <div>
@@ -1122,7 +1121,7 @@ const DesktopAddProperty = () => {
                     checked={formData.hasMultipleUnits}
                     onChange={(e) => handleInputChange('hasMultipleUnits', e.target.checked)}
                   />
-                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#3b82f6]"></div>
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#51faaa]"></div>
                 </label>
               </div>
             )}
@@ -1135,7 +1134,7 @@ const DesktopAddProperty = () => {
                 value={formData.description}
                 onChange={(e) => handleInputChange('description', e.target.value)}
                 rows={4}
-                className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${errors.description
+                className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${errors.description
                   ? 'border-red-500'
                   : isDark
                     ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50'
@@ -1155,8 +1154,8 @@ const DesktopAddProperty = () => {
           {/* Location */}
           <div className={`${isDark ? 'bg-[#10121e] border-[rgba(81,250,170,0.2)]' : 'bg-white border-gray-200 shadow-lg'} rounded-2xl p-8 border`}>
             <h2 className={`text-xl font-outfit font-semibold mb-6 flex items-center gap-3 ${isDark ? 'text-[#feffff]' : 'text-gray-900'}`}>
-              <div className="w-10 h-10 bg-[#3b82f6]/20 rounded-lg flex items-center justify-center">
-                <MapPin className="w-5 h-5 text-[#3b82f6]" />
+              <div className="w-10 h-10 bg-[#51faaa]/20 rounded-lg flex items-center justify-center">
+                <MapPin className="w-5 h-5 text-[#51faaa]" />
               </div>
               Location
             </h2>
@@ -1170,7 +1169,7 @@ const DesktopAddProperty = () => {
                   type="text"
                   value={formData.location.address}
                   onChange={(e) => handleInputChange('location.address', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${errors['location.address']
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${errors['location.address']
                     ? 'border-red-500'
                     : isDark
                       ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50'
@@ -1194,7 +1193,7 @@ const DesktopAddProperty = () => {
                   type="text"
                   value={formData.location.city}
                   onChange={(e) => handleInputChange('location.city', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${errors['location.city']
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${errors['location.city']
                     ? 'border-red-500'
                     : isDark
                       ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50'
@@ -1218,7 +1217,7 @@ const DesktopAddProperty = () => {
                   type="text"
                   value={formData.location.state}
                   onChange={(e) => handleInputChange('location.state', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${isDark
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${isDark
                     ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50'
                     : 'border-gray-300 bg-white text-gray-900 placeholder-gray-500'
                     }`}
@@ -1234,7 +1233,7 @@ const DesktopAddProperty = () => {
                   type="text"
                   value={formData.location.zipCode}
                   onChange={(e) => handleInputChange('location.zipCode', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${isDark
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${isDark
                     ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50'
                     : 'border-gray-300 bg-white text-gray-900 placeholder-gray-500'
                     }`}
@@ -1252,13 +1251,13 @@ const DesktopAddProperty = () => {
                   value={formData.location.googleMapsLink}
                   onChange={(e) => handleMapsLinkChange(e.target.value)}
                   placeholder="e.g. https://maps.app.goo.gl/... or a Google Maps place URL"
-                  className={`w-full px-4 py-3 mb-2 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${isDark
+                  className={`w-full px-4 py-3 mb-2 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${isDark
                     ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50'
                     : 'border-gray-300 bg-white text-gray-900 placeholder-gray-500'
                     }`}
                 />
                 {resolvingUrl && (
-                  <div className={`text-xs mb-2 ${isDark ? 'text-[#3b82f6]' : 'text-blue-600'} flex items-center gap-2`}>
+                  <div className={`text-xs mb-2 ${isDark ? 'text-[#51faaa]' : 'text-emerald-600'} flex items-center gap-2`}>
                     <div className="animate-spin w-3 h-3 border border-current border-t-transparent rounded-full"></div>
                     Resolving short URL...
                   </div>
@@ -1266,7 +1265,7 @@ const DesktopAddProperty = () => {
                 <div className={`text-xs mb-4 ${isDark ? 'text-[#ccc]/70' : 'text-gray-500'}`}>
                   <p className="mb-1">💡 <strong>How to get accurate coordinates:</strong></p>
                   <ol className="list-decimal list-inside space-y-1 ml-4">
-                    <li>Go to <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="text-[#3b82f6] hover:underline">Google Maps</a></li>
+                    <li>Go to <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="text-[#51faaa] hover:underline">Google Maps</a></li>
                     <li>Search for your property location</li>
                     <li>Right-click on the exact building/spot</li>
                     <li>Click on the coordinates that appear</li>
@@ -1304,7 +1303,7 @@ const DesktopAddProperty = () => {
                     value={formData.location.coordinates?.lat}
                     onChange={(e) => handleCoordChange('lat', e.target.value)}
                     placeholder="Latitude (e.g. -1.2921)"
-                    className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${errors['location.coordinates']
+                    className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${errors['location.coordinates']
                       ? 'border-red-500'
                       : isDark
                         ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50'
@@ -1316,7 +1315,7 @@ const DesktopAddProperty = () => {
                     value={formData.location.coordinates?.lng}
                     onChange={(e) => handleCoordChange('lng', e.target.value)}
                     placeholder="Longitude (e.g. 36.8219)"
-                    className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${errors['location.coordinates']
+                    className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${errors['location.coordinates']
                       ? 'border-red-500'
                       : isDark
                         ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50'
@@ -1337,8 +1336,8 @@ const DesktopAddProperty = () => {
           {/* Property Details */}
           <div className={`${isDark ? 'bg-[#10121e] border-[rgba(81,250,170,0.2)]' : 'bg-white border-gray-200 shadow-lg'} rounded-2xl p-8 border`}>
             <h2 className={`text-xl font-outfit font-semibold mb-6 flex items-center gap-3 ${isDark ? 'text-[#feffff]' : 'text-gray-900'}`}>
-              <div className="w-10 h-10 bg-[#3b82f6]/20 rounded-lg flex items-center justify-center">
-                <FileText className="w-5 h-5 text-[#3b82f6]" />
+              <div className="w-10 h-10 bg-[#51faaa]/20 rounded-lg flex items-center justify-center">
+                <FileText className="w-5 h-5 text-[#51faaa]" />
               </div>
               Property Details
             </h2>
@@ -1351,12 +1350,12 @@ const DesktopAddProperty = () => {
                       Bedrooms *
                     </label>
                     <div className="relative">
-                      <Bed className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 ${isDark ? 'text-[#3b82f6]' : 'text-gray-400'}`} />
+                      <Bed className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 ${isDark ? 'text-[#51faaa]' : 'text-gray-400'}`} />
                       <input
                         type="number"
                         value={formData.details.bedrooms}
                         onChange={(e) => handleInputChange('details.bedrooms', e.target.value)}
-                        className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${errors['details.bedrooms']
+                        className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${errors['details.bedrooms']
                           ? 'border-red-500'
                           : isDark
                             ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50'
@@ -1378,12 +1377,12 @@ const DesktopAddProperty = () => {
                       Bathrooms *
                     </label>
                     <div className="relative">
-                      <Bath className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 ${isDark ? 'text-[#3b82f6]' : 'text-gray-400'}`} />
+                      <Bath className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 ${isDark ? 'text-[#51faaa]' : 'text-gray-400'}`} />
                       <input
                         type="number"
                         value={formData.details.bathrooms}
                         onChange={(e) => handleInputChange('details.bathrooms', e.target.value)}
-                        className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${errors['details.bathrooms']
+                        className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${errors['details.bathrooms']
                           ? 'border-red-500'
                           : isDark
                             ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50'
@@ -1405,12 +1404,12 @@ const DesktopAddProperty = () => {
                       Area (sq ft) *
                     </label>
                     <div className="relative">
-                      <Square className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 ${isDark ? 'text-[#3b82f6]' : 'text-gray-400'}`} />
+                      <Square className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 ${isDark ? 'text-[#51faaa]' : 'text-gray-400'}`} />
                       <input
                         type="number"
                         value={formData.details.area}
                         onChange={(e) => handleInputChange('details.area', e.target.value)}
-                        className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${errors['details.area']
+                        className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${errors['details.area']
                           ? 'border-red-500'
                           : isDark
                             ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50'
@@ -1432,12 +1431,12 @@ const DesktopAddProperty = () => {
                       Parking Spaces
                     </label>
                     <div className="relative">
-                      <Car className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 ${isDark ? 'text-[#3b82f6]' : 'text-gray-400'}`} />
+                      <Car className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 ${isDark ? 'text-[#51faaa]' : 'text-gray-400'}`} />
                       <input
                         type="number"
                         value={formData.details.parking}
                         onChange={(e) => handleInputChange('details.parking', e.target.value)}
-                        className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${isDark
+                        className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${isDark
                           ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50'
                           : 'border-gray-300 bg-white text-gray-900 placeholder-gray-500'
                           }`}
@@ -1456,7 +1455,7 @@ const DesktopAddProperty = () => {
                   type="number"
                   value={formData.details.yearBuilt}
                   onChange={(e) => handleInputChange('details.yearBuilt', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${isDark
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${isDark
                     ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50'
                     : 'border-gray-300 bg-white text-gray-900 placeholder-gray-500'
                     }`}
@@ -1474,7 +1473,7 @@ const DesktopAddProperty = () => {
                   type="number"
                   value={formData.details.floors}
                   onChange={(e) => handleInputChange('details.floors', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${isDark
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${isDark
                     ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50'
                     : 'border-gray-300 bg-white text-gray-900 placeholder-gray-500'
                     }`}
@@ -1495,7 +1494,7 @@ const DesktopAddProperty = () => {
                   <button
                     type="button"
                     onClick={() => setShowAddUnit(true)}
-                    className="flex items-center gap-2 px-4 py-2 bg-[#3b82f6]/10 text-[#3b82f6] border border-[#3b82f6]/30 rounded-xl hover:bg-[#3b82f6]/20 transition-all font-outfit font-medium"
+                    className="flex items-center gap-2 px-4 py-2 bg-[#51faaa]/10 text-[#51faaa] border border-[#51faaa]/30 rounded-xl hover:bg-[#51faaa]/20 transition-all font-outfit font-medium"
                   >
                     <Plus className="w-4 h-4" /> Add Configuration
                   </button>
@@ -1505,16 +1504,16 @@ const DesktopAddProperty = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {formData.units && formData.units.length > 0 ? (
                     formData.units.map((unit) => (
-                      <div key={unit.id} className={`p-5 rounded-2xl border relative group transition-all hover:shadow-lg ${isDark ? 'bg-[#0a0c19] border-[#3b82f6]/20 hover:border-[#3b82f6]/40' : 'bg-gray-50 border-gray-200 hover:border-[#3b82f6]/40'}`}>
+                      <div key={unit.id} className={`p-5 rounded-2xl border relative group transition-all hover:shadow-lg ${isDark ? 'bg-[#0a0c19] border-[#51faaa]/20 hover:border-[#51faaa]/40' : 'bg-gray-50 border-gray-200 hover:border-[#51faaa]/40'}`}>
                         <div className="flex justify-between items-start mb-3">
                           <div>
                             <div className="flex items-center gap-2 mb-1">
                               <h3 className={`font-outfit font-bold text-lg ${isDark ? 'text-[#feffff]' : 'text-gray-900'}`}>{unit.name}</h3>
-                              <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider ${isDark ? 'bg-[#3b82f6]/20 text-[#3b82f6]' : 'bg-[#3b82f6]/10 text-[#3b82f6]'}`}>
+                              <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider ${isDark ? 'bg-[#51faaa]/20 text-[#51faaa]' : 'bg-[#51faaa]/10 text-[#51faaa]'}`}>
                                 {unit.unitsAvailable} Units
                               </span>
                             </div>
-                            <span className="text-[#3b82f6] font-outfit font-bold text-xl">KES {Number(unit.price).toLocaleString()}</span>
+                            <span className="text-[#51faaa] font-outfit font-bold text-xl">KES {Number(unit.price).toLocaleString()}</span>
                           </div>
                           <button
                             type="button"
@@ -1539,14 +1538,14 @@ const DesktopAddProperty = () => {
                       </div>
                     ))
                   ) : (
-                    <div className={`md:col-span-2 py-12 border-2 border-dashed rounded-2xl flex flex-col items-center justify-center ${isDark ? 'border-[#3b82f6]/20 text-[#ccc]/50' : 'border-gray-200 text-gray-400'}`}>
+                    <div className={`md:col-span-2 py-12 border-2 border-dashed rounded-2xl flex flex-col items-center justify-center ${isDark ? 'border-[#51faaa]/20 text-[#ccc]/50' : 'border-gray-200 text-gray-400'}`}>
                       <Layers className="w-12 h-12 mb-4 opacity-20" />
                       <p className="font-outfit font-medium text-lg">No unit configurations added yet.</p>
                       <p className="font-outfit text-sm">Add unit types like "Studio", "1 Bedroom Apartment", etc.</p>
                       <button
                         type="button"
                         onClick={() => setShowAddUnit(true)}
-                        className="mt-6 px-6 py-2 bg-[#3b82f6] text-[#111] rounded-xl font-outfit font-bold hover:shadow-lg transition-all"
+                        className="mt-6 px-6 py-2 bg-[#51faaa] text-[#111] rounded-xl font-outfit font-bold hover:shadow-lg transition-all"
                       >
                         Add Your First Unit
                       </button>
@@ -1563,7 +1562,7 @@ const DesktopAddProperty = () => {
 
                 {/* Add Unit Inline Form */}
                 {showAddUnit && (
-                  <div className={`p-8 rounded-2xl border animate-in fade-in slide-in-from-top-4 ${isDark ? 'bg-[#0a0c19] border-[#3b82f6]/30 shadow-2xl' : 'bg-white border-gray-200 shadow-2xl'}`}>
+                  <div className={`p-8 rounded-2xl border animate-in fade-in slide-in-from-top-4 ${isDark ? 'bg-[#0a0c19] border-[#51faaa]/30 shadow-2xl' : 'bg-white border-gray-200 shadow-2xl'}`}>
                     <div className="flex justify-between items-center mb-8">
                       <div>
                         <h3 className={`font-outfit font-bold text-xl ${isDark ? 'text-[#feffff]' : 'text-gray-900'}`}>New Unit Configuration</h3>
@@ -1582,7 +1581,7 @@ const DesktopAddProperty = () => {
                             type="button"
                             onClick={() => selectUnitType(type)}
                             className={`px-4 py-2.5 rounded-xl text-sm font-bold transition-all flex items-center gap-2 ${newUnit.type === type.id
-                              ? 'bg-[#3b82f6] text-[#111] shadow-lg shadow-[#3b82f6]/20'
+                              ? 'bg-[#51faaa] text-[#111] shadow-lg shadow-[#51faaa]/20'
                               : isDark ? 'bg-white/5 text-gray-300 hover:bg-white/10 border border-white/10' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                               }`}
                           >
@@ -1680,7 +1679,7 @@ const DesktopAddProperty = () => {
                       <button
                         type="button"
                         onClick={handleAddUnit}
-                        className="flex-[2] py-4 rounded-xl bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] font-outfit font-bold hover:shadow-xl hover:shadow-[#3b82f6]/25 transition-all flex items-center justify-center gap-2"
+                        className="flex-[2] py-4 rounded-xl bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] font-outfit font-bold hover:shadow-xl hover:shadow-[#51faaa]/25 transition-all flex items-center justify-center gap-2"
                       >
                         <Check className="w-5 h-5" /> Add Configuration
                       </button>
@@ -1709,9 +1708,9 @@ const DesktopAddProperty = () => {
                           type="checkbox"
                           checked={formData.amenities.includes(amenity.value)}
                           onChange={() => handleAmenityToggle(amenity.value)}
-                          className={`w-4 h-4 rounded focus:ring-2 focus:ring-[#3b82f6] ${isDark
-                            ? 'text-[#3b82f6] bg-[#0a0c19] border-[rgba(81,250,170,0.3)] focus:ring-offset-[#0a0c19]'
-                            : 'text-[#3b82f6] bg-white border-gray-300 focus:ring-offset-white'
+                          className={`w-4 h-4 rounded focus:ring-2 focus:ring-[#51faaa] ${isDark
+                            ? 'text-[#51faaa] bg-[#0a0c19] border-[rgba(81,250,170,0.3)] focus:ring-offset-[#0a0c19]'
+                            : 'text-[#51faaa] bg-white border-gray-300 focus:ring-offset-white'
                             }`}
                         />
                         <span className={`text-sm font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-700'}`}>{amenity.label}</span>
@@ -1726,8 +1725,8 @@ const DesktopAddProperty = () => {
           {/* Images */}
           <div className={`${isDark ? 'bg-[#10121e] border-[rgba(81,250,170,0.2)]' : 'bg-white border-gray-200 shadow-lg'} rounded-2xl p-8 border`}>
             <h2 className={`text-xl font-outfit font-semibold mb-6 flex items-center gap-3 ${isDark ? 'text-[#feffff]' : 'text-gray-900'}`}>
-              <div className="w-10 h-10 bg-[#3b82f6]/20 rounded-lg flex items-center justify-center">
-                <Camera className="w-5 h-5 text-[#3b82f6]" />
+              <div className="w-10 h-10 bg-[#51faaa]/20 rounded-lg flex items-center justify-center">
+                <Camera className="w-5 h-5 text-[#51faaa]" />
               </div>
               Property Images
             </h2>
@@ -1737,7 +1736,7 @@ const DesktopAddProperty = () => {
                 ? 'border-[rgba(81,250,170,0.3)]'
                 : 'border-gray-300'
                 }`}>
-                <Upload className={`w-12 h-12 mx-auto mb-4 ${isDark ? 'text-[#3b82f6]' : 'text-gray-400'}`} />
+                <Upload className={`w-12 h-12 mx-auto mb-4 ${isDark ? 'text-[#51faaa]' : 'text-gray-400'}`} />
                 <p className={`mb-2 font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-600'
                   }`}>
                   Upload property images (max 10 images, 5MB each)
@@ -1752,7 +1751,7 @@ const DesktopAddProperty = () => {
                 />
                 <label
                   htmlFor="image-upload"
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#feffff] rounded-xl hover:shadow-lg hover:shadow-[#3b82f6]/25 transition-all duration-300 cursor-pointer font-outfit font-semibold"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#feffff] rounded-xl hover:shadow-lg hover:shadow-[#51faaa]/25 transition-all duration-300 cursor-pointer font-outfit font-semibold"
                 >
                   <Plus className="w-4 h-4" />
                   Choose Images
@@ -1799,7 +1798,7 @@ const DesktopAddProperty = () => {
                   type="text"
                   value={formData.contact.name}
                   onChange={(e) => handleInputChange('contact.name', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${isDark
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${isDark
                     ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50'
                     : 'border-gray-300 bg-white text-gray-900 placeholder-gray-500'
                     }`}
@@ -1815,7 +1814,7 @@ const DesktopAddProperty = () => {
                   type="email"
                   value={formData.contact.email}
                   onChange={(e) => handleInputChange('contact.email', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${isDark
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${isDark
                     ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50'
                     : 'border-gray-300 bg-white text-gray-900 placeholder-gray-500'
                     }`}
@@ -1831,7 +1830,7 @@ const DesktopAddProperty = () => {
                   type="tel"
                   value={formData.contact.phone}
                   onChange={(e) => handleInputChange('contact.phone', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${isDark
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${isDark
                     ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50'
                     : 'border-gray-300 bg-white text-gray-900 placeholder-gray-500'
                     }`}
@@ -1847,7 +1846,7 @@ const DesktopAddProperty = () => {
                   type="tel"
                   value={formData.contact.whatsapp}
                   onChange={(e) => handleInputChange('contact.whatsapp', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${isDark
+                  className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${isDark
                     ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50'
                     : 'border-gray-300 bg-white text-gray-900 placeholder-gray-500'
                     }`}
@@ -1863,8 +1862,8 @@ const DesktopAddProperty = () => {
               type="button"
               onClick={handleCancel}
               className={`px-6 py-3 rounded-xl transition-colors font-outfit font-semibold ${isDark
-                ? 'text-[#ccc] hover:text-[#3b82f6] hover:bg-[rgba(81,250,170,0.1)]'
-                : 'text-gray-600 hover:text-[#3b82f6] hover:bg-gray-100'
+                ? 'text-[#ccc] hover:text-[#51faaa] hover:bg-[rgba(81,250,170,0.1)]'
+                : 'text-gray-600 hover:text-[#51faaa] hover:bg-gray-100'
                 }`}
             >
               Cancel
@@ -1872,8 +1871,8 @@ const DesktopAddProperty = () => {
             <button
               type="submit"
               disabled={loading}
-              className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-700 to-blue-800 text-[#feffff] rounded-xl hover:shadow-lg 
-              hover:shadow-blue-500/25 bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 font-outfit font-semibold"
+              className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-700 to-emerald-800 text-[#feffff] rounded-xl hover:shadow-lg 
+              hover:shadow-emerald-500/25 bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 font-outfit font-semibold"
             >
               {loading ? (
                 <>

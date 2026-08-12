@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+﻿import React, { useState, useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 
 const GoogleLevelButton = ({ 
@@ -25,8 +25,8 @@ const GoogleLevelButton = ({
   
   const variants = {
     primary: {
-      base: "bg-gradient-to-r from-[#3b82f6] to-[#2563eb] text-white",
-      hover: "from-[#2563eb] to-[#3b82f6] shadow-[0_8px_32px_rgba(81,250,170,0.3)]",
+      base: "bg-gradient-to-r from-[#51faaa] to-[#2dd284] text-white",
+      hover: "from-[#2dd284] to-[#51faaa] shadow-[0_8px_32px_rgba(81,250,170,0.3)]",
       active: "scale-[0.98]"
     },
     secondary: {

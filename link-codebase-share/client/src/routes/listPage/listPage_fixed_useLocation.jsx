@@ -72,7 +72,7 @@ import {
 // Google Maps API Key - strict in dev, safe fallback in prod
 const IS_PROD = import.meta.env.PROD;
 const ENV_KEY = (import.meta.env.VITE_GOOGLE_MAPS_API_KEY || '').trim();
-const PROD_FALLBACK_KEY = 'REDACTED';
+const PROD_FALLBACK_KEY = 'YOUR_API_KEY';
 const GOOGLE_MAPS_API_KEY = IS_PROD ? (ENV_KEY || PROD_FALLBACK_KEY) : ENV_KEY;
 const HAS_GOOGLE_MAPS_KEY = GOOGLE_MAPS_API_KEY.length > 0;
 

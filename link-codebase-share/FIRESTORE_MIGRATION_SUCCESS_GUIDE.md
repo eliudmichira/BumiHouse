@@ -349,7 +349,7 @@ async function validateMigration() {
 ### **Frontend Environment Variables**
 ```env
 # Updated client/.env.local
-VITE_FIREBASE_API_KEY=REDACTED
+VITE_FIREBASE_API_KEY=YOUR_API_KEY
 VITE_FIREBASE_AUTH_DOMAIN=dwellmate-285e8.firebaseapp.com
 VITE_FIREBASE_PROJECT_ID=dwellmate-285e8
 VITE_FIREBASE_STORAGE_BUCKET=dwellmate-285e8.firebasestorage.app

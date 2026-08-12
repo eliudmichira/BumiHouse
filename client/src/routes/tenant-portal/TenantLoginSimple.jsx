@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+﻿import React, { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Home, Phone, Lock, Shield, ArrowRight, Sparkles, Check, Star, Eye, EyeOff, AlertCircle, Loader2 } from 'lucide-react';
 import Logo from '../../components/Logo';
@@ -11,7 +11,7 @@ const showNotification = (options) => {
     <div class="relative overflow-hidden rounded-2xl p-5 min-w-[300px] max-w-[400px] ${options.color === 'red'
       ? 'bg-gradient-to-br from-red-500 via-red-600 to-red-700'
       : options.color === 'blue'
-        ? 'bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600'
+        ? 'bg-gradient-to-br from-emerald-500 via-emerald-600 to-indigo-600'
         : 'bg-gradient-to-br from-emerald-500 via-emerald-600 to-teal-600'
     } text-white shadow-2xl backdrop-blur-xl border border-white/20">
       <div class="relative flex items-start gap-4">
@@ -186,7 +186,7 @@ const TenantLoginPremium = () => {
       {/* Subtle gradient blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-4 -right-4 w-72 h-72 bg-gradient-to-br from-green-100/30 to-emerald-100/30 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/3 -left-8 w-48 h-48 bg-gradient-to-br from-blue-100/20 to-indigo-100/20 rounded-full blur-2xl"></div>
+        <div className="absolute top-1/3 -left-8 w-48 h-48 bg-gradient-to-br from-emerald-100/20 to-indigo-100/20 rounded-full blur-2xl"></div>
         <div className="absolute bottom-0 right-1/3 w-64 h-64 bg-gradient-to-br from-purple-100/20 to-pink-100/20 rounded-full blur-3xl"></div>
       </div>
 
@@ -341,7 +341,7 @@ const TenantLoginPremium = () => {
 
             <div className="grid grid-cols-2 gap-4">
               {[
-                { value: '99.9%', label: 'Uptime', color: 'from-blue-500 to-indigo-600' },
+                { value: '99.9%', label: 'Uptime', color: 'from-emerald-500 to-indigo-600' },
                 { value: '10K+', label: 'Happy Tenants', color: 'from-emerald-500 to-green-600' },
                 { value: '<3s', label: 'Payment Speed', color: 'from-purple-500 to-pink-600' },
                 { value: '24/7', label: 'Support', color: 'from-orange-500 to-red-600' }

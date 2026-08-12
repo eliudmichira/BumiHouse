@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 
 const FloatingActionButton = ({
     icon: Icon,
@@ -15,7 +15,7 @@ const FloatingActionButton = ({
     const variants = {
         primary: "bg-surface text-ink border-border hover:bg-gray-50 dark:hover:bg-gray-800",
         secondary: "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700",
-        accent: "bg-blue-600 text-white border-blue-600 hover:bg-blue-700"
+        accent: "bg-emerald-600 text-white border-emerald-600 hover:bg-emerald-700"
     };
 
     return (

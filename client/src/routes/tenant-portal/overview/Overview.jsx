@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
 import { DollarSign, Calendar, Star, Target } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -90,8 +90,8 @@ const Overview = ({ tenant, cribbyScore, streak, monthlyRent, dueDate }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .1 }} className="p-6 rounded-3xl bg-white dark:bg-gray-800 border border-gray-200/50 dark:border-gray-700/50 shadow">
             <div className="flex items-center justify-between mb-4">
-              <div className="w-14 h-14 bg-gradient-to-br from-[#3b82f6]/20 to-[#06b6d4]/20 rounded-2xl flex items-center justify-center">
-                <DollarSign className="w-7 h-7 text-[#3b82f6]" />
+              <div className="w-14 h-14 bg-gradient-to-br from-[#51faaa]/20 to-[#dbd5a4]/20 rounded-2xl flex items-center justify-center">
+                <DollarSign className="w-7 h-7 text-[#51faaa]" />
               </div>
             </div>
             <p className="text-3xl font-bold text-gray-900 dark:text-white mb-2">KSh {Number.isFinite(safeMonthlyRent) ? safeMonthlyRent.toLocaleString() : '—'}</p>
@@ -99,8 +99,8 @@ const Overview = ({ tenant, cribbyScore, streak, monthlyRent, dueDate }) => {
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .2 }} className="p-6 rounded-3xl bg-white dark:bg-gray-800 border border-gray-200/50 dark:border-gray-700/50 shadow">
             <div className="flex items-center justify-between mb-4">
-              <div className="w-14 h-14 bg-gradient-to-br from-[#3b82f6]/20 to-[#06b6d4]/20 rounded-2xl flex items-center justify-center">
-                <Calendar className="w-7 h-7 text-[#3b82f6]" />
+              <div className="w-14 h-14 bg-gradient-to-br from-[#51faaa]/20 to-[#dbd5a4]/20 rounded-2xl flex items-center justify-center">
+                <Calendar className="w-7 h-7 text-[#51faaa]" />
               </div>
             </div>
             <p className="text-3xl font-bold text-gray-900 dark:text-white mb-2">{safeDueDate.toLocaleDateString('en-US', { day: 'numeric' })}</p>
@@ -108,8 +108,8 @@ const Overview = ({ tenant, cribbyScore, streak, monthlyRent, dueDate }) => {
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .3 }} className="p-6 rounded-3xl bg-white dark:bg-gray-800 border border-gray-200/50 dark:border-gray-700/50 shadow">
             <div className="flex items-center justify-between mb-4">
-              <div className="w-14 h-14 bg-gradient-to-br from-[#3b82f6]/20 to-[#06b6d4]/20 rounded-2xl flex items-center justify-center">
-                <Star className="w-7 h-7 text-[#3b82f6]" />
+              <div className="w-14 h-14 bg-gradient-to-br from-[#51faaa]/20 to-[#dbd5a4]/20 rounded-2xl flex items-center justify-center">
+                <Star className="w-7 h-7 text-[#51faaa]" />
               </div>
             </div>
             <p className="text-3xl font-bold text-gray-900 dark:text-white mb-2">{safeCribby}</p>
@@ -117,8 +117,8 @@ const Overview = ({ tenant, cribbyScore, streak, monthlyRent, dueDate }) => {
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .4 }} className="p-6 rounded-3xl bg-white dark:bg-gray-800 border border-gray-200/50 dark:border-gray-700/50 shadow">
             <div className="flex items-center justify-between mb-4">
-              <div className="w-14 h-14 bg-gradient-to-br from-[#3b82f6]/20 to-[#06b6d4]/20 rounded-2xl flex items-center justify-center">
-                <Target className="w-7 h-7 text-[#3b82f6]" />
+              <div className="w-14 h-14 bg-gradient-to-br from-[#51faaa]/20 to-[#dbd5a4]/20 rounded-2xl flex items-center justify-center">
+                <Target className="w-7 h-7 text-[#51faaa]" />
               </div>
             </div>
             <p className="text-3xl font-bold text-gray-900 dark:text-white mb-2">{safeStreak}</p>
@@ -174,15 +174,15 @@ const Overview = ({ tenant, cribbyScore, streak, monthlyRent, dueDate }) => {
                   {/* gradient */}
                   <defs>
                     <linearGradient id="grad" x1="0" x2="1" y1="0" y2="0">
-                      <stop offset="0%" stopColor="#3b82f6" />
-                      <stop offset="100%" stopColor="#06b6d4" />
+                      <stop offset="0%" stopColor="#51faaa" />
+                      <stop offset="100%" stopColor="#dbd5a4" />
                     </linearGradient>
                   </defs>
                   {/* points */}
                   {amounts.map((v, idx) => {
                     const x = padX + idx * stepX;
                     const y = padY + (height - padY * 2) * (1 - v / max);
-                    return <circle key={idx} cx={x} cy={y} r="3" fill="#3b82f6" />
+                    return <circle key={idx} cx={x} cy={y} r="3" fill="#51faaa" />
                   })}
                 </svg>
               </div>
@@ -206,7 +206,7 @@ const Overview = ({ tenant, cribbyScore, streak, monthlyRent, dueDate }) => {
           <p className="text-sm text-gray-600 dark:text-gray-300">Next action: {nextAction}</p>
           <div className="mt-4 flex gap-3">
             {!isPaid && (
-              <Link to="/tenant-dashboard/payments" className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] font-semibold">Pay Now</Link>
+              <Link to="/tenant-dashboard/payments" className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] font-semibold">Pay Now</Link>
             )}
             {!isPaid && !safeTenant.autoPayEnabled && (
               <button onClick={() => setShowAutoPayModal(true)} className="px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-200">Set up Auto‑Pay</button>
@@ -218,11 +218,11 @@ const Overview = ({ tenant, cribbyScore, streak, monthlyRent, dueDate }) => {
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Smart Reminders</h3>
           <ul className="space-y-3 text-sm">
             <li className="flex items-start gap-2">
-              <span className="mt-1 h-2 w-2 rounded-full bg-[#3b82f6]"></span>
+              <span className="mt-1 h-2 w-2 rounded-full bg-[#51faaa]"></span>
               <span>{openMaintenanceCount > 0 ? `${openMaintenanceCount} maintenance ${openMaintenanceCount === 1 ? 'request' : 'requests'} open` : 'No open maintenance requests'}</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="mt-1 h-2 w-2 rounded-full bg-[#06b6d4]"></span>
+              <span className="mt-1 h-2 w-2 rounded-full bg-[#dbd5a4]"></span>
               <span>{leaseEnd ? (leaseExpiringSoon ? `Lease expires in ${leaseDaysLeft} day${leaseDaysLeft === 1 ? '' : 's'}` : `Lease ends on ${leaseEnd.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}`) : 'Lease end date not set'}</span>
             </li>
           </ul>
@@ -253,15 +253,15 @@ const Overview = ({ tenant, cribbyScore, streak, monthlyRent, dueDate }) => {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .8 }} className="mt-8 p-6 rounded-3xl bg-white dark:bg-gray-800 border border-gray-200/50 dark:border-gray-700/50 shadow">
         <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">⚡ Quick Actions</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <button onClick={() => setShowAutoPayModal(true)} className="text-left p-5 rounded-2xl border border-gray-200/50 dark:border-gray-700/50 bg-gray-50 dark:bg-gray-700/40 hover:border-[#3b82f6]/50 transition">
+          <button onClick={() => setShowAutoPayModal(true)} className="text-left p-5 rounded-2xl border border-gray-200/50 dark:border-gray-700/50 bg-gray-50 dark:bg-gray-700/40 hover:border-[#51faaa]/50 transition">
             <p className="font-semibold text-gray-900 dark:text-white">Set Up Auto‑Pay</p>
             <p className="text-sm text-gray-600 dark:text-gray-300">Never miss a payment again</p>
           </button>
-          <button onClick={() => setShowMaintenanceModal(true)} className="text-left p-5 rounded-2xl border border-gray-200/50 dark:border-gray-700/50 bg-gray-50 dark:bg-gray-700/40 hover:border-[#3b82f6]/50 transition">
+          <button onClick={() => setShowMaintenanceModal(true)} className="text-left p-5 rounded-2xl border border-gray-200/50 dark:border-gray-700/50 bg-gray-50 dark:bg-gray-700/40 hover:border-[#51faaa]/50 transition">
             <p className="font-semibold text-gray-900 dark:text-white">Request Maintenance</p>
             <p className="text-sm text-gray-600 dark:text-gray-300">Report any issues quickly</p>
           </button>
-          <Link to="/tenant-dashboard/receipts" className="p-5 rounded-2xl border border-gray-200/50 dark:border-gray-700/50 bg-gray-50 dark:bg-gray-700/40 hover:border-[#3b82f6]/50 transition">
+          <Link to="/tenant-dashboard/receipts" className="p-5 rounded-2xl border border-gray-200/50 dark:border-gray-700/50 bg-gray-50 dark:bg-gray-700/40 hover:border-[#51faaa]/50 transition">
             <p className="font-semibold text-gray-900 dark:text-white">Download Receipts</p>
             <p className="text-sm text-gray-600 dark:text-gray-300">Get payment confirmations</p>
           </Link>
@@ -286,7 +286,7 @@ const Overview = ({ tenant, cribbyScore, streak, monthlyRent, dueDate }) => {
             </div>
             <div className="mt-6 flex items-center justify-end gap-3">
               <button onClick={() => setShowAutoPayModal(false)} className="px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-200">Cancel</button>
-              <button onClick={enableAutoPayFromModal} className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] font-semibold">Enable Auto‑Pay</button>
+              <button onClick={enableAutoPayFromModal} className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] font-semibold">Enable Auto‑Pay</button>
             </div>
           </div>
         </div>
@@ -319,7 +319,7 @@ const Overview = ({ tenant, cribbyScore, streak, monthlyRent, dueDate }) => {
             </div>
             <div className="mt-6 flex items-center justify-end gap-3">
               <button onClick={() => setShowMaintenanceModal(false)} className="px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-200">Cancel</button>
-              <button onClick={submitMaintenanceFromModal} className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] font-semibold">Submit Request</button>
+              <button onClick={submitMaintenanceFromModal} className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] font-semibold">Submit Request</button>
             </div>
           </div>
         </div>

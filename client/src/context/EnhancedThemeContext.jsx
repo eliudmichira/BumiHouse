@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+﻿import React, { createContext, useContext, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const EnhancedThemeContext = createContext();
@@ -15,21 +15,21 @@ export const useEnhancedTheme = () => {
 const themePresets = {
   light: {
     name: 'Light',
-    primary: '#3b82f6',
-    secondary: '#06b6d4',
+    primary: '#51faaa',
+    secondary: '#dbd5a4',
     background: '#ffffff',
     surface: '#f8fafc',
     text: '#1f2937',
-    accent: '#2563eb'
+    accent: '#2dd284'
   },
   dark: {
     name: 'Dark',
-    primary: '#3b82f6',
-    secondary: '#06b6d4',
+    primary: '#51faaa',
+    secondary: '#dbd5a4',
     background: '#0f172a',
     surface: '#1e293b',
     text: '#f1f5f9',
-    accent: '#2563eb'
+    accent: '#2dd284'
   },
   midnight: {
     name: 'Midnight',
@@ -42,17 +42,17 @@ const themePresets = {
   },
   nature: {
     name: 'Nature',
-    primary: '#2563eb',
+    primary: '#2dd284',
     secondary: '#fbbf24',
     background: '#f0fdf4',
     surface: '#ecfdf5',
     text: '#064e3b',
-    accent: '#3b82f6'
+    accent: '#51faaa'
   },
   ocean: {
     name: 'Ocean',
     primary: '#0ea5e9',
-    secondary: '#06b6d4',
+    secondary: '#dbd5a4',
     background: '#f0f9ff',
     surface: '#e0f2fe',
     text: '#0c4a6e',

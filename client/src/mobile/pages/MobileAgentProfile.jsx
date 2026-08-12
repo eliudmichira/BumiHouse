@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback, Suspense, lazy } from 'react';
+﻿import React, { useState, useEffect, useMemo, useCallback, Suspense, lazy } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     Building2, Eye, MessageCircle, BarChart3,
@@ -133,40 +133,40 @@ const MobileAgentProfile = () => {
 
     // Skeleton Components
     const StatSkeleton = () => (
-        <div className={`p-4 rounded-3xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-100'} animate-pulse`}>
-            <div className="w-10 h-10 rounded-xl bg-gray-500/10 mb-3" />
-            <div className="h-6 bg-gray-500/10 rounded-lg w-3/4 mb-2" />
-            <div className="h-3 bg-gray-500/10 rounded-md w-1/2" />
+        <div className={`p-4 rounded-xl border ${isDark ? 'bg-gray-900/40 border-white/10' : 'bg-white border-gray-200'} animate-pulse`}>
+            <div className="w-4 h-4 rounded bg-gray-500/10 mb-3" />
+            <div className="h-6 bg-gray-500/10 rounded w-3/4 mb-2" />
+            <div className="h-3 bg-gray-500/10 rounded w-1/2" />
         </div>
     );
 
-    // Memoized Quick Stats Data
+    // Memoized Quick Stats Data — pastel card palette
     const quickStatsData = useMemo(() => [
         {
             label: 'Active Listings',
             value: agentStats.activeListings.toString(),
             icon: Building2,
-            gradient: 'from-blue-500/20 to-cyan-500/20',
-            iconColor: 'text-blue-400',
-            bgColor: 'bg-blue-500/10',
+            cardBg: 'bg-blue-100/70',
+            tileBg: 'bg-blue-200/70',
+            iconColor: 'text-blue-600',
             loading: isPropertiesLoading
         },
         {
             label: 'Total Views',
             value: agentStats.totalViews.toLocaleString(),
             icon: Eye,
-            gradient: 'from-green-500/20 to-emerald-500/20',
-            iconColor: 'text-green-400',
-            bgColor: 'bg-green-500/10',
+            cardBg: 'bg-emerald-100/70',
+            tileBg: 'bg-emerald-200/70',
+            iconColor: 'text-emerald-600',
             loading: isPropertiesLoading
         },
         {
             label: 'Inquiries',
             value: agentStats.totalInquiries.toString(),
             icon: MessageCircle,
-            gradient: 'from-purple-500/20 to-pink-500/20',
-            iconColor: 'text-purple-400',
-            bgColor: 'bg-purple-500/10',
+            cardBg: 'bg-purple-100/70',
+            tileBg: 'bg-purple-200/70',
+            iconColor: 'text-purple-600',
             loading: isInquiriesLoading
         },
         // Only show revenue/financial stats to owner
@@ -174,9 +174,9 @@ const MobileAgentProfile = () => {
             label: 'This Month',
             value: `KSh ${(agentStats.thisMonthRevenue / 1000).toFixed(0)}k`,
             icon: DollarSign,
-            gradient: 'from-yellow-500/20 to-amber-500/20',
-            iconColor: 'text-yellow-400',
-            bgColor: 'bg-yellow-500/10',
+            cardBg: 'bg-amber-100/70',
+            tileBg: 'bg-amber-200/70',
+            iconColor: 'text-amber-600',
             loading: isPropertiesLoading
         }] : [])
     ], [agentStats, isPropertiesLoading, isInquiriesLoading, isOwner]);
@@ -203,41 +203,24 @@ const MobileAgentProfile = () => {
 
     return (
         <ContentWrapper>
-            <div className={`min-h-screen ${(!isOwner ? 'pt-0' : '')} ${isDark
-                ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900'
-                : 'bg-gradient-to-br from-gray-50 via-white to-gray-100'
-                }`}>
-                {/* Animated Background Elements - FROM USER PROFILE */}
-                <div className="fixed inset-0 overflow-hidden pointer-events-none">
-                    <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#3b82f6]/5 rounded-full blur-3xl animate-pulse" />
-                    <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#06b6d4]/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-                </div>
+            <div className={`min-h-screen ${(!isOwner ? 'pt-0' : '')} ${isDark ? 'bg-gray-900' : 'bg-gray-50'}`}>
 
                 {/* Header with Profile Card */}
                 <motion.div
-                    className={`relative px-4 pb-40 z-10 ${isOwner ? 'pt-6' : 'pt-4'}`}
-                    style={{ paddingTop: isOwner ? 'calc(env(safe-area-inset-top) + 1.5rem)' : '1rem' }}
+                    className={`relative px-4 pb-6 z-10 ${isOwner ? 'pt-4' : 'pt-4'}`}
+                    style={{ paddingTop: isOwner ? 'calc(env(safe-area-inset-top) + 1rem)' : '1rem' }}
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                 >
-                    <motion.div
-                        className={`relative ${isDark
-                            ? 'bg-gradient-to-br from-white/15 via-white/10 to-white/5 backdrop-blur-2xl border-white/20'
-                            : 'bg-white/90 backdrop-blur-xl border-gray-200/50'
-                            } rounded-3xl p-6 border shadow-2xl overflow-hidden`}
-                        initial={{ scale: 0.95, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{ delay: 0.1 }}
-                    >
-                        {/* Decorative gradient overlay */}
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#3b82f6]/20 to-transparent rounded-full blur-3xl -z-10" />
+                    <div className={`rounded-2xl p-5 border shadow-sm ${isDark ? 'bg-gray-900/60 border-white/10' : 'bg-white border-slate-100'}`}>
 
-                        <div className="flex items-center gap-6 relative z-10">
+                        <div className="flex items-center gap-5 relative z-10">
                             <motion.div
                                 className="relative"
                                 whileHover={{ scale: 1.05 }}
                             >
-                                <div className={`w-24 h-24 rounded-full overflow-hidden border-2 shadow-2xl ${isDark ? 'border-white/20' : 'border-white'}`}>
+                                <div className={`w-16 h-16 rounded-full overflow-hidden ring-2 ring-white shadow-md ${isDark ? 'bg-gray-800' : ''}`}
+                                    style={!agentProfile?.image && !agentProfile?.avatar && !agentProfile?.photo ? { background: 'linear-gradient(135deg, #0f766e 0%, #14b8a6 100%)' } : undefined}>
                                     {agentProfile?.image || agentProfile?.avatar || agentProfile?.photo ? (
                                         <img
                                             src={agentProfile?.image || agentProfile?.avatar || agentProfile?.photo}
@@ -245,26 +228,26 @@ const MobileAgentProfile = () => {
                                             className="w-full h-full object-cover"
                                         />
                                     ) : (
-                                        <div className={`w-full h-full flex items-center justify-center text-3xl font-bold ${isDark ? 'bg-gray-800 text-gray-200' : 'bg-gray-100 text-gray-500'}`}>
-                                            {(agentProfile?.name?.[0]?.toUpperCase()) || 'A'}
+                                        <div className="w-full h-full flex items-center justify-center text-3xl font-semibold tracking-tight text-white">
+                                            {(agentProfile?.name?.[0]?.toUpperCase()) || (user?.displayName?.[0]?.toUpperCase()) || 'A'}
                                         </div>
                                     )}
                                 </div>
                                 {isOwner && (
                                     <motion.button
                                         onClick={() => navigate('/profile/edit/agent')}
-                                        className="absolute -bottom-1 -right-1 w-9 h-9 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] rounded-full flex items-center justify-center text-gray-900 shadow-xl ring-2 ring-gray-900/20"
+                                        className="absolute -bottom-1 -right-1 w-7 h-7 bg-emerald-400 ring-2 ring-white rounded-full flex items-center justify-center text-white shadow"
                                         whileHover={{ scale: 1.1, rotate: 90 }}
                                         whileTap={{ scale: 0.9 }}
                                     >
-                                        <Camera size={16} />
+                                        <Camera size={14} />
                                     </motion.button>
                                 )}
                             </motion.div>
 
                             <div className="flex-1 min-w-0">
                                 <motion.h1
-                                    className={`text-2xl font-bold mb-2 leading-tight ${isDark ? 'text-white' : 'text-gray-900'}`}
+                                    className={`text-[17px] font-bold leading-tight tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}
                                     initial={{ opacity: 0, x: -10 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: 0.2 }}
@@ -278,12 +261,12 @@ const MobileAgentProfile = () => {
                                     </div>
                                 ) : (
                                     <motion.p
-                                        className={`text-sm mb-4 leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-600'}`}
+                                        className={`mt-1 text-[13px] mb-3 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}
                                         initial={{ opacity: 0, x: -10 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ delay: 0.3 }}
                                     >
-                                        {agentProfile?.professionalTitle || "Real Estate Professional"} • {agentProfile?.company || "Independent Agent"}
+                                        {agentProfile?.professionalTitle || "Real Estate Professional"} <span className="mx-1 text-slate-300">•</span> {agentProfile?.company || "Independent Agent"}
                                     </motion.p>
                                 )}
 
@@ -296,10 +279,10 @@ const MobileAgentProfile = () => {
                                 >
                                     {(isOwner ? isVerifiedAgent : agentProfile?.verified) && (
                                         <motion.span
-                                            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-blue-500/30 to-blue-600/30 border border-blue-400/40 text-blue-200 text-xs font-semibold shadow-lg backdrop-blur-sm"
+                                            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-blue-50 text-blue-600 border border-blue-100"
                                             whileHover={{ scale: 1.05 }}
                                         >
-                                            <Shield size={13} className="text-blue-300" />
+                                            <Shield size={11} />
                                             Verified Agent
                                         </motion.span>
                                     )}
@@ -308,7 +291,7 @@ const MobileAgentProfile = () => {
                                         {agentProfile?.linkedinUrl && (
                                             <motion.a
                                                 href={agentProfile.linkedinUrl} target="_blank" rel="noopener noreferrer"
-                                                className={`p-2 rounded-xl transition-all ${isDark ? 'bg-white/5 text-gray-400 hover:text-blue-400 hover:bg-blue-500/10' : 'bg-gray-100 text-gray-500 hover:text-blue-600 hover:bg-blue-50'}`}
+                                                className={`p-2 rounded-xl transition-all ${isDark ? 'bg-white/5 text-gray-400 hover:text-emerald-400 hover:bg-emerald-500/10' : 'bg-gray-100 text-gray-500 hover:text-emerald-600 hover:bg-emerald-50'}`}
                                                 whileTap={{ scale: 0.9 }}
                                             >
                                                 <Linkedin size={16} />
@@ -317,7 +300,7 @@ const MobileAgentProfile = () => {
                                         {agentProfile?.facebookUrl && (
                                             <motion.a
                                                 href={agentProfile.facebookUrl} target="_blank" rel="noopener noreferrer"
-                                                className={`p-2 rounded-xl transition-all ${isDark ? 'bg-white/5 text-gray-400 hover:text-blue-500 hover:bg-blue-600/10' : 'bg-gray-100 text-gray-500 hover:text-blue-700 hover:bg-blue-50'}`}
+                                                className={`p-2 rounded-xl transition-all ${isDark ? 'bg-white/5 text-gray-400 hover:text-emerald-500 hover:bg-emerald-600/10' : 'bg-gray-100 text-gray-500 hover:text-emerald-700 hover:bg-emerald-50'}`}
                                                 whileTap={{ scale: 0.9 }}
                                             >
                                                 <Facebook size={16} />
@@ -335,10 +318,10 @@ const MobileAgentProfile = () => {
                                     </div>
                                     {agentStats.avgRating > 4 && (
                                         <motion.span
-                                            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-[#3b82f6]/30 to-[#45e695]/30 border border-[#3b82f6]/40 text-[#0a0c19] text-xs font-semibold shadow-lg backdrop-blur-sm"
+                                            className={`inline-flex items-center gap-1 text-[11px] font-medium ${isDark ? 'text-gray-400' : 'text-gray-500'}`}
                                             whileHover={{ scale: 1.05 }}
                                         >
-                                            <Award size={13} />
+                                            <Award size={11} />
                                             Top Rated
                                         </motion.span>
                                     )}
@@ -346,11 +329,11 @@ const MobileAgentProfile = () => {
                             </div>
                         </div>
 
-                    </motion.div>
+                    </div>
                 </motion.div>
 
                 {/* Main Content */}
-                <div className="relative -mt-24 px-4 pb-40 z-10">
+                <div className="relative px-4 pb-40 z-10">
                     {/* Enhanced Tab Navigation */}
                     <motion.div
                         className="flex gap-3 mb-6 overflow-x-auto no-scrollbar pb-2"
@@ -367,11 +350,11 @@ const MobileAgentProfile = () => {
                                 <motion.button
                                     key={tab.id}
                                     onClick={() => handleTabChange(tab.id)}
-                                    className={`px-5 py-3 rounded-2xl font-bold text-sm whitespace-nowrap transition-all flex items-center gap-2 relative overflow-hidden ${activeTab === tab.id
-                                        ? 'bg-gradient-to-r from-[#3b82f6] via-[#45e695] to-[#06b6d4] text-gray-900 shadow-xl shadow-[#3b82f6]/30'
+                                    className={`px-5 py-2.5 rounded-full font-semibold text-[13px] whitespace-nowrap transition-all flex items-center gap-2 ${activeTab === tab.id
+                                        ? 'bg-gradient-to-r from-emerald-500 to-emerald-400 text-white shadow-md shadow-emerald-500/20'
                                         : isDark
-                                            ? 'bg-white/10 backdrop-blur-xl text-gray-300 border border-white/20 hover:bg-white/15'
-                                            : 'bg-gray-100/80 backdrop-blur-xl text-gray-700 border border-gray-300/50 hover:bg-gray-200/80'
+                                            ? 'bg-gray-900/60 text-gray-300 border border-white/10'
+                                            : 'bg-white text-slate-700 border border-slate-200 shadow-sm'
                                         }`}
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
@@ -396,44 +379,27 @@ const MobileAgentProfile = () => {
                                 transition={{ duration: 0.3 }}
                                 className="space-y-6"
                             >
-                                {/* Enhanced Quick Stats Grid */}
-                                <div className="grid grid-cols-2 gap-4">
+                                {/* Stats — pastel personality cards */}
+                                <div className="grid grid-cols-2 gap-3">
                                     {quickStatsData.map((stat, index) => (
                                         stat.loading ? (
                                             <StatSkeleton key={index} />
                                         ) : (
-                                            <motion.div
+                                            <div
                                                 key={stat.label}
-                                                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                                                animate={{ opacity: 1, scale: 1, y: 0 }}
-                                                transition={{ delay: index * 0.1, type: "spring", stiffness: 200 }}
-                                                className={`relative bg-gradient-to-br ${stat.gradient} backdrop-blur-xl rounded-3xl p-5 border ${isDark ? 'border-white/20' : 'border-gray-200/50'} shadow-xl overflow-hidden group`}
-                                                whileHover={{ scale: 1.02, y: -2 }}
+                                                className={`relative rounded-2xl p-4 shadow-sm overflow-hidden ${isDark ? 'bg-gray-900/40 border border-white/10' : `${stat.cardBg} border border-white/60`}`}
                                             >
-                                                <div className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-
-                                                <div className="relative z-10">
-                                                    <div className="flex items-start justify-between mb-4">
-                                                        <div className={`w-12 h-12 rounded-2xl ${stat.bgColor} flex items-center justify-center shadow-lg`}>
-                                                            <stat.icon className={`w-6 h-6 ${stat.iconColor}`} />
-                                                        </div>
-                                                        <motion.div
-                                                            className="w-2 h-2 rounded-full bg-[#3b82f6]"
-                                                            animate={{ scale: [1, 1.2, 1] }}
-                                                            transition={{ duration: 2, repeat: Infinity }}
-                                                        />
+                                                <div className="flex items-start justify-between mb-5">
+                                                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${isDark ? 'bg-white/10' : stat.tileBg}`}>
+                                                        <stat.icon className={`w-5 h-5 ${stat.iconColor}`} strokeWidth={2.2} />
                                                     </div>
-                                                    <motion.p
-                                                        className={`text-4xl font-black mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}
-                                                        initial={{ scale: 0 }}
-                                                        animate={{ scale: 1 }}
-                                                        transition={{ delay: index * 0.1 + 0.2, type: "spring" }}
-                                                    >
-                                                        {stat.value}
-                                                    </motion.p>
-                                                    <p className={`text-xs font-semibold uppercase tracking-wider ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>{stat.label}</p>
+                                                    <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_0_3px_rgba(16,185,129,0.15)]" />
                                                 </div>
-                                            </motion.div>
+                                                <p className={`text-[28px] font-bold leading-none tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                                                    {stat.value}
+                                                </p>
+                                                <p className={`mt-2 text-[10px] font-semibold uppercase tracking-[0.08em] ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>{stat.label}</p>
+                                            </div>
                                         )
                                     ))}
                                 </div>
@@ -445,13 +411,13 @@ const MobileAgentProfile = () => {
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.15 }}
                                     >
-                                        <h3 className={`text-xs font-black uppercase tracking-widest mb-4 px-2 flex items-center gap-2 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                                            <div className="w-1 h-4 bg-gradient-to-b from-blue-500 to-cyan-500 rounded-full" />
+                                        <h3 className={`text-[11px] font-semibold uppercase tracking-[0.12em] mb-3 px-1 flex items-center gap-2 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+                                            <span className="w-1 h-3.5 bg-emerald-500 rounded-full" />
                                             Service Areas
                                         </h3>
                                         <div className="flex flex-wrap gap-2 px-2">
                                             {agentProfile.serviceAreas.map((area, idx) => (
-                                                <span key={idx} className={`px-3 py-1.5 rounded-2xl text-[10px] font-bold shadow-sm ${isDark ? 'bg-white/10 text-blue-300 border border-white/10' : 'bg-blue-50 text-blue-600 border border-blue-100'}`}>
+                                                <span key={idx} className={`px-3 py-1.5 rounded-2xl text-[10px] font-bold shadow-sm ${isDark ? 'bg-white/10 text-emerald-300 border border-white/10' : 'bg-emerald-50 text-emerald-600 border border-emerald-100'}`}>
                                                     {area}
                                                 </span>
                                             ))}
@@ -466,12 +432,12 @@ const MobileAgentProfile = () => {
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.25 }}
                                     >
-                                        <h3 className={`text-xs font-black uppercase tracking-widest mb-4 px-2 flex items-center gap-2 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                                            <div className="w-1 h-4 bg-gradient-to-b from-[#3b82f6] to-[#06b6d4] rounded-full" />
+                                        <h3 className={`text-[11px] font-semibold uppercase tracking-[0.12em] mb-3 px-1 flex items-center gap-2 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+                                            <span className="w-1 h-3.5 bg-emerald-500 rounded-full" />
                                             About Me
                                         </h3>
-                                        <div className={`p-5 rounded-3xl border ${isDark ? 'bg-white/10 border-white/20 backdrop-blur-xl' : 'bg-white border-gray-100 shadow-xl'}`}>
-                                            <p className={`text-sm leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                                        <div className={`p-4 rounded-2xl border ${isDark ? 'bg-white/10 border-white/20 backdrop-blur-xl' : 'bg-white border-slate-100 shadow-sm'}`}>
+                                            <p className={`text-[13px] leading-relaxed ${isDark ? 'text-gray-300' : 'text-slate-700'}`}>
                                                 {agentProfile.bio}
                                             </p>
                                         </div>
@@ -485,15 +451,15 @@ const MobileAgentProfile = () => {
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.35 }}
                                     >
-                                        <h3 className={`text-xs font-black uppercase tracking-widest mb-4 px-2 flex items-center gap-2 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                                            <div className="w-1 h-4 bg-gradient-to-b from-purple-500 to-pink-500 rounded-full" />
+                                        <h3 className={`text-[11px] font-semibold uppercase tracking-[0.12em] mb-3 px-1 flex items-center gap-2 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+                                            <span className="w-1 h-3.5 bg-emerald-500 rounded-full" />
                                             Professional Presence
                                         </h3>
                                         <div className="flex gap-4 px-2">
                                             {agentProfile.linkedinUrl && (
                                                 <motion.a
                                                     href={agentProfile.linkedinUrl} target="_blank" rel="noopener noreferrer"
-                                                    className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all ${isDark ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20' : 'bg-blue-50 text-blue-600 border border-blue-100'}`}
+                                                    className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all ${isDark ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-emerald-50 text-emerald-600 border border-emerald-100'}`}
                                                     whileHover={{ scale: 1.1, rotate: 5 }}
                                                     whileTap={{ scale: 0.9 }}
                                                 >
@@ -503,7 +469,7 @@ const MobileAgentProfile = () => {
                                             {agentProfile.facebookUrl && (
                                                 <motion.a
                                                     href={agentProfile.facebookUrl} target="_blank" rel="noopener noreferrer"
-                                                    className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all ${isDark ? 'bg-blue-600/10 text-blue-500 border border-blue-600/20' : 'bg-blue-50 text-blue-700 border border-blue-100'}`}
+                                                    className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all ${isDark ? 'bg-emerald-600/10 text-emerald-500 border border-emerald-600/20' : 'bg-emerald-50 text-emerald-700 border border-emerald-100'}`}
                                                     whileHover={{ scale: 1.1, rotate: -5 }}
                                                     whileTap={{ scale: 0.9 }}
                                                 >
@@ -531,33 +497,30 @@ const MobileAgentProfile = () => {
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.3 }}
                                     >
-                                        <h3 className={`text-xs font-black uppercase tracking-widest mb-4 px-2 flex items-center gap-2 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                                            <div className="w-1 h-4 bg-gradient-to-b from-[#3b82f6] to-[#06b6d4] rounded-full" />
+                                        <h3 className={`text-[11px] font-semibold uppercase tracking-[0.12em] mb-3 px-1 flex items-center gap-2 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+                                            <span className="w-1 h-3.5 bg-emerald-500 rounded-full" />
                                             Account Settings
                                         </h3>
-                                        <div className={`${isDark ? 'bg-white/5 backdrop-blur-xl border-white/10' : 'bg-white/80 backdrop-blur-xl border-gray-200/50'} rounded-3xl border overflow-hidden shadow-xl`}>
+                                        <div className={`rounded-2xl border overflow-hidden shadow-sm ${isDark ? 'bg-gray-900/40 border-white/10' : 'bg-white border-slate-100'}`}>
                                             {[
-                                                { icon: UserIcon, label: 'Edit Profile Details', gradient: 'from-[#3b82f6] to-[#06b6d4]', iconColor: 'text-gray-900', action: () => navigate('/profile/edit/agent') },
-                                                { icon: Settings, label: 'Account Preferences', gradient: 'from-blue-500/10 to-cyan-500/10', iconColor: 'text-blue-400', action: () => navigate('/settings') },
-                                                { icon: Shield, label: 'Security & Password', gradient: 'from-purple-500/10 to-pink-500/10', iconColor: 'text-purple-400', action: () => navigate('/settings') },
-                                                { icon: Building2, label: 'Real Estate License', gradient: 'from-orange-500/10 to-yellow-500/10', iconColor: 'text-orange-400', action: () => navigate('/agent-verification') }
-                                            ].map((item, index) => (
-                                                <motion.button
+                                                { icon: UserIcon, label: 'Edit Profile Details', tile: 'bg-gradient-to-br from-emerald-400 to-emerald-500', iconColor: 'text-white', action: () => navigate('/profile/edit/agent') },
+                                                { icon: Settings, label: 'Account Preferences', tile: 'bg-blue-50', iconColor: 'text-blue-600', action: () => navigate('/settings') },
+                                                { icon: Shield, label: 'Security & Password', tile: 'bg-purple-50', iconColor: 'text-purple-600', action: () => navigate('/settings') },
+                                                { icon: Building2, label: 'Real Estate License', tile: 'bg-amber-50', iconColor: 'text-amber-600', action: () => navigate('/agent-verification') }
+                                            ].map((item) => (
+                                                <button
                                                     key={item.label}
                                                     onClick={item.action}
-                                                    className={`w-full flex items-center justify-between p-5 hover:bg-white/5 transition-all border-b ${isDark ? 'border-white/5' : 'border-gray-200/50'} last:border-b-0 group`}
-                                                    whileTap={{ scale: 0.98 }}
+                                                    className={`w-full flex items-center justify-between px-4 py-3 transition-colors border-b last:border-b-0 ${isDark ? 'border-white/5 active:bg-white/5' : 'border-slate-100 active:bg-slate-50'}`}
                                                 >
-                                                    <div className="flex items-center gap-4">
-                                                        <div className={`w-12 h-12 rounded-2xl ${item.gradient.includes('from-[') ? 'bg-gradient-to-r ' + item.gradient : item.gradient} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}>
-                                                            <item.icon className={`w-6 h-6 ${item.iconColor}`} />
+                                                    <div className="flex items-center gap-3">
+                                                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${item.tile} ${item.tile.includes('gradient') ? 'shadow-sm shadow-emerald-500/30' : ''}`}>
+                                                            <item.icon className={`w-[18px] h-[18px] ${item.iconColor}`} strokeWidth={2.1} />
                                                         </div>
-                                                        <div className="text-left">
-                                                            <p className={`font-bold text-base ${isDark ? 'text-white' : 'text-gray-900'}`}>{item.label}</p>
-                                                        </div>
+                                                        <span className={`text-[14px] font-semibold ${isDark ? 'text-gray-100' : 'text-slate-900'}`}>{item.label}</span>
                                                     </div>
-                                                    <ChevronRight className={`w-5 h-5 ${isDark ? 'text-gray-500' : 'text-gray-600'} group-hover:text-[#3b82f6] group-hover:translate-x-1 transition-all`} />
-                                                </motion.button>
+                                                    <ChevronRight className={`w-4 h-4 ${isDark ? 'text-gray-600' : 'text-slate-400'}`} />
+                                                </button>
                                             ))}
                                         </div>
                                     </motion.div>
@@ -570,11 +533,11 @@ const MobileAgentProfile = () => {
                                             await signOut();
                                             navigate('/auth', { replace: true });
                                         }}
-                                        className="w-full p-5 bg-red-500/10 border-2 border-red-500/30 rounded-3xl flex items-center justify-center gap-3 text-red-400 font-bold text-base hover:bg-red-500/20 transition-all group"
+                                        className="w-full py-3.5 border border-red-200 bg-red-50 rounded-2xl flex items-center justify-center gap-2 text-red-500 font-semibold text-[14px] active:bg-red-100 transition-colors shadow-sm"
                                         whileHover={{ scale: 1.02 }}
                                         whileTap={{ scale: 0.98 }}
                                     >
-                                        <LogOut size={20} className="group-hover:rotate-12 transition-transform" />
+                                        <LogOut size={18} className="group-hover:rotate-12 transition-transform" />
                                         Logout
                                     </motion.button>
                                 )}
@@ -589,8 +552,8 @@ const MobileAgentProfile = () => {
                                 exit={{ opacity: 0, x: 20 }}
                                 className="space-y-4"
                             >
-                                <h3 className={`text-xs font-black uppercase tracking-widest mb-4 px-2 flex items-center gap-2 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                                    <div className="w-1 h-4 bg-gradient-to-b from-[#3b82f6] to-[#06b6d4] rounded-full" />
+                                <h3 className={`text-[11px] font-semibold uppercase tracking-[0.12em] mb-3 px-1 flex items-center gap-2 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+                                    <span className="w-1 h-3.5 bg-emerald-500 rounded-full" />
                                     My Properties
                                 </h3>
 
@@ -604,7 +567,7 @@ const MobileAgentProfile = () => {
                                         <p className={`font-bold text-lg ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>No properties listed yet</p>
                                         <button
                                             onClick={() => navigate('/properties/add')}
-                                            className="mt-6 px-6 py-3 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] rounded-2xl text-gray-900 font-bold"
+                                            className="mt-6 px-6 py-3 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] rounded-2xl text-gray-900 font-bold"
                                         >
                                             Add Your First Listing
                                         </button>
@@ -613,8 +576,7 @@ const MobileAgentProfile = () => {
                                     properties.map((property, index) => (
                                         <motion.div
                                             key={property.id}
-                                            className={`backdrop-blur-xl rounded-3xl p-5 border flex gap-4 cursor-pointer group transition-all ${isDark ? 'bg-white/10 border-white/20 hover:bg-white/15' : 'bg-white/80 border-gray-200/50 hover:bg-gray-100/80'}`}
-                                            whileHover={{ scale: 1.02, y: -2 }}
+                                            className={`rounded-xl p-3 border flex gap-3 cursor-pointer transition-colors ${isDark ? 'bg-gray-900/40 border-white/10 active:bg-white/5' : 'bg-white border-gray-200 active:bg-gray-50'}`}
                                             onClick={() => navigate(`/property/${property.id}`)}
                                             initial={{ opacity: 0, x: -20 }}
                                             animate={{ opacity: 1, x: 0 }}
@@ -633,13 +595,13 @@ const MobileAgentProfile = () => {
                                             <div className="flex-1 min-w-0 flex flex-col justify-between py-1">
                                                 <div>
                                                     <p className={`font-bold text-base truncate ${isDark ? 'text-white' : 'text-gray-900'}`}>{property.title}</p>
-                                                    <p className="text-[#3b82f6] font-black text-lg">KES {property.price?.toLocaleString()}</p>
+                                                    <p className="text-[#51faaa] font-black text-lg">KES {property.price?.toLocaleString()}</p>
                                                 </div>
                                                 <div className="flex items-center gap-3">
                                                     {isOwner ? (
                                                         <>
                                                             <div className={`flex items-center gap-1.5 text-xs ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                                                                <Activity size={12} className="text-blue-400" />
+                                                                <Activity size={12} className="text-emerald-400" />
                                                                 <span>{(property.views || 0).toLocaleString()} views</span>
                                                             </div>
                                                             <button
@@ -665,13 +627,13 @@ const MobileAgentProfile = () => {
                                                     ) : (
                                                         // Public view actions
                                                         <div className={`flex items-center gap-1.5 text-xs ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                                                            <MapPin size={12} className="text-[#3b82f6]" />
+                                                            <MapPin size={12} className="text-[#51faaa]" />
                                                             <span>{property.location?.city || 'Kenya'}</span>
                                                         </div>
                                                     )}
                                                 </div>
                                             </div>
-                                            <ChevronRight className={`w-5 h-5 self-center ${isDark ? 'text-gray-500' : 'text-gray-600'} group-hover:text-[#3b82f6] group-hover:translate-x-1 transition-all`} />
+                                            <ChevronRight className={`w-5 h-5 self-center ${isDark ? 'text-gray-500' : 'text-gray-600'} group-hover:text-[#51faaa] group-hover:translate-x-1 transition-all`} />
                                         </motion.div>
                                     ))
                                 )}
@@ -686,37 +648,37 @@ const MobileAgentProfile = () => {
                                 exit={{ opacity: 0, x: 20 }}
                                 className="space-y-6"
                             >
-                                <h3 className={`text-xs font-black uppercase tracking-widest mb-4 px-2 flex items-center gap-2 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                                    <div className="w-1 h-4 bg-gradient-to-b from-[#3b82f6] to-[#06b6d4] rounded-full" />
+                                <h3 className={`text-[11px] font-semibold uppercase tracking-[0.12em] mb-3 px-1 flex items-center gap-2 ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+                                    <span className="w-1 h-3.5 bg-emerald-500 rounded-full" />
                                     Growth Insights
                                 </h3>
 
                                 <motion.div
-                                    className={`bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 backdrop-blur-xl rounded-3xl p-6 border shadow-xl overflow-hidden relative ${isDark ? 'border-white/20' : 'border-gray-200/50'}`}
+                                    className={`bg-gradient-to-br from-emerald-500/20 via-purple-500/20 to-pink-500/20 backdrop-blur-xl rounded-3xl p-6 border shadow-xl overflow-hidden relative ${isDark ? 'border-white/20' : 'border-gray-200/50'}`}
                                     initial={{ opacity: 0, scale: 0.95 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                 >
-                                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#3b82f6]/20 to-transparent rounded-full blur-2xl" />
+                                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#51faaa]/20 to-transparent rounded-full blur-2xl" />
                                     <div className="relative z-10">
                                         <div className="flex items-center gap-3 mb-4">
-                                            <div className="w-12 h-12 rounded-2xl bg-blue-500/20 flex items-center justify-center">
-                                                <TrendingUp className="w-6 h-6 text-blue-400" />
+                                            <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 flex items-center justify-center">
+                                                <TrendingUp className="w-6 h-6 text-emerald-400" />
                                             </div>
                                             <h3 className={`font-black text-xl ${isDark ? 'text-white' : 'text-gray-900'}`}>Revenue Stream</h3>
                                         </div>
                                         <p className={`text-sm mb-6 leading-relaxed ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
-                                            You have <span className="text-[#3b82f6] font-bold">{properties.length} active listing{properties.length !== 1 ? 's' : ''}</span> with {agentStats.totalViews.toLocaleString()} total views. You've earned KES {agentStats.thisMonthRevenue.toLocaleString()} this month.
+                                            You have <span className="text-[#51faaa] font-bold">{properties.length} active listing{properties.length !== 1 ? 's' : ''}</span> with {agentStats.totalViews.toLocaleString()} total views. You've earned KES {agentStats.thisMonthRevenue.toLocaleString()} this month.
                                         </p>
 
                                         {/* Stats Comparison Bar */}
                                         <div className={`mt-6 p-4 rounded-2xl ${isDark ? 'bg-white/5' : 'bg-gray-50'} border ${isDark ? 'border-white/10' : 'border-gray-200'}`}>
                                             <div className="flex justify-between items-center mb-2">
                                                 <span className={`text-xs font-bold ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Inquiry Rate</span>
-                                                <span className="text-[#3b82f6] font-black text-sm">{agentStats.totalViews > 0 ? ((inquiries.length / agentStats.totalViews) * 100).toFixed(1) : '0.0'}%</span>
+                                                <span className="text-[#51faaa] font-black text-sm">{agentStats.totalViews > 0 ? ((inquiries.length / agentStats.totalViews) * 100).toFixed(1) : '0.0'}%</span>
                                             </div>
                                             <div className="h-2 w-full bg-gray-700/30 rounded-full overflow-hidden">
                                                 <motion.div
-                                                    className="h-full bg-gradient-to-r from-[#3b82f6] to-[#06b6d4]"
+                                                    className="h-full bg-gradient-to-r from-[#51faaa] to-[#dbd5a4]"
                                                     initial={{ width: 0 }}
                                                     animate={{ width: `${Math.min(agentStats.totalViews > 0 ? ((inquiries.length / agentStats.totalViews) * 100 * 10) : 0, 100)}%` }}
                                                     transition={{ duration: 1.5, delay: 0.5 }}
@@ -731,10 +693,10 @@ const MobileAgentProfile = () => {
 
                                 <div className="grid grid-cols-2 gap-4">
                                     {[
-                                        { label: 'Total Reach', value: agentStats.totalViews.toLocaleString(), icon: Eye, color: 'text-blue-400' },
+                                        { label: 'Total Reach', value: agentStats.totalViews.toLocaleString(), icon: Eye, color: 'text-emerald-400' },
                                         { label: 'Agent Score', value: agentStats.avgRating.toFixed(1), icon: Star, color: 'text-yellow-400' },
                                         { label: 'Active Leads', value: inquiries.length, icon: MessageCircle, color: 'text-purple-400' },
-                                        { label: 'Listings', value: properties.length, icon: Award, color: 'text-[#3b82f6]' }
+                                        { label: 'Listings', value: properties.length, icon: Award, color: 'text-[#51faaa]' }
                                     ].map((item, idx) => (
                                         <div key={idx} className={`p-5 rounded-3xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-100 shadow-lg'}`}>
                                             <div className="flex items-center gap-2 mb-3">

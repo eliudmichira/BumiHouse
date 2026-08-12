@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import {
@@ -226,8 +226,8 @@ const AgentVerificationRequest = ({ onClose, onSuccess }) => {
           <p className="text-gray-600 dark:text-gray-400 mb-6">
             Your agent verification request has been submitted. We'll review your application and contact you within 2-3 business days.
           </p>
-          <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4 mb-6">
-            <p className="text-sm text-blue-700 dark:text-blue-300">
+          <div className="bg-emerald-50 dark:bg-emerald-900/20 rounded-xl p-4 mb-6">
+            <p className="text-sm text-emerald-700 dark:text-emerald-300">
               <strong>What happens next?</strong><br />
               • Admin review of your details<br />
               • <strong>Phone Verification Call</strong> (Keep your line open)<br />
@@ -236,7 +236,7 @@ const AgentVerificationRequest = ({ onClose, onSuccess }) => {
           </div>
           <button
             onClick={onClose}
-            className="w-full px-6 py-3 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] rounded-xl font-medium hover:shadow-lg transition-all"
+            className="w-full px-6 py-3 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] rounded-xl font-medium hover:shadow-lg transition-all"
           >
             Close
           </button>
@@ -249,10 +249,10 @@ const AgentVerificationRequest = ({ onClose, onSuccess }) => {
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 overflow-y-auto">
       <div className={`max-w-2xl w-full ${isDark ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto`}>
         {/* Header */}
-        <div className="sticky top-0 p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-[#3b82f6]/10 to-[#06b6d4]/10">
+        <div className="sticky top-0 p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-[#51faaa]/10 to-[#dbd5a4]/10">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] flex items-center justify-center">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] flex items-center justify-center">
                 <Building2 className="w-6 h-6 text-[#111]" />
               </div>
               <div>
@@ -275,13 +275,13 @@ const AgentVerificationRequest = ({ onClose, onSuccess }) => {
 
         {/* Notice */}
         <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-          <div className="flex items-start gap-3 p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20">
-            <Shield className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
+          <div className="flex items-start gap-3 p-4 rounded-xl bg-emerald-50 dark:bg-emerald-900/20">
+            <Shield className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
             <div>
-              <h3 className="font-semibold text-blue-900 dark:text-blue-100 mb-1">
+              <h3 className="font-semibold text-emerald-900 dark:text-emerald-100 mb-1">
                 Verification Required
               </h3>
-              <p className="text-sm text-blue-700 dark:text-blue-300">
+              <p className="text-sm text-emerald-700 dark:text-emerald-300">
                 To access the listings dashboard and manage property listings,
                 Please provide your  details below.
               </p>
@@ -334,7 +334,7 @@ const AgentVerificationRequest = ({ onClose, onSuccess }) => {
                   onChange={(e) => handleInputChange('fullName', e.target.value)}
                   className={`w-full px-4 py-3 rounded-xl border transition-colors ${errors.fullName
                     ? 'border-red-300 focus:border-red-500'
-                    : 'border-gray-300 dark:border-gray-600 focus:border-[#3b82f6]'
+                    : 'border-gray-300 dark:border-gray-600 focus:border-[#51faaa]'
                     } ${isDark ? 'bg-gray-700 text-white' : 'bg-white text-gray-900'}`}
                   placeholder="Enter your full name"
                 />
@@ -353,7 +353,7 @@ const AgentVerificationRequest = ({ onClose, onSuccess }) => {
                   onChange={(e) => handleInputChange('email', e.target.value)}
                   className={`w-full px-4 py-3 rounded-xl border transition-colors ${errors.email
                     ? 'border-red-300 focus:border-red-500'
-                    : 'border-gray-300 dark:border-gray-600 focus:border-[#3b82f6]'
+                    : 'border-gray-300 dark:border-gray-600 focus:border-[#51faaa]'
                     } ${isDark ? 'bg-gray-700 text-white' : 'bg-white text-gray-900'}`}
                   placeholder="your.email@example.com"
                 />
@@ -373,7 +373,7 @@ const AgentVerificationRequest = ({ onClose, onSuccess }) => {
                 onChange={(e) => handlePhoneInput(e.target.value)}
                 className={`w-full px-4 py-3 rounded-xl border transition-colors ${errors.phoneNumber
                   ? 'border-red-300 focus:border-red-500'
-                  : 'border-gray-300 dark:border-gray-600 focus:border-[#3b82f6]'
+                  : 'border-gray-300 dark:border-gray-600 focus:border-[#51faaa]'
                   } ${isDark ? 'bg-gray-700 text-white' : 'bg-white text-gray-900'}`}
                 placeholder="+254712345678"
               />
@@ -403,7 +403,7 @@ const AgentVerificationRequest = ({ onClose, onSuccess }) => {
                     type="text"
                     value={formData.company}
                     onChange={(e) => handleInputChange('company', e.target.value)}
-                    className={`w-full px-4 py-3 rounded-xl border transition-colors border-gray-300 dark:border-gray-600 focus:border-[#3b82f6] ${isDark ? 'bg-gray-700 text-white' : 'bg-white text-gray-900'
+                    className={`w-full px-4 py-3 rounded-xl border transition-colors border-gray-300 dark:border-gray-600 focus:border-[#51faaa] ${isDark ? 'bg-gray-700 text-white' : 'bg-white text-gray-900'
                       }`}
                     placeholder="Your company or agency name"
                   />
@@ -420,7 +420,7 @@ const AgentVerificationRequest = ({ onClose, onSuccess }) => {
                   onChange={(e) => handleInputChange('licenseNumber', e.target.value.toUpperCase())}
                   className={`w-full px-4 py-3 rounded-xl border transition-colors ${errors.licenseNumber
                     ? 'border-red-300 focus:border-red-500'
-                    : 'border-gray-300 dark:border-gray-600 focus:border-[#3b82f6]'
+                    : 'border-gray-300 dark:border-gray-600 focus:border-[#51faaa]'
                     } ${isDark ? 'bg-gray-700 text-white' : 'bg-white text-gray-900'}`}
                   placeholder={formData.verificationType === 'agent' ? "e.g., EA-2024-001234" : "National ID or Property LR Number"}
                 />
@@ -441,7 +441,7 @@ const AgentVerificationRequest = ({ onClose, onSuccess }) => {
                     onChange={(e) => handleInputChange('yearsOfExperience', e.target.value)}
                     className={`w-full px-4 py-3 rounded-xl border transition-colors ${errors.yearsOfExperience
                       ? 'border-red-300 focus:border-red-500'
-                      : 'border-gray-300 dark:border-gray-600 focus:border-[#3b82f6]'
+                      : 'border-gray-300 dark:border-gray-600 focus:border-[#51faaa]'
                       } ${isDark ? 'bg-gray-700 text-white' : 'bg-white text-gray-900'}`}
                   >
                     <option value="">Select experience level</option>
@@ -465,7 +465,7 @@ const AgentVerificationRequest = ({ onClose, onSuccess }) => {
                     onChange={(e) => handleInputChange('specialization', e.target.value)}
                     className={`w-full px-4 py-3 rounded-xl border transition-colors ${errors.specialization
                       ? 'border-red-300 focus:border-red-500'
-                      : 'border-gray-300 dark:border-gray-600 focus:border-[#3b82f6]'
+                      : 'border-gray-300 dark:border-gray-600 focus:border-[#51faaa]'
                       } ${isDark ? 'bg-gray-700 text-white' : 'bg-white text-gray-900'}`}
                   >
                     <option value="">Select specialization</option>
@@ -491,7 +491,7 @@ const AgentVerificationRequest = ({ onClose, onSuccess }) => {
                 onChange={(e) => handleInputChange('countyOfOperation', e.target.value)}
                 className={`w-full px-4 py-3 rounded-xl border transition-colors ${errors.countyOfOperation
                   ? 'border-red-300 focus:border-red-500'
-                  : 'border-gray-300 dark:border-gray-600 focus:border-[#3b82f6]'
+                  : 'border-gray-300 dark:border-gray-600 focus:border-[#51faaa]'
                   } ${isDark ? 'bg-gray-700 text-white' : 'bg-white text-gray-900'}`}
               >
                 <option value="">Select county</option>
@@ -524,7 +524,7 @@ const AgentVerificationRequest = ({ onClose, onSuccess }) => {
                 rows={4}
                 className={`w-full px-4 py-3 rounded-xl border transition-colors ${errors.bio
                   ? 'border-red-300 focus:border-red-500'
-                  : 'border-gray-300 dark:border-gray-600 focus:border-[#3b82f6]'
+                  : 'border-gray-300 dark:border-gray-600 focus:border-[#51faaa]'
                   } ${isDark ? 'bg-gray-700 text-white' : 'bg-white text-gray-900'}`}
                 placeholder={formData.verificationType === 'agent'
                   ? "Describe your experience, achievements, and why you want to join our platform. Include any notable properties you've handled..."
@@ -575,7 +575,7 @@ const AgentVerificationRequest = ({ onClose, onSuccess }) => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="flex-1 px-6 py-3 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] rounded-xl font-medium hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="flex-1 px-6 py-3 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] rounded-xl font-medium hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {isSubmitting ? (
                 <>

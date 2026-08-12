@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Bell, Plus, Trash2, MapPin } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
@@ -58,7 +58,7 @@ const MobilePriceAlertsPage = () => {
                             <p className={`text-xs ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Get notified when prices match</p>
                         </div>
                     </div>
-                    <motion.button onClick={() => setShowForm(true)} className="w-10 h-10 rounded-full bg-[#3b82f6] text-gray-900 flex items-center justify-center" whileTap={{ scale: 0.9 }}>
+                    <motion.button onClick={() => setShowForm(true)} className="w-10 h-10 rounded-full bg-[#51faaa] text-gray-900 flex items-center justify-center" whileTap={{ scale: 0.9 }}>
                         <Plus size={20} />
                     </motion.button>
                 </div>
@@ -73,23 +73,23 @@ const MobilePriceAlertsPage = () => {
                         <input type="number" placeholder="Max price (KES)" value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} className={`w-full rounded-xl border px-4 py-3 mb-4 ${isDark ? 'bg-white/10 border-white/20 text-white placeholder-gray-500' : 'bg-gray-50 border-gray-200 text-gray-900'}`} />
                         <div className="flex gap-2">
                             <button onClick={() => setShowForm(false)} className={`flex-1 py-3 rounded-xl font-semibold ${isDark ? 'bg-white/10 text-white' : 'bg-gray-100 text-gray-700'}`}>Cancel</button>
-                            <button onClick={addAlert} className="flex-1 py-3 rounded-xl font-semibold bg-[#3b82f6] text-gray-900">Save</button>
+                            <button onClick={addAlert} className="flex-1 py-3 rounded-xl font-semibold bg-[#51faaa] text-gray-900">Save</button>
                         </div>
                     </motion.div>
                 )}
 
                 {alerts.length === 0 && !showForm ? (
                     <motion.div className={`flex flex-col items-center justify-center py-20 rounded-3xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200'}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                        <Bell className="w-12 h-12 text-[#3b82f6] mb-4" />
+                        <Bell className="w-12 h-12 text-[#51faaa] mb-4" />
                         <p className={`font-bold text-lg mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>No price alerts</p>
                         <p className={`text-sm mb-6 text-center ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Create an alert to get notified when new listings match your budget and location.</p>
-                        <motion.button onClick={() => setShowForm(true)} className="px-6 py-3 bg-gradient-to-r from-[#3b82f6] to-[#45e695] rounded-2xl text-gray-900 font-bold" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>Create alert</motion.button>
+                        <motion.button onClick={() => setShowForm(true)} className="px-6 py-3 bg-gradient-to-r from-[#51faaa] to-[#45e695] rounded-2xl text-gray-900 font-bold" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>Create alert</motion.button>
                     </motion.div>
                 ) : (
                     alerts.map((alert) => (
                         <motion.div key={alert.id} className={`rounded-2xl border p-4 flex items-center justify-between ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200'}`}>
                             <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full bg-[#3b82f6]/20 flex items-center justify-center"><MapPin size={18} className="text-[#3b82f6]" /></div>
+                                <div className="w-10 h-10 rounded-full bg-[#51faaa]/20 flex items-center justify-center"><MapPin size={18} className="text-[#51faaa]" /></div>
                                 <div>
                                     <p className={`font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>{alert.location}</p>
                                     <p className={`text-xs ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>{formatPrice(alert.minPrice)} – {formatPrice(alert.maxPrice)}</p>

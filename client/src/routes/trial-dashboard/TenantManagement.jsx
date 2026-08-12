@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { 
@@ -236,7 +236,7 @@ const TenantManagement = () => {
               >
                 <ArrowLeft className="w-5 h-5" />
               </button>
-              <div className="w-10 h-10 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] rounded-xl flex items-center justify-center">
                 <Users className="w-6 h-6 text-[#111]" />
               </div>
               <div>
@@ -252,7 +252,7 @@ const TenantManagement = () => {
               onClick={() => setShowAddForm(true)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] px-4 py-2 rounded-xl font-medium hover:shadow-lg transition-all flex items-center space-x-2"
+              className="bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] px-4 py-2 rounded-xl font-medium hover:shadow-lg transition-all flex items-center space-x-2"
             >
               <Plus className="w-4 h-4" />
               <span>Add Tenant</span>
@@ -274,7 +274,7 @@ const TenantManagement = () => {
                 <p className="text-sm text-gray-600 dark:text-gray-400">Total Tenants</p>
                 <p className="text-2xl font-bold text-gray-900 dark:text-white">{totalTenants}</p>
               </div>
-              <Users className="w-8 h-8 text-blue-600" />
+              <Users className="w-8 h-8 text-emerald-600" />
             </div>
           </motion.div>
           
@@ -364,7 +364,7 @@ const TenantManagement = () => {
                   <tr key={tenant.id} className="hover:bg-gray-50 dark:hover:bg-gray-700/30">
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
-                        <div className="w-10 h-10 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] rounded-full flex items-center justify-center">
+                        <div className="w-10 h-10 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] rounded-full flex items-center justify-center">
                           <User className="w-5 h-5 text-[#111]" />
                         </div>
                         <div className="ml-4">
@@ -414,7 +414,7 @@ const TenantManagement = () => {
                       <div className="flex items-center space-x-2">
                         <button 
                           onClick={() => handleViewTenant(tenant)}
-                          className="text-blue-600 hover:text-blue-900"
+                          className="text-emerald-600 hover:text-emerald-900"
                           title="View Details"
                         >
                           <FileText className="w-4 h-4" />
@@ -586,7 +586,7 @@ const TenantManagement = () => {
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-3 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] rounded-xl font-medium hover:shadow-lg transition-all"
+                  className="px-6 py-3 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] rounded-xl font-medium hover:shadow-lg transition-all"
                 >
                   Add Tenant
                 </button>
@@ -618,7 +618,7 @@ const TenantManagement = () => {
               {/* Tenant Info */}
               <div className="space-y-6">
                 <div className="flex items-center space-x-4">
-                  <div className="w-16 h-16 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] rounded-full flex items-center justify-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] rounded-full flex items-center justify-center">
                     <User className="w-8 h-8 text-[#111]" />
                   </div>
                   <div>
@@ -653,8 +653,8 @@ const TenantManagement = () => {
                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white">Lease Information</h4>
                 
                 <div className="grid grid-cols-1 gap-4">
-                  <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl">
-                    <p className="text-sm text-blue-600 dark:text-blue-400">Lease Start</p>
+                  <div className="bg-emerald-50 dark:bg-emerald-900/20 p-4 rounded-xl">
+                    <p className="text-sm text-emerald-600 dark:text-emerald-400">Lease Start</p>
                     <p className="font-medium text-gray-900 dark:text-white">
                       {new Date(viewingTenant.leaseStart).toLocaleDateString()}
                     </p>
@@ -879,7 +879,7 @@ const TenantManagement = () => {
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-3 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] rounded-xl font-medium hover:shadow-lg transition-all"
+                  className="px-6 py-3 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] rounded-xl font-medium hover:shadow-lg transition-all"
                 >
                   Update Tenant
                 </button>

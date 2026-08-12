@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -29,6 +29,8 @@ import { messagesAPI } from '../../lib/firebaseAPI';
 import { reviewsAPI } from '../../lib/reviewsAPI';
 import { reportsAPI } from '../../lib/reportsAPI';
 import BookingModal from '../../components/modals/BookingModal';
+import PropertyMediaTabs from '../../components/PropertyStreetView';
+import { handleImageError } from '../../utils/imageUtils';
 
 // ============ ENHANCED PHOTO GALLERY (eBay Style) ============
 const MobilePhotoGallery = ({ images = [], title, currentImageIndex, setCurrentImageIndex, property }) => {
@@ -63,9 +65,7 @@ const MobilePhotoGallery = ({ images = [], title, currentImageIndex, setCurrentI
           src={images[currentImageIndex]}
           alt={`${title || 'Property'} - Image ${currentImageIndex + 1}`}
           className="w-full h-full object-cover"
-          onError={(e) => {
-            e.target.src = 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&h=600';
-          }}
+          onError={(e) => handleImageError(e, null, property)}
         />
       ) : (
         <div className="w-full h-full flex items-center justify-center bg-gray-800">
@@ -94,7 +94,7 @@ const MobilePhotoGallery = ({ images = [], title, currentImageIndex, setCurrentI
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setCurrentImageIndex(idx)}
                 className={`relative flex-shrink-0 w-16 h-16 rounded-2xl overflow-hidden border-2 transition-all shadow-lg ${idx === currentImageIndex
-                  ? 'border-[#3b82f6] scale-110'
+                  ? 'border-[#51faaa] scale-110'
                   : 'border-white/20 opacity-70 backdrop-blur-md'
                   }`}
               >
@@ -146,7 +146,7 @@ const KeySpecsCard = ({ property, isDark, formatPrice }) => {
             >
               <div className="flex items-center gap-3">
                 <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${isDark ? 'bg-white/5' : 'bg-gray-100'}`}>
-                  <spec.icon className={`w-4 h-4 ${isDark ? 'text-[#3b82f6]' : 'text-gray-600'}`} />
+                  <spec.icon className={`w-4 h-4 ${isDark ? 'text-[#51faaa]' : 'text-gray-600'}`} />
                 </div>
                 <span className={`text-sm font-bold ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                   {spec.label}
@@ -170,8 +170,8 @@ const SimilarPropertyCard = ({ property, isDark, formatPrice, onClick }) => {
       whileTap={{ scale: 0.95 }}
       onClick={onClick}
       className={`flex-shrink-0 w-[280px] rounded-[32px] overflow-hidden border cursor-pointer transition-all shadow-sm ${isDark
-        ? 'bg-gray-800/40 border-white/5 hover:border-[#3b82f6]/30 hover:bg-gray-800/60'
-        : 'bg-white/80 border-gray-100 hover:border-[#3b82f6]/40 hover:shadow-md hover:bg-white'
+        ? 'bg-gray-800/40 border-white/5 hover:border-[#51faaa]/30 hover:bg-gray-800/60'
+        : 'bg-white/80 border-gray-100 hover:border-[#51faaa]/40 hover:shadow-md hover:bg-white'
         }`}
     >
       {/* Image */}
@@ -180,16 +180,14 @@ const SimilarPropertyCard = ({ property, isDark, formatPrice, onClick }) => {
           src={property.images?.[0] || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400&h=300'}
           alt={property.title}
           className="w-full h-full object-cover"
-          onError={(e) => {
-            e.target.src = 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400&h=300';
-          }}
+          onError={(e) => handleImageError(e, null, property)}
         />
         {/* Status Badge */}
         {property.status && (
           <div className="absolute top-3 left-3">
             <span className={`px-3 py-1 text-[10px] font-black uppercase tracking-[0.1em] rounded-full backdrop-blur-md border ${property.status.toLowerCase().includes('rent')
-              ? 'bg-blue-500/80 text-white border-white/20'
-              : 'bg-[#3b82f6]/80 text-gray-900 border-white/20'
+              ? 'bg-emerald-500/80 text-white border-white/20'
+              : 'bg-[#51faaa]/80 text-gray-900 border-white/20'
               }`}>
               {property.status.replace(/-/g, ' ')}
             </span>
@@ -226,11 +224,11 @@ const SimilarPropertyCard = ({ property, isDark, formatPrice, onClick }) => {
 
         {/* Price Row */}
         <div className="flex items-center justify-between">
-          <p className="text-[#3b82f6] font-black text-lg tracking-tight">
+          <p className="text-[#51faaa] font-black text-lg tracking-tight">
             {formatPrice(property.price)}
           </p>
           <div className={`w-8 h-8 rounded-full flex items-center justify-center ${isDark ? 'bg-white/5' : 'bg-gray-100'}`}>
-            <ArrowLeft className="w-4 h-4 text-[#3b82f6] rotate-180" />
+            <ArrowLeft className="w-4 h-4 text-[#51faaa] rotate-180" />
           </div>
         </div>
       </div>
@@ -288,7 +286,7 @@ const MobileAgentCard = ({ agent = {}, propertyId, propertyTitle, propertyImage,
   };
 
   return (
-    <div className={`border rounded-2xl overflow-hidden ${isDark ? 'bg-gray-800/60 border-white/5' : 'bg-white border-gray-200'
+    <div className={`border rounded-[32px] overflow-hidden backdrop-blur-xl shadow-sm ${isDark ? 'bg-gray-800/40 border-white/5' : 'bg-white/80 border-gray-100'
       }`}>
       {/* Centered Agent Info */}
       <div className="px-6 pt-8 pb-4 flex flex-col items-center text-center">
@@ -300,7 +298,7 @@ const MobileAgentCard = ({ agent = {}, propertyId, propertyTitle, propertyImage,
             if (agentId) navigate(`/agent/${agentId}`);
           }}
         >
-          <div className={`w-24 h-24 rounded-full overflow-hidden border-3 ${isDark ? 'border-[#3b82f6]/40' : 'border-[#3b82f6]/50'
+          <div className={`w-24 h-24 rounded-full overflow-hidden border-3 ${isDark ? 'border-[#51faaa]/40' : 'border-[#51faaa]/50'
             }`}>
             {!imageError && (agent.avatar || agent.photo || agent.image) ? (
               <img
@@ -310,7 +308,7 @@ const MobileAgentCard = ({ agent = {}, propertyId, propertyTitle, propertyImage,
                 onError={() => setImageError(true)}
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center bg-[#3b82f6]/15 text-[#3b82f6] font-bold text-3xl">
+              <div className="w-full h-full flex items-center justify-center bg-[#51faaa]/15 text-[#51faaa] font-bold text-3xl">
                 {(agent.name || 'A').charAt(0).toUpperCase()}
               </div>
             )}
@@ -338,7 +336,7 @@ const MobileAgentCard = ({ agent = {}, propertyId, propertyTitle, propertyImage,
           <motion.a
             href={`tel:${agent.phone}`}
             whileTap={{ scale: 0.97 }}
-            className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-gradient-to-r from-[#3b82f6] to-[#45e89a] text-gray-900 font-bold text-sm shadow-lg"
+            className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-gradient-to-r from-[#51faaa] to-[#45e89a] text-gray-900 font-bold text-sm shadow-lg"
           >
             <Phone className="w-5 h-5" />
             <span>{agent.phone}</span>
@@ -351,12 +349,12 @@ const MobileAgentCard = ({ agent = {}, propertyId, propertyTitle, propertyImage,
           disabled={isSending}
           whileTap={{ scale: 0.97 }}
           className={`flex items-center justify-center gap-2 w-full py-3.5 rounded-xl border-2 font-bold text-sm transition-all disabled:opacity-50 ${isDark
-            ? 'border-[#3b82f6]/30 text-[#3b82f6] hover:bg-[#3b82f6]/10'
-            : 'border-[#3b82f6]/40 text-[#3b82f6] hover:bg-[#3b82f6]/5'
+            ? 'border-[#51faaa]/30 text-[#51faaa] hover:bg-[#51faaa]/10'
+            : 'border-[#51faaa]/40 text-[#51faaa] hover:bg-[#51faaa]/5'
             }`}
         >
           {isSending ? (
-            <div className="w-5 h-5 border-2 border-[#3b82f6] border-t-transparent rounded-full animate-spin" />
+            <div className="w-5 h-5 border-2 border-[#51faaa] border-t-transparent rounded-full animate-spin" />
           ) : (
             <>
               <MessageCircle className="w-5 h-5" />
@@ -371,8 +369,8 @@ const MobileAgentCard = ({ agent = {}, propertyId, propertyTitle, propertyImage,
             href={`mailto:${agent.email}?subject=${encodeURIComponent(`Inquiry about ${propertyTitle || 'your property'}`)}`}
             whileTap={{ scale: 0.97 }}
             className={`flex items-center justify-center gap-2 w-full py-3.5 rounded-xl border-2 font-bold text-sm transition-all ${isDark
-              ? 'border-[#3b82f6]/30 text-[#3b82f6] hover:bg-[#3b82f6]/10'
-              : 'border-[#3b82f6]/40 text-[#3b82f6] hover:bg-[#3b82f6]/5'
+              ? 'border-[#51faaa]/30 text-[#51faaa] hover:bg-[#51faaa]/10'
+              : 'border-[#51faaa]/40 text-[#51faaa] hover:bg-[#51faaa]/5'
               }`}
           >
             <Mail className="w-5 h-5" />
@@ -384,7 +382,7 @@ const MobileAgentCard = ({ agent = {}, propertyId, propertyTitle, propertyImage,
         <motion.button
           onClick={() => setIsBookingOpen(true)}
           whileTap={{ scale: 0.97 }}
-          className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-[#3b82f6] text-gray-900 font-bold text-sm shadow-lg"
+          className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-[#51faaa] text-gray-900 font-bold text-sm shadow-lg"
         >
           <Calendar className="w-5 h-5" />
           <span>Book Viewing</span>
@@ -427,32 +425,32 @@ const MobileLocationCard = ({ property, isDark }) => {
   const mapEmbedSrc = `https://www.google.com/maps?q=${qParam}&z=14&output=embed`;
   const mapLink = `https://www.google.com/maps/search/?api=1&query=${qParam}`;
 
+  const addressText = typeof address === 'string'
+    ? address
+    : (address?.address || address?.city || 'Location available');
+
   return (
     <div className={`border rounded-[32px] overflow-hidden backdrop-blur-xl shadow-sm ${isDark ? 'bg-gray-800/40 border-white/5' : 'bg-white/80 border-gray-100'
       }`}>
+      {/* Header with inline address */}
       <div className={`px-5 py-4 border-b ${isDark ? 'bg-gray-800/20 border-white/5' : 'bg-gray-50/50 border-gray-100'
         }`}>
         <h3 className={`text-[11px] font-black uppercase tracking-[0.2em] ${isDark ? 'text-gray-500' : 'text-gray-400'
           }`}>
           Location
         </h3>
-      </div>
-
-      {/* Address (if available) */}
-      {address && (
-        <div className="px-5 py-3 text-sm">
-          <div className="flex items-start gap-3">
-            <div className={`w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 ${isDark ? 'bg-white/5' : 'bg-gray-100'}`}>
-              <MapPin className="w-4 h-4 text-[#3b82f6]" />
-            </div>
-            <span className={`text-sm font-bold leading-snug mt-1 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-              {typeof address === 'string' ? address : (address?.address || address?.city || 'Location available')}
+        {address && (
+          <div className="flex items-center gap-2 mt-2">
+            <MapPin className="w-4 h-4 text-[#51faaa] flex-shrink-0" />
+            <span className={`text-sm font-bold leading-snug ${isDark ? 'text-white' : 'text-gray-900'}`}>
+              {addressText}
             </span>
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
-      <div className="relative w-full h-64 bg-gray-100 mx-5 rounded-2xl overflow-hidden mb-5">
+      {/* Full-bleed map with floating CTA */}
+      <div className="relative w-full h-72 bg-gray-100">
         <iframe
           title="Property Location"
           width="100%"
@@ -463,26 +461,24 @@ const MobileLocationCard = ({ property, isDark }) => {
           src={mapEmbedSrc}
           className="absolute inset-0"
         />
-      </div>
-
-      <div className={`px-5 py-4 border-t text-center ${isDark ? 'bg-gray-800/20 border-white/5' : 'bg-gray-50/50 border-gray-100'
-        }`}>
-        <a
-          href={mapLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[#3b82f6] text-[11px] font-black uppercase tracking-[0.1em] hover:underline flex items-center justify-center gap-2"
-        >
-          <MapPin className="w-3.5 h-3.5" />
-          Open In Google Maps
-        </a>
+        <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/50 to-transparent pointer-events-none flex justify-end">
+          <a
+            href={mapLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pointer-events-auto inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white text-gray-900 text-[11px] font-black uppercase tracking-[0.1em] shadow-lg active:scale-95 transition-transform"
+          >
+            <MapPin className="w-3.5 h-3.5 text-[#51faaa]" />
+            Open In Google Maps
+          </a>
+        </div>
       </div>
     </div>
   );
 };
 
 // ============ STICKY ACTION BAR ============
-const StickyActionBar = ({ agent, propertyId, propertyTitle, propertyPrice, propertyImage, isDark, formatPrice }) => {
+const StickyActionBar = ({ agent, propertyId, propertyTitle, propertyPrice, propertyImage, isDark, formatPrice, showPrice = true }) => {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
   const [isSending, setIsSending] = useState(false);
@@ -542,23 +538,33 @@ const StickyActionBar = ({ agent, propertyId, propertyTitle, propertyPrice, prop
         <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none" />
 
         <div className="px-6 py-3.5 flex items-center justify-between gap-4">
-          {/* Price & Labels */}
-          <div className="flex-shrink-0 pl-2">
-            <div className="flex flex-col">
-              <span className={`text-[10px] uppercase tracking-[0.12em] font-bold mb-0.5 ${isDark ? 'text-gray-500' : 'text-gray-400'
-                }`}>
-                Price
-              </span>
-              <div className="flex items-baseline gap-1">
-                <span className="text-2xl font-black text-[#3b82f6] tracking-tight">
-                  {formatPrice(propertyPrice).split(' ')[1]}
-                </span>
-                <span className={`text-xs font-bold ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                  {formatPrice(propertyPrice).split(' ')[0]}
-                </span>
-              </div>
-            </div>
-          </div>
+          {/* Price & Labels — only when the main price card is scrolled off */}
+          <AnimatePresence>
+            {showPrice && (
+              <motion.div
+                initial={{ opacity: 0, width: 0 }}
+                animate={{ opacity: 1, width: 'auto' }}
+                exit={{ opacity: 0, width: 0 }}
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                className="flex-shrink-0 pl-2 overflow-hidden"
+              >
+                <div className="flex flex-col">
+                  <span className={`text-[10px] uppercase tracking-[0.12em] font-bold mb-0.5 ${isDark ? 'text-gray-500' : 'text-gray-400'
+                    }`}>
+                    Price
+                  </span>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-2xl font-black text-[#51faaa] tracking-tight">
+                      {formatPrice(propertyPrice).split(' ')[1]}
+                    </span>
+                    <span className={`text-xs font-bold ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+                      {formatPrice(propertyPrice).split(' ')[0]}
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Action Row */}
           <div className="flex items-center gap-2 flex-1 justify-end">
@@ -567,7 +573,7 @@ const StickyActionBar = ({ agent, propertyId, propertyTitle, propertyPrice, prop
               whileTap={{ scale: 0.95 }}
               onClick={handleSendMessage}
               disabled={isSending}
-              className="flex-1 h-14 rounded-full bg-gradient-to-r from-[#3b82f6] to-[#45e89a] flex items-center justify-center gap-2 font-black text-gray-900 shadow-[0_8px_20px_rgba(81,250,170,0.3)] disabled:opacity-50 transition-all duration-300 relative overflow-hidden group"
+              className="flex-1 h-14 rounded-full bg-gradient-to-r from-[#51faaa] to-[#45e89a] flex items-center justify-center gap-2 font-black text-gray-900 shadow-[0_8px_20px_rgba(81,250,170,0.3)] disabled:opacity-50 transition-all duration-300 relative overflow-hidden group"
             >
               {/* Shine animation */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
@@ -587,8 +593,8 @@ const StickyActionBar = ({ agent, propertyId, propertyTitle, propertyPrice, prop
               whileTap={{ scale: 0.92 }}
               onClick={() => setIsBookingOpen(true)}
               className={`h-14 w-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${isDark
-                ? 'bg-[#3b82f6]/10 border-[#3b82f6]/30 text-[#3b82f6] hover:bg-[#3b82f6]/20'
-                : 'bg-blue-50 border-blue-200 text-[#3b82f6] hover:bg-blue-100'
+                ? 'bg-[#51faaa]/10 border-[#51faaa]/30 text-[#51faaa] hover:bg-[#51faaa]/20'
+                : 'bg-emerald-50 border-emerald-200 text-[#51faaa] hover:bg-emerald-100'
                 }`}
             >
               <Calendar className="w-5 h-5" />
@@ -756,7 +762,7 @@ const ReviewsSection = ({ property, isDark, propertyId }) => {
         {!isWritingReview && (
           <button
             onClick={handleWriteReview}
-            className="text-[#3b82f6] text-xs font-bold hover:underline"
+            className="text-[#51faaa] text-xs font-bold hover:underline"
           >
             Write a Review
           </button>
@@ -810,7 +816,7 @@ const ReviewsSection = ({ property, isDark, propertyId }) => {
                 disabled={isSubmitting || !rating || !reviewText.trim()}
                 className={`flex-1 py-2.5 rounded-lg font-bold text-sm transition-all ${isSubmitting || !rating || !reviewText.trim()
                   ? 'bg-gray-400 text-gray-700 cursor-not-allowed'
-                  : 'bg-[#3b82f6] text-gray-900 hover:bg-[#45e89a]'
+                  : 'bg-[#51faaa] text-gray-900 hover:bg-[#45e89a]'
                   }`}
               >
                 {isSubmitting ? (
@@ -846,7 +852,7 @@ const ReviewsSection = ({ property, isDark, propertyId }) => {
       {/* Reviews List */}
       {loadingReviews ? (
         <div className="p-8 flex justify-center">
-          <div className="w-8 h-8 border-2 border-[#3b82f6] border-t-transparent rounded-full animate-spin" />
+          <div className="w-8 h-8 border-2 border-[#51faaa] border-t-transparent rounded-full animate-spin" />
         </div>
       ) : reviews.length > 0 ? (
         <div className={`divide-y ${isDark ? 'divide-white/5' : 'divide-gray-200'}`}>
@@ -862,8 +868,8 @@ const ReviewsSection = ({ property, isDark, propertyId }) => {
                       className="w-10 h-10 rounded-full object-cover"
                     />
                   ) : (
-                    <div className="w-10 h-10 rounded-full bg-[#3b82f6]/20 flex items-center justify-center">
-                      <span className="text-[#3b82f6] font-bold text-sm">
+                    <div className="w-10 h-10 rounded-full bg-[#51faaa]/20 flex items-center justify-center">
+                      <span className="text-[#51faaa] font-bold text-sm">
                         {(review.userName || 'A').charAt(0).toUpperCase()}
                       </span>
                     </div>
@@ -898,8 +904,8 @@ const ReviewsSection = ({ property, isDark, propertyId }) => {
                     <button
                       onClick={() => reviewsAPI.markHelpful(propertyId, review.id)}
                       className={`text-xs flex items-center gap-1 transition-colors ${isDark
-                        ? 'text-gray-500 hover:text-[#3b82f6]'
-                        : 'text-gray-400 hover:text-[#3b82f6]'
+                        ? 'text-gray-500 hover:text-[#51faaa]'
+                        : 'text-gray-400 hover:text-[#51faaa]'
                         }`}
                     >
                       <CheckCircle className="w-3.5 h-3.5" />
@@ -915,8 +921,8 @@ const ReviewsSection = ({ property, isDark, propertyId }) => {
         // Empty State
         !isWritingReview && (
           <div className="p-8 text-center">
-            <div className="w-12 h-12 rounded-full bg-[#3b82f6]/10 mx-auto mb-3 flex items-center justify-center">
-              <MessageSquare className="w-6 h-6 text-[#3b82f6]" />
+            <div className="w-12 h-12 rounded-full bg-[#51faaa]/10 mx-auto mb-3 flex items-center justify-center">
+              <MessageSquare className="w-6 h-6 text-[#51faaa]" />
             </div>
             <h4 className={`font-bold mb-1 ${isDark ? 'text-white' : 'text-gray-900'}`}>
               No Reviews Yet
@@ -986,6 +992,8 @@ const MobilePropertyDetails = () => {
   const { currentUser, toggleFavorite, isFavorite } = useAuth();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [activeTab, setActiveTab] = useState('Overview');
+  const priceRef = useRef(null);
+  const [priceInView, setPriceInView] = useState(true);
 
   // Handle tab change with scroll to top
   const handleTabChange = (newTab) => {
@@ -1009,6 +1017,22 @@ const MobilePropertyDetails = () => {
       incrementPropertyView(id);
     }
   }, [property, id, trackPropertyView]);
+
+  // Show the price in the sticky bar only once the main price card scrolls off-screen.
+  // When the price card isn't mounted (Reviews/Inquiry tabs), fall back to showing it.
+  useEffect(() => {
+    const el = priceRef.current;
+    if (!el) {
+      setPriceInView(false);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => setPriceInView(entry.isIntersecting),
+      { threshold: 0 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [activeTab, property]);
 
   const formatPrice = (price) => {
     if (!price) return 'Price on request';
@@ -1112,8 +1136,8 @@ const MobilePropertyDetails = () => {
         <div className="flex items-center justify-center h-[70vh]">
           <div className="flex flex-col items-center gap-4">
             <div className="relative w-16 h-16">
-              <div className="absolute inset-0 border-4 border-[#3b82f6]/20 rounded-full"></div>
-              <div className="absolute inset-0 border-4 border-[#3b82f6] border-t-transparent rounded-full animate-spin"></div>
+              <div className="absolute inset-0 border-4 border-[#51faaa]/20 rounded-full"></div>
+              <div className="absolute inset-0 border-4 border-[#51faaa] border-t-transparent rounded-full animate-spin"></div>
             </div>
             <p className={`text-sm font-medium ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
               Loading property details...
@@ -1188,12 +1212,23 @@ const MobilePropertyDetails = () => {
       }
     >
       {/* ============ PHOTO GALLERY ============ */}
-      <MobilePhotoGallery
-        images={property.images}
-        title={property.title}
-        currentImageIndex={currentImageIndex}
-        setCurrentImageIndex={setCurrentImageIndex}
-      />
+      <div className="px-3 pt-3">
+        <PropertyMediaTabs
+          property={property}
+          heightClass="h-[45vh]"
+          variant="mobile"
+        >
+          <div className="relative w-full h-full">
+            <MobilePhotoGallery
+              images={property.images}
+              title={property.title}
+              currentImageIndex={currentImageIndex}
+              setCurrentImageIndex={setCurrentImageIndex}
+              property={property}
+            />
+          </div>
+        </PropertyMediaTabs>
+      </div>
 
       {/* ============ TABS NAVIGATION ============ */}
       <div className={`sticky top-[0px] z-[40] transition-colors duration-200 border-b backdrop-blur-md ${isDark ? 'bg-gray-900/80 border-white/5' : 'bg-white/80 border-gray-200'
@@ -1208,7 +1243,7 @@ const MobilePropertyDetails = () => {
               key={tab.name}
               onClick={() => handleTabChange(tab.name)}
               className={`relative py-4 px-2 flex flex-col items-center gap-1 text-xs font-bold uppercase tracking-wider transition-colors ${activeTab === tab.name
-                ? 'text-[#3b82f6]'
+                ? 'text-[#51faaa]'
                 : isDark ? 'text-gray-500 hover:text-gray-300' : 'text-gray-400 hover:text-gray-600'
                 }`}
             >
@@ -1217,7 +1252,7 @@ const MobilePropertyDetails = () => {
               {activeTab === tab.name && (
                 <motion.div
                   layoutId="activeTab"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#3b82f6]"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#51faaa]"
                   transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 />
               )}
@@ -1227,7 +1262,7 @@ const MobilePropertyDetails = () => {
       </div>
 
       {/* ============ MAIN CONTENT (eBay STYLE LAYOUT) ============ */}
-      <div className="px-5 py-8 space-y-8 pb-48 min-h-[60vh]">
+      <div className="px-5 py-8 space-y-8 pb-56 min-h-[60vh]">
 
         {/* ============ OVERVIEW TAB ============ */}
         {activeTab === 'Overview' && (
@@ -1238,69 +1273,118 @@ const MobilePropertyDetails = () => {
             transition={{ duration: 0.2 }}
             className="space-y-6"
           >
-            {/* Title & Location */}
+            {/* Title, Location & Price (buy-box) */}
             <div>
-              <div className="flex items-center gap-2 mb-2">
+              <div className="flex items-center gap-2 mb-3">
                 {property.type && (
-                  <span className="px-2.5 py-1 bg-[#3b82f6]/15 text-[#3b82f6] text-xs font-bold uppercase tracking-wider rounded-md border border-[#3b82f6]/20">
+                  <span className="px-3 py-1 bg-[#51faaa]/15 text-[#51faaa] text-[10px] font-bold uppercase tracking-[0.12em] rounded-full border border-[#51faaa]/20">
                     {property.type}
                   </span>
                 )}
                 {property.status && (
-                  <span className={`px-2.5 py-1 text-xs font-bold uppercase tracking-wider rounded-md border ${property.status.toLowerCase().includes('rent')
-                    ? 'bg-blue-500/15 text-blue-400 border-blue-400/20'
-                    : 'bg-[#3b82f6]/15 text-[#3b82f6] border-[#3b82f6]/20'
+                  <span className={`px-3 py-1 text-[10px] font-bold uppercase tracking-[0.12em] rounded-full border ${property.status.toLowerCase().includes('rent')
+                    ? 'bg-emerald-500/15 text-emerald-400 border-emerald-400/20'
+                    : 'bg-[#51faaa]/15 text-[#51faaa] border-[#51faaa]/20'
                     }`}>
                     {property.status.replace(/-/g, ' ')}
                   </span>
                 )}
               </div>
 
-              <h1 className={`text-2xl font-bold mb-3 leading-tight ${isDark ? 'text-white' : 'text-gray-900'
+              <h1 className={`text-2xl font-bold leading-tight ${isDark ? 'text-white' : 'text-gray-900'
                 }`}>
                 {property.title}
               </h1>
 
               {property.address && (
-                <div className="flex items-center gap-2 text-sm">
-                  <MapPin className="w-4 h-4 text-[#3b82f6] flex-shrink-0" />
+                <div className="flex items-center gap-2 text-sm mt-2">
+                  <MapPin className="w-4 h-4 text-[#51faaa] flex-shrink-0" />
                   <span className={isDark ? 'text-gray-400' : 'text-gray-600'}>
                     {typeof property.address === 'string' ? property.address : (property.address?.address || property.address?.city || 'Location available')}
                   </span>
                 </div>
               )}
+
+              {/* Price — flat, hairline-separated */}
+              <div ref={priceRef} className={`mt-5 pt-5 border-t ${isDark ? 'border-white/10' : 'border-gray-200'}`}>
+                <div className="flex items-center gap-2 mb-1.5">
+                  <span className={`text-[10px] uppercase tracking-[0.18em] font-bold ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
+                    Price
+                  </span>
+                  {property.views && (
+                    <>
+                      <span className={isDark ? 'text-gray-600' : 'text-gray-300'}>•</span>
+                      <div className="flex items-center gap-1">
+                        <Eye className={`w-3.5 h-3.5 ${isDark ? 'text-gray-500' : 'text-gray-400'}`} />
+                        <span className={`text-[11px] ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>
+                          {property.views} views
+                        </span>
+                      </div>
+                    </>
+                  )}
+                </div>
+                <div className="flex items-end justify-between gap-3">
+                  <p className="text-[34px] font-black text-[#51faaa] tracking-tight leading-none">
+                    {formatPrice(property.price)}
+                  </p>
+                  {property.area > 0 && (
+                    <span className={`flex-shrink-0 text-[11px] font-bold px-2.5 py-1 rounded-lg ${isDark ? 'bg-white/5 text-gray-400' : 'bg-gray-100 text-gray-600'}`}>
+                      {formatPrice(Math.round(property.price / property.area))}
+                      <span className="font-medium opacity-70"> / sqft</span>
+                    </span>
+                  )}
+                </div>
+              </div>
             </div>
 
-            {/* Price Section (eBay Style) */}
-            <div className={`p-4 rounded-2xl border ${isDark
-              ? 'bg-gradient-to-br from-[#3b82f6]/5 to-[#3b82f6]/10 border-[#3b82f6]/20'
-              : 'bg-gradient-to-br from-[#3b82f6]/5 to-[#3b82f6]/10 border-[#3b82f6]/30'
-              }`}>
-              <div className="flex items-baseline gap-2 mb-1">
-                <span className={`text-xs uppercase tracking-wider font-bold ${isDark ? 'text-gray-500' : 'text-gray-600'
-                  }`}>
-                  Price
-                </span>
-                {property.views && (
-                  <>
-                    <span className={isDark ? 'text-gray-600' : 'text-gray-400'}>•</span>
-                    <div className="flex items-center gap-1">
-                      <Eye className={`w-3.5 h-3.5 ${isDark ? 'text-gray-500' : 'text-gray-400'}`} />
-                      <span className={`text-xs ${isDark ? 'text-gray-500' : 'text-gray-600'}`}>
-                        {property.views} views
-                      </span>
-                    </div>
-                  </>
-                )}
+            {/* Quick Stats Row (bordered tiles) */}
+            {(property.bedrooms > 0 || property.bathrooms > 0 || property.area > 0) && (
+              <div className="flex gap-3">
+                {[
+                  { label: 'Beds', value: property.bedrooms, icon: Bed, show: property.bedrooms > 0 },
+                  { label: 'Baths', value: property.bathrooms, icon: Bath, show: property.bathrooms > 0 },
+                  { label: 'Sq Ft', value: property.area?.toLocaleString(), icon: Square, show: property.area > 0 },
+                ].filter(s => s.show).map((stat, idx) => (
+                  <div
+                    key={idx}
+                    className={`flex-1 flex flex-col items-center justify-center py-4 rounded-2xl border ${isDark ? 'border-white/10 bg-white/[0.02]' : 'border-gray-200 bg-white'
+                      }`}
+                  >
+                    <stat.icon className={`w-5 h-5 mb-2 ${isDark ? 'text-[#51faaa]' : 'text-gray-400'}`} />
+                    <span className={`text-lg font-black tracking-tight ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                      {stat.value}
+                    </span>
+                    <span className={`text-[10px] font-bold uppercase tracking-[0.15em] mt-0.5 ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
+                      {stat.label}
+                    </span>
+                  </div>
+                ))}
               </div>
-              <p className="text-4xl font-bold text-[#3b82f6] tracking-tight">
-                {formatPrice(property.price)}
+            )}
+
+            {/* One-line summary */}
+            {property.description && (
+              <p className={`text-[15px] leading-relaxed ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                {property.description.length > 150
+                  ? `${property.description.slice(0, 150).trim()}…`
+                  : property.description}
               </p>
-              {property.area > 0 && (
-                <p className={`text-sm mt-1 font-medium ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>
-                  {formatPrice(Math.round(property.price / property.area))} / sqft
-                </p>
-              )}
+            )}
+
+            {/* Reassurance bullets */}
+            <div className="space-y-2.5">
+              {[
+                property.agent?.verified ? 'Listing agent verified' : 'Listed by a registered agent',
+                'Identity & contact details checked',
+                'Secure in-app inquiries & viewings',
+              ].map((line, idx) => (
+                <div key={idx} className="flex items-center gap-2.5">
+                  <CheckCircle className="w-4 h-4 text-[#51faaa] flex-shrink-0" />
+                  <span className={`text-[13px] ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                    {line}
+                  </span>
+                </div>
+              ))}
             </div>
 
             {/* Key Specifications */}
@@ -1308,16 +1392,16 @@ const MobilePropertyDetails = () => {
 
             {/* Description Section */}
             {property.description && (
-              <div className={`border rounded-2xl overflow-hidden ${isDark ? 'bg-gray-800/60 border-white/5' : 'bg-white border-gray-200'
+              <div className={`border rounded-[32px] overflow-hidden backdrop-blur-xl shadow-sm ${isDark ? 'bg-gray-800/40 border-white/5' : 'bg-white/80 border-gray-100'
                 }`}>
-                <div className={`px-4 py-3 border-b ${isDark ? 'bg-gray-800/80 border-white/5' : 'bg-gray-50 border-gray-200'
+                <div className={`px-5 py-4 border-b ${isDark ? 'bg-gray-800/20 border-white/5' : 'bg-gray-50/50 border-gray-100'
                   }`}>
-                  <h3 className={`text-sm font-bold uppercase tracking-wider ${isDark ? 'text-gray-400' : 'text-gray-600'
+                  <h3 className={`text-[11px] font-black uppercase tracking-[0.2em] ${isDark ? 'text-gray-500' : 'text-gray-400'
                     }`}>
                     Property Description
                   </h3>
                 </div>
-                <div className="p-4">
+                <div className="p-5">
                   <p className={`text-sm leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'
                     }`}>
                     {property.description}
@@ -1351,10 +1435,10 @@ const MobilePropertyDetails = () => {
                             {unit.name}
                           </h4>
                           <span className={`inline-flex items-center gap-1.5 text-[10px] px-2.5 py-1 rounded-full font-black uppercase tracking-wider ${Number(unit.unitsAvailable) > 0
-                            ? 'bg-[#3b82f6]/10 text-[#3b82f6]'
+                            ? 'bg-[#51faaa]/10 text-[#51faaa]'
                             : 'bg-red-500/10 text-red-500'
                             }`}>
-                            <div className={`w-1.5 h-1.5 rounded-full ${Number(unit.unitsAvailable) > 0 ? 'bg-[#3b82f6]' : 'bg-red-500'
+                            <div className={`w-1.5 h-1.5 rounded-full ${Number(unit.unitsAvailable) > 0 ? 'bg-[#51faaa]' : 'bg-red-500'
                               }`} />
                             {Number(unit.unitsAvailable) > 0
                               ? `${unit.unitsAvailable} Available`
@@ -1363,7 +1447,7 @@ const MobilePropertyDetails = () => {
                           </span>
                         </div>
                         <div className="text-right">
-                          <p className="text-[#3b82f6] font-black text-lg tracking-tight">
+                          <p className="text-[#51faaa] font-black text-lg tracking-tight">
                             {formatPrice(unit.price)}
                           </p>
                           {unit.rentPeriod && (
@@ -1425,7 +1509,7 @@ const MobilePropertyDetails = () => {
                         className="flex items-center gap-3"
                       >
                         <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${isDark ? 'bg-white/5' : 'bg-gray-100'}`}>
-                          <div className="text-[#3b82f6]">
+                          <div className="text-[#51faaa]">
                             {getAmenityIcon(amenity)}
                           </div>
                         </div>
@@ -1459,7 +1543,7 @@ const MobilePropertyDetails = () => {
                     whileTap={{ scale: 0.95 }}
                     onClick={() => navigate('/properties')}
                     className={`px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-wider border-2 transition-all ${isDark
-                      ? 'border-[#3b82f6]/20 text-[#3b82f6] hover:bg-[#3b82f6]/10'
+                      ? 'border-[#51faaa]/20 text-[#51faaa] hover:bg-[#51faaa]/10'
                       : 'border-gray-200 text-gray-600 hover:bg-gray-50'}`}
                   >
                     View all
@@ -1532,6 +1616,7 @@ const MobilePropertyDetails = () => {
         propertyImage={property.images?.[0]}
         isDark={isDark}
         formatPrice={formatPrice}
+        showPrice={!priceInView}
       />
 
       {/* Map Modal */}

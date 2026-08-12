@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, 
          LineChart, Line, BarChart, Bar, PieChart as RechartsPieChart, Cell, Pie } from 'recharts';
 
@@ -39,7 +39,7 @@ const TrendChart = ({ data, labels, height = 300, type = 'area', title }) => {
     );
   }
 
-  const colors = ['#3B82F6', '#3b82f6', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899'];
+  const colors = ['#51faaa', '#51faaa', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899'];
 
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {

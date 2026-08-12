@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
 import { 
   Building2, 
@@ -178,9 +178,9 @@ const RentaKenyaLanding = () => {
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-20 pb-32">
         {/* Background Elements */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#3b82f6]/5 to-[#06b6d4]/5"></div>
-        <div className="absolute top-20 left-10 w-72 h-72 bg-[#3b82f6]/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#06b6d4]/10 rounded-full blur-3xl"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#51faaa]/5 to-[#dbd5a4]/5"></div>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-[#51faaa]/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#dbd5a4]/10 rounded-full blur-3xl"></div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -194,7 +194,7 @@ const RentaKenyaLanding = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#3b82f6]/10 border border-[#3b82f6]/20 text-[#3b82f6] text-sm font-medium mb-8"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#51faaa]/10 border border-[#51faaa]/20 text-[#51faaa] text-sm font-medium mb-8"
             >
               <Award className="w-4 h-4" />
               Africa's First AI-Powered Rental Management Platform
@@ -208,7 +208,7 @@ const RentaKenyaLanding = () => {
               className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6"
             >
               The Landlord's{' '}
-              <span className="bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] bg-clip-text text-transparent">
                 Digital Backbone
               </span>
             </motion.h1>
@@ -234,7 +234,7 @@ const RentaKenyaLanding = () => {
               <motion.button
                 whileHover={{ scale: 1.05, boxShadow: "0 20px 40px -10px rgba(59, 130, 246, 0.3)" }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-gradient-to-r from-[#3b82f6] to-[#2563eb] text-white font-semibold rounded-2xl shadow-lg shadow-[#3b82f6]/25 flex items-center gap-2"
+                className="px-8 py-4 bg-gradient-to-r from-[#51faaa] to-[#2dd284] text-white font-semibold rounded-2xl shadow-lg shadow-[#51faaa]/25 flex items-center gap-2"
               >
                 Start Free Trial
                 <ArrowRight className="w-5 h-5" />
@@ -322,7 +322,7 @@ const RentaKenyaLanding = () => {
                 description: "higher vacancy rates due to poor communication"
               },
               {
-                icon: <FileText className="w-8 h-8 text-blue-500" />,
+                icon: <FileText className="w-8 h-8 text-emerald-500" />,
                 title: "Compliance Nightmares",
                 stat: "KRA",
                 description: "audits with no digital records = penalties"
@@ -398,15 +398,15 @@ const RentaKenyaLanding = () => {
                   viewport={{ once: true }}
                   className={`p-6 rounded-2xl cursor-pointer transition-all duration-300 ${
                     activeFeature === index
-                      ? 'bg-gradient-to-r from-[#3b82f6]/10 to-[#06b6d4]/10 border-2 border-[#3b82f6] shadow-lg'
-                      : 'bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 hover:border-[#3b82f6]/50'
+                      ? 'bg-gradient-to-r from-[#51faaa]/10 to-[#dbd5a4]/10 border-2 border-[#51faaa] shadow-lg'
+                      : 'bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 hover:border-[#51faaa]/50'
                   }`}
                   onClick={() => setActiveFeature(index)}
                 >
                   <div className="flex items-start gap-4">
                     <div className={`p-3 rounded-xl ${
                       activeFeature === index
-                        ? 'bg-[#3b82f6] text-white'
+                        ? 'bg-[#51faaa] text-white'
                         : 'bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-300'
                     }`}>
                       {feature.icon}
@@ -422,7 +422,7 @@ const RentaKenyaLanding = () => {
                         {feature.benefits.map((benefit, i) => (
                           <span
                             key={i}
-                            className="px-3 py-1 bg-[#3b82f6]/10 text-[#3b82f6] text-sm rounded-full"
+                            className="px-3 py-1 bg-[#51faaa]/10 text-[#51faaa] text-sm rounded-full"
                           >
                             {benefit}
                           </span>
@@ -444,7 +444,7 @@ const RentaKenyaLanding = () => {
             >
               <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 border border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="p-3 bg-[#3b82f6] rounded-xl text-white">
+                  <div className="p-3 bg-[#51faaa] rounded-xl text-white">
                     {features[activeFeature].icon}
                   </div>
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -457,12 +457,12 @@ const RentaKenyaLanding = () => {
                   <div className="h-4 bg-gray-200 dark:bg-gray-600 rounded w-3/4"></div>
                   <div className="h-4 bg-gray-200 dark:bg-gray-600 rounded w-1/2"></div>
                   <div className="grid grid-cols-2 gap-4 mt-6">
-                    <div className="p-4 bg-[#3b82f6]/10 rounded-xl">
-                      <div className="text-2xl font-bold text-[#3b82f6] mb-1">97%</div>
+                    <div className="p-4 bg-[#51faaa]/10 rounded-xl">
+                      <div className="text-2xl font-bold text-[#51faaa] mb-1">97%</div>
                       <div className="text-sm text-gray-600 dark:text-gray-300">Collection Rate</div>
                     </div>
-                    <div className="p-4 bg-[#06b6d4]/10 rounded-xl">
-                      <div className="text-2xl font-bold text-[#06b6d4] mb-1">3hrs</div>
+                    <div className="p-4 bg-[#dbd5a4]/10 rounded-xl">
+                      <div className="text-2xl font-bold text-[#dbd5a4] mb-1">3hrs</div>
                       <div className="text-sm text-gray-600 dark:text-gray-300">Monthly Time</div>
                     </div>
                   </div>
@@ -564,13 +564,13 @@ const RentaKenyaLanding = () => {
                 viewport={{ once: true }}
                 className={`relative p-8 rounded-2xl border-2 ${
                   plan.popular
-                    ? 'bg-gradient-to-br from-[#3b82f6]/10 to-[#06b6d4]/10 border-[#3b82f6] shadow-xl'
+                    ? 'bg-gradient-to-br from-[#51faaa]/10 to-[#dbd5a4]/10 border-[#51faaa] shadow-xl'
                     : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-600'
                 }`}
               >
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="px-4 py-2 bg-[#3b82f6] text-white text-sm font-semibold rounded-full">
+                    <span className="px-4 py-2 bg-[#51faaa] text-white text-sm font-semibold rounded-full">
                       Most Popular
                     </span>
                   </div>
@@ -596,7 +596,7 @@ const RentaKenyaLanding = () => {
                 <ul className="space-y-4 mb-8">
                   {plan.features.map((feature, i) => (
                     <li key={i} className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-[#3b82f6] flex-shrink-0" />
+                      <CheckCircle className="w-5 h-5 text-[#51faaa] flex-shrink-0" />
                       <span className="text-gray-600 dark:text-gray-300">
                         {feature}
                       </span>
@@ -609,7 +609,7 @@ const RentaKenyaLanding = () => {
                   whileTap={{ scale: 0.98 }}
                   className={`w-full py-3 px-6 rounded-xl font-semibold transition-all duration-300 ${
                     plan.popular
-                      ? 'bg-gradient-to-r from-[#3b82f6] to-[#2563eb] text-white shadow-lg'
+                      ? 'bg-gradient-to-r from-[#51faaa] to-[#2dd284] text-white shadow-lg'
                       : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600'
                   }`}
                 >
@@ -622,7 +622,7 @@ const RentaKenyaLanding = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4]">
+      <section className="py-20 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -642,7 +642,7 @@ const RentaKenyaLanding = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-white text-[#3b82f6] font-semibold rounded-2xl shadow-lg flex items-center gap-2"
+                className="px-8 py-4 bg-white text-[#51faaa] font-semibold rounded-2xl shadow-lg flex items-center gap-2"
               >
                 Start Free Trial
                 <ArrowRight className="w-5 h-5" />
@@ -671,7 +671,7 @@ const RentaKenyaLanding = () => {
           <div className="grid md:grid-cols-4 gap-8">
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] rounded-xl flex items-center justify-center">
+                <div className="w-10 h-10 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] rounded-xl flex items-center justify-center">
                   <Building2 className="w-6 h-6 text-gray-900" />
                 </div>
                 <span className="text-2xl font-bold">Rental Management</span>

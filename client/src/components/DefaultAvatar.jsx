@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { useTheme } from '../context/ThemeContext';
 
 const DefaultAvatar = ({ 
@@ -28,15 +28,15 @@ const DefaultAvatar = ({
 
   // Generate a consistent color based on name
   const getColorFromName = (name) => {
-    if (!name) return 'from-[#3b82f6] to-[#06b6d4]';
+    if (!name) return 'from-[#51faaa] to-[#dbd5a4]';
     
     const colors = [
-      'from-[#3b82f6] to-[#06b6d4]',
-      'from-[#06b6d4] to-[#3b82f6]',
-      'from-[#3b82f6] to-[#45e595]',
-      'from-[#45e595] to-[#3b82f6]',
-      'from-[#06b6d4] to-[#45e595]',
-      'from-[#45e595] to-[#06b6d4]'
+      'from-[#51faaa] to-[#dbd5a4]',
+      'from-[#dbd5a4] to-[#51faaa]',
+      'from-[#51faaa] to-[#45e595]',
+      'from-[#45e595] to-[#51faaa]',
+      'from-[#dbd5a4] to-[#45e595]',
+      'from-[#45e595] to-[#dbd5a4]'
     ];
     
     const hash = name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
@@ -57,13 +57,13 @@ const DefaultAvatar = ({
         shadow-lg
         animate-pulse
         border-2 border-white/20
-        ${isDark ? 'border-[#3b82f6]/20' : 'border-gray-200'}
+        ${isDark ? 'border-[#51faaa]/20' : 'border-gray-200'}
       `}>
         {initials}
       </div>
       
       {showVerification && (
-        <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-[#3b82f6] rounded-full flex items-center justify-center border-2 border-white shadow-lg">
+        <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-[#51faaa] rounded-full flex items-center justify-center border-2 border-white shadow-lg">
           <svg className="w-3 h-3 text-[#0a0c19]" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
           </svg>

@@ -6,7 +6,7 @@ import { getAnalytics } from 'firebase/analytics';
 
 // Your Firebase configuration - Updated to use dwellmate project
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "REDACTED",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "YOUR_API_KEY",
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "dwellmate-285e8.firebaseapp.com",
   projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "dwellmate-285e8",
   storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "dwellmate-285e8.firebasestorage.app",

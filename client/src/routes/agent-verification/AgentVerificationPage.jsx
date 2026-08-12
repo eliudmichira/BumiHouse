@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useTheme } from '../../context/ThemeContext';
@@ -71,7 +71,7 @@ const AgentVerificationPage = () => {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <div className="bg-gradient-to-r from-[#3b82f6]/10 to-[#06b6d4]/10 border-b border-gray-200 dark:border-gray-700">
+      <div className="bg-gradient-to-r from-[#51faaa]/10 to-[#dbd5a4]/10 border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-4">
@@ -82,7 +82,7 @@ const AgentVerificationPage = () => {
                 <ArrowLeft className="w-5 h-5 text-gray-600 dark:text-gray-400" />
               </button>
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] flex items-center justify-center">
                   <Building2 className="w-6 h-6 text-[#111]" />
                 </div>
                 <div>
@@ -101,7 +101,7 @@ const AgentVerificationPage = () => {
               onClick={() => navigate('/desktop/dashboard')}
               className="flex items-center gap-3 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 transition-all duration-200 border border-white/20 hover:border-white/30"
             >
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#3b82f6] to-[#4fd69c] p-0.5">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#51faaa] to-[#4fd69c] p-0.5">
                 <img 
                   src={currentUser?.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(currentUser?.name || 'User')}&background=51faaa&color=0a0c19`}
                   alt={currentUser?.name || 'User'}
@@ -128,7 +128,7 @@ const AgentVerificationPage = () => {
             {/* Hero Section */}
             <div className={`p-8 rounded-2xl ${isDark ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
               <div className="text-center mb-8">
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] flex items-center justify-center mx-auto mb-4">
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] flex items-center justify-center mx-auto mb-4">
                   <Shield className="w-10 h-10 text-[#111]" />
                 </div>
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
@@ -150,7 +150,7 @@ const AgentVerificationPage = () => {
                 ) : (
                   <button
                     onClick={() => setShowForm(true)}
-                    className="px-8 py-4 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] rounded-xl font-semibold hover:shadow-lg transition-all"
+                    className="px-8 py-4 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] rounded-xl font-semibold hover:shadow-lg transition-all"
                   >
                     Start Verification Process
                   </button>
@@ -166,8 +166,8 @@ const AgentVerificationPage = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {benefits.map((benefit, index) => (
                   <div key={index} className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-[#3b82f6]/20 flex items-center justify-center flex-shrink-0">
-                      <benefit.icon className="w-6 h-6 text-[#3b82f6]" />
+                    <div className="w-12 h-12 rounded-xl bg-[#51faaa]/20 flex items-center justify-center flex-shrink-0">
+                      <benefit.icon className="w-6 h-6 text-[#51faaa]" />
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900 dark:text-white mb-1">
@@ -190,8 +190,8 @@ const AgentVerificationPage = () => {
               <div className="space-y-3">
                 {requirements.map((requirement, index) => (
                   <div key={index} className="flex items-center gap-3">
-                    <div className="w-6 h-6 rounded-full bg-[#3b82f6]/20 flex items-center justify-center flex-shrink-0">
-                      <CheckCircle className="w-4 h-4 text-[#3b82f6]" />
+                    <div className="w-6 h-6 rounded-full bg-[#51faaa]/20 flex items-center justify-center flex-shrink-0">
+                      <CheckCircle className="w-4 h-4 text-[#51faaa]" />
                     </div>
                     <span className="text-gray-700 dark:text-gray-300">
                       {requirement}
@@ -211,7 +211,7 @@ const AgentVerificationPage = () => {
               </h3>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-[#3b82f6] text-[#111] flex items-center justify-center text-sm font-bold">
+                  <div className="w-8 h-8 rounded-full bg-[#51faaa] text-[#111] flex items-center justify-center text-sm font-bold">
                     1
                   </div>
                   <div>

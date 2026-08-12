@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   X, Building2, User, Mail, Phone, MapPin, 
@@ -173,7 +173,7 @@ const TrialSignupModal = ({ isOpen, onClose }) => {
           className="relative w-full max-w-2xl max-h-[90vh] overflow-hidden bg-white dark:bg-gray-900 rounded-3xl shadow-2xl"
         >
           {/* Header */}
-          <div className="relative px-8 py-6 bg-gradient-to-r from-[#3b82f6] to-[#2563eb]">
+          <div className="relative px-8 py-6 bg-gradient-to-r from-[#51faaa] to-[#2dd284]">
             <button
               onClick={onClose}
               className="absolute top-4 right-4 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors duration-200"
@@ -240,7 +240,7 @@ const TrialSignupModal = ({ isOpen, onClose }) => {
                         type="text"
                         value={formData.fullName}
                         onChange={(e) => handleInputChange('fullName', e.target.value)}
-                        className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-[#3b82f6] focus:border-[#3b82f6] transition-all duration-200"
+                        className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-[#51faaa] focus:border-[#51faaa] transition-all duration-200"
                         placeholder="Enter your full name"
                       />
                     </div>
@@ -253,7 +253,7 @@ const TrialSignupModal = ({ isOpen, onClose }) => {
                         type="email"
                         value={formData.email}
                         onChange={(e) => handleInputChange('email', e.target.value)}
-                        className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-[#3b82f6] focus:border-[#3b82f6] transition-all duration-200"
+                        className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-[#51faaa] focus:border-[#51faaa] transition-all duration-200"
                         placeholder="your.email@example.com"
                       />
                     </div>
@@ -266,7 +266,7 @@ const TrialSignupModal = ({ isOpen, onClose }) => {
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => handleInputChange('phone', e.target.value)}
-                        className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-[#3b82f6] focus:border-[#3b82f6] transition-all duration-200"
+                        className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-[#51faaa] focus:border-[#51faaa] transition-all duration-200"
                         placeholder="+254 7XX XXX XXX"
                       />
                     </div>
@@ -308,15 +308,15 @@ const TrialSignupModal = ({ isOpen, onClose }) => {
                               onClick={() => handleInputChange('businessType', type.value)}
                               className={`p-4 rounded-xl border-2 transition-all duration-200 text-left ${
                                 formData.businessType === type.value
-                                  ? 'border-[#3b82f6] bg-[#3b82f6]/10'
-                                  : 'border-gray-300 dark:border-gray-600 hover:border-[#3b82f6]/50'
+                                  ? 'border-[#51faaa] bg-[#51faaa]/10'
+                                  : 'border-gray-300 dark:border-gray-600 hover:border-[#51faaa]/50'
                               }`}
                             >
                               <IconComponent className={`w-6 h-6 mb-2 ${
-                                formData.businessType === type.value ? 'text-[#3b82f6]' : 'text-gray-600 dark:text-gray-400'
+                                formData.businessType === type.value ? 'text-[#51faaa]' : 'text-gray-600 dark:text-gray-400'
                               }`} />
                               <div className={`font-medium text-sm ${
-                                formData.businessType === type.value ? 'text-[#3b82f6]' : 'text-gray-900 dark:text-white'
+                                formData.businessType === type.value ? 'text-[#51faaa]' : 'text-gray-900 dark:text-white'
                               }`}>
                                 {type.label}
                               </div>
@@ -338,12 +338,12 @@ const TrialSignupModal = ({ isOpen, onClose }) => {
                             onClick={() => handleInputChange('propertyCount', option.value)}
                             className={`w-full p-4 rounded-xl border-2 transition-all duration-200 text-left ${
                               formData.propertyCount === option.value
-                                ? 'border-[#3b82f6] bg-[#3b82f6]/10'
-                                : 'border-gray-300 dark:border-gray-600 hover:border-[#3b82f6]/50'
+                                ? 'border-[#51faaa] bg-[#51faaa]/10'
+                                : 'border-gray-300 dark:border-gray-600 hover:border-[#51faaa]/50'
                             }`}
                           >
                             <div className={`font-medium ${
-                              formData.propertyCount === option.value ? 'text-[#3b82f6]' : 'text-gray-900 dark:text-white'
+                              formData.propertyCount === option.value ? 'text-[#51faaa]' : 'text-gray-900 dark:text-white'
                             }`}>
                               {option.label}
                             </div>
@@ -363,7 +363,7 @@ const TrialSignupModal = ({ isOpen, onClose }) => {
                       <select
                         value={formData.location}
                         onChange={(e) => handleInputChange('location', e.target.value)}
-                        className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-[#3b82f6] focus:border-[#3b82f6] transition-all duration-200"
+                        className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-[#51faaa] focus:border-[#51faaa] transition-all duration-200"
                       >
                         <option value="">Select your primary location</option>
                         <option value="nairobi">Nairobi</option>
@@ -414,21 +414,21 @@ const TrialSignupModal = ({ isOpen, onClose }) => {
                               onClick={() => handleInterestToggle(interest.id)}
                               className={`p-4 rounded-xl border-2 transition-all duration-200 text-left ${
                                 isSelected
-                                  ? 'border-[#3b82f6] bg-[#3b82f6]/10'
-                                  : 'border-gray-300 dark:border-gray-600 hover:border-[#3b82f6]/50'
+                                  ? 'border-[#51faaa] bg-[#51faaa]/10'
+                                  : 'border-gray-300 dark:border-gray-600 hover:border-[#51faaa]/50'
                               }`}
                             >
                               <div className="flex items-center gap-3">
                                 <IconComponent className={`w-5 h-5 ${
-                                  isSelected ? 'text-[#3b82f6]' : 'text-gray-600 dark:text-gray-400'
+                                  isSelected ? 'text-[#51faaa]' : 'text-gray-600 dark:text-gray-400'
                                 }`} />
                                 <span className={`font-medium text-sm ${
-                                  isSelected ? 'text-[#3b82f6]' : 'text-gray-900 dark:text-white'
+                                  isSelected ? 'text-[#51faaa]' : 'text-gray-900 dark:text-white'
                                 }`}>
                                   {interest.label}
                                 </span>
                                 {isSelected && (
-                                  <Check className="w-4 h-4 text-[#3b82f6] ml-auto" />
+                                  <Check className="w-4 h-4 text-[#51faaa] ml-auto" />
                                 )}
                               </div>
                             </button>
@@ -454,12 +454,12 @@ const TrialSignupModal = ({ isOpen, onClose }) => {
                             onClick={() => handleInputChange('timeline', option.value)}
                             className={`w-full p-4 rounded-xl border-2 transition-all duration-200 text-left ${
                               formData.timeline === option.value
-                                ? 'border-[#3b82f6] bg-[#3b82f6]/10'
-                                : 'border-gray-300 dark:border-gray-600 hover:border-[#3b82f6]/50'
+                                ? 'border-[#51faaa] bg-[#51faaa]/10'
+                                : 'border-gray-300 dark:border-gray-600 hover:border-[#51faaa]/50'
                             }`}
                           >
                             <div className={`font-medium ${
-                              formData.timeline === option.value ? 'text-[#3b82f6]' : 'text-gray-900 dark:text-white'
+                              formData.timeline === option.value ? 'text-[#51faaa]' : 'text-gray-900 dark:text-white'
                             }`}>
                               {option.label}
                             </div>
@@ -484,7 +484,7 @@ const TrialSignupModal = ({ isOpen, onClose }) => {
                   exit="exit"
                   className="text-center space-y-6"
                 >
-                  <div className="w-20 h-20 bg-gradient-to-br from-[#3b82f6] to-[#2563eb] rounded-full flex items-center justify-center mx-auto">
+                  <div className="w-20 h-20 bg-gradient-to-br from-[#51faaa] to-[#2dd284] rounded-full flex items-center justify-center mx-auto">
                     <Check className="w-10 h-10 text-white" />
                   </div>
                   
@@ -507,8 +507,8 @@ const TrialSignupModal = ({ isOpen, onClose }) => {
                         'After the trial, choose a plan that fits your needs'
                       ].map((item, index) => (
                         <div key={index} className="flex items-start gap-3">
-                          <div className="w-6 h-6 bg-[#3b82f6]/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <span className="text-[#3b82f6] text-sm font-bold">{index + 1}</span>
+                          <div className="w-6 h-6 bg-[#51faaa]/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span className="text-[#51faaa] text-sm font-bold">{index + 1}</span>
                           </div>
                           <p className="text-gray-600 dark:text-gray-300 text-sm">{item}</p>
                         </div>
@@ -541,7 +541,7 @@ const TrialSignupModal = ({ isOpen, onClose }) => {
                   disabled={!isStepValid() || isSubmitting}
                   className={`px-8 py-3 rounded-xl font-semibold transition-all duration-200 flex items-center gap-2 ${
                     isStepValid() && !isSubmitting
-                      ? 'bg-gradient-to-r from-[#3b82f6] to-[#2563eb] text-white hover:shadow-lg'
+                      ? 'bg-gradient-to-r from-[#51faaa] to-[#2dd284] text-white hover:shadow-lg'
                       : 'bg-gray-300 dark:bg-gray-600 text-gray-500 cursor-not-allowed'
                   }`}
                 >
@@ -571,7 +571,7 @@ const TrialSignupModal = ({ isOpen, onClose }) => {
             <div className="px-8 py-6 bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
               <button
                 onClick={onClose}
-                className="w-full px-8 py-3 bg-gradient-to-r from-[#3b82f6] to-[#2563eb] text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-200"
+                className="w-full px-8 py-3 bg-gradient-to-r from-[#51faaa] to-[#2dd284] text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-200"
               >
                 Get Started
               </button>

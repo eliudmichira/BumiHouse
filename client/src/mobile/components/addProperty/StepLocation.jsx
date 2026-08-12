@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { MapPin, Navigation, Search, CheckCircle, AlertCircle } from 'lucide-react';
 import { useTheme } from '../../../context/ThemeContext';
 import MapView from '../../../components/map/MapView';
@@ -10,7 +10,7 @@ const StepLocation = ({ formData, handleInputChange, handleMapsLinkChange, handl
         <div className="space-y-6">
             <div className={`p-5 rounded-2xl ${isDark ? 'bg-[#10121e]' : 'bg-white shadow-sm'}`}>
                 <h2 className={`text-xl font-bold mb-6 flex items-center gap-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                    <MapPin className="w-6 h-6 text-[#3b82f6]" /> Location
+                    <MapPin className="w-6 h-6 text-[#51faaa]" /> Location
                 </h2>
 
                 <div className="space-y-4">
@@ -24,7 +24,7 @@ const StepLocation = ({ formData, handleInputChange, handleMapsLinkChange, handl
                             value={formData.location.address}
                             onChange={(e) => handleInputChange('location.address', e.target.value)}
                             placeholder="e.g. 123 Argwings Kodhek Rd"
-                            className={`w-full p-4 rounded-xl border font-medium ${isDark ? 'bg-[#1a1d2d] border-gray-700 text-white' : 'bg-gray-50 border-gray-200 text-gray-900'} focus:ring-2 focus:ring-[#3b82f6] outline-none transition-all`}
+                            className={`w-full p-4 rounded-xl border font-medium ${isDark ? 'bg-[#1a1d2d] border-gray-700 text-white' : 'bg-gray-50 border-gray-200 text-gray-900'} focus:ring-2 focus:ring-[#51faaa] outline-none transition-all`}
                         />
                         {errors['location.address'] && <p className="text-red-500 text-xs mt-1">{errors['location.address']}</p>}
                     </div>
@@ -40,7 +40,7 @@ const StepLocation = ({ formData, handleInputChange, handleMapsLinkChange, handl
                                 value={formData.location.city}
                                 onChange={(e) => handleInputChange('location.city', e.target.value)}
                                 placeholder="e.g. Nairobi"
-                                className={`w-full p-4 rounded-xl border font-medium ${isDark ? 'bg-[#1a1d2d] border-gray-700 text-white' : 'bg-gray-50 border-gray-200 text-gray-900'} focus:ring-2 focus:ring-[#3b82f6] outline-none transition-all`}
+                                className={`w-full p-4 rounded-xl border font-medium ${isDark ? 'bg-[#1a1d2d] border-gray-700 text-white' : 'bg-gray-50 border-gray-200 text-gray-900'} focus:ring-2 focus:ring-[#51faaa] outline-none transition-all`}
                             />
                             {errors['location.city'] && <p className="text-red-500 text-xs mt-1">{errors['location.city']}</p>}
                         </div>
@@ -55,14 +55,14 @@ const StepLocation = ({ formData, handleInputChange, handleMapsLinkChange, handl
                                 value={formData.location.state}
                                 onChange={(e) => handleInputChange('location.state', e.target.value)}
                                 placeholder="e.g. Nairobi"
-                                className={`w-full p-4 rounded-xl border font-medium ${isDark ? 'bg-[#1a1d2d] border-gray-700 text-white' : 'bg-gray-50 border-gray-200 text-gray-900'} focus:ring-2 focus:ring-[#3b82f6] outline-none transition-all`}
+                                className={`w-full p-4 rounded-xl border font-medium ${isDark ? 'bg-[#1a1d2d] border-gray-700 text-white' : 'bg-gray-50 border-gray-200 text-gray-900'} focus:ring-2 focus:ring-[#51faaa] outline-none transition-all`}
                             />
                         </div>
                     </div>
 
                     {/* Google Maps Link */}
-                    <div className={`p-4 rounded-xl border transition-all ${isDark ? 'bg-blue-900/10 border-blue-800' : 'bg-blue-50 border-blue-200'}`}>
-                        <label className="flex items-center gap-2 text-sm font-bold text-blue-500 mb-3">
+                    <div className={`p-4 rounded-xl border transition-all ${isDark ? 'bg-emerald-900/10 border-emerald-800' : 'bg-emerald-50 border-emerald-200'}`}>
+                        <label className="flex items-center gap-2 text-sm font-bold text-emerald-500 mb-3">
                             <Navigation className="w-4 h-4" />
                             Google Maps Link or Code
                         </label>
@@ -72,14 +72,14 @@ const StepLocation = ({ formData, handleInputChange, handleMapsLinkChange, handl
                                 value={formData.location.googleMapsLink}
                                 onChange={(e) => handleMapsLinkChange(e.target.value)}
                                 placeholder="Paste Link or Code (e.g. V2V7+5JJ, Juja)"
-                                className={`w-full p-3 pl-10 text-sm rounded-lg border ${isDark ? 'bg-[#0a0c19] border-gray-700 text-white' : 'bg-white border-gray-200 text-gray-900'} focus:border-blue-500 outline-none`}
+                                className={`w-full p-3 pl-10 text-sm rounded-lg border ${isDark ? 'bg-[#0a0c19] border-gray-700 text-white' : 'bg-white border-gray-200 text-gray-900'} focus:border-emerald-500 outline-none`}
                             />
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                         </div>
 
                         <div className="mt-2 flex items-center justify-between">
                             {resolvingUrl ? (
-                                <span className="text-xs text-blue-500 animate-pulse flex items-center gap-1">
+                                <span className="text-xs text-emerald-500 animate-pulse flex items-center gap-1">
                                     <Navigation className="w-3 h-3 animate-spin" /> Resolving location...
                                 </span>
                             ) : formData.location.coordinates?.lat ? (
@@ -127,8 +127,8 @@ const StepLocation = ({ formData, handleInputChange, handleMapsLinkChange, handl
                         className={`w-full py-3 rounded-xl font-bold text-sm transition-all border flex items-center justify-center gap-2 ${geocoding
                             ? 'opacity-70 cursor-wait'
                             : isDark
-                                ? 'border-[#3b82f6]/30 text-[#3b82f6] hover:bg-[#3b82f6]/10'
-                                : 'border-[#3b82f6] text-[#3b82f6] hover:bg-[#3b82f6]/10'
+                                ? 'border-[#51faaa]/30 text-[#51faaa] hover:bg-[#51faaa]/10'
+                                : 'border-[#51faaa] text-[#51faaa] hover:bg-[#51faaa]/10'
                             }`}
                     >
                         {geocoding ? 'Locating...' : 'Geocode Address'}

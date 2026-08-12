@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+﻿import React, { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Wrench, PlusCircle, AlertCircle, CheckCircle2 } from 'lucide-react';
 
@@ -66,7 +66,7 @@ const Maintenance = () => {
           </div>
         </div>
         <div className="mt-4 flex gap-3">
-          <button onClick={submit} className="px-5 py-3 rounded-xl bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] font-semibold inline-flex items-center gap-2"><PlusCircle className="w-5 h-5"/> Submit Request</button>
+          <button onClick={submit} className="px-5 py-3 rounded-xl bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] font-semibold inline-flex items-center gap-2"><PlusCircle className="w-5 h-5"/> Submit Request</button>
         </div>
       </motion.div>
 

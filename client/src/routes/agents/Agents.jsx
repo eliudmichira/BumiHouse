@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+﻿import React, { useState, useEffect, useMemo } from 'react';
 import { useTheme } from '../../context/ThemeContext';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -224,7 +224,7 @@ const Agents = () => {
                 <img
                   src={agent.image}
                   alt={agent.name}
-                  className="w-16 h-16 rounded-full object-cover border-2 border-[#3b82f6]"
+                  className="w-16 h-16 rounded-full object-cover border-2 border-[#51faaa]"
                   onError={(e) => {
                     e.target.style.display = 'none';
                     e.target.nextSibling.style.display = 'flex';
@@ -271,20 +271,20 @@ const Agents = () => {
 
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4 mb-4">
-          <div className={`text-center p-3 rounded-xl ${isDark ? 'bg-[rgba(81,250,170,0.1)]' : 'bg-blue-50'}`}>
-            <div className={`text-lg font-outfit font-bold ${isDark ? 'text-[#3b82f6]' : 'text-blue-700'}`}>
+          <div className={`text-center p-3 rounded-xl ${isDark ? 'bg-[rgba(81,250,170,0.1)]' : 'bg-emerald-50'}`}>
+            <div className={`text-lg font-outfit font-bold ${isDark ? 'text-[#51faaa]' : 'text-emerald-700'}`}>
               {agent.experience ? `${agent.experience} years` : 'New'}
             </div>
-            <div className={`text-xs font-outfit ${isDark ? 'text-[#ccc]' : 'text-blue-600'}`}>Experience</div>
+            <div className={`text-xs font-outfit ${isDark ? 'text-[#ccc]' : 'text-emerald-600'}`}>Experience</div>
           </div>
           <div className={`text-center p-3 rounded-xl ${isDark ? 'bg-[rgba(81,250,170,0.1)]' : 'bg-green-50'}`}>
-            <div className={`text-lg font-outfit font-bold ${isDark ? 'text-[#3b82f6]' : 'text-green-700'}`}>
+            <div className={`text-lg font-outfit font-bold ${isDark ? 'text-[#51faaa]' : 'text-green-700'}`}>
               {agent.propertiesSold || agent.propertiesCount || 0}
             </div>
             <div className={`text-xs font-outfit ${isDark ? 'text-[#ccc]' : 'text-green-600'}`}>Properties</div>
           </div>
           <div className={`text-center p-3 rounded-xl ${isDark ? 'bg-[rgba(81,250,170,0.1)]' : 'bg-purple-50'}`}>
-            <div className={`text-lg font-outfit font-bold ${isDark ? 'text-[#3b82f6]' : 'text-purple-700'}`}>
+            <div className={`text-lg font-outfit font-bold ${isDark ? 'text-[#51faaa]' : 'text-purple-700'}`}>
               {agent.status || 'Available'}
             </div>
             <div className={`text-xs font-outfit ${isDark ? 'text-[#ccc]' : 'text-purple-600'}`}>Status</div>
@@ -294,7 +294,7 @@ const Agents = () => {
         {/* Location & Specialties */}
         <div className="mb-4">
           <div className="flex items-center gap-2 mb-2">
-            <MapPin className="w-4 h-4 text-[#3b82f6]" />
+            <MapPin className="w-4 h-4 text-[#51faaa]" />
             <span className={`text-sm font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-600'}`}>
               {agent.location || agent.city || agent.state || 'Kenya'}
             </span>
@@ -303,8 +303,8 @@ const Agents = () => {
             {agent.specialization && (
               <span
                 className={`px-2 py-1 text-xs font-outfit rounded-full ${isDark
-                  ? 'bg-[rgba(81,250,170,0.2)] text-[#3b82f6]'
-                  : 'bg-[#3b82f6]/10 text-[#3b82f6]'
+                  ? 'bg-[rgba(81,250,170,0.2)] text-[#51faaa]'
+                  : 'bg-[#51faaa]/10 text-[#51faaa]'
                   }`}
               >
                 {agent.specialization}
@@ -314,8 +314,8 @@ const Agents = () => {
               <span
                 key={index}
                 className={`px-2 py-1 text-xs font-outfit rounded-full ${isDark
-                  ? 'bg-[rgba(81,250,170,0.2)] text-[#3b82f6]'
-                  : 'bg-[#3b82f6]/10 text-[#3b82f6]'
+                  ? 'bg-[rgba(81,250,170,0.2)] text-[#51faaa]'
+                  : 'bg-[#51faaa]/10 text-[#51faaa]'
                   }`}
               >
                 {specialty}
@@ -334,7 +334,7 @@ const Agents = () => {
           <button
             onClick={() => handleContactAgent(agent)}
             disabled={contactingAgent === agent.id || authLoading}
-            className="flex-1 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] py-2 px-4 rounded-xl font-outfit font-semibold transition-all duration-200 hover:shadow-lg hover:shadow-[#3b82f6]/25 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex-1 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] py-2 px-4 rounded-xl font-outfit font-semibold transition-all duration-200 hover:shadow-lg hover:shadow-[#51faaa]/25 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {authLoading ? (
               <>
@@ -382,13 +382,13 @@ const Agents = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Search */}
             <div className="relative">
-              <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 ${isDark ? 'text-[#3b82f6]' : 'text-gray-400'}`} />
+              <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 ${isDark ? 'text-[#51faaa]' : 'text-gray-400'}`} />
               <input
                 type="text"
                 placeholder="Search agents..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${isDark
+                className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${isDark
                   ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50'
                   : 'border-gray-300 bg-white text-gray-900 placeholder-gray-500'
                   }`}
@@ -399,7 +399,7 @@ const Agents = () => {
             <select
               value={selectedLocation}
               onChange={(e) => setSelectedLocation(e.target.value)}
-              className={`px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${isDark
+              className={`px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${isDark
                 ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff]'
                 : 'border-gray-300 bg-white text-gray-900'
                 }`}
@@ -413,7 +413,7 @@ const Agents = () => {
             <select
               value={selectedSpecialty}
               onChange={(e) => setSelectedSpecialty(e.target.value)}
-              className={`px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${isDark
+              className={`px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${isDark
                 ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff]'
                 : 'border-gray-300 bg-white text-gray-900'
                 }`}
@@ -427,7 +427,7 @@ const Agents = () => {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className={`px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${isDark
+              className={`px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${isDark
                 ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff]'
                 : 'border-gray-300 bg-white text-gray-900'
                 }`}
@@ -449,7 +449,7 @@ const Agents = () => {
             <button
               onClick={() => setViewMode('grid')}
               className={`p-2 rounded-lg transition-colors ${viewMode === 'grid'
-                ? 'bg-[#3b82f6] text-[#111]'
+                ? 'bg-[#51faaa] text-[#111]'
                 : isDark
                   ? 'bg-[rgba(81,250,170,0.1)] text-[#ccc] hover:bg-[rgba(81,250,170,0.2)]'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
@@ -465,7 +465,7 @@ const Agents = () => {
             <button
               onClick={() => setViewMode('list')}
               className={`p-2 rounded-lg transition-colors ${viewMode === 'list'
-                ? 'bg-[#3b82f6] text-[#111]'
+                ? 'bg-[#51faaa] text-[#111]'
                 : isDark
                   ? 'bg-[rgba(81,250,170,0.1)] text-[#ccc] hover:bg-[rgba(81,250,170,0.2)]'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
@@ -545,7 +545,7 @@ const Agents = () => {
               </div>
             </div>
             <div className="p-6 border-t border-gray-200 dark:border-gray-700 flex items-center justify-end gap-2">
-              <a href={`mailto:${modalAgent.email || ''}`} className="bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] py-2 px-4 rounded-xl font-outfit font-semibold">Email Agent</a>
+              <a href={`mailto:${modalAgent.email || ''}`} className="bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] py-2 px-4 rounded-xl font-outfit font-semibold">Email Agent</a>
               <button onClick={() => setModalAgent(null)} className={`${isDark ? 'bg-[rgba(81,250,170,0.1)] text-[#ccc] hover:bg-[rgba(81,250,170,0.2)]' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'} py-2 px-4 rounded-xl`}>Close</button>
             </div>
           </div>

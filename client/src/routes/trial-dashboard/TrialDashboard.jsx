@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -90,7 +90,7 @@ const TrialDashboard = () => {
   if (!trialData) {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-[#3b82f6]"></div>
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-[#51faaa]"></div>
       </div>
     );
   }
@@ -162,7 +162,7 @@ const TrialDashboard = () => {
       value: '2',
       subtitle: 'Demo properties',
       icon: Building2,
-      color: 'text-blue-600'
+      color: 'text-emerald-600'
     },
     {
       title: 'Monthly Revenue',
@@ -194,7 +194,7 @@ const TrialDashboard = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] rounded-xl flex items-center justify-center">
                 <Building2 className="w-6 h-6 text-[#111]" />
               </div>
               <div>
@@ -231,7 +231,7 @@ const TrialDashboard = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] rounded-2xl p-8 mb-8 text-[#111]"
+          className="bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] rounded-2xl p-8 mb-8 text-[#111]"
         >
           <div className="flex items-center justify-between">
             <div>
@@ -353,26 +353,26 @@ const TrialDashboard = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 + index * 0.1 }}
                   className={`p-6 rounded-xl border transition-all cursor-pointer ${feature.priority
-                      ? 'bg-gradient-to-br from-[#3b82f6]/10 to-[#06b6d4]/10 border-[#3b82f6]/30 hover:border-[#3b82f6] hover:shadow-xl'
-                      : 'bg-white/80 dark:bg-gray-800/80 border-white/20 dark:border-gray-700/20 hover:border-[#3b82f6] hover:shadow-lg'
+                      ? 'bg-gradient-to-br from-[#51faaa]/10 to-[#dbd5a4]/10 border-[#51faaa]/30 hover:border-[#51faaa] hover:shadow-xl'
+                      : 'bg-white/80 dark:bg-gray-800/80 border-white/20 dark:border-gray-700/20 hover:border-[#51faaa] hover:shadow-lg'
                     }`}
                   onClick={feature.action}
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex items-center space-x-3">
                       <div className={`p-2 rounded-lg ${feature.priority
-                          ? 'bg-[#3b82f6] text-white'
-                          : 'bg-[#3b82f6]/10 text-[#3b82f6]'
+                          ? 'bg-[#51faaa] text-white'
+                          : 'bg-[#51faaa]/10 text-[#51faaa]'
                         }`}>
                         <feature.icon className="w-5 h-5" />
                       </div>
                       <div>
                         <h4 className={`font-semibold ${feature.priority
-                            ? 'text-[#3b82f6] dark:text-[#3b82f6]'
+                            ? 'text-[#51faaa] dark:text-[#51faaa]'
                             : 'text-gray-900 dark:text-white'
                           }`}>
                           {feature.title}
-                          {feature.priority && <span className="ml-2 text-xs bg-[#3b82f6] text-white px-2 py-1 rounded-full">New!</span>}
+                          {feature.priority && <span className="ml-2 text-xs bg-[#51faaa] text-white px-2 py-1 rounded-full">New!</span>}
                         </h4>
                         <p className="text-sm text-gray-600 dark:text-gray-400">
                           {feature.description}
@@ -404,7 +404,7 @@ const TrialDashboard = () => {
             onClick={handleUpgrade}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
+            className="bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
           >
             Continue with Full Account
           </motion.button>

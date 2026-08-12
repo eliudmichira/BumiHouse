@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react';
+﻿import React, { useMemo, useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { collection, getDocs } from 'firebase/firestore';
@@ -63,14 +63,14 @@ const Blog = () => {
         <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             to="/desktop/blog"
-            className={`inline-flex items-center gap-2 font-outfit text-sm mb-8 transition-colors ${isDark ? 'text-[#3b82f6] hover:text-[#06b6d4]' : 'text-[#3b82f6] hover:text-emerald-700'}`}
+            className={`inline-flex items-center gap-2 font-outfit text-sm mb-8 transition-colors ${isDark ? 'text-[#51faaa] hover:text-[#dbd5a4]' : 'text-[#51faaa] hover:text-emerald-700'}`}
           >
             <ArrowLeft className="w-4 h-4" />
             Back to blog
           </Link>
           <header className="mb-10">
             <span
-              className={`inline-flex items-center gap-1 text-xs font-outfit font-semibold uppercase tracking-wide px-3 py-1 rounded-full mb-4 ${isDark ? 'bg-[rgba(81,250,170,0.15)] text-[#3b82f6]' : 'bg-[#3b82f6]/15 text-emerald-800'}`}
+              className={`inline-flex items-center gap-1 text-xs font-outfit font-semibold uppercase tracking-wide px-3 py-1 rounded-full mb-4 ${isDark ? 'bg-[rgba(81,250,170,0.15)] text-[#51faaa]' : 'bg-[#51faaa]/15 text-emerald-800'}`}
             >
               <Tag className="w-3 h-3" />
               {post.category}
@@ -97,7 +97,7 @@ const Blog = () => {
           <div className={`mt-12 pt-8 border-t ${isDark ? 'border-[rgba(81,250,170,0.2)]' : 'border-gray-200'}`}>
             <p className={`font-outfit text-sm ${isDark ? 'text-[#888]' : 'text-gray-500'}`}>
               Looking for a verified agent?{' '}
-              <Link to="/desktop/agents" className="text-[#3b82f6] hover:underline font-medium">
+              <Link to="/desktop/agents" className="text-[#51faaa] hover:underline font-medium">
                 Browse our agents
               </Link>
               .
@@ -120,7 +120,7 @@ const Blog = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
           <div>
-            <div className="flex items-center gap-2 text-[#3b82f6] mb-2">
+            <div className="flex items-center gap-2 text-[#51faaa] mb-2">
               <BookOpen className="w-6 h-6" />
               <span className="font-outfit font-semibold text-sm uppercase tracking-wide">HomesKE</span>
             </div>
@@ -132,13 +132,13 @@ const Blog = () => {
             </p>
           </div>
           <div className="relative w-full sm:w-80">
-            <Search className={`absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 ${isDark ? 'text-[#3b82f6]' : 'text-gray-400'}`} />
+            <Search className={`absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 ${isDark ? 'text-[#51faaa]' : 'text-gray-400'}`} />
             <input
               type="search"
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Search articles..."
-              className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${isDark
+              className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${isDark
                 ? 'border-[rgba(81,250,170,0.2)] bg-[#10121e] text-[#feffff] placeholder-[#ccc]/50'
                 : 'border-gray-300 bg-white text-gray-900 placeholder-gray-500'
                 }`}
@@ -147,7 +147,7 @@ const Blog = () => {
         </div>
 
         {!remoteLoaded && (
-          <div className="flex justify-center py-8 text-[#3b82f6]">
+          <div className="flex justify-center py-8 text-[#51faaa]">
             <Loader2 className="w-8 h-8 animate-spin opacity-80" aria-hidden />
           </div>
         )}
@@ -163,17 +163,17 @@ const Blog = () => {
                 key={p.slug}
                 to={`/desktop/blog/${p.slug}`}
                 className={`group rounded-2xl border p-6 transition-all duration-300 hover:shadow-xl hover:scale-[1.02] ${isDark
-                  ? 'bg-[#10121e] border-[rgba(81,250,170,0.2)] hover:border-[#3b82f6]/40'
+                  ? 'bg-[#10121e] border-[rgba(81,250,170,0.2)] hover:border-[#51faaa]/40'
                   : 'bg-white border-gray-200 shadow-lg'
                   }`}
               >
                 <span
-                  className={`inline-block text-xs font-outfit font-semibold uppercase tracking-wide px-2 py-1 rounded-full mb-3 ${isDark ? 'bg-[rgba(81,250,170,0.15)] text-[#3b82f6]' : 'bg-[#3b82f6]/10 text-emerald-800'
+                  className={`inline-block text-xs font-outfit font-semibold uppercase tracking-wide px-2 py-1 rounded-full mb-3 ${isDark ? 'bg-[rgba(81,250,170,0.15)] text-[#51faaa]' : 'bg-[#51faaa]/10 text-emerald-800'
                     }`}
                 >
                   {p.category}
                 </span>
-                <h2 className={`text-xl font-outfit font-bold mb-2 group-hover:text-[#3b82f6] transition-colors ${isDark ? 'text-[#feffff]' : 'text-gray-900'}`}>
+                <h2 className={`text-xl font-outfit font-bold mb-2 group-hover:text-[#51faaa] transition-colors ${isDark ? 'text-[#feffff]' : 'text-gray-900'}`}>
                   {p.title}
                 </h2>
                 <p className={`font-outfit text-sm mb-4 line-clamp-3 ${isDark ? 'text-[#ccc]' : 'text-gray-600'}`}>{p.excerpt}</p>

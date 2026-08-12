@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Loader2, FileText, Save } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
@@ -57,7 +57,7 @@ const MobileEditAgentBio = () => {
     if (loading) {
         return (
             <div className={`min-h-screen flex items-center justify-center ${isDark ? 'bg-gray-900' : 'bg-gray-50'}`}>
-                <Loader2 className="w-8 h-8 text-[#3b82f6] animate-spin" />
+                <Loader2 className="w-8 h-8 text-[#51faaa] animate-spin" />
             </div>
         );
     }
@@ -70,7 +70,7 @@ const MobileEditAgentBio = () => {
                         <ArrowLeft size={20} />
                     </motion.button>
                     <h1 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>Professional Bio</h1>
-                    <button onClick={handleSave} disabled={saving} className="text-[#3b82f6] font-semibold disabled:opacity-50">
+                    <button onClick={handleSave} disabled={saving} className="text-[#51faaa] font-semibold disabled:opacity-50">
                         {saving ? <Loader2 size={20} className="animate-spin inline" /> : 'Save'}
                     </button>
                 </div>
@@ -80,17 +80,17 @@ const MobileEditAgentBio = () => {
                 {error && <p className="text-red-500 text-sm bg-red-500/10 p-3 rounded-xl">{error}</p>}
 
                 <div className="space-y-4">
-                    <h3 className={`text-xs font-black uppercase tracking-widest px-1 flex items-center gap-2 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                        <FileText size={14} /> Elaborate your experience
+                    <h3 className={`text-[10px] font-semibold uppercase tracking-[0.18em] flex items-center gap-2 ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
+                        <FileText size={12} /> Elaborate your experience
                     </h3>
                     <div className="relative group">
                         <textarea
                             value={bio}
                             onChange={(e) => setBio(e.target.value)}
                             rows={15}
-                            className={`w-full rounded-2xl border px-4 py-4 text-base transition-all ${isDark
-                                    ? 'bg-white/5 border-white/10 text-white focus:border-[#3b82f6]/50 focus:bg-white/10'
-                                    : 'bg-white border-gray-200 text-gray-900 focus:border-[#3b82f6] shadow-sm'
+                            className={`w-full bg-transparent border-0 border-b py-3 text-[15px] leading-relaxed outline-none transition-colors resize-none ${isDark
+                                    ? 'border-white/10 text-white placeholder-gray-600 focus:border-[#51faaa]'
+                                    : 'border-gray-200 text-gray-900 placeholder-gray-400 focus:border-[#51faaa]'
                                 }`}
                             placeholder="Tell potential clients about your expertise, successful deals, and professional background..."
                         />
@@ -103,7 +103,7 @@ const MobileEditAgentBio = () => {
                 <motion.button
                     onClick={handleSave}
                     disabled={saving}
-                    className="w-full py-4 bg-gradient-to-r from-[#3b82f6] to-[#45e695] rounded-2xl text-gray-900 font-bold shadow-xl shadow-[#3b82f6]/20 flex items-center justify-center gap-2"
+                    className="w-full py-4 bg-gradient-to-r from-[#51faaa] to-[#45e695] rounded-2xl text-gray-900 font-bold shadow-xl shadow-[#51faaa]/20 flex items-center justify-center gap-2"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                 >

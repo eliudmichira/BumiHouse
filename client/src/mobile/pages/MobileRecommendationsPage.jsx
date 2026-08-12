@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+﻿import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Star, MapPin, Bed, Bath } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
@@ -40,13 +40,13 @@ const MobileRecommendationsPage = () => {
 
             <div className="p-4 pb-24">
                 {isLoading ? (
-                    <div className="flex justify-center py-12"><div className="w-10 h-10 border-2 border-[#3b82f6] border-t-transparent rounded-full animate-spin" /></div>
+                    <div className="flex justify-center py-12"><div className="w-10 h-10 border-2 border-[#51faaa] border-t-transparent rounded-full animate-spin" /></div>
                 ) : recommended.length === 0 ? (
                     <motion.div className={`flex flex-col items-center justify-center py-20 rounded-3xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200'}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                        <Star className="w-12 h-12 text-[#3b82f6] mb-4" />
+                        <Star className="w-12 h-12 text-[#51faaa] mb-4" />
                         <p className={`font-bold text-lg mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>No recommendations yet</p>
                         <p className={`text-sm mb-6 text-center ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Browse and save some favorites to get personalized picks.</p>
-                        <motion.button onClick={() => navigate('/properties')} className="px-6 py-3 bg-gradient-to-r from-[#3b82f6] to-[#45e695] rounded-2xl text-gray-900 font-bold" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>Browse Properties</motion.button>
+                        <motion.button onClick={() => navigate('/properties')} className="px-6 py-3 bg-gradient-to-r from-[#51faaa] to-[#45e695] rounded-2xl text-gray-900 font-bold" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>Browse Properties</motion.button>
                     </motion.div>
                 ) : (
                     <div className="grid gap-4">
@@ -57,7 +57,7 @@ const MobileRecommendationsPage = () => {
                                         <img src={p.images?.[0] || p.image || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400'} alt="" className="w-full h-full object-cover" onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400'; }} />
                                         <div className="absolute bottom-2 left-2 right-2 flex justify-between items-end">
                                             <span className="font-bold text-white text-lg drop-shadow">{formatPrice(p.price)}</span>
-                                            <span className="px-2 py-1 rounded-full bg-[#3b82f6] text-gray-900 text-xs font-semibold">Recommended</span>
+                                            <span className="px-2 py-1 rounded-full bg-[#51faaa] text-gray-900 text-xs font-semibold">Recommended</span>
                                         </div>
                                     </div>
                                     <div className="p-4">

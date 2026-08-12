@@ -6,7 +6,7 @@ import { getAnalytics } from 'firebase/analytics';
 
 // Your Firebase configuration
 const firebaseConfig = {
-  apiKey: "REDACTED",
+  apiKey: "YOUR_API_KEY",
   authDomain: "makao-648bd.firebaseapp.com",
   projectId: "makao-648bd",
   storageBucket: "makao-648bd.firebasestorage.app",

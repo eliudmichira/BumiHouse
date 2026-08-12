@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Trash2, AlertTriangle, Lock, Mail, ArrowRight } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
@@ -10,7 +10,7 @@ const DataDeletion = () => {
             <div className="max-w-3xl mx-auto px-6">
                 {/* Header */}
                 <div className="mb-10 text-center">
-                    <a href="/" className="inline-flex items-center gap-2 text-sm font-medium hover:text-[#3b82f6] mb-8 transition-colors">
+                    <a href="/" className="inline-flex items-center gap-2 text-sm font-medium hover:text-[#51faaa] mb-8 transition-colors">
                         <ArrowRight className="w-4 h-4 rotate-180" /> Back to Home
                     </a>
 
@@ -48,8 +48,8 @@ const DataDeletion = () => {
                 <div className="grid gap-8 md:grid-cols-2">
                     {/* Method 1: In-App */}
                     <div className={`p-8 rounded-3xl border transition-all ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-100 shadow-sm'}`}>
-                        <div className="w-10 h-10 rounded-full bg-[#3b82f6]/10 flex items-center justify-center mb-4">
-                            <Lock className="w-5 h-5 text-[#3b82f6]" />
+                        <div className="w-10 h-10 rounded-full bg-[#51faaa]/10 flex items-center justify-center mb-4">
+                            <Lock className="w-5 h-5 text-[#51faaa]" />
                         </div>
                         <h3 className="text-xl font-bold mb-4">Method 1: In-App Deletion</h3>
                         <p className={`text-sm mb-6 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -57,19 +57,19 @@ const DataDeletion = () => {
                         </p>
                         <ol className={`space-y-4 text-sm ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
                             <li className="flex items-center gap-3">
-                                <span className="w-6 h-6 rounded-full bg-[#3b82f6] text-black font-bold text-xs flex items-center justify-center">1</span>
+                                <span className="w-6 h-6 rounded-full bg-[#51faaa] text-black font-bold text-xs flex items-center justify-center">1</span>
                                 Open the HomesKE App
                             </li>
                             <li className="flex items-center gap-3">
-                                <span className="w-6 h-6 rounded-full bg-[#3b82f6] text-black font-bold text-xs flex items-center justify-center">2</span>
+                                <span className="w-6 h-6 rounded-full bg-[#51faaa] text-black font-bold text-xs flex items-center justify-center">2</span>
                                 Go to <strong>Profile</strong> &gt; <strong>Settings</strong>
                             </li>
                             <li className="flex items-center gap-3">
-                                <span className="w-6 h-6 rounded-full bg-[#3b82f6] text-black font-bold text-xs flex items-center justify-center">3</span>
+                                <span className="w-6 h-6 rounded-full bg-[#51faaa] text-black font-bold text-xs flex items-center justify-center">3</span>
                                 Scroll down and tap <strong>Delete Account</strong>
                             </li>
                             <li className="flex items-center gap-3">
-                                <span className="w-6 h-6 rounded-full bg-[#3b82f6] text-black font-bold text-xs flex items-center justify-center">4</span>
+                                <span className="w-6 h-6 rounded-full bg-[#51faaa] text-black font-bold text-xs flex items-center justify-center">4</span>
                                 Confirm your choice
                             </li>
                         </ol>
@@ -77,8 +77,8 @@ const DataDeletion = () => {
 
                     {/* Method 2: Email Request */}
                     <div className={`p-8 rounded-3xl border transition-all ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-100 shadow-sm'}`}>
-                        <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center mb-4">
-                            <Mail className="w-5 h-5 text-blue-500" />
+                        <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center mb-4">
+                            <Mail className="w-5 h-5 text-emerald-500" />
                         </div>
                         <h3 className="text-xl font-bold mb-4">Method 2: Email Request</h3>
                         <p className={`text-sm mb-6 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -86,7 +86,7 @@ const DataDeletion = () => {
                         </p>
                         <div className={`p-4 rounded-xl mb-6 ${isDark ? 'bg-black/20' : 'bg-gray-50'}`}>
                             <p className={`text-xs uppercase tracking-wider mb-2 font-bold ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>Email To</p>
-                            <a href="mailto:support@homeske.com" className="text-[#3b82f6] font-bold text-lg hover:underline">support@homeske.com</a>
+                            <a href="mailto:support@homeske.com" className="text-[#51faaa] font-bold text-lg hover:underline">support@homeske.com</a>
                         </div>
                         <div className={`p-4 rounded-xl ${isDark ? 'bg-black/20' : 'bg-gray-50'}`}>
                             <p className={`text-xs uppercase tracking-wider mb-2 font-bold ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>Subject Line</p>
@@ -99,7 +99,7 @@ const DataDeletion = () => {
                 <div className="mt-12 text-center">
                     <p className={`text-sm ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
                         Requests made via email will be processed within 30 days. <br />
-                        For more details, please review our <a href="/privacy" className="text-[#3b82f6] hover:underline">Privacy Policy</a>.
+                        For more details, please review our <a href="/privacy" className="text-[#51faaa] hover:underline">Privacy Policy</a>.
                     </p>
                 </div>
             </div>

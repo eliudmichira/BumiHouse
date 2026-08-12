@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { MapPin, DollarSign, Building2, User, Phone, CheckCircle, FileText, Image as ImageIcon, Layers } from 'lucide-react';
 import { useTheme } from '../../../context/ThemeContext';
 
@@ -19,7 +19,7 @@ const StepReview = ({ formData }) => {
         <div className="space-y-6">
             <div className={`p-5 rounded-2xl ${isDark ? 'bg-[#10121e]' : 'bg-white shadow-sm'}`}>
                 <h2 className={`text-xl font-bold mb-6 flex items-center gap-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                    <CheckCircle className="w-6 h-6 text-[#3b82f6]" /> Review Details
+                    <CheckCircle className="w-6 h-6 text-[#51faaa]" /> Review Details
                 </h2>
 
                 <div className="space-y-6">
@@ -43,7 +43,7 @@ const StepReview = ({ formData }) => {
                     )}
 
                     <div className={`p-4 rounded-xl ${isDark ? 'bg-[#1a1d2d]' : 'bg-gray-50'}`}>
-                        <h3 className="font-bold mb-3 text-[#3b82f6] text-sm uppercase tracking-wider">Property Info</h3>
+                        <h3 className="font-bold mb-3 text-[#51faaa] text-sm uppercase tracking-wider">Property Info</h3>
                         <InfoRow icon={Building2} label="Title" value={formData.title} />
                         <InfoRow icon={Building2} label="Type" value={formData.propertyType} />
                         <InfoRow icon={DollarSign} label="Price" value={`KES ${Number(formData.price).toLocaleString()}`} />
@@ -52,7 +52,7 @@ const StepReview = ({ formData }) => {
 
                     {formData.hasMultipleUnits && formData.units?.length > 0 ? (
                         <div className={`p-4 rounded-xl ${isDark ? 'bg-[#1a1d2d]' : 'bg-gray-50'}`}>
-                            <h3 className="font-bold mb-3 text-[#3b82f6] text-sm uppercase tracking-wider flex items-center gap-2">
+                            <h3 className="font-bold mb-3 text-[#51faaa] text-sm uppercase tracking-wider flex items-center gap-2">
                                 <Layers className="w-4 h-4" /> Unit Configurations
                             </h3>
                             <div className="space-y-2">
@@ -66,7 +66,7 @@ const StepReview = ({ formData }) => {
                         </div>
                     ) : (
                         <div className={`p-4 rounded-xl ${isDark ? 'bg-[#1a1d2d]' : 'bg-gray-50'}`}>
-                            <h3 className="font-bold mb-3 text-[#3b82f6] text-sm uppercase tracking-wider">Details</h3>
+                            <h3 className="font-bold mb-3 text-[#51faaa] text-sm uppercase tracking-wider">Details</h3>
                             <InfoRow icon={FileText} label="Bedrooms" value={formData.details.bedrooms} />
                             <InfoRow icon={FileText} label="Bathrooms" value={formData.details.bathrooms} />
                             <InfoRow icon={FileText} label="Area" value={`${formData.details.area} sqft`} />
@@ -75,7 +75,7 @@ const StepReview = ({ formData }) => {
                     )}
 
                     <div className={`p-4 rounded-xl ${isDark ? 'bg-[#1a1d2d]' : 'bg-gray-50'}`}>
-                        <h3 className="font-bold mb-3 text-[#3b82f6] text-sm uppercase tracking-wider">Contact</h3>
+                        <h3 className="font-bold mb-3 text-[#51faaa] text-sm uppercase tracking-wider">Contact</h3>
                         <InfoRow icon={User} label="Name" value={formData.contact.name} />
                         <InfoRow icon={Phone} label="Phone" value={formData.contact.phone} />
                     </div>

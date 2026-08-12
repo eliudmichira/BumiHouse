@@ -13,6 +13,7 @@ import { useMobileDetection } from './hooks/useMobileDetection';
 
 // Lazy load components for better performance
 const HomePage = lazy(() => import('./routes/homePage/HomePage'));
+const AreaDirectory = lazy(() => import('./routes/areaDirectory/AreaDirectory'));
 const RentBuyKenyaPage = lazy(() => import('./routes/rentakenya/PropertyOwnerPortal'));
 const Contact = lazy(() => import('./routes/contact/contact'));
 const Agents = lazy(() => import('./routes/agents/Agents'));
@@ -57,8 +58,7 @@ const MobileAddProperty = lazy(() => import('./mobile/pages/MobileAddProperty'))
 // Desktop pages
 const PropertyDetails = lazy(() => import('./routes/propertyDetails/propertyDetails'));
 const ListPage = lazy(() => import('./routes/listPage/listPage_fixed_useLocation'));
-const Login = lazy(() => import('./routes/login/login'));
-const Register = lazy(() => import('./routes/register/register'));
+// Desktop /login and /register now route to the shared <MobileAuth /> screen (see /auth).
 const Dashboard = lazy(() => import('./routes/dashboard/dashboard'));
 const ResponsiveDashboardRedirect = lazy(() => import('./routes/dashboard/ResponsiveDashboardRedirect'));
 const ScrapingDashboard = lazy(() => import('./pages/ScrapingDashboard'));
@@ -114,18 +114,8 @@ function AppContent() {
         } />
 
         {/* Responsive Aliases for common paths */}
-        <Route path="/login" element={
-          <ResponsiveComponent
-            desktopComponent={<Login />}
-            mobileComponent={<Navigate to="/auth" replace />}
-          />
-        } />
-        <Route path="/register" element={
-          <ResponsiveComponent
-            desktopComponent={<Register />}
-            mobileComponent={<Navigate to="/auth" replace />}
-          />
-        } />
+        <Route path="/login" element={<Navigate to="/auth" replace />} />
+        <Route path="/register" element={<Navigate to="/auth?mode=signup" replace />} />
         <Route path="/add-property" element={
           <ResponsiveComponent
             desktopComponent={<AddProperty />}
@@ -177,7 +167,7 @@ function AppContent() {
         } />
         <Route path="/auth" element={
           <ResponsiveComponent
-            desktopComponent={<Navigate to="/login" replace />}
+            desktopComponent={<MobileAuth />}
             mobileComponent={
               <MobileLayoutWrapper title="Authentication" subtitle="Sign in to your account" showNav={false}>
                 <MobileAuth />
@@ -324,6 +314,7 @@ function AppContent() {
           <Route path="agents" element={<Agents />} />
           <Route path="blog" element={<Blog />} />
           <Route path="blog/:slug" element={<Blog />} />
+          <Route path="areas" element={<AreaDirectory />} />
         </Route>
 
         {/* Legal pages WITH layout */}
@@ -343,18 +334,8 @@ function AppContent() {
         <Route path="/properties/add" element={<AddProperty />} />
         <Route path="/desktop/properties/add" element={<AddProperty />} />
         <Route path="/desktop/property/:id" element={<PropertyDetails />} />
-        <Route path="/desktop/login" element={
-          <ResponsiveComponent
-            desktopComponent={<Login />}
-            mobileComponent={<Navigate to="/auth" replace />}
-          />
-        } />
-        <Route path="/desktop/register" element={
-          <ResponsiveComponent
-            desktopComponent={<Register />}
-            mobileComponent={<Navigate to="/auth" replace />}
-          />
-        } />
+        <Route path="/desktop/login" element={<Navigate to="/auth" replace />} />
+        <Route path="/desktop/register" element={<Navigate to="/auth?mode=signup" replace />} />
         <Route path="/desktop/dashboard" element={<ResponsiveDashboardRedirect />} />
 
         {/* Account route (Responsive) */}

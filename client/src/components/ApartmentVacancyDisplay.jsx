@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { 
   Building2, 
   Users, 
@@ -205,7 +205,7 @@ const ApartmentVacancyDisplay = ({ property, onVacancyUpdate, isEditable = false
                   <button
                     onClick={handleSave}
                     disabled={isUpdating}
-                    className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] rounded-lg font-semibold text-sm transition-all hover:shadow-lg disabled:opacity-50"
+                    className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] rounded-lg font-semibold text-sm transition-all hover:shadow-lg disabled:opacity-50"
                   >
                     <Save className="w-4 h-4" />
                     <span>{isUpdating ? 'Saving...' : 'Save'}</span>
@@ -220,7 +220,7 @@ const ApartmentVacancyDisplay = ({ property, onVacancyUpdate, isEditable = false
               ) : (
                 <button
                   onClick={handleEdit}
-                  className="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg font-semibold text-sm transition-all hover:bg-blue-600"
+                  className="flex items-center space-x-2 px-4 py-2 bg-emerald-500 text-white rounded-lg font-semibold text-sm transition-all hover:bg-emerald-600"
                 >
                   <Edit3 className="w-4 h-4" />
                   <span>Edit</span>
@@ -313,7 +313,7 @@ const ApartmentVacancyDisplay = ({ property, onVacancyUpdate, isEditable = false
                       value={unit.type}
                       onChange={(e) => updateUnitType(index, 'type', e.target.value)}
                       placeholder="Type (e.g., Studio, 1BR)"
-                      className={`px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#3b82f6] ${
+                      className={`px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#51faaa] ${
                         isDark 
                           ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400'
                           : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
@@ -324,7 +324,7 @@ const ApartmentVacancyDisplay = ({ property, onVacancyUpdate, isEditable = false
                       value={unit.bedrooms}
                       onChange={(e) => updateUnitType(index, 'bedrooms', parseInt(e.target.value))}
                       placeholder="Beds"
-                      className={`px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#3b82f6] ${
+                      className={`px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#51faaa] ${
                         isDark 
                           ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400'
                           : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
@@ -335,7 +335,7 @@ const ApartmentVacancyDisplay = ({ property, onVacancyUpdate, isEditable = false
                       value={unit.bathrooms}
                       onChange={(e) => updateUnitType(index, 'bathrooms', parseFloat(e.target.value))}
                       placeholder="Baths"
-                      className={`px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#3b82f6] ${
+                      className={`px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#51faaa] ${
                         isDark 
                           ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400'
                           : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
@@ -346,7 +346,7 @@ const ApartmentVacancyDisplay = ({ property, onVacancyUpdate, isEditable = false
                       value={unit.area}
                       onChange={(e) => updateUnitType(index, 'area', parseInt(e.target.value))}
                       placeholder="Sq Ft"
-                      className={`px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#3b82f6] ${
+                      className={`px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#51faaa] ${
                         isDark 
                           ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400'
                           : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
@@ -357,7 +357,7 @@ const ApartmentVacancyDisplay = ({ property, onVacancyUpdate, isEditable = false
                       value={unit.price}
                       onChange={(e) => updateUnitType(index, 'price', parseInt(e.target.value))}
                       placeholder="Price"
-                      className={`px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#3b82f6] ${
+                      className={`px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#51faaa] ${
                         isDark 
                           ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400'
                           : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
@@ -369,7 +369,7 @@ const ApartmentVacancyDisplay = ({ property, onVacancyUpdate, isEditable = false
                         value={unit.available}
                         onChange={(e) => updateUnitType(index, 'available', parseInt(e.target.value))}
                         placeholder="Available"
-                        className={`px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#3b82f6] ${
+                        className={`px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#51faaa] ${
                           isDark 
                             ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400'
                             : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
@@ -433,7 +433,7 @@ const ApartmentVacancyDisplay = ({ property, onVacancyUpdate, isEditable = false
                 {isEditing && (
                   <button
                     onClick={addUnitType}
-                    className="mt-3 px-4 py-2 bg-blue-500 text-white rounded-lg text-sm font-medium transition-colors hover:bg-blue-600"
+                    className="mt-3 px-4 py-2 bg-emerald-500 text-white rounded-lg text-sm font-medium transition-colors hover:bg-emerald-600"
                   >
                     Add First Unit Type
                   </button>
@@ -446,14 +446,14 @@ const ApartmentVacancyDisplay = ({ property, onVacancyUpdate, isEditable = false
         {/* Additional Information */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {vacancyData.nextVacancyDate && (
-            <div className={`p-4 rounded-xl ${isDark ? 'bg-gray-800' : 'bg-blue-50'} border ${
-              isDark ? 'border-gray-700' : 'border-blue-200'
+            <div className={`p-4 rounded-xl ${isDark ? 'bg-gray-800' : 'bg-emerald-50'} border ${
+              isDark ? 'border-gray-700' : 'border-emerald-200'
             }`}>
               <div className="flex items-center space-x-2 mb-2">
-                <Calendar className="w-5 h-5 text-blue-500" />
-                <span className="text-sm font-medium text-blue-700 dark:text-blue-300">Next Vacancy</span>
+                <Calendar className="w-5 h-5 text-emerald-500" />
+                <span className="text-sm font-medium text-emerald-700 dark:text-emerald-300">Next Vacancy</span>
               </div>
-              <div className={`text-lg font-semibold ${isDark ? 'text-white' : 'text-blue-900'}`}>
+              <div className={`text-lg font-semibold ${isDark ? 'text-white' : 'text-emerald-900'}`}>
                 {new Date(vacancyData.nextVacancyDate).toLocaleDateString()}
               </div>
             </div>
@@ -477,12 +477,12 @@ const ApartmentVacancyDisplay = ({ property, onVacancyUpdate, isEditable = false
         {/* Call to Action */}
         <div className="flex space-x-3">
           {vacancyData.availableUnits > 0 ? (
-            <button className="flex-1 flex items-center justify-center space-x-2 py-3 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] rounded-lg font-semibold text-sm transition-all hover:shadow-lg">
+            <button className="flex-1 flex items-center justify-center space-x-2 py-3 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] rounded-lg font-semibold text-sm transition-all hover:shadow-lg">
               <CheckCircle className="w-4 h-4" />
               <span>Apply Now</span>
             </button>
           ) : (
-            <button className="flex-1 flex items-center justify-center space-x-2 py-3 bg-blue-500 text-white rounded-lg font-semibold text-sm transition-all hover:bg-blue-600">
+            <button className="flex-1 flex items-center justify-center space-x-2 py-3 bg-emerald-500 text-white rounded-lg font-semibold text-sm transition-all hover:bg-emerald-600">
               <AlertCircle className="w-4 h-4" />
               <span>Join Waitlist</span>
             </button>

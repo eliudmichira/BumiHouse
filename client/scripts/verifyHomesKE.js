@@ -4,7 +4,7 @@ import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 const firebaseConfig = {
-    apiKey: "REDACTED",
+    apiKey: process.env.VITE_FIREBASE_API_KEY || "YOUR_FIREBASE_API_KEY",
     authDomain: "homeske.firebaseapp.com",
     projectId: "homeske",
     storageBucket: "homeske.firebasestorage.app",
@@ -21,7 +21,7 @@ async function verifyData() {
     console.log('🔍 Verifying Firestore data...');
 
     try {
-        await signInWithEmailAndPassword(auth, "support@homeske.com", "REDACTED");
+        await signInWithEmailAndPassword(auth, process.env.FIREBASE_ADMIN_EMAIL || "YOUR_ADMIN_EMAIL", process.env.FIREBASE_ADMIN_PASSWORD || "YOUR_ADMIN_PASSWORD");
         console.log("✅ Authenticated as Admin for verification.");
     } catch (e) {
         console.warn("⚠️ Could not sign in as admin. Some collections might be unreadable/empty.");

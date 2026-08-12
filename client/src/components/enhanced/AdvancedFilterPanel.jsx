@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+﻿import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   X, 
@@ -182,10 +182,10 @@ const AdvancedFilterPanel = ({
             exit="exit"
           >
             {/* Header */}
-            <div className="p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-[#3b82f6]/10 to-[#06b6d4]/10">
+            <div className="p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-[#51faaa]/10 to-[#dbd5a4]/10">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-[#3b82f6] rounded-xl">
+                  <div className="p-2 bg-[#51faaa] rounded-xl">
                     <SlidersHorizontal className="w-5 h-5 text-[#0a0c19]" />
                   </div>
                   <div>
@@ -215,7 +215,7 @@ const AdvancedFilterPanel = ({
                     onClick={() => setActiveSection(section.id)}
                     className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 whitespace-nowrap ${
                       activeSection === section.id
-                        ? 'bg-[#3b82f6] text-[#0a0c19]'
+                        ? 'bg-[#51faaa] text-[#0a0c19]'
                         : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
                     }`}
                     whileHover={{ scale: 1.05 }}
@@ -255,7 +255,7 @@ const AdvancedFilterPanel = ({
                               value={localFilters.minPrice || ''}
                               onChange={(e) => updateFilter('minPrice', e.target.value)}
                               placeholder="0"
-                              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent"
+                              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-[#51faaa] focus:border-transparent"
                             />
                           </div>
                           <div>
@@ -267,7 +267,7 @@ const AdvancedFilterPanel = ({
                               value={localFilters.maxPrice || ''}
                               onChange={(e) => updateFilter('maxPrice', e.target.value)}
                               placeholder="No limit"
-                              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent"
+                              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-[#51faaa] focus:border-transparent"
                             />
                           </div>
                         </div>
@@ -311,7 +311,7 @@ const AdvancedFilterPanel = ({
                               onClick={() => toggleArrayFilter('homeTypes', type.id)}
                               className={`p-3 rounded-lg border-2 transition-all duration-300 flex items-center gap-2 ${
                                 localFilters.homeTypes?.includes(type.id)
-                                  ? 'border-[#3b82f6] bg-[#3b82f6]/10 text-[#0a0c19]'
+                                  ? 'border-[#51faaa] bg-[#51faaa]/10 text-[#0a0c19]'
                                   : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
                               }`}
                               whileHover={{ scale: 1.02 }}
@@ -336,7 +336,7 @@ const AdvancedFilterPanel = ({
                             <select
                               value={localFilters.minBeds || ''}
                               onChange={(e) => updateFilter('minBeds', e.target.value)}
-                              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent"
+                              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-[#51faaa] focus:border-transparent"
                             >
                               <option value="">Any</option>
                               <option value="1">1+</option>
@@ -353,7 +353,7 @@ const AdvancedFilterPanel = ({
                             <select
                               value={localFilters.minBaths || ''}
                               onChange={(e) => updateFilter('minBaths', e.target.value)}
-                              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent"
+                              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-[#51faaa] focus:border-transparent"
                             >
                               <option value="">Any</option>
                               <option value="1">1+</option>
@@ -376,7 +376,7 @@ const AdvancedFilterPanel = ({
                               value={localFilters.minSqft || ''}
                               onChange={(e) => updateFilter('minSqft', e.target.value)}
                               placeholder="Min size"
-                              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent"
+                              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-[#51faaa] focus:border-transparent"
                             />
                           </div>
                           <div>
@@ -385,7 +385,7 @@ const AdvancedFilterPanel = ({
                               value={localFilters.maxSqft || ''}
                               onChange={(e) => updateFilter('maxSqft', e.target.value)}
                               placeholder="Max size"
-                              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent"
+                              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-[#51faaa] focus:border-transparent"
                             />
                           </div>
                         </div>
@@ -407,7 +407,7 @@ const AdvancedFilterPanel = ({
                               onClick={() => toggleArrayFilter('amenities', amenity.id)}
                               className={`p-3 rounded-lg border-2 transition-all duration-300 flex items-center gap-2 ${
                                 localFilters.amenities?.includes(amenity.id)
-                                  ? 'border-[#3b82f6] bg-[#3b82f6]/10 text-[#0a0c19]'
+                                  ? 'border-[#51faaa] bg-[#51faaa]/10 text-[#0a0c19]'
                                   : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
                               }`}
                               whileHover={{ scale: 1.02 }}
@@ -436,7 +436,7 @@ const AdvancedFilterPanel = ({
                               onClick={() => toggleArrayFilter('locationFeatures', feature.id)}
                               className={`w-full p-3 rounded-lg border-2 transition-all duration-300 flex items-center gap-3 ${
                                 localFilters.locationFeatures?.includes(feature.id)
-                                  ? 'border-[#3b82f6] bg-[#3b82f6]/10 text-[#0a0c19]'
+                                  ? 'border-[#51faaa] bg-[#51faaa]/10 text-[#0a0c19]'
                                   : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
                               }`}
                               whileHover={{ scale: 1.01, x: 4 }}
@@ -471,7 +471,7 @@ const AdvancedFilterPanel = ({
                               onClick={() => updateFilter(feature.id, !localFilters[feature.id])}
                               className={`w-full p-3 rounded-lg border-2 transition-all duration-300 flex items-center gap-3 ${
                                 localFilters[feature.id]
-                                  ? 'border-[#3b82f6] bg-[#3b82f6]/10 text-[#0a0c19]'
+                                  ? 'border-[#51faaa] bg-[#51faaa]/10 text-[#0a0c19]'
                                   : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'
                               }`}
                               whileHover={{ scale: 1.01, x: 4 }}
@@ -506,7 +506,7 @@ const AdvancedFilterPanel = ({
                 </motion.button>
                 <motion.button
                   onClick={handleApplyFilters}
-                  className="flex-1 px-4 py-3 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] rounded-xl font-semibold hover:shadow-lg hover:shadow-[#3b82f6]/30 transition-all duration-300"
+                  className="flex-1 px-4 py-3 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] rounded-xl font-semibold hover:shadow-lg hover:shadow-[#51faaa]/30 transition-all duration-300"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >

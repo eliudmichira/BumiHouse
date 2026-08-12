@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useTheme } from '../../context/ThemeContext';
@@ -531,7 +531,7 @@ const MobileAddProperty = () => {
                 {/* Progress Bar */}
                 <div className="w-full h-1.5 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden">
                     <motion.div
-                        className="h-full bg-[#3b82f6]"
+                        className="h-full bg-[#51faaa]"
                         initial={{ width: 0 }}
                         animate={{ width: `${progress}%` }}
                         transition={{ duration: 0.3 }}
@@ -579,7 +579,7 @@ const MobileAddProperty = () => {
                     {currentStep < totalSteps ? (
                         <button
                             onClick={handleNext}
-                            className={`flex-[2] py-3.5 rounded-xl font-bold bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] flex items-center justify-center gap-2 shadow-lg hover:shadow-[#3b82f6]/20`}
+                            className={`flex-[2] py-3.5 rounded-xl font-bold bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] flex items-center justify-center gap-2 shadow-lg hover:shadow-[#51faaa]/20`}
                         >
                             Next <ChevronRight className="w-5 h-5" />
                         </button>
@@ -587,7 +587,7 @@ const MobileAddProperty = () => {
                         <button
                             onClick={handleSubmit}
                             disabled={loading}
-                            className={`flex-[2] py-3.5 rounded-xl font-bold bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] flex items-center justify-center gap-2 shadow-lg hover:shadow-[#3b82f6]/20 disabled:opacity-70`}
+                            className={`flex-[2] py-3.5 rounded-xl font-bold bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] flex items-center justify-center gap-2 shadow-lg hover:shadow-[#51faaa]/20 disabled:opacity-70`}
                         >
                             {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Check className="w-5 h-5" />}
                             {isEdit ? 'Save Changes' : 'Submit Property'}

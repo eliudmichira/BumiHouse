@@ -8,8 +8,8 @@ admin.initializeApp();
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'eliudmichira7@gmail.com', // Your Gmail address
-    pass: 'REDACTED' // Gmail app password without spaces
+    user: 'your-email@gmail.com', // Your Gmail address
+    pass: 'YOUR_EMAIL_APP_PASSWORD' // Gmail app password without spaces
   }
 });
 
@@ -72,7 +72,7 @@ const sendTrialWelcomeEmail = async (emailData) => {
   `;
 
   return transporter.sendMail({
-    from: '"RentaKenya Team" <eliudmichira7@gmail.com>',
+    from: '"RentaKenya Team" <your-email@gmail.com>',
     to: recipientEmail,
     subject: '🎉 Welcome to RentaKenya - Your Trial is Active!',
     html: emailTemplate
@@ -99,7 +99,7 @@ const sendSalesNotification = async (emailData) => {
   `;
 
   return transporter.sendMail({
-    from: '"RentaKenya System" <eliudmichira7@gmail.com>',
+    from: '"RentaKenya System" <your-email@gmail.com>',
     to: 'sales@rentakenya.com', // Change to your sales email
     subject: `🎯 New Trial: ${templateData.fullName} - ${templateData.propertyCount} properties`,
     html: salesEmailTemplate

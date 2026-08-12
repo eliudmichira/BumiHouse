@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Check } from 'lucide-react';
 import { useTheme } from '../../../context/ThemeContext';
 
@@ -46,7 +46,7 @@ const StepAmenities = ({ formData, handleAmenityToggle }) => {
         <div className="space-y-6">
             <div className={`p-5 rounded-2xl ${isDark ? 'bg-[#10121e]' : 'bg-white shadow-sm'}`}>
                 <h2 className={`text-xl font-bold mb-6 flex items-center gap-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                    <Check className="w-6 h-6 text-[#3b82f6]" /> Select Amenities
+                    <Check className="w-6 h-6 text-[#51faaa]" /> Select Amenities
                 </h2>
 
                 <div className="space-y-8">
@@ -64,7 +64,7 @@ const StepAmenities = ({ formData, handleAmenityToggle }) => {
                                             type="button"
                                             onClick={() => handleAmenityToggle(item.value)}
                                             className={`px-4 py-2.5 rounded-xl text-sm font-medium border transition-all duration-200 ${isSelected
-                                                ? 'bg-[#3b82f6] text-[#0a0c19] border-[#3b82f6] shadow-lg shadow-[#3b82f6]/20 transform scale-105'
+                                                ? 'bg-[#51faaa] text-[#0a0c19] border-[#51faaa] shadow-lg shadow-[#51faaa]/20 transform scale-105'
                                                 : isDark
                                                     ? 'bg-[#1a1d2d] text-gray-300 border-gray-700 hover:border-gray-500'
                                                     : 'bg-gray-50 text-gray-600 border-gray-200 hover:border-gray-300'

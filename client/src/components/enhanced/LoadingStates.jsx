@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
 import { Loader2, Search, Home, Sparkles } from 'lucide-react';
 
@@ -69,7 +69,7 @@ export const ProgressBar = ({ progress = 0, color = 'primary', height = 'sm' }) 
 
   const colors = {
     primary: 'bg-primary-500',
-    blue: 'bg-blue-500',
+    blue: 'bg-emerald-500',
     green: 'bg-green-500'
   };
 

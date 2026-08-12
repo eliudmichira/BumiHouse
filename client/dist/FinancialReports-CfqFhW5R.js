@@ -1,1 +1,0 @@
-import{j as o}from"./react-vendor-DGfG09om.js";import{P as r}from"./PlaceholderDashboard-DLzyDbTi.js";import{B as s}from"./ui-DINKT3WH.js";import"./vendor-CjofE4th.js";const a=()=>o.jsx(r,{title:"Financial Reports",description:"Income, expenses, and profit analytics",icon:s});export{a as default};

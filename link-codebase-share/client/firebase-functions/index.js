@@ -11,8 +11,8 @@ const { initiateMpesaPayment, mpesaCallback, queryMpesaPayment } = require('./mp
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'eliudmichira7@gmail.com', // your-email@gmail.com
-    pass: 'REDACTED' // your app password
+    user: 'your-email@gmail.com', // your-email@gmail.com
+    pass: 'YOUR_EMAIL_APP_PASSWORD' // your app password
   }
 });
 
@@ -151,7 +151,7 @@ const sendTrialWelcomeEmail = async (emailData) => {
             <li><strong>Access your dashboard</strong> - Click the button above to log in</li>
             <li><strong>Onboarding call</strong> - Our team will contact you within 24 hours</li>
             <li><strong>Explore features</strong> - Test M-Pesa integration, analytics, and more</li>
-            <li><strong>Get support</strong> - Reach out anytime at eliudmichira7@gmail.com</li>
+            <li><strong>Get support</strong> - Reach out anytime at your-email@gmail.com</li>
           </ol>
           
           <div class="features">
@@ -173,7 +173,7 @@ const sendTrialWelcomeEmail = async (emailData) => {
         </div>
         
         <div class="footer">
-          <p>RentaKenya | Nairobi, Kenya | <a href="mailto:eliudmichira7@gmail.com" style="color: #51faaa;">eliudmichira7@gmail.com</a></p>
+          <p>RentaKenya | Nairobi, Kenya | <a href="mailto:your-email@gmail.com" style="color: #51faaa;">your-email@gmail.com</a></p>
           <p>This email was sent because you signed up for a RentaKenya trial account.</p>
         </div>
       </div>
@@ -182,7 +182,7 @@ const sendTrialWelcomeEmail = async (emailData) => {
   `;
 
   return transporter.sendMail({
-    from: '"RentaKenya Team" <eliudmichira7@gmail.com>',
+    from: '"RentaKenya Team" <your-email@gmail.com>',
     to: recipientEmail,
     subject: '🎉 Welcome to RentaKenya - Your Trial is Active!',
     html: emailTemplate
@@ -253,7 +253,7 @@ const sendSalesNotification = async (emailData) => {
   `;
 
   return transporter.sendMail({
-    from: '"RentaKenya System" <eliudmichira7@gmail.com>',
+    from: '"RentaKenya System" <your-email@gmail.com>',
     to: emailData.recipientEmail,
     subject: `🎯 New Trial: ${templateData.fullName} - ${templateData.propertyCount} properties`,
     html: salesEmailTemplate

@@ -462,7 +462,7 @@ h.bb @ firebase_firestore.js?v=ba9c5fe0:1949
 h.Ea @ firebase_firestore.js?v=ba9c5fe0:1946
 Lc @ firebase_firestore.js?v=ba9c5fe0:1846
 h.Pa @ firebase_firestore.js?v=ba9c5fe0:1813
-content.js:5 In content script DONE:https://dwellmate-285e8.firebaseapp.com/__/auth/iframe?apiKey=REDACTED&appName=%5BDEFAULT%5D&v=12.2.0&eid=p&usegapi=1&jsh=m%3B%2F_%2Fscs%2Fabc-static%2F_%2Fjs%2Fk%3Dgapi.lb.en.PLtFj_-5DjQ.O%2Fd%3D1%2Frs%3DAHpOoo-J85zQk73PCqZPyWTydWEIq3_4KA%2Fm%3D__features__#id=I0_1757353698423&_gfid=I0_1757353698423&parent=http%3A%2F%2Flocalhost%3A5173&pfname=&rpctoken=25320665
+content.js:5 In content script DONE:https://dwellmate-285e8.firebaseapp.com/__/auth/iframe?apiKey=YOUR_API_KEY&appName=%5BDEFAULT%5D&v=12.2.0&eid=p&usegapi=1&jsh=m%3B%2F_%2Fscs%2Fabc-static%2F_%2Fjs%2Fk%3Dgapi.lb.en.PLtFj_-5DjQ.O%2Fd%3D1%2Frs%3DAHpOoo-J85zQk73PCqZPyWTydWEIq3_4KA%2Fm%3D__features__#id=I0_1757353698423&_gfid=I0_1757353698423&parent=http%3A%2F%2Flocalhost%3A5173&pfname=&rpctoken=25320665
 firestore.googleapis.com/google.firestore.v1.Firestore/Listen/channel?gsessionid=kVJ6rc7HqZ14N1WOosBxYKOqPNmDzKt5FPBFGglKU5c&VER=8&database=projects%2Fdwellmate-285e8%2Fdatabases%2F(default)&RID=rpc&SID=JJQwz11-8iuGJe_sRWkWNw&AID=0&CI=0&TYPE=xmlhttp&zx=xxgxpptyi1r9&t=1:1  Failed to load resource: the server responded with a status of 400 ()
 hook.js:608 [2025-09-08T17:48:20.088Z]  @firebase/firestore: Firestore (12.2.0): WebChannelConnection RPC 'Listen' stream 0x5cb367a0 transport errored. Name: undefined Message: undefined
 overrideMethod @ hook.js:608
@@ -692,7 +692,7 @@ import { getAnalytics } from 'firebase/analytics';
 
 // Your Firebase configuration - Updated to use dwellmate project
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "REDACTED",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "YOUR_API_KEY",
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "dwellmate-285e8.firebaseapp.com",
   projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "dwellmate-285e8",
   storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "dwellmate-285e8.firebasestorage.app",
@@ -1116,7 +1116,7 @@ import { getAnalytics } from 'firebase/analytics';
 
 // Your Firebase configuration - Updated to use dwellmate project
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "REDACTED",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "YOUR_API_KEY",
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "dwellmate-285e8.firebaseapp.com",
   projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "dwellmate-285e8",
   storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "dwellmate-285e8.firebasestorage.app",
@@ -3338,7 +3338,7 @@ npm run dev
 **User**
 
 this is the current env file 	# Updated Firebase Configuration for dwellmate-285e8 project
-VITE_FIREBASE_API_KEY=REDACTED
+VITE_FIREBASE_API_KEY=YOUR_API_KEY
 VITE_FIREBASE_AUTH_DOMAIN=dwellmate-285e8.firebaseapp.com
 VITE_FIREBASE_PROJECT_ID=dwellmate-285e8
 VITE_FIREBASE_STORAGE_BUCKET=dwellmate-285e8.firebasestorage.app
@@ -3350,10 +3350,10 @@ VITE_FIREBASE_MEASUREMENT_ID=G-JXTFE2L2T0
 VITE_API_URL=http://localhost:8800
 
 # Google Maps API Key (preserved from your existing config)
-VITE_GOOGLE_MAPS_API_KEY=REDACTED
+VITE_GOOGLE_MAPS_API_KEY=YOUR_API_KEY
 
 # Gemini API Key (preserved from your existing config)
-VITE_GEMINI_API_KEY=REDACTED
+VITE_GEMINI_API_KEY=YOUR_API_KEY
 
 
 ---
@@ -3378,7 +3378,7 @@ firebaseAPI.js:115 Featured properties query result: 0 documents found
 firebaseAPI.js:126 No featured properties found, getting fallback properties...
 firebase.js:152 ✅ Storage connection successful
 App.jsx:32 🎉 Firebase is connected and working!
-content.js:5 In content script DONE:https://dwellmate-285e8.firebaseapp.com/__/auth/iframe?apiKey=REDACTED&appName=%5BDEFAULT%5D&v=12.2.0&eid=p&usegapi=1&jsh=m%3B%2F_%2Fscs%2Fabc-static%2F_%2Fjs%2Fk%3Dgapi.lb.en.PLtFj_-5DjQ.O%2Fd%3D1%2Frs%3DAHpOoo-J85zQk73PCqZPyWTydWEIq3_4KA%2Fm%3D__features__#id=I0_1757364756214&_gfid=I0_1757364756214&parent=http%3A%2F%2Flocalhost%3A5173&pfname=&rpctoken=23745157
+content.js:5 In content script DONE:https://dwellmate-285e8.firebaseapp.com/__/auth/iframe?apiKey=YOUR_API_KEY&appName=%5BDEFAULT%5D&v=12.2.0&eid=p&usegapi=1&jsh=m%3B%2F_%2Fscs%2Fabc-static%2F_%2Fjs%2Fk%3Dgapi.lb.en.PLtFj_-5DjQ.O%2Fd%3D1%2Frs%3DAHpOoo-J85zQk73PCqZPyWTydWEIq3_4KA%2Fm%3D__features__#id=I0_1757364756214&_gfid=I0_1757364756214&parent=http%3A%2F%2Flocalhost%3A5173&pfname=&rpctoken=23745157
 firebaseAPI.js:133 Fallback properties query result: 1 documents found
 firebaseAPI.js:143 Total properties to return: 1
 pageViews.js:32 📊 Page view incremented for: /desktop
@@ -7860,7 +7860,7 @@ import { useLocation } from 'react-router-dom';
 import EnhancedMobileMapNavigation from '../../components/EnhancedMobileMapNavigation';
 
 // Google Maps API Key - fallback to provided key if env is missing
-const GOOGLE_MAPS_API_KEY = (import.meta.env.VITE_GOOGLE_MAPS_API_KEY || 'REDACTED').trim();
+const GOOGLE_MAPS_API_KEY = (import.meta.env.VITE_GOOGLE_MAPS_API_KEY || 'YOUR_API_KEY').trim();
 const HAS_GOOGLE_MAPS_KEY = Boolean(GOOGLE_MAPS_API_KEY);
 
 // Keep libraries array stable to avoid unnecessary reloads
@@ -10822,7 +10822,7 @@ import { useLocation } from 'react-router-dom';
 import EnhancedMobileMapNavigation from '../../components/EnhancedMobileMapNavigation';
 
 // Google Maps API Key - fallback to provided key if env is missing
-const GOOGLE_MAPS_API_KEY = (import.meta.env.VITE_GOOGLE_MAPS_API_KEY || 'REDACTED').trim();
+const GOOGLE_MAPS_API_KEY = (import.meta.env.VITE_GOOGLE_MAPS_API_KEY || 'YOUR_API_KEY').trim();
 const HAS_GOOGLE_MAPS_KEY = Boolean(GOOGLE_MAPS_API_KEY);
 
 // Keep libraries array stable to avoid unnecessary reloads
@@ -33442,7 +33442,7 @@ import { useLocation } from 'react-router-dom';
 import EnhancedMobileMapNavigation from '../../components/EnhancedMobileMapNavigation';
 
 // Google Maps API Key - fallback to provided key if env is missing
-const GOOGLE_MAPS_API_KEY = (import.meta.env.VITE_GOOGLE_MAPS_API_KEY || 'REDACTED').trim();
+const GOOGLE_MAPS_API_KEY = (import.meta.env.VITE_GOOGLE_MAPS_API_KEY || 'YOUR_API_KEY').trim();
 const HAS_GOOGLE_MAPS_KEY = Boolean(GOOGLE_MAPS_API_KEY);
 
 // Keep libraries array stable to avoid unnecessary reloads
@@ -65474,7 +65474,7 @@ import { useLocation } from 'react-router-dom';
 import EnhancedMobileMapNavigation from '../../components/EnhancedMobileMapNavigation';
 
 // Google Maps API Key - fallback to provided key if env is missing
-const GOOGLE_MAPS_API_KEY = (import.meta.env.VITE_GOOGLE_MAPS_API_KEY || 'REDACTED').trim();
+const GOOGLE_MAPS_API_KEY = (import.meta.env.VITE_GOOGLE_MAPS_API_KEY || 'YOUR_API_KEY').trim();
 const HAS_GOOGLE_MAPS_KEY = Boolean(GOOGLE_MAPS_API_KEY);
 
 // Keep libraries array stable to avoid unnecessary reloads
@@ -74134,7 +74134,7 @@ import { useLocation } from 'react-router-dom';
 import EnhancedMobileMapNavigation from '../../components/EnhancedMobileMapNavigation';
 
 // Google Maps API Key - fallback to provided key if env is missing
-const GOOGLE_MAPS_API_KEY = (import.meta.env.VITE_GOOGLE_MAPS_API_KEY || 'REDACTED').trim();
+const GOOGLE_MAPS_API_KEY = (import.meta.env.VITE_GOOGLE_MAPS_API_KEY || 'YOUR_API_KEY').trim();
 const HAS_GOOGLE_MAPS_KEY = Boolean(GOOGLE_MAPS_API_KEY);
 
 // Keep libraries array stable to avoid unnecessary reloads
@@ -87231,7 +87231,7 @@ async function validateMigration() {
 ### **Frontend Environment Variables**
 ```env
 # Updated client/.env.local
-VITE_FIREBASE_API_KEY=REDACTED
+VITE_FIREBASE_API_KEY=YOUR_API_KEY
 VITE_FIREBASE_AUTH_DOMAIN=dwellmate-285e8.firebaseapp.com
 VITE_FIREBASE_PROJECT_ID=dwellmate-285e8
 VITE_FIREBASE_STORAGE_BUCKET=dwellmate-285e8.firebasestorage.app
@@ -91415,7 +91415,7 @@ import { getFirestore, collection, getDocs, query, orderBy } from 'firebase/fire
 
 // Firebase configuration (use your actual config)
 const firebaseConfig = {
-  apiKey: "REDACTED",
+  apiKey: "YOUR_API_KEY",
   authDomain: "dwellmate-285e8.firebaseapp.com",
   projectId: "dwellmate-285e8",
   storageBucket: "dwellmate-285e8.firebasestorage.app",
@@ -96018,7 +96018,7 @@ firebase.js:136 🧪 Testing Firebase connection...
 AgentVerificationPage.jsx:29 🔍 AgentVerificationPage: Current user: null
 AgentVerificationPage.jsx:30 🔍 AgentVerificationPage: Verification status: unknown
 AgentVerificationPage.jsx:31 🔍 AgentVerificationPage: Is verified agent: false
-AgentVerificationPage.jsx:29 🔍 AgentVerificationPage: Current user: {id: 'O41abvsFxpdvmHFHU3pyveBNDY22', email: 'eliudmichira7@gmail.com', username: 'Eliud Samwel', name: 'Eliud Samwel', phone: '', …}
+AgentVerificationPage.jsx:29 🔍 AgentVerificationPage: Current user: {id: 'O41abvsFxpdvmHFHU3pyveBNDY22', email: 'your-email@gmail.com', username: 'Eliud Samwel', name: 'Eliud Samwel', phone: '', …}
 AgentVerificationPage.jsx:30 🔍 AgentVerificationPage: Verification status: unknown
 AgentVerificationPage.jsx:31 🔍 AgentVerificationPage: Is verified agent: false
 firebase.js:142 ✅ Firestore connection successful
@@ -96026,20 +96026,20 @@ firebase.js:146 ✅ Auth service connection successful
 firebase.js:152 ✅ Storage connection successful
 App.jsx:35 🎉 Firebase is connected and working!
 AuthContext.jsx:312 ✅ User document created/updated in Firestore
-AgentVerificationPage.jsx:29 🔍 AgentVerificationPage: Current user: {id: 'O41abvsFxpdvmHFHU3pyveBNDY22', email: 'eliudmichira7@gmail.com', username: 'Eliud Samwel', name: 'Eliud Samwel', phone: '', …}
+AgentVerificationPage.jsx:29 🔍 AgentVerificationPage: Current user: {id: 'O41abvsFxpdvmHFHU3pyveBNDY22', email: 'your-email@gmail.com', username: 'Eliud Samwel', name: 'Eliud Samwel', phone: '', …}
 AgentVerificationPage.jsx:30 🔍 AgentVerificationPage: Verification status: pending
 AgentVerificationPage.jsx:31 🔍 AgentVerificationPage: Is verified agent: false
 AgentVerificationPage.jsx:79 🧪 Creating test verification request for user: O41abvsFxpdvmHFHU3pyveBNDY22
-AgentVerificationPage.jsx:104 📋 Test data to write: {userId: 'O41abvsFxpdvmHFHU3pyveBNDY22', name: 'Eliud Samwel', email: 'eliudmichira7@gmail.com', fullName: 'Test Agent Name', phoneNumber: '+254712345678', …}
+AgentVerificationPage.jsx:104 📋 Test data to write: {userId: 'O41abvsFxpdvmHFHU3pyveBNDY22', name: 'Eliud Samwel', email: 'your-email@gmail.com', fullName: 'Test Agent Name', phoneNumber: '+254712345678', …}
 AgentVerificationPage.jsx:107 ✅ Test verification request created! Checking...
 AgentVerificationPage.jsx:50 🔍 Checking verification request for user: O41abvsFxpdvmHFHU3pyveBNDY22
-AgentVerificationPage.jsx:61 📄 Found agent document: {bio: 'This is a test verification request to debug the issue.', company: 'Test Company', countyOfOperation: 'Nairobi', email: 'eliudmichira7@gmail.com', fullName: 'Test Agent Name', …}
+AgentVerificationPage.jsx:61 📄 Found agent document: {bio: 'This is a test verification request to debug the issue.', company: 'Test Company', countyOfOperation: 'Nairobi', email: 'your-email@gmail.com', fullName: 'Test Agent Name', …}
 AgentVerificationPage.jsx:62 🔍 Verification requested: true
 AgentVerificationPage.jsx:63 🔍 Verified: false
 AgentVerificationPage.jsx:64 🔍 Created at: _Timestamp {seconds: 1757371840, nanoseconds: 881000000}
 AgentVerificationPage.jsx:65 🔍 Verification requested at: _Timestamp {seconds: 1757371840, nanoseconds: 881000000}
 AgentVerificationPage.jsx:50 🔍 Checking verification request for user: O41abvsFxpdvmHFHU3pyveBNDY22
-AgentVerificationPage.jsx:61 📄 Found agent document: {verificationRequested: true, licenseNumber: 'TEST-123', bio: 'This is a test verification request to debug the issue.', fullName: 'Test Agent Name', email: 'eliudmichira7@gmail.com', …}
+AgentVerificationPage.jsx:61 📄 Found agent document: {verificationRequested: true, licenseNumber: 'TEST-123', bio: 'This is a test verification request to debug the issue.', fullName: 'Test Agent Name', email: 'your-email@gmail.com', …}
 AgentVerificationPage.jsx:62 🔍 Verification requested: true
 AgentVerificationPage.jsx:63 🔍 Verified: false
 AgentVerificationPage.jsx:64 🔍 Created at: _Timestamp {seconds: 1757371840, nanoseconds: 881000000}
@@ -118233,7 +118233,7 @@ About
 E
 eliudmichira7
 
-eliudmichira7@gmail.com
+your-email@gmail.com
 
 Trusted by 10,000+ property seekers
 Find Your Perfect

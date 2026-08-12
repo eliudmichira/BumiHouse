@@ -8,6 +8,10 @@ import { SocketContextProvider } from './context/SocketContext.jsx'
 import { ThemeProvider } from './context/ThemeContext.jsx'
 import 'leaflet/dist/leaflet.css';
 import { initializeCleanup } from './utils/clearCache';
+import { initSentry } from './lib/sentry';
+
+// Start error/performance monitoring as early as possible (prod-only, no-ops without a DSN).
+initSentry();
 
 const queryClient = new QueryClient({
   defaultOptions: {

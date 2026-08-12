@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Loader2, ArrowRight } from 'lucide-react';
@@ -194,7 +194,7 @@ const TrialLogin = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3, duration: 0.4 }}
-          className="bg-white dark:bg-gray-800 backdrop-blur-xl rounded-3xl p-8 shadow-xl shadow-gray-900/5 dark:shadow-gray-900/20 border border-gray-200/50 dark:border-gray-700/50 hover:shadow-2xl hover:shadow-[#3b82f6]/10 transition-all duration-500"
+          className="bg-white dark:bg-gray-800 backdrop-blur-xl rounded-3xl p-8 shadow-xl shadow-gray-900/5 dark:shadow-gray-900/20 border border-gray-200/50 dark:border-gray-700/50 hover:shadow-2xl hover:shadow-[#51faaa]/10 transition-all duration-500"
         >
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Trial ID Field */}
@@ -208,7 +208,7 @@ const TrialLogin = () => {
                 value={formData.trialId}
                 onChange={handleInputChange}
                 placeholder="trial_xxxxxxxxx_xxxxxxxxx"
-                className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-all duration-300 hover:border-[#3b82f6]/50"
+                className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-all duration-300 hover:border-[#51faaa]/50"
                 required
               />
             </div>
@@ -225,7 +225,7 @@ const TrialLogin = () => {
                   value={formData.password}
                   onChange={handleInputChange}
                   placeholder="Enter your trial password"
-                  className="w-full px-4 py-3 pr-12 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-all duration-300 hover:border-[#3b82f6]/50"
+                  className="w-full px-4 py-3 pr-12 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-all duration-300 hover:border-[#51faaa]/50"
                   required
                 />
                 <button
@@ -255,7 +255,7 @@ const TrialLogin = () => {
               disabled={isLoading}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full py-3 px-6 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] font-semibold rounded-xl hover:shadow-lg hover:shadow-[#3b82f6]/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 group"
+              className="w-full py-3 px-6 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] font-semibold rounded-xl hover:shadow-lg hover:shadow-[#51faaa]/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 group"
             >
               {isLoading ? (
                 <div className="flex items-center justify-center">
@@ -277,7 +277,7 @@ const TrialLogin = () => {
               Check your email for trial credentials or{' '}
               <button
                 onClick={() => navigate('/rentakenya')}
-                className="text-[#3b82f6] hover:underline font-medium"
+                className="text-[#51faaa] hover:underline font-medium"
               >
                 start a new trial
               </button>

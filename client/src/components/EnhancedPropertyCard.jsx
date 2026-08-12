@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Heart,
@@ -92,7 +92,7 @@ const EnhancedPropertyCard = ({ property, onFavoriteToggle, isFavorite, onVacanc
               src={propertyImages[imageIndex]}
               alt={property.title}
               onLoad={handleImageLoad}
-              onError={(e) => handleImageError(e)}
+              onError={(e) => handleImageError(e, null, property)}
               className={`w-full h-full object-cover transition-all duration-500 ${isImageLoading ? 'blur-sm' : 'blur-0'
                 }`}
             />
@@ -200,7 +200,7 @@ const EnhancedPropertyCard = ({ property, onFavoriteToggle, isFavorite, onVacanc
             <span className={`px-2 py-1 text-xs font-medium rounded-full ${property.status === 'For Sale'
               ? 'bg-green-500 text-white'
               : property.status === 'For Rent'
-                ? 'bg-blue-500 text-white'
+                ? 'bg-emerald-500 text-white'
                 : 'bg-gray-500 text-white'
               }`}>
               {property.status}
@@ -314,7 +314,7 @@ const EnhancedPropertyCard = ({ property, onFavoriteToggle, isFavorite, onVacanc
         <div className="flex space-x-2">
           <Link
             to={`/property/${property.id}`}
-            className="flex-1 flex items-center justify-center space-x-2 py-3 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] rounded-xl font-semibold transition-all hover:shadow-lg"
+            className="flex-1 flex items-center justify-center space-x-2 py-3 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] rounded-xl font-semibold transition-all hover:shadow-lg"
           >
             <Eye className="w-4 h-4" />
             <span>View Details</span>

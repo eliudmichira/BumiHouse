@@ -19,9 +19,8 @@ import MobileNavigation from '../components/MobileNavigation';
 import { PropertyMobileCard } from '../components/PropertyMobileNav';
 import { Haptics, ImpactStyle } from '@capacitor/haptics';
 import { calculateDistance, getNormalizedLatLng } from '../../utils/locationUtils';
+import { geocodeAddress as geocodeWithFallback } from '../../utils/geocode';
 import SmartSearchBar from '../../components/enhanced/SmartSearchBar';
-
-const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
 const HomeScreen = () => {
     const navigate = useNavigate();
@@ -45,18 +44,11 @@ const HomeScreen = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredProperties, setFilteredProperties] = useState([]);
 
-    // Use location-based discovery by default, but relax constraints during search
-    const discoveryParams = useMemo(() => {
-        const params = { limit: 50 };
+    // Always fetch the full dataset — location-based ranking is done client-side
+    // via the scoring engine in finalFilteredProperties. Passing county/geohash to
+    // Firestore caused 0 results because seeded properties don't have those fields.
+    const discoveryParams = useMemo(() => ({ limit: 500 }), []);
 
-        // If no search query, prioritize current location
-        if (!searchQuery && currentLocation) {
-            params.county = currentLocation.county;
-            params.geohash = currentLocation.geohash;
-        }
-
-        return params;
-    }, [currentLocation, searchQuery]);
 
     const { data: propertyData, isLoading: propertiesLoading } = useProperties(discoveryParams);
     const properties = useMemo(() => propertyData?.properties || [], [propertyData]);
@@ -108,7 +100,6 @@ const HomeScreen = () => {
 
 
     // Advanced Map States
-    const [isMapReady, setIsMapReady] = useState(false);
     const [showHeatmap, setShowHeatmap] = useState(false);
     const [useClustering, setUseClustering] = useState(true);
     const [showQuickStats, setShowQuickStats] = useState(true);
@@ -237,7 +228,19 @@ const HomeScreen = () => {
 
             // Type & Status
             if (filters.propertyType && (p.type || p.propertyType || '').toLowerCase() !== filters.propertyType.toLowerCase()) return false;
-            if (filters.status && (p.status || '').toLowerCase() !== filters.status.toLowerCase()) return false;
+            // Status: check BOTH fields since the dataset has two schemas:
+            //   Seeded properties:    listing_type = "rent" | "sale",  status = "available"
+            //   AddProperty-created:  status = "for-rent" | "for-sale", no listing_type
+            if (filters.status) {
+                const wantsRent = filters.status.toLowerCase().includes('rent');
+                const s = (p.status || '').toLowerCase();
+                const lt = (p.listing_type || '').toLowerCase();
+                if (wantsRent) {
+                    if (!s.includes('rent') && lt !== 'rent') return false;
+                } else {
+                    if (!s.includes('sale') && lt !== 'sale' && !(s === 'available' && !lt)) return false;
+                }
+            }
 
             // Radius
             if (searchRadius && currentLocation?.coords) {
@@ -251,14 +254,23 @@ const HomeScreen = () => {
         }).sort((a, b) => b._score - a._score);
     }, [properties, propertiesWithCoords, searchQuery, filters, searchRadius, currentLocation, priceAffinity]);
 
-    // Simplified effect to keep legacy filteredProperties state in sync
+    // Sync legacy filteredProperties state only when the array content actually
+    // changes (by length + id signature). Without this guard, every chunked
+    // geocode update produced a new array ref and forced a setState cascade
+    // (propertyMarkers → MapView → fitBounds) on every batch, eventually
+    // tripping React's "Maximum update depth exceeded" safety net.
+    const lastSyncedSigRef = useRef('');
     useEffect(() => {
+        const sig = `${finalFilteredProperties.length}:${finalFilteredProperties.map(p => p.id).join('|')}`;
+        if (sig === lastSyncedSigRef.current) return;
+        lastSyncedSigRef.current = sig;
         setFilteredProperties(finalFilteredProperties);
     }, [finalFilteredProperties]);
 
-    // Geocode address to get coordinates with rate limiting and error handling
+    // Geocode address to get coordinates (Google Maps with an OpenStreetMap/
+    // Nominatim fallback via utils/geocode), cached to avoid repeat lookups.
     const geocodeAddress = async (address, signal) => {
-        if (!address || !GOOGLE_MAPS_API_KEY) return null;
+        if (!address) return null;
 
         const cacheKey = address.toLowerCase();
         if (geocodeCacheRef.current[cacheKey]) {
@@ -266,41 +278,22 @@ const HomeScreen = () => {
         }
 
         try {
-            const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&region=ke&components=country:KE&key=${GOOGLE_MAPS_API_KEY}`;
-            const res = await fetch(url, { signal });
+            const coords = await geocodeWithFallback(address, { signal });
+            if (!coords) return null;
 
-            if (!res.ok) {
-                throw new Error(`Geocoding API error: ${res.status}`);
+            // Limit cache size to prevent memory leaks
+            const cacheKeys = Object.keys(geocodeCacheRef.current);
+            if (cacheKeys.length >= MAX_CACHE_SIZE) {
+                // Remove oldest entries (simple FIFO)
+                const oldestKey = cacheKeys[0];
+                delete geocodeCacheRef.current[oldestKey];
             }
 
-            const data = await res.json();
-
-            // Handle API errors
-            if (data.status === 'OVER_QUERY_LIMIT') {
-                if (import.meta.env.DEV) {
-                    console.warn('⚠️ Geocoding API quota exceeded');
-                }
-                return null;
-            }
-
-            if (data.status === 'OK' && data.results?.[0]?.geometry?.location) {
-                const loc = data.results[0].geometry.location;
-                const coords = { lat: loc.lat, lng: loc.lng };
-
-                // Limit cache size to prevent memory leaks
-                const cacheKeys = Object.keys(geocodeCacheRef.current);
-                if (cacheKeys.length >= MAX_CACHE_SIZE) {
-                    // Remove oldest entries (simple FIFO)
-                    const oldestKey = cacheKeys[0];
-                    delete geocodeCacheRef.current[oldestKey];
-                }
-
-                geocodeCacheRef.current[cacheKey] = coords;
-                return coords;
-            }
+            geocodeCacheRef.current[cacheKey] = coords;
+            return coords;
         } catch (error) {
             // Don't log if it's an abort error (expected)
-            if (error.name !== 'AbortError' && import.meta.env.DEV) {
+            if (error?.name !== 'AbortError' && import.meta.env.DEV) {
                 console.error('Geocoding error:', error);
             }
         }
@@ -487,14 +480,9 @@ const HomeScreen = () => {
             };
         }).filter(Boolean);
 
-        // Debug logging
-        if (import.meta.env.DEV) {
-            console.log('📍 HomeScreen Markers:', {
-                totalProperties: sourceProperties.length,
-                validMarkers: markers.length,
-                markers: markers.slice(0, 5) // First 5 for debugging
-            });
-        }
+        // Debug logging removed — was firing every chunked geocode update
+        // (5, 10, 15, … up to 246+) and contributed to CLS via repeated
+        // marker prop churn driving GoogleMap fitBounds passes.
 
         return markers;
     }, [filteredProperties, properties, propertiesWithCoords, activePropertyId]);
@@ -686,25 +674,25 @@ const HomeScreen = () => {
         }
     }, [currentLocation]);
 
-    // Debug: Log property markers and properties when they change
-    useEffect(() => {
-        if (import.meta.env.DEV) {
-            const propertiesWithCoords = properties.filter(p => {
-                const pos = getNormalizedLatLng(p);
-                return pos !== null;
-            });
+    // (Debug effect that logged on every marker recompute removed — it was
+    // firing dozens of times during chunked geocoding.)
 
-            console.log('📍 HomeScreen Debug:', {
-                totalProperties: properties.length,
-                propertiesWithCoordinates: propertiesWithCoords.length,
-                propertyMarkersCount: propertyMarkers.length,
-                filteredPropertiesCount: filteredProperties.length,
-                sampleProperty: properties[0],
-                sampleMarker: propertyMarkers[0],
-                markersArray: propertyMarkers.slice(0, 3)
+    // Stable marker array for <MapView> — without this we re-created the
+    // markers prop on every parent render, causing GoogleMap to re-fit and
+    // shift layout (CLS) repeatedly.
+    const mapMarkers = useMemo(() => {
+        const arr = [];
+        if (currentLocation?.coords) {
+            arr.push({
+                id: 'user',
+                position: currentLocation.coords,
+                title: 'You',
+                featured: true
             });
         }
-    }, [propertyMarkers, properties, filteredProperties]);
+        for (const m of propertyMarkers) arr.push(m);
+        return arr;
+    }, [currentLocation, propertyMarkers]);
 
 
 
@@ -715,13 +703,12 @@ const HomeScreen = () => {
                 {/* Full-Screen Map Layer */}
                 <div className="absolute inset-0 z-0">
                     <MapView
-                        key={`map-${propertyMarkers.length}-${isMapReady}`}
+                        key="home-map"
                         center={mapCenter}
                         zoom={mapZoom}
                         mapTypeId={mapType === 'standard' ? 'roadmap' : 'hybrid'}
                         onMapLoad={(map) => {
                             try {
-                                setIsMapReady(true);
                                 // Debug: Log when map loads with markers
                                 if (import.meta.env.DEV) {
                                     console.log('🗺️ HomeScreen Map loaded with', propertyMarkers.length, 'property markers');
@@ -739,16 +726,7 @@ const HomeScreen = () => {
                             left: 20,
                             right: 70    // Space for FABs
                         }}
-                        markers={[
-                            // User Location
-                            currentLocation && {
-                                id: 'user',
-                                position: currentLocation.coords,
-                                title: 'You',
-                                featured: true
-                            },
-                            ...propertyMarkers
-                        ].filter(Boolean)}
+                        markers={mapMarkers}
                         useClustering={useClustering}
                         heatmapData={showHeatmap ? heatmapPoints : []}
                         heatmapOptions={{
@@ -832,11 +810,11 @@ const HomeScreen = () => {
                             hapticFeedback(ImpactStyle.Light);
                             setShowFilters(!showFilters);
                         }}
-                        className={`relative h-12 w-12 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl shadow-lg rounded-full flex items-center justify-center border border-white/20 dark:border-gray-700 hover:bg-white transition-all duration-300 active:scale-95 ${(activeFilterCount > 0 || showFilters) ? 'ring-2 ring-[#3b82f6] ring-offset-2 dark:ring-offset-gray-900 shadow-[#3b82f6]/20' : ''}`}
+                        className={`relative h-12 w-12 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl shadow-lg rounded-full flex items-center justify-center border border-white/20 dark:border-gray-700 hover:bg-white transition-all duration-300 active:scale-95 ${(activeFilterCount > 0 || showFilters) ? 'ring-2 ring-[#51faaa] ring-offset-2 dark:ring-offset-gray-900 shadow-[#51faaa]/20' : ''}`}
                     >
-                        <SlidersHorizontal className={(activeFilterCount > 0 || showFilters) ? "text-[#3b82f6]" : "text-gray-500"} size={20} />
+                        <SlidersHorizontal className={(activeFilterCount > 0 || showFilters) ? "text-[#51faaa]" : "text-gray-500"} size={20} />
                         {activeFilterCount > 0 && (
-                            <span className="absolute -top-1 -right-1 bg-[#3b82f6] text-gray-900 text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center border-2 border-white dark:border-gray-800 shadow-md">
+                            <span className="absolute -top-1 -right-1 bg-[#51faaa] text-gray-900 text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center border-2 border-white dark:border-gray-800 shadow-md">
                                 {activeFilterCount}
                             </span>
                         )}
@@ -886,7 +864,7 @@ const HomeScreen = () => {
                             setShowFilters(true);
                         }}
                         className={`flex-shrink-0 px-3 py-1.5 rounded-full border text-[11px] font-bold transition-all flex items-center gap-1.5 ${filters.minPrice || filters.maxPrice
-                            ? 'bg-[#3b82f6] border-[#3b82f6] text-gray-900 shadow-md scale-105'
+                            ? 'bg-[#51faaa] border-[#51faaa] text-gray-900 shadow-md scale-105'
                             : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 shadow-sm hover:border-gray-300'
                             }`}
                     >
@@ -906,7 +884,7 @@ const HomeScreen = () => {
                                 }));
                             }}
                             className={`flex-shrink-0 px-3 py-1.5 rounded-full border text-[11px] font-bold transition-all flex items-center gap-1.5 ${filters.minBedrooms === num.toString()
-                                ? 'bg-[#3b82f6] border-[#3b82f6] text-gray-900 shadow-md scale-105'
+                                ? 'bg-[#51faaa] border-[#51faaa] text-gray-900 shadow-md scale-105'
                                 : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 shadow-sm hover:border-gray-300'
                                 }`}
                         >
@@ -928,7 +906,7 @@ const HomeScreen = () => {
                                 setFilters(prev => ({ ...prev, [attr.key]: !prev[attr.key] }));
                             }}
                             className={`flex-shrink-0 px-3 py-1.5 rounded-full border text-[11px] font-bold transition-all flex items-center gap-1.5 ${filters[attr.key]
-                                ? 'bg-[#3b82f6] border-[#3b82f6] text-gray-900 shadow-md scale-105'
+                                ? 'bg-[#51faaa] border-[#51faaa] text-gray-900 shadow-md scale-105'
                                 : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 shadow-sm hover:border-gray-300'
                                 }`}
                         >
@@ -949,7 +927,7 @@ const HomeScreen = () => {
                                 }));
                             }}
                             className={`flex-shrink-0 px-3 py-1.5 rounded-full border text-[11px] font-bold transition-all flex items-center gap-1.5 ${filters.propertyType.toLowerCase() === type.toLowerCase()
-                                ? 'bg-[#3b82f6] border-[#3b82f6] text-gray-900 shadow-md scale-105'
+                                ? 'bg-[#51faaa] border-[#51faaa] text-gray-900 shadow-md scale-105'
                                 : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 shadow-sm hover:border-gray-300'
                                 }`}
                         >
@@ -1032,8 +1010,8 @@ const HomeScreen = () => {
                                                     />
                                                     <div className="absolute top-0 left-0 right-0 p-1.5 flex justify-between items-start bg-gradient-to-b from-black/60 to-transparent">
                                                         <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-md uppercase tracking-wide ${(property.status?.toLowerCase().includes('rent'))
-                                                            ? 'bg-blue-500/90 text-white'
-                                                            : 'bg-[#3b82f6]/90 text-[#0a0c19]'
+                                                            ? 'bg-emerald-500/90 text-white'
+                                                            : 'bg-[#51faaa]/90 text-[#0a0c19]'
                                                             }`}>
                                                             {(property.status?.toLowerCase().includes('rent')) ? 'Rent' : 'Sale'}
                                                         </span>
@@ -1066,7 +1044,7 @@ const HomeScreen = () => {
                                                                 </span>
                                                             </p>
                                                             {property.isVerified && (
-                                                                <CheckCircle size={14} className="text-blue-400" fill="currentColor" stroke="black" />
+                                                                <CheckCircle size={14} className="text-emerald-400" fill="currentColor" stroke="black" />
                                                             )}
                                                         </div>
                                                         <p className="text-white p-1 rounded-lg font-medium truncate opacity-95 mt-0.5">
@@ -1081,17 +1059,17 @@ const HomeScreen = () => {
                                                         <div className="flex items-center gap-3 text-white/70 text-xs font-medium">
                                                             {property.bedrooms > 0 && (
                                                                 <span className="flex items-center gap-1">
-                                                                    <Bed size={12} className="text-blue-400" /> {property.bedrooms}
+                                                                    <Bed size={12} className="text-emerald-400" /> {property.bedrooms}
                                                                 </span>
                                                             )}
                                                             {property.bathrooms > 0 && (
                                                                 <span className="flex items-center gap-1">
-                                                                    <Bath size={12} className="text-blue-400" /> {property.bathrooms}
+                                                                    <Bath size={12} className="text-emerald-400" /> {property.bathrooms}
                                                                 </span>
                                                             )}
                                                             {property.area > 0 && (
                                                                 <span className="flex items-center gap-1 truncate max-w-[60px]">
-                                                                    {/* <Square size={12} className="text-[#3b82f6]" /> {property.area} */}
+                                                                    {/* <Square size={12} className="text-[#51faaa]" /> {property.area} */}
                                                                 </span>
                                                             )}
                                                         </div>
@@ -1116,7 +1094,7 @@ const HomeScreen = () => {
                     <FloatingActionButton
                         icon={Pencil}
                         variant="secondary"
-                        className={isDrawingMode ? "!bg-[#3b82f6] !text-[#111] !border-[#3b82f6] shadow-xl" : "shadow-lg"}
+                        className={isDrawingMode ? "!bg-[#51faaa] !text-[#111] !border-[#51faaa] shadow-xl" : "shadow-lg"}
                         onClick={() => {
                             hapticFeedback(ImpactStyle.Light);
                             if (!isDrawingMode) {
@@ -1142,7 +1120,7 @@ const HomeScreen = () => {
                     <FloatingActionButton
                         icon={Layers}
                         variant="secondary"
-                        className={mapType !== 'standard' ? "!bg-blue-500 !text-white !border-blue-600 shadow-xl" : "shadow-lg"}
+                        className={mapType !== 'standard' ? "!bg-emerald-500 !text-white !border-emerald-600 shadow-xl" : "shadow-lg"}
                         onClick={() => {
                             hapticFeedback(ImpactStyle.Light);
                             setMapType(prev => prev === 'standard' ? 'satellite' : 'standard');
@@ -1220,10 +1198,10 @@ const HomeScreen = () => {
                             <div className="p-6">
                                 <div className="flex items-center justify-between mb-6">
                                     <div className="flex items-center gap-3">
-                                        <div className="w-1 h-6 bg-gradient-to-b from-[#3b82f6] to-[#06b6d4] rounded-full" />
+                                        <div className="w-1 h-6 bg-gradient-to-b from-[#51faaa] to-[#dbd5a4] rounded-full" />
                                         <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Filters</h2>
                                         {activeFilterCount > 0 && (
-                                            <span className="px-2 py-1 bg-[#3b82f6] text-[#111] text-xs font-bold rounded-full">
+                                            <span className="px-2 py-1 bg-[#51faaa] text-[#111] text-xs font-bold rounded-full">
                                                 {activeFilterCount}
                                             </span>
                                         )}
@@ -1248,14 +1226,14 @@ const HomeScreen = () => {
                                                 placeholder="Min Price"
                                                 value={filters.minPrice}
                                                 onChange={(e) => setFilters(prev => ({ ...prev, minPrice: e.target.value }))}
-                                                className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-[#3b82f6]"
+                                                className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-[#51faaa]"
                                             />
                                             <input
                                                 type="number"
                                                 placeholder="Max Price"
                                                 value={filters.maxPrice}
                                                 onChange={(e) => setFilters(prev => ({ ...prev, maxPrice: e.target.value }))}
-                                                className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-[#3b82f6]"
+                                                className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-[#51faaa]"
                                             />
                                         </div>
                                     </div>
@@ -1267,7 +1245,7 @@ const HomeScreen = () => {
                                             <select
                                                 value={filters.minBedrooms}
                                                 onChange={(e) => setFilters(prev => ({ ...prev, minBedrooms: e.target.value }))}
-                                                className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white focus:outline-none focus:border-[#3b82f6]"
+                                                className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white focus:outline-none focus:border-[#51faaa]"
                                             >
                                                 <option value="">Any</option>
                                                 {[1, 2, 3, 4, 5, 6].map(num => (
@@ -1280,7 +1258,7 @@ const HomeScreen = () => {
                                             <select
                                                 value={filters.minBathrooms}
                                                 onChange={(e) => setFilters(prev => ({ ...prev, minBathrooms: e.target.value }))}
-                                                className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white focus:outline-none focus:border-[#3b82f6]"
+                                                className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white focus:outline-none focus:border-[#51faaa]"
                                             >
                                                 <option value="">Any</option>
                                                 {[1, 2, 3, 4, 5].map(num => (
@@ -1296,7 +1274,7 @@ const HomeScreen = () => {
                                         <select
                                             value={filters.propertyType}
                                             onChange={(e) => setFilters(prev => ({ ...prev, propertyType: e.target.value }))}
-                                            className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white focus:outline-none focus:border-[#3b82f6]"
+                                            className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white focus:outline-none focus:border-[#51faaa]"
                                         >
                                             <option value="">All Types</option>
                                             <option value="apartment">Apartment</option>
@@ -1312,7 +1290,7 @@ const HomeScreen = () => {
                                         <select
                                             value={filters.status}
                                             onChange={(e) => setFilters(prev => ({ ...prev, status: e.target.value }))}
-                                            className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white focus:outline-none focus:border-[#3b82f6]"
+                                            className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white focus:outline-none focus:border-[#51faaa]"
                                         >
                                             <option value="">All Status</option>
                                             <option value="for-sale">For Sale</option>
@@ -1332,7 +1310,7 @@ const HomeScreen = () => {
                                         </motion.button>
                                         <motion.button
                                             onClick={() => setShowFilters(false)}
-                                            className="flex-1 px-4 py-3 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] rounded-xl font-bold shadow-lg hover:shadow-xl transition-all"
+                                            className="flex-1 px-4 py-3 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] rounded-xl font-bold shadow-lg hover:shadow-xl transition-all"
                                             whileHover={{ scale: 1.02 }}
                                             whileTap={{ scale: 0.98 }}
                                         >
@@ -1374,7 +1352,7 @@ const HomeScreen = () => {
                     background: rgba(17, 24, 39, 0.9) !important;
                     padding: 4px 8px !important;
                     border-radius: 12px !important;
-                    border: 2px solid #3b82f6 !important;
+                    border: 2px solid #51faaa !important;
                     font-weight: bold !important;
                     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
                 }

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 import { MapPin, Bed, Bath, Heart, MessageCircle } from "lucide-react";
 
 function Card({ property }) {
@@ -23,7 +23,7 @@ function Card({ property }) {
       </div>
 
       <div className="p-6">
-        <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">
+        <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-2 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-300">
           <Link to={`/${property.id}`}>{property.title}</Link>
         </h2>
 
@@ -36,7 +36,7 @@ function Card({ property }) {
           </span>
         </div>
 
-        <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent mb-4">
+        <div className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-purple-600 dark:from-emerald-400 dark:to-purple-400 bg-clip-text text-transparent mb-4">
           Ksh {property.price.toLocaleString()}/month
         </div>
 

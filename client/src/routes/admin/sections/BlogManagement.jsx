@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+﻿import React, { useState, useEffect, useCallback } from 'react';
 import {
   collection,
   getDocs,
@@ -200,7 +200,7 @@ const BlogManagement = () => {
                   href="/desktop/blog"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 inline-flex items-center gap-1"
+                  className="text-emerald-600 dark:text-emerald-400 inline-flex items-center gap-1"
                 >
                   /desktop/blog <ExternalLink className="w-3 h-3" />
                 </a>
@@ -221,7 +221,7 @@ const BlogManagement = () => {
             <button
               type="button"
               onClick={openCreate}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 text-sm font-medium"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700 text-sm font-medium"
             >
               <Plus className="w-4 h-4" />
               New post
@@ -279,7 +279,7 @@ const BlogManagement = () => {
                       <button
                         type="button"
                         onClick={() => openEdit(p)}
-                        className="p-2 rounded-lg text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/30"
+                        className="p-2 rounded-lg text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-900/30"
                         title="Edit"
                       >
                         <Pencil className="w-4 h-4" />
@@ -412,7 +412,7 @@ const BlogManagement = () => {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-600 text-white hover:bg-emerald-700 disabled:opacity-50"
                 >
                   {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                   Save

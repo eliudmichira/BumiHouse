@@ -5,14 +5,17 @@ const axios = require('axios');
 
 admin.initializeApp();
 
-// Simple email configuration for testing
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'eliudmichira7@gmail.com', // Your Gmail address
-    pass: 'REDACTED' // Gmail app password without spaces
-  }
-});
+// Email configuration from Firebase config or env vars — never hardcode credentials.
+// Set with: firebase functions:config:set email.user="..." email.pass="..."
+// (or the EMAIL_USER / EMAIL_PASS environment variables).
+const EMAIL_USER = functions.config().email?.user || process.env.EMAIL_USER;
+const EMAIL_PASS = functions.config().email?.pass || process.env.EMAIL_PASS;
+const transporter = EMAIL_USER && EMAIL_PASS
+  ? nodemailer.createTransport({
+      service: 'gmail',
+      auth: { user: EMAIL_USER, pass: EMAIL_PASS }
+    })
+  : null;
 
 // Simple function to process email queue
 exports.processEmailQueue = functions.firestore
@@ -53,6 +56,10 @@ exports.processEmailQueue = functions.firestore
 const sendTrialWelcomeEmail = async (emailData) => {
   const { recipientEmail, recipientName, templateData } = emailData;
 
+  if (!transporter) {
+    throw new Error('Email not configured: set EMAIL_USER/EMAIL_PASS or `firebase functions:config:set email.user=... email.pass=...`');
+  }
+
   const emailTemplate = `
     <h1>Welcome to RentaKenya! 🎉</h1>
     <p>Hi ${templateData.fullName},</p>
@@ -73,7 +80,7 @@ const sendTrialWelcomeEmail = async (emailData) => {
   `;
 
   return transporter.sendMail({
-    from: '"RentaKenya Team" <eliudmichira7@gmail.com>',
+    from: `"RentaKenya Team" <${EMAIL_USER}>`,
     to: recipientEmail,
     subject: '🎉 Welcome to RentaKenya - Your Trial is Active!',
     html: emailTemplate
@@ -83,6 +90,10 @@ const sendTrialWelcomeEmail = async (emailData) => {
 // Send sales notification
 const sendSalesNotification = async (emailData) => {
   const { templateData } = emailData;
+
+  if (!transporter) {
+    throw new Error('Email not configured: set EMAIL_USER/EMAIL_PASS or `firebase functions:config:set email.user=... email.pass=...`');
+  }
 
   const salesEmailTemplate = `
     <h1>🎯 New Trial Signup</h1>
@@ -100,7 +111,7 @@ const sendSalesNotification = async (emailData) => {
   `;
 
   return transporter.sendMail({
-    from: '"RentaKenya System" <eliudmichira7@gmail.com>',
+    from: `"RentaKenya System" <${EMAIL_USER}>`,
     to: 'sales@rentakenya.com', // Change to your sales email
     subject: `🎯 New Trial: ${templateData.fullName} - ${templateData.propertyCount} properties`,
     html: salesEmailTemplate

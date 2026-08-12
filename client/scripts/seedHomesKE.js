@@ -19,7 +19,7 @@ import {
 
 // Firebase configuration for HomesKE project
 const firebaseConfig = {
-    apiKey: "REDACTED",
+    apiKey: process.env.VITE_FIREBASE_API_KEY || "YOUR_FIREBASE_API_KEY",
     authDomain: "homeske.firebaseapp.com",
     projectId: "homeske",
     storageBucket: "homeske.firebasestorage.app",
@@ -194,8 +194,8 @@ async function createTestUsers() {
     console.log('🌱 Creating test users...');
 
     const testUsers = [
-        { email: 'user@homeske.com', password: 'REDACTED', role: 'user' },
-        { email: 'support@homeske.com', password: 'REDACTED', role: 'admin' } // Create admin LAST to stay signed in
+        { email: process.env.SEED_USER_EMAIL || 'user@homeske.com', password: process.env.SEED_USER_PASSWORD || 'YOUR_USER_PASSWORD', role: 'user' },
+        { email: process.env.SEED_ADMIN_EMAIL || 'support@homeske.com', password: process.env.SEED_ADMIN_PASSWORD || 'YOUR_ADMIN_PASSWORD', role: 'admin' } // Create admin LAST to stay signed in
     ];
 
     let adminUserId = null;
@@ -291,9 +291,7 @@ async function seedHomesKE() {
         console.log('- Test users created/updated');
         console.log('- Page views added');
 
-        console.log('\n🔑 Test User Credentials:');
-        console.log('Admin: support@homeske.com / REDACTED');
-        console.log('User: user@homeske.com / REDACTED');
+        console.log('\n🔑 Test user credentials are taken from the SEED_ADMIN_* / SEED_USER_* env vars');
 
     } catch (error) {
         console.error('❌ Seeding failed:', error);

@@ -81,7 +81,7 @@ npm start
 |----------|-------|
 | **Project ID** | `dwellmate-285e8` |
 | **Project Number** | `951413621891` |
-| **Web API Key** | `REDACTED` |
+| **Web API Key** | `YOUR_API_KEY` |
 | **Auth Domain** | `dwellmate-285e8.firebaseapp.com` |
 | **Storage Bucket** | `dwellmate-285e8.firebasestorage.app` |
 | **App ID** | `1:951413621891:web:ab7a731b8db0e1a28687b6` |

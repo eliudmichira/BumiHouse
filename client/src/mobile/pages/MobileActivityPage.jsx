@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+﻿import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Heart, Eye, Clock, ChevronRight } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
@@ -43,7 +43,7 @@ const MobileActivityPage = () => {
                     <motion.div className={`flex flex-col items-center justify-center py-20 rounded-3xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-gray-200'}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                         <p className={`font-bold text-lg mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>No activity yet</p>
                         <p className={`text-sm mb-6 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Save favorites and view properties to see them here.</p>
-                        <motion.button onClick={() => navigate('/properties')} className="px-6 py-3 bg-gradient-to-r from-[#3b82f6] to-[#45e695] rounded-2xl text-gray-900 font-bold" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>Explore</motion.button>
+                        <motion.button onClick={() => navigate('/properties')} className="px-6 py-3 bg-gradient-to-r from-[#51faaa] to-[#45e695] rounded-2xl text-gray-900 font-bold" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>Explore</motion.button>
                     </motion.div>
                 ) : (
                     recentActivity.map((activity, i) => (
@@ -53,10 +53,10 @@ const MobileActivityPage = () => {
                                 <div className="flex-1 min-w-0">
                                     <div className="flex items-center gap-2">
                                         {activity.type === 'favorite' && <Heart size={14} className="text-red-500 fill-red-500" />}
-                                        {activity.type === 'view' && <Eye size={14} className="text-blue-500" />}
+                                        {activity.type === 'view' && <Eye size={14} className="text-emerald-500" />}
                                         <span className={`font-semibold truncate ${isDark ? 'text-white' : 'text-gray-900'}`}>{activity.title || activity.name || 'Property'}</span>
                                     </div>
-                                    <p className="text-[#3b82f6] font-semibold text-sm mt-1">{formatPrice(activity.price)}</p>
+                                    <p className="text-[#51faaa] font-semibold text-sm mt-1">{formatPrice(activity.price)}</p>
                                     <p className={`text-xs flex items-center gap-1 mt-1 ${isDark ? 'text-gray-500' : 'text-gray-400'}`}><Clock size={12} />{activity.time}</p>
                                 </div>
                                 <ChevronRight className={`w-5 h-5 flex-shrink-0 ${isDark ? 'text-gray-500' : 'text-gray-400'}`} />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { 
@@ -35,10 +35,10 @@ const PropertyOwnerPortal = () => {
 
   // Platform statistics
   const platformStats = [
-    { label: "Active Properties", value: "2,500+", icon: Building2, color: "[#3b82f6]" },
-    { label: "Monthly Collections", value: "KSh 850M", icon: DollarSign, color: "[#06b6d4]" },
-    { label: "Happy Landlords", value: "1,200+", icon: Users, color: "[#3b82f6]" },
-    { label: "Uptime Guarantee", value: "99.9%", icon: Shield, color: "[#06b6d4]" }
+    { label: "Active Properties", value: "2,500+", icon: Building2, color: "[#51faaa]" },
+    { label: "Monthly Collections", value: "KSh 850M", icon: DollarSign, color: "[#dbd5a4]" },
+    { label: "Happy Landlords", value: "1,200+", icon: Users, color: "[#51faaa]" },
+    { label: "Uptime Guarantee", value: "99.9%", icon: Shield, color: "[#dbd5a4]" }
   ];
 
   // Access plans for different user types
@@ -70,7 +70,7 @@ const PropertyOwnerPortal = () => {
       subtitle: "Real Estate Professionals", 
       description: "Manage multiple client properties with advanced tools",
       icon: Briefcase,
-      gradient: "from-blue-600 via-cyan-600 to-teal-500",
+      gradient: "from-emerald-600 via-secondary-400 to-teal-500",
       price: "Commission Based",
       period: "2.5% per transaction",
       features: [
@@ -114,25 +114,25 @@ const PropertyOwnerPortal = () => {
       icon: Smartphone,
       title: "M-Pesa Integration",
       description: "One-click rent payments for tenants via STK Push",
-      color: "from-[#3b82f6] to-[#3b82f6]"
+      color: "from-[#51faaa] to-[#51faaa]"
     },
     {
       icon: BarChart3,
       title: "Smart Analytics",
       description: "AI-powered insights for better property decisions",
-      color: "from-[#06b6d4] to-[#06b6d4]"
+      color: "from-[#dbd5a4] to-[#dbd5a4]"
     },
     {
       icon: Shield,
       title: "Legal Compliance",
       description: "KRA-ready reports and Kenya-specific agreements",
-      color: "from-[#3b82f6] to-[#06b6d4]"
+      color: "from-[#51faaa] to-[#dbd5a4]"
     },
     {
       icon: Users,
       title: "Tenant Portal",
       description: "Self-service platform for rent payments and requests",
-      color: "from-[#06b6d4] to-[#3b82f6]"
+      color: "from-[#dbd5a4] to-[#51faaa]"
     }
   ];
 
@@ -192,9 +192,9 @@ const PropertyOwnerPortal = () => {
 
         {/* Premium Background Elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-gradient-to-br from-[#3b82f6]/10 via-[#3b82f6]/5 to-[#06b6d4]/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-gradient-to-tl from-[#06b6d4]/10 to-[#3b82f6]/10 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-gradient-to-r from-[#3b82f6]/5 to-[#06b6d4]/5 rounded-full blur-2xl"></div>
+          <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-gradient-to-br from-[#51faaa]/10 via-[#51faaa]/5 to-[#dbd5a4]/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-gradient-to-tl from-[#dbd5a4]/10 to-[#51faaa]/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-gradient-to-r from-[#51faaa]/5 to-[#dbd5a4]/5 rounded-full blur-2xl"></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -205,7 +205,7 @@ const PropertyOwnerPortal = () => {
               transition={{ duration: 0.6 }}
               className="mb-6"
             >
-              <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-gradient-to-r from-[#3b82f6]/10 to-[#06b6d4]/10 text-[#3b82f6] dark:text-[#3b82f6] border border-[#3b82f6]/20 dark:border-[#3b82f6]/30">
+              <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-gradient-to-r from-[#51faaa]/10 to-[#dbd5a4]/10 text-[#51faaa] dark:text-[#51faaa] border border-[#51faaa]/20 dark:border-[#51faaa]/30">
                 <Crown className="w-4 h-4 mr-2" />
                 Property Owner Portal
               </span>
@@ -218,7 +218,7 @@ const PropertyOwnerPortal = () => {
               className="text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-lg"
             >
               Manage Your
-              <span className="block bg-gradient-to-r from-[#3b82f6] via-[#3b82f6] to-[#06b6d4] bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-[#51faaa] via-[#51faaa] to-[#dbd5a4] bg-clip-text text-transparent">
                 Properties Like a Pro
               </span>
             </motion.h1>
@@ -240,7 +240,7 @@ const PropertyOwnerPortal = () => {
             >
               <button
                 onClick={() => setShowTrialModal(true)}
-                className="px-8 py-4 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] font-bold rounded-2xl shadow-2xl hover:shadow-[#3b82f6]/25 transition-all duration-300 flex items-center gap-3 group"
+                className="px-8 py-4 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] font-bold rounded-2xl shadow-2xl hover:shadow-[#51faaa]/25 transition-all duration-300 flex items-center gap-3 group"
               >
                 <Crown className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 Start Free Trial
@@ -266,7 +266,7 @@ const PropertyOwnerPortal = () => {
                 Are you a tenant? 
                 <button
                   onClick={() => navigate('/tenant-login')}
-                  className="ml-2 text-[#3b82f6] hover:text-[#3b82f6]/80 font-medium underline"
+                  className="ml-2 text-[#51faaa] hover:text-[#51faaa]/80 font-medium underline"
                 >
                   Access Tenant Portal →
                 </button>
@@ -290,9 +290,9 @@ const PropertyOwnerPortal = () => {
                 className="text-center p-6 rounded-2xl bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl border border-white/30 dark:border-gray-700/30 shadow-xl hover:shadow-2xl transition-all duration-300"
               >
                 <div className={`w-12 h-12 mx-auto mb-3 rounded-xl flex items-center justify-center ${
-                  stat.color === '[#3b82f6]' 
-                    ? 'bg-gradient-to-br from-[#3b82f6] to-[#45e695]' 
-                    : 'bg-gradient-to-br from-[#06b6d4] to-[#d4c99e]'
+                  stat.color === '[#51faaa]' 
+                    ? 'bg-gradient-to-br from-[#51faaa] to-[#45e695]' 
+                    : 'bg-gradient-to-br from-[#dbd5a4] to-[#d4c99e]'
                 }`}>
                   <stat.icon className="w-6 h-6 text-white" />
                 </div>
@@ -361,7 +361,7 @@ const PropertyOwnerPortal = () => {
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((feature, idx) => (
                     <li key={idx} className="flex items-center text-gray-600 dark:text-gray-300">
-                      <CheckCircle className="w-5 h-5 text-[#3b82f6] mr-3 flex-shrink-0" />
+                      <CheckCircle className="w-5 h-5 text-[#51faaa] mr-3 flex-shrink-0" />
                       <span>{feature}</span>
                     </li>
                   ))}
@@ -426,7 +426,7 @@ const PropertyOwnerPortal = () => {
       </section>
 
       {/* Success Stories Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-800 dark:to-gray-900">
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-emerald-50 dark:from-gray-800 dark:to-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <motion.h2
@@ -457,7 +457,7 @@ const PropertyOwnerPortal = () => {
                 className="p-8 rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
                     {testimonial.avatar}
                   </div>
                   <div>
@@ -479,7 +479,7 @@ const PropertyOwnerPortal = () => {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600">
+      <section className="py-20 bg-gradient-to-r from-emerald-600 via-purple-600 to-pink-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -505,13 +505,13 @@ const PropertyOwnerPortal = () => {
           >
             <button 
               onClick={() => setShowTrialModal(true)}
-              className="px-8 py-4 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 group"
+              className="px-8 py-4 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 group"
             >
               <Crown className="w-5 h-5 group-hover:scale-110 transition-transform" />
               Start Free Trial
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
-            <button className="px-8 py-4 border-2 border-white text-white font-semibold rounded-2xl hover:bg-white hover:text-[#3b82f6] transition-all duration-300 flex items-center gap-2">
+            <button className="px-8 py-4 border-2 border-white text-white font-semibold rounded-2xl hover:bg-white hover:text-[#51faaa] transition-all duration-300 flex items-center gap-2">
               <PlayCircle className="w-5 h-5" />
               Watch Demo
             </button>

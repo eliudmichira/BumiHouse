@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
 
 const Support = () => {
@@ -8,7 +8,7 @@ const Support = () => {
       <p className="text-gray-600 mb-4">Need help with payments, maintenance, or your account?</p>
       <div className="flex gap-3">
         <button className="flex-1 py-3 border-2 border-gray-200 rounded-xl text-gray-700 hover:bg-gray-50">Help Center</button>
-        <button className="flex-1 py-3 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] font-bold rounded-xl">Contact Support</button>
+        <button className="flex-1 py-3 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] font-bold rounded-xl">Contact Support</button>
       </div>
     </motion.div>
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
 
@@ -20,17 +20,17 @@ const SimpleFooter = () => {
             © 2024 Hama Estate. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <Link to="/privacy" className={`hover:text-[#3b82f6] transition-colors duration-300 font-outfit text-sm ${
+            <Link to="/privacy" className={`hover:text-[#51faaa] transition-colors duration-300 font-outfit text-sm ${
               isDark ? 'text-[#ccc]' : 'text-gray-300'
             }`}>
               Privacy Policy
             </Link>
-            <Link to="/terms" className={`hover:text-[#3b82f6] transition-colors duration-300 font-outfit text-sm ${
+            <Link to="/terms" className={`hover:text-[#51faaa] transition-colors duration-300 font-outfit text-sm ${
               isDark ? 'text-[#ccc]' : 'text-gray-300'
             }`}>
               Terms of Service
             </Link>
-            <Link to="/cookies" className={`hover:text-[#3b82f6] transition-colors duration-300 font-outfit text-sm ${
+            <Link to="/cookies" className={`hover:text-[#51faaa] transition-colors duration-300 font-outfit text-sm ${
               isDark ? 'text-[#ccc]' : 'text-gray-300'
             }`}>
               Cookie Policy

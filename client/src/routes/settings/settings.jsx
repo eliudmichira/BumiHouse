@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useTheme } from '../../context/ThemeContext';
 import { Settings, User, Bell, Shield, Palette, Globe } from 'lucide-react';
@@ -35,7 +35,7 @@ export default function SettingsPage() {
                   <input
                     type="text"
                     defaultValue={currentUser?.displayName || currentUser?.name || ''}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                   />
                 </div>
                 <div>
@@ -52,7 +52,7 @@ export default function SettingsPage() {
                   <input
                     type="tel"
                     placeholder="Enter phone number"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
                   />
                 </div>
               </div>
@@ -80,7 +80,7 @@ export default function SettingsPage() {
                     <button
                       onClick={() => setNotifications(prev => ({ ...prev, [key]: !value }))}
                       className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                        value ? 'bg-blue-600' : 'bg-gray-200'
+                        value ? 'bg-emerald-600' : 'bg-gray-200'
                       }`}
                     >
                       <span
@@ -128,7 +128,7 @@ export default function SettingsPage() {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Theme</label>
                   <select
-                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:text-white"
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-900 dark:text-white"
                     value={theme}
                     onChange={e => setTheme(e.target.value)}
                   >
@@ -142,7 +142,7 @@ export default function SettingsPage() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Font Size</label>
-                  <select className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-900 dark:text-white">
+                  <select className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-900 dark:text-white">
                     <option value="small">Small</option>
                     <option value="medium">Medium</option>
                     <option value="large">Large</option>
@@ -161,7 +161,7 @@ export default function SettingsPage() {
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Language</label>
-                  <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500">
                     <option value="en">English</option>
                     <option value="es">Spanish</option>
                     <option value="fr">French</option>
@@ -170,7 +170,7 @@ export default function SettingsPage() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Time Zone</label>
-                  <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500">
                     <option value="UTC">UTC</option>
                     <option value="EST">Eastern Time</option>
                     <option value="PST">Pacific Time</option>
@@ -208,7 +208,7 @@ export default function SettingsPage() {
                       onClick={() => setActiveTab(tab.id)}
                       className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-left transition-colors ${
                         activeTab === tab.id
-                          ? 'bg-blue-50 text-blue-700 border border-blue-200'
+                          ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                           : 'text-gray-700 hover:bg-gray-50'
                       }`}
                     >

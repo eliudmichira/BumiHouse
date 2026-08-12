@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { 
   Users, 
   UserCheck, 
@@ -168,10 +168,10 @@ const VacancyTracker = ({ property, onVacancyUpdate }) => {
 
         {/* Next Availability */}
         {property.nextVacancyDate && (
-          <div className="mb-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+          <div className="mb-3 p-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg">
             <div className="flex items-center space-x-2">
-              <Calendar className="w-4 h-4 text-blue-500" />
-              <span className="text-sm text-blue-700 dark:text-blue-300">
+              <Calendar className="w-4 h-4 text-emerald-500" />
+              <span className="text-sm text-emerald-700 dark:text-emerald-300">
                 Next vacancy: {new Date(property.nextVacancyDate).toLocaleDateString()}
               </span>
             </div>
@@ -181,14 +181,14 @@ const VacancyTracker = ({ property, onVacancyUpdate }) => {
         {/* Action Buttons */}
         <div className="flex space-x-2">
           {property.availableUnits > 0 ? (
-            <button className="flex-1 flex items-center justify-center space-x-2 py-2 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] rounded-lg font-semibold text-sm transition-all hover:shadow-lg">
+            <button className="flex-1 flex items-center justify-center space-x-2 py-2 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] rounded-lg font-semibold text-sm transition-all hover:shadow-lg">
               <CheckCircle className="w-4 h-4" />
               <span>Apply Now</span>
             </button>
           ) : (
             <button 
               onClick={() => setShowWaitlistModal(true)}
-              className="flex-1 flex items-center justify-center space-x-2 py-2 bg-blue-500 text-white rounded-lg font-semibold text-sm transition-all hover:bg-blue-600"
+              className="flex-1 flex items-center justify-center space-x-2 py-2 bg-emerald-500 text-white rounded-lg font-semibold text-sm transition-all hover:bg-emerald-600"
             >
               <Bell className="w-4 h-4" />
               <span>Join Waitlist</span>
@@ -277,7 +277,7 @@ const VacancyTracker = ({ property, onVacancyUpdate }) => {
                   type="email"
                   value={waitlistEmail}
                   onChange={(e) => setWaitlistEmail(e.target.value)}
-                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3b82f6] ${
+                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#51faaa] ${
                     isDark 
                       ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400'
                       : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
@@ -290,7 +290,7 @@ const VacancyTracker = ({ property, onVacancyUpdate }) => {
               <div className="flex space-x-3">
                 <button
                   type="submit"
-                  className="flex-1 py-2 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] rounded-lg font-semibold transition-all hover:shadow-lg"
+                  className="flex-1 py-2 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] rounded-lg font-semibold transition-all hover:shadow-lg"
                 >
                   Join Waitlist
                 </button>

@@ -302,7 +302,7 @@
       width: 40px;
       height: 40px;
       border: 3px solid rgba(81, 250, 170, 0.3);
-      border-top: 3px solid #2563eb;
+      border-top: 3px solid #2dd284;
       border-radius: 50%;
       animation: spin 1s linear infinite;
     }
@@ -317,13 +317,13 @@
       }
     }
   </style>
-  <script type="module" crossorigin src="/index-BtHNjTde.js"></script>
-  <link rel="modulepreload" crossorigin href="/react-vendor-DGfG09om.js">
-  <link rel="modulepreload" crossorigin href="/utils-B2DvmiKJ.js">
-  <link rel="modulepreload" crossorigin href="/vendor-CjofE4th.js">
-  <link rel="modulepreload" crossorigin href="/ui-DINKT3WH.js">
-  <link rel="stylesheet" crossorigin href="/assets/css/vendor-Dgihpmma.css">
-  <link rel="stylesheet" crossorigin href="/assets/css/index-BC_ULBhD.css">
+  <script type="module" crossorigin src="/index-Dy41YlQv.js"></script>
+  <link rel="modulepreload" crossorigin href="/react-vendor-D6pC8u7G.js">
+  <link rel="modulepreload" crossorigin href="/utils-D8C0b3kM.js">
+  <link rel="modulepreload" crossorigin href="/vendor-nYAPT41N.js">
+  <link rel="modulepreload" crossorigin href="/ui-bamtXkaw.js">
+  <link rel="stylesheet" crossorigin href="/assets/css/vendor-BTrKGrB8.css">
+  <link rel="stylesheet" crossorigin href="/assets/css/index-mXED0ZzO.css">
 </head>
 
 <body>
@@ -331,16 +331,6 @@
     <!-- Loading fallback -->
     <div class="app-loading">
       <div class="loading-spinner"></div>
-    </div>
-  </div>
-  <!-- Minimal diagnostics overlay for production blank-screen cases -->
-  <div id="boot-diagnostics"
-    style="display:none;position:fixed;z-index:99999;inset:0;background:rgba(10,12,25,0.96);color:#fff;padding:16px;overflow:auto;font-family:monospace;">
-    <div style="max-width:960px;margin:0 auto;">
-      <h3 style="margin:0 0 8px 0;color:green;">Bumihouse - Startup Diagnostics</h3>
-      <div id="boot-diag-message" style="white-space:pre-wrap;line-height:1.4"></div>
-      <button onclick="this.parentNode.parentNode.style.display='none'"
-        style="margin-top:12px;background:#2563eb;border:0;padding:8px 12px;border-radius:6px;cursor:pointer;">Dismiss</button>
     </div>
   </div>
 
@@ -393,66 +383,6 @@
     };
 
     optimizeFonts();
-
-    // Startup diagnostics: show overlay if React didn't mount or on runtime error
-    (function () {
-      var overlay = document.getElementById('boot-diagnostics');
-      var msg = document.getElementById('boot-diag-message');
-
-      function showOverlay(text) {
-        try {
-          if (!overlay || !msg) return;
-          msg.textContent = text;
-          overlay.style.display = 'block';
-        } catch (_) { }
-      }
-
-      // Expose for React to hide explicitly when ready
-      window.hideBootDiagnostics = function () {
-        try { if (overlay) overlay.style.display = 'none'; } catch (_) { }
-      };
-
-      // If app didn't mount within 5s, surface a basic status snapshot
-      setTimeout(function () {
-        try {
-          var root = document.getElementById('root');
-          var mounted = !!(root && root.firstElementChild && root.firstElementChild.id !== undefined && root.childElementCount > 0);
-          var hasGoogle = !!(window.google);
-          var hasGoogleMaps = !!(window.google && window.google.maps);
-          var envMode = (window && window.__ENV_MODE__) || 'prod';
-          if (!mounted) {
-            var lines = [
-              'The app did not finish mounting within 5 seconds.',
-              '',
-              'Quick status:',
-              '- window.google present: ' + hasGoogle,
-              '- window.google.maps present: ' + hasGoogleMaps,
-              '- document.readyState: ' + document.readyState,
-              '- env mode: ' + envMode,
-              '',
-              'If this persists, check DevTools > Network for maps.googleapis.com script errors and verify VITE_ envs.'
-            ];
-            showOverlay(lines.join('\n'));
-          }
-        } catch (_) { }
-      }, 5000);
-
-      // Capture and display first runtime error (do not suppress)
-      window.addEventListener('error', function (e) {
-        try {
-          var text = 'Runtime error: ' + (e.message || '') + '\n' + (e.filename || '') + ':' + (e.lineno || '') + '\n';
-          showOverlay(text);
-        } catch (_) { }
-      }, { once: true });
-
-      window.addEventListener('unhandledrejection', function (e) {
-        try {
-          var reason = e.reason && (e.reason.stack || e.reason.message || String(e.reason));
-          var text = 'Unhandled rejection: ' + (reason || 'unknown');
-          showOverlay(text);
-        } catch (_) { }
-      }, { once: true });
-    })();
   </script>
 </body>
 

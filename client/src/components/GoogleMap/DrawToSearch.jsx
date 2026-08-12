@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+﻿import { useEffect, useRef, useState } from 'react';
 import { useMap } from '@vis.gl/react-google-maps';
 import { MapPin, X, RotateCcw } from 'lucide-react';
 
@@ -26,10 +26,10 @@ const DrawToSearch = ({ onDrawComplete, isDrawingMode, onCancel }) => {
         drawingMode: null,
         drawingControl: false,
         polygonOptions: {
-          fillColor: '#3B82F6',
+          fillColor: '#51faaa',
           fillOpacity: 0.2,
           strokeWeight: 2,
-          strokeColor: '#3B82F6',
+          strokeColor: '#51faaa',
           clickable: true,
           editable: true,
           zIndex: 1
@@ -121,7 +121,7 @@ const DrawToSearch = ({ onDrawComplete, isDrawingMode, onCancel }) => {
     <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-xl rounded-xl shadow-lg border border-white/30 p-4">
       <div className="flex items-center gap-3">
         <div className="flex items-center gap-2">
-          <MapPin className="w-4 h-4 text-blue-600" />
+          <MapPin className="w-4 h-4 text-emerald-600" />
           <span className="text-sm font-medium text-gray-700">
             {isDrawing ? 'Click to draw your search area' : 'Draw search area'}
           </span>

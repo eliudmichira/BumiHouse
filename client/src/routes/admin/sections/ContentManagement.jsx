@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { collection, getDocs, updateDoc, doc, query, where, orderBy } from 'firebase/firestore';
 import { db } from '../../../lib/firebase';
 import {
@@ -152,7 +152,7 @@ const ContentManagement = () => {
   const getCategoryBadgeColor = (category) => {
     switch (category) {
       case 'luxury': return 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200';
-      case 'apartment': return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
+      case 'apartment': return 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200';
       case 'house': return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
       case 'studio': return 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200';
       default: return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200';
@@ -222,7 +222,7 @@ const ContentManagement = () => {
           </button>
           <button
             onClick={() => setShowAddModal(true)}
-            className="flex justify-center items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="flex justify-center items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
           >
             <Plus className="w-4 h-4" />
             Add Featured
@@ -235,8 +235,8 @@ const ContentManagement = () => {
         <StatCard
           title="Total Properties"
           value={contentStats.totalProperties}
-          icon={<FileText className="w-5 h-5 md:w-6 md:h-6 text-blue-600" />}
-          color="bg-blue-100 dark:bg-blue-900/30"
+          icon={<FileText className="w-5 h-5 md:w-6 md:h-6 text-emerald-600" />}
+          color="bg-emerald-100 dark:bg-emerald-900/30"
         />
         <StatCard
           title="Featured"
@@ -323,7 +323,7 @@ const ContentManagement = () => {
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => handleEditProperty(property)}
-                      className="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300"
+                      className="text-emerald-600 hover:text-emerald-900 dark:text-emerald-400 dark:hover:text-emerald-300"
                     >
                       <Edit className="w-4 h-4" />
                     </button>
@@ -449,7 +449,7 @@ const ContentManagement = () => {
                 <div className="flex items-center gap-2 pt-2 border-t border-gray-100 dark:border-dark-700">
                   <button
                     onClick={() => handleEditProperty(property)}
-                    className="flex items-center justify-center gap-1.5 px-3 py-2 bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/40 text-blue-600 dark:text-blue-400 rounded-lg text-sm font-medium transition-colors flex-1"
+                    className="flex items-center justify-center gap-1.5 px-3 py-2 bg-emerald-50 dark:bg-emerald-900/20 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 rounded-lg text-sm font-medium transition-colors flex-1"
                   >
                     <Edit className="w-4 h-4" />
                     Edit
@@ -556,7 +556,7 @@ const ContentManagement = () => {
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => handleEditProperty(property)}
-                          className="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300"
+                          className="text-emerald-600 hover:text-emerald-900 dark:text-emerald-400 dark:hover:text-emerald-300"
                         >
                           <Edit className="w-4 h-4" />
                         </button>
@@ -664,7 +664,7 @@ const ContentManagement = () => {
               </button>
               <button
                 onClick={handleSaveEdit}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
               >
                 Save Changes
               </button>
@@ -692,7 +692,7 @@ const ContentManagement = () => {
               </select>
               <div className="flex items-center justify-end gap-3">
                 <button onClick={() => setShowAddModal(false)} className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-dark-700 rounded-lg transition-colors">Cancel</button>
-                <button disabled={!addSelection} onClick={() => handleAddToFeatured(addSelection)} className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50">Add</button>
+                <button disabled={!addSelection} onClick={() => handleAddToFeatured(addSelection)} className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors disabled:opacity-50">Add</button>
               </div>
             </div>
           </div>

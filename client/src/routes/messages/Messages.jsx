@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useTheme } from '../../context/ThemeContext';
 import { messagesAPI } from '../../lib/firebaseAPI';
@@ -225,7 +225,7 @@ const Messages = () => {
       case 'delivered':
         return <CheckCheck className="w-4 h-4 text-gray-400" />;
       case 'read':
-        return <CheckCheck className="w-4 h-4 text-[#3b82f6]" />;
+        return <CheckCheck className="w-4 h-4 text-[#51faaa]" />;
       default:
         return <Clock className="w-4 h-4 text-gray-400" />;
     }
@@ -268,7 +268,7 @@ const Messages = () => {
       <div className={`min-h-screen pt-32 pb-8 overflow-y-auto ${isDark ? 'bg-[#0a0c19]' : 'bg-gray-50'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center py-12">
-            <Loader2 className="w-12 h-12 mx-auto animate-spin text-[#3b82f6]" />
+            <Loader2 className="w-12 h-12 mx-auto animate-spin text-[#51faaa]" />
             <p className={`mt-4 font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-600'}`}>Loading messages...</p>
           </div>
         </div>
@@ -286,7 +286,7 @@ const Messages = () => {
             </div>
             <button 
               onClick={fetchConversations}
-              className="bg-[#3b82f6] text-[#0a0c19] px-4 py-2 rounded-lg font-outfit font-medium hover:bg-[#3b82f6]/90 transition-colors"
+              className="bg-[#51faaa] text-[#0a0c19] px-4 py-2 rounded-lg font-outfit font-medium hover:bg-[#51faaa]/90 transition-colors"
             >
               Try Again
             </button>
@@ -314,7 +314,7 @@ const Messages = () => {
             <div className="flex gap-2">
               <button
                 onClick={fetchConversations}
-                className="bg-blue-500 text-white px-4 py-2 rounded-lg font-outfit font-medium hover:bg-blue-600 transition-colors"
+                className="bg-emerald-500 text-white px-4 py-2 rounded-lg font-outfit font-medium hover:bg-emerald-600 transition-colors"
               >
                 Refresh Conversations
               </button>
@@ -329,13 +329,13 @@ const Messages = () => {
             {/* Search */}
             <div className={`p-4 border-b ${isDark ? 'border-[rgba(81,250,170,0.1)]' : 'border-gray-200'}`}>
               <div className="relative">
-                <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 ${isDark ? 'text-[#3b82f6]' : 'text-gray-400'}`} />
+                <Search className={`absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 ${isDark ? 'text-[#51faaa]' : 'text-gray-400'}`} />
                 <input
                   type="text"
                   placeholder="Search conversations..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit ${
+                  className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit ${
                     isDark 
                       ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50' 
                       : 'border-gray-300 bg-white text-gray-900 placeholder-gray-500'
@@ -348,7 +348,7 @@ const Messages = () => {
             <div className="overflow-y-auto h-[calc(100%-80px)]">
               {filteredConversations.length === 0 ? (
                 <div className="p-8 text-center">
-                  <MessageCircle className="w-16 h-16 mx-auto text-[#3b82f6] mb-4" />
+                  <MessageCircle className="w-16 h-16 mx-auto text-[#51faaa] mb-4" />
                   <h4 className={`text-lg font-outfit font-semibold mb-2 ${isDark ? 'text-[#feffff]' : 'text-gray-900'}`}>
                     No conversations yet
                   </h4>
@@ -376,14 +376,14 @@ const Messages = () => {
                 >
                   <div className="flex items-start gap-3">
                     <div className="relative">
-                      <div className="w-12 h-12 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] rounded-full flex items-center justify-center">
+                      <div className="w-12 h-12 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] rounded-full flex items-center justify-center">
                         <span className="text-[#111] font-outfit font-bold text-lg">
                           {(conversation.user?.name || conversation.user?.username || 'U')[0]}
                         </span>
                       </div>
                       {isUserOnline(conversation.user?.id) && (
-                        <div className="absolute bottom-0 right-0 w-3 h-3 bg-[#3b82f6] border-2 border-white dark:border-[#0a0c19] rounded-full">
-                          <div className="w-full h-full bg-[#3b82f6] rounded-full animate-pulse"></div>
+                        <div className="absolute bottom-0 right-0 w-3 h-3 bg-[#51faaa] border-2 border-white dark:border-[#0a0c19] rounded-full">
+                          <div className="w-full h-full bg-[#51faaa] rounded-full animate-pulse"></div>
                         </div>
                       )}
                     </div>
@@ -404,7 +404,7 @@ const Messages = () => {
                       
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] rounded flex items-center justify-center">
+                          <div className="w-8 h-8 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] rounded flex items-center justify-center">
                             <Home className="w-4 h-4 text-[#111]" />
                           </div>
                           <span className={`text-xs font-outfit truncate ${isDark ? 'text-[#ccc]' : 'text-gray-500'}`}>
@@ -415,13 +415,13 @@ const Messages = () => {
                         <div className="flex items-center gap-2">
                           {isUserOnline(conversation.user?.id) && (
                             <div className="flex items-center gap-1">
-                              <Circle className="w-2 h-2 text-[#3b82f6] fill-current" />
-                              <span className="text-xs text-[#3b82f6] font-outfit">Online</span>
+                              <Circle className="w-2 h-2 text-[#51faaa] fill-current" />
+                              <span className="text-xs text-[#51faaa] font-outfit">Online</span>
                             </div>
                           )}
                           
                           {conversation.unreadCount > 0 && (
-                            <span className="bg-[#3b82f6] text-[#111] text-xs font-outfit font-semibold rounded-full px-2 py-1 min-w-[20px] text-center">
+                            <span className="bg-[#51faaa] text-[#111] text-xs font-outfit font-semibold rounded-full px-2 py-1 min-w-[20px] text-center">
                               {conversation.unreadCount}
                             </span>
                           )}
@@ -444,14 +444,14 @@ const Messages = () => {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <div className="relative">
-                        <div className="w-10 h-10 bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] rounded-full flex items-center justify-center">
+                        <div className="w-10 h-10 bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] rounded-full flex items-center justify-center">
                           <span className="text-[#111] font-outfit font-bold text-sm">
                             {(selectedConversation.user?.name || selectedConversation.user?.username || 'U')[0]}
                           </span>
                         </div>
                         {isUserOnline(selectedConversation.user?.id) && (
-                          <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-[#3b82f6] border-2 border-white dark:border-[#0a0c19] rounded-full">
-                            <div className="w-full h-full bg-[#3b82f6] rounded-full animate-pulse"></div>
+                          <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-[#51faaa] border-2 border-white dark:border-[#0a0c19] rounded-full">
+                            <div className="w-full h-full bg-[#51faaa] rounded-full animate-pulse"></div>
                           </div>
                         )}
                       </div>
@@ -463,8 +463,8 @@ const Messages = () => {
                         <div className="flex items-center gap-2">
                           {isUserOnline(selectedConversation.user?.id) ? (
                             <>
-                              <Circle className="w-2 h-2 text-[#3b82f6] fill-current" />
-                              <p className={`text-sm font-outfit text-[#3b82f6]`}>Online</p>
+                              <Circle className="w-2 h-2 text-[#51faaa] fill-current" />
+                              <p className={`text-sm font-outfit text-[#51faaa]`}>Online</p>
                             </>
                           ) : (
                             <p className={`text-sm font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-500'}`}>
@@ -478,22 +478,22 @@ const Messages = () => {
                     <div className="flex items-center gap-2">
                       <button className={`p-2 rounded-lg transition-colors ${
                         isDark 
-                          ? 'text-[#ccc] hover:text-[#3b82f6] hover:bg-[rgba(81,250,170,0.1)]' 
-                          : 'text-gray-400 hover:text-[#3b82f6] hover:bg-gray-100'
+                          ? 'text-[#ccc] hover:text-[#51faaa] hover:bg-[rgba(81,250,170,0.1)]' 
+                          : 'text-gray-400 hover:text-[#51faaa] hover:bg-gray-100'
                       }`}>
                         <Phone className="w-5 h-5" />
                       </button>
                       <button className={`p-2 rounded-lg transition-colors ${
                         isDark 
-                          ? 'text-[#ccc] hover:text-[#3b82f6] hover:bg-[rgba(81,250,170,0.1)]' 
-                          : 'text-gray-400 hover:text-[#3b82f6] hover:bg-gray-100'
+                          ? 'text-[#ccc] hover:text-[#51faaa] hover:bg-[rgba(81,250,170,0.1)]' 
+                          : 'text-gray-400 hover:text-[#51faaa] hover:bg-gray-100'
                       }`}>
                         <Video className="w-5 h-5" />
                       </button>
                       <button className={`p-2 rounded-lg transition-colors ${
                         isDark 
-                          ? 'text-[#ccc] hover:text-[#3b82f6] hover:bg-[rgba(81,250,170,0.1)]' 
-                          : 'text-gray-400 hover:text-[#3b82f6] hover:bg-gray-100'
+                          ? 'text-[#ccc] hover:text-[#51faaa] hover:bg-[rgba(81,250,170,0.1)]' 
+                          : 'text-gray-400 hover:text-[#51faaa] hover:bg-gray-100'
                       }`}>
                         <MoreVertical className="w-5 h-5" />
                       </button>
@@ -505,7 +505,7 @@ const Messages = () => {
                 <div className="flex-1 overflow-y-auto p-4 space-y-4">
                   {messages.length === 0 ? (
                     <div className="text-center py-8">
-                      <MessageCircle className={`w-12 h-12 mx-auto mb-2 ${isDark ? 'text-[#3b82f6]' : 'text-gray-400'}`} />
+                      <MessageCircle className={`w-12 h-12 mx-auto mb-2 ${isDark ? 'text-[#51faaa]' : 'text-gray-400'}`} />
                       <p className={`text-sm font-outfit ${isDark ? 'text-[#ccc]' : 'text-gray-500'}`}>
                         No messages yet. Start the conversation!
                       </p>
@@ -534,7 +534,7 @@ const Messages = () => {
                             <div
                               className={`max-w-xs lg:max-w-md px-4 py-2 rounded-xl font-outfit ${
                                 isOwnMessage
-                                  ? 'bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111]'
+                                  ? 'bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111]'
                                   : isDark
                                     ? 'bg-[#0a0c19] text-[#feffff] border border-[rgba(81,250,170,0.2)]'
                                     : 'bg-gray-100 text-gray-900'
@@ -566,15 +566,15 @@ const Messages = () => {
                   <div className="flex items-center gap-2">
                     <button className={`p-2 rounded-lg transition-colors ${
                       isDark 
-                        ? 'text-[#ccc] hover:text-[#3b82f6] hover:bg-[rgba(81,250,170,0.1)]' 
-                        : 'text-gray-400 hover:text-[#3b82f6] hover:bg-gray-100'
+                        ? 'text-[#ccc] hover:text-[#51faaa] hover:bg-[rgba(81,250,170,0.1)]' 
+                        : 'text-gray-400 hover:text-[#51faaa] hover:bg-gray-100'
                     }`}>
                       <Paperclip className="w-5 h-5" />
                     </button>
                     <button className={`p-2 rounded-lg transition-colors ${
                       isDark 
-                        ? 'text-[#ccc] hover:text-[#3b82f6] hover:bg-[rgba(81,250,170,0.1)]' 
-                        : 'text-gray-400 hover:text-[#3b82f6] hover:bg-gray-100'
+                        ? 'text-[#ccc] hover:text-[#51faaa] hover:bg-[rgba(81,250,170,0.1)]' 
+                        : 'text-gray-400 hover:text-[#51faaa] hover:bg-gray-100'
                     }`}>
                       <Image className="w-5 h-5" />
                     </button>
@@ -587,7 +587,7 @@ const Messages = () => {
                         onKeyPress={handleKeyPress}
                         placeholder="Type a message..."
                         disabled={sendingMessage}
-                        className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-colors font-outfit pr-10 ${
+                        className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[#51faaa] focus:border-transparent transition-colors font-outfit pr-10 ${
                           isDark 
                             ? 'border-[rgba(81,250,170,0.2)] bg-[#0a0c19] text-[#feffff] placeholder-[#ccc]/50' 
                             : 'border-gray-300 bg-white text-gray-900 placeholder-gray-500'
@@ -595,8 +595,8 @@ const Messages = () => {
                       />
                       <button className={`absolute right-2 top-1/2 transform -translate-y-1/2 p-1 rounded-lg transition-colors ${
                         isDark 
-                          ? 'text-[#ccc] hover:text-[#3b82f6] hover:bg-[rgba(81,250,170,0.1)]' 
-                          : 'text-gray-400 hover:text-[#3b82f6] hover:bg-gray-100'
+                          ? 'text-[#ccc] hover:text-[#51faaa] hover:bg-[rgba(81,250,170,0.1)]' 
+                          : 'text-gray-400 hover:text-[#51faaa] hover:bg-gray-100'
                       }`}>
                         <Smile className="w-5 h-5" />
                       </button>
@@ -605,7 +605,7 @@ const Messages = () => {
                     <button
                       onClick={handleSendMessage}
                       disabled={!newMessage.trim() || sendingMessage}
-                      className="p-2 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#111] rounded-xl hover:shadow-lg hover:shadow-[#3b82f6]/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 font-outfit font-semibold"
+                      className="p-2 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#111] rounded-xl hover:shadow-lg hover:shadow-[#51faaa]/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 font-outfit font-semibold"
                     >
                       {sendingMessage ? (
                         <Loader2 className="w-5 h-5 animate-spin" />
@@ -619,7 +619,7 @@ const Messages = () => {
             ) : (
               <div className="flex-1 flex items-center justify-center">
                 <div className="text-center">
-                  <MessageCircle className={`w-16 h-16 mx-auto mb-4 ${isDark ? 'text-[#3b82f6]' : 'text-gray-400'}`} />
+                  <MessageCircle className={`w-16 h-16 mx-auto mb-4 ${isDark ? 'text-[#51faaa]' : 'text-gray-400'}`} />
                   <h3 className={`text-lg font-outfit font-semibold mb-2 ${isDark ? 'text-[#feffff]' : 'text-gray-900'}`}>
                     Select a conversation
                   </h3>

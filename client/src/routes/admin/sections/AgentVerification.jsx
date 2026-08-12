@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+﻿import React, { useEffect, useMemo, useState } from 'react';
 import { Check, X, Search, Shield, Mail, Phone, Calendar, Loader2 } from 'lucide-react';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import { db } from '../../../lib/firebase';
@@ -106,19 +106,19 @@ const AgentVerification = () => {
       <div className="flex flex-wrap items-center gap-2">
         <button
           onClick={() => setActiveTab('pending')}
-          className={`px-3 py-1.5 rounded-lg border ${activeTab === 'pending' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600'}`}
+          className={`px-3 py-1.5 rounded-lg border ${activeTab === 'pending' ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600'}`}
         >
           Pending ({pendingList.length})
         </button>
         <button
           onClick={() => setActiveTab('verified')}
-          className={`px-3 py-1.5 rounded-lg border ${activeTab === 'verified' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600'}`}
+          className={`px-3 py-1.5 rounded-lg border ${activeTab === 'verified' ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600'}`}
         >
           Verified ({verifiedList.length})
         </button>
         <button
           onClick={() => setActiveTab('unverified')}
-          className={`px-3 py-1.5 rounded-lg border ${activeTab === 'unverified' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600'}`}
+          className={`px-3 py-1.5 rounded-lg border ${activeTab === 'unverified' ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600'}`}
         >
           Unverified ({unverifiedList.length})
         </button>

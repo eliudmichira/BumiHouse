@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { collection, getDocs, updateDoc, doc, query, orderBy, deleteDoc } from 'firebase/firestore';
 import { db } from '../../../lib/firebase';
 import {
@@ -240,8 +240,8 @@ const PropertyModeration = () => {
         <StatCard
           title="Total Properties"
           value={propertyStats.total}
-          icon={<Home className="w-6 h-6 text-blue-600" />}
-          color="bg-blue-100 dark:bg-blue-900/30"
+          icon={<Home className="w-6 h-6 text-emerald-600" />}
+          color="bg-emerald-100 dark:bg-emerald-900/30"
         />
         <StatCard
           title="Pending Review"
@@ -275,7 +275,7 @@ const PropertyModeration = () => {
                 placeholder="Search properties by title, location, or submitter..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-dark-600 rounded-lg bg-white dark:bg-dark-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-dark-600 rounded-lg bg-white dark:bg-dark-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
               />
             </div>
           </div>
@@ -296,9 +296,9 @@ const PropertyModeration = () => {
 
       {/* Bulk Actions */}
       {selectedProperties.length > 0 && (
-        <div className="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700 rounded-xl p-4">
+        <div className="bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-700 rounded-xl p-4">
           <div className="flex items-center justify-between">
-            <p className="text-blue-800 dark:text-blue-200">
+            <p className="text-emerald-800 dark:text-emerald-200">
               {selectedProperties.length} property(ies) selected
             </p>
             <div className="flex items-center gap-2">
@@ -343,7 +343,7 @@ const PropertyModeration = () => {
                     type="checkbox"
                     checked={selectedProperties.includes(property.id)}
                     onChange={() => handleSelectProperty(property.id)}
-                    className="mt-1 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                    className="mt-1 rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"
                   />
 
                   {/* Image */}
@@ -399,7 +399,7 @@ const PropertyModeration = () => {
                       setSelectedProperty(property);
                       setShowPropertyModal(true);
                     }}
-                    className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-lg text-sm font-medium"
+                    className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 rounded-lg text-sm font-medium"
                   >
                     <Eye className="w-4 h-4" />
                     View
@@ -453,7 +453,7 @@ const PropertyModeration = () => {
                     type="checkbox"
                     checked={selectedProperties.length === filteredProperties.length && filteredProperties.length > 0}
                     onChange={handleSelectAll}
-                    className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                    className="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"
                   />
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
@@ -481,7 +481,7 @@ const PropertyModeration = () => {
                       type="checkbox"
                       checked={selectedProperties.includes(property.id)}
                       onChange={() => handleSelectProperty(property.id)}
-                      className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                      className="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"
                     />
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
@@ -529,7 +529,7 @@ const PropertyModeration = () => {
                           setSelectedProperty(property);
                           setShowPropertyModal(true);
                         }}
-                        className="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300"
+                        className="text-emerald-600 hover:text-emerald-900 dark:text-emerald-400 dark:hover:text-emerald-300"
                       >
                         <Eye className="w-4 h-4" />
                       </button>

@@ -1,4 +1,5 @@
-import React from 'react';
+﻿import React from 'react';
+import { Sentry } from '../lib/sentry';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -62,6 +63,12 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
+    // Report the render crash to Sentry (no-ops if Sentry isn't initialized).
+    Sentry.withScope((scope) => {
+      scope.setExtras({ componentStack: errorInfo?.componentStack });
+      Sentry.captureException(error);
+    });
+
     // Enhanced error logging (only in development)
     if (import.meta.env.DEV) {
       console.error('🚨 Error caught by boundary:', error);
@@ -150,7 +157,7 @@ class ErrorBoundary extends React.Component {
             <div className="space-y-3">
               <button
                 onClick={() => window.location.reload()}
-                className="w-full px-6 py-3 bg-[#3b82f6] text-[#0a0c19] font-semibold rounded-xl hover:bg-[#06b6d4] transition-colors"
+                className="w-full px-6 py-3 bg-[#51faaa] text-[#0a0c19] font-semibold rounded-xl hover:bg-[#dbd5a4] transition-colors"
               >
                 Refresh Page
               </button>
@@ -164,7 +171,7 @@ class ErrorBoundary extends React.Component {
               
               <button
                 onClick={() => this.viewErrorLogs()}
-                className="w-full px-6 py-3 border border-blue-600 text-blue-300 font-semibold rounded-xl hover:bg-blue-800 transition-colors"
+                className="w-full px-6 py-3 border border-emerald-600 text-emerald-300 font-semibold rounded-xl hover:bg-emerald-800 transition-colors"
               >
                 View Error Logs
               </button>
@@ -194,8 +201,8 @@ class ErrorBoundary extends React.Component {
                   
                   {this.state.errorInfo && this.state.errorInfo.componentStack && (
                     <div>
-                      <strong className="text-blue-400">Component Stack:</strong>
-                      <pre className="text-xs text-blue-400 overflow-auto mt-1 max-h-32">
+                      <strong className="text-emerald-400">Component Stack:</strong>
+                      <pre className="text-xs text-emerald-400 overflow-auto mt-1 max-h-32">
                         {this.state.errorInfo.componentStack}
                       </pre>
                     </div>

@@ -3,7 +3,7 @@
 const GEMINI_MODEL = 'gemini-1.5-flash';
 const IS_PROD = import.meta?.env?.PROD;
 const ENV_KEY = (import.meta?.env?.VITE_GEMINI_API_KEY || '').trim();
-const PROD_FALLBACK_KEY = 'REDACTED';
+const PROD_FALLBACK_KEY = 'YOUR_API_KEY';
 const GEMINI_API_KEY = IS_PROD ? (ENV_KEY || PROD_FALLBACK_KEY) : ENV_KEY;
 
 const GEMINI_ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;

@@ -1,0 +1,35 @@
+name: bumihouse_spike
+description: "Flutter spike to evaluate native feel vs the BumiHouse Capacitor app: Firebase Auth, live Firestore property list, and a Google Map for one neighborhood."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # Versions verified against pub.dev (Aug 2026). If `flutter pub get` flags a
+  # conflict, run `flutter pub upgrade` to pull the latest compatible set —
+  # the Dart code in lib/ uses only stable, cross-major APIs.
+  firebase_core: ^4.13.0
+  cloud_firestore: ^6.8.0
+  firebase_auth: ^6.5.7
+  google_maps_flutter: ^2.18.0
+  intl: ^0.20.0
+  google_sign_in: ^7.2.0
+  shared_preferences: ^2.5.5
+  firebase_storage: ^13.4.6
+  image_picker: ^1.2.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  fonts:
+    - family: Outfit
+      fonts:
+        - asset: assets/fonts/Outfit-Variable.ttf

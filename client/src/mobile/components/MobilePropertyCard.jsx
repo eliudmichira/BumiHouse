@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Heart,
@@ -160,7 +160,7 @@ const MobilePropertyCard = ({ property, onFavoriteToggle, isFavorite }) => {
             <span className={`px-2 py-1 text-xs font-medium rounded-full ${(property.status?.toLowerCase().includes('sale'))
               ? 'bg-[#4066ff] text-white'
               : (property.status?.toLowerCase().includes('rent'))
-                ? 'bg-blue-500 text-white'
+                ? 'bg-emerald-500 text-white'
                 : 'bg-gray-500 text-white'
               }`}>
               {property.status?.replace(/-/g, ' ')}

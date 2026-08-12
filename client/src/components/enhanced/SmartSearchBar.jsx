@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+﻿import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Search,
@@ -166,7 +166,7 @@ const SmartSearchBar = ({
       <motion.div
         ref={searchRef}
         className={`relative bg-white dark:bg-gray-800 rounded-full border-2 transition-all duration-300 ${isFocused
-          ? 'border-[#3b82f6] shadow-lg shadow-[#3b82f6]/20'
+          ? 'border-[#51faaa] shadow-lg shadow-[#51faaa]/20'
           : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
           }`}
         variants={containerVariants}
@@ -177,7 +177,7 @@ const SmartSearchBar = ({
           <motion.div
             className="flex-shrink-0 mr-2"
             animate={{
-              color: isFocused ? '#3b82f6' : '#6b7280',
+              color: isFocused ? '#51faaa' : '#6b7280',
               scale: isFocused ? 1.1 : 1
             }}
             transition={{ duration: 0.2 }}
@@ -228,7 +228,7 @@ const SmartSearchBar = ({
               onClick={onToggleFilters}
               className={`flex-shrink-0 ml-2 p-2 rounded-full transition-all duration-300 flex items-center justify-center ${
                 showFilters 
-                  ? 'bg-blue-600 text-white shadow-lg' 
+                  ? 'bg-emerald-600 text-white shadow-lg' 
                   : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
               }`}
               whileHover={{ scale: 1.05 }}
@@ -242,7 +242,7 @@ const SmartSearchBar = ({
           {/* Search Button */}
           <motion.button
             onClick={() => handleSearch(searchQuery)}
-            className="flex-shrink-0 ml-2 px-4 py-1.5 bg-gradient-to-r from-blue-500 to-blue-500 text-white rounded-full font-semibold hover:shadow-lg hover:shadow-[#3b82f6]/30 transition-all duration-300 flex items-center justify-center"
+            className="flex-shrink-0 ml-2 px-4 py-1.5 bg-gradient-to-r from-emerald-500 to-emerald-500 text-white rounded-full font-semibold hover:shadow-lg hover:shadow-[#51faaa]/30 transition-all duration-300 flex items-center justify-center"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -297,7 +297,7 @@ const SmartSearchBar = ({
             {!searchQuery && (
               <div className="p-4 border-b border-gray-200 dark:border-gray-700">
                 <div className="flex items-center gap-2 mb-3">
-                  <TrendingUp className="w-4 h-4 text-[#3b82f6]" />
+                  <TrendingUp className="w-4 h-4 text-[#51faaa]" />
                   <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                     Popular Searches
                   </span>
@@ -323,7 +323,7 @@ const SmartSearchBar = ({
             {searchQuery && filteredSuggestions.length > 0 && (
               <div className="p-4">
                 <div className="flex items-center gap-2 mb-3">
-                  <Zap className="w-4 h-4 text-[#3b82f6]" />
+                  <Zap className="w-4 h-4 text-[#51faaa]" />
                   <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                     Suggestions
                   </span>

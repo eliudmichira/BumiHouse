@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+﻿import React, { useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, ArrowLeft, Trash2, MapPin, Bed, Bath, Maximize } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
@@ -73,7 +73,7 @@ const MobileFavoritesPage = () => {
                         </p>
                         <motion.button
                             onClick={() => navigate('/properties')}
-                            className="px-6 py-3 bg-gradient-to-r from-[#3b82f6] to-[#45e695] rounded-2xl text-gray-900 font-bold"
+                            className="px-6 py-3 bg-gradient-to-r from-[#51faaa] to-[#45e695] rounded-2xl text-gray-900 font-bold"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >

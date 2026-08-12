@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+﻿import { useEffect, useRef } from 'react';
 import { AdvancedMarker, Pin, useMap } from '@vis.gl/react-google-maps';
 import { MarkerClusterer } from '@googlemaps/markerclusterer';
 
@@ -29,7 +29,7 @@ const GooglePin = ({ data, highlightedProperty, onMarkerHover }) => {
           <div style="
             width: ${isHighlighted ? '50px' : '40px'};
             height: ${isHighlighted ? '50px' : '40px'};
-            background: ${isHighlighted ? '#EF4444' : '#3B82F6'};
+            background: ${isHighlighted ? '#EF4444' : '#51faaa'};
             border: 2px solid white;
             border-radius: 50%;
             display: flex;
@@ -84,7 +84,7 @@ const GooglePin = ({ data, highlightedProperty, onMarkerHover }) => {
         render: ({ count, position }) => {
           const svg = `
             <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="20" cy="20" r="18" fill="#3B82F6" stroke="#fff" stroke-width="2"/>
+              <circle cx="20" cy="20" r="18" fill="#51faaa" stroke="#fff" stroke-width="2"/>
               <text x="20" y="26" text-anchor="middle" fill="white" font-family="Arial" font-size="14" font-weight="bold">${count}</text>
             </svg>
           `;
@@ -94,7 +94,7 @@ const GooglePin = ({ data, highlightedProperty, onMarkerHover }) => {
             <div style="
               width: 40px;
               height: 40px;
-              background: #3B82F6;
+              background: #51faaa;
               border: 2px solid white;
               border-radius: 50%;
               display: flex;

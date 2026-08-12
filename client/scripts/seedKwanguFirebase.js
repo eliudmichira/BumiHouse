@@ -17,7 +17,7 @@ import {
 
 // Firebase configuration for kwangu project
 const firebaseConfig = {
-  apiKey: "REDACTED",
+  apiKey: process.env.VITE_FIREBASE_API_KEY || "YOUR_FIREBASE_API_KEY",
   authDomain: "kwangu-2beb1.firebaseapp.com",
   projectId: "kwangu-2beb1",
   storageBucket: "kwangu-2beb1.appspot.com",
@@ -199,9 +199,9 @@ async function createTestUsers() {
   console.log('🌱 Creating test users...');
   
   const testUsers = [
-    { email: 'admin@kwangu.com', password: 'REDACTED', role: 'admin' },
-    { email: 'agent@kwangu.com', password: 'REDACTED', role: 'agent' },
-    { email: 'user@kwangu.com', password: 'REDACTED', role: 'user' }
+    { email: process.env.SEED_ADMIN_EMAIL || 'admin@kwangu.com', password: process.env.SEED_ADMIN_PASSWORD || 'YOUR_ADMIN_PASSWORD', role: 'admin' },
+    { email: process.env.SEED_AGENT_EMAIL || 'agent@kwangu.com', password: process.env.SEED_AGENT_PASSWORD || 'YOUR_AGENT_PASSWORD', role: 'agent' },
+    { email: process.env.SEED_USER_EMAIL || 'user@kwangu.com', password: process.env.SEED_USER_PASSWORD || 'YOUR_USER_PASSWORD', role: 'user' }
   ];
   
   for (const user of testUsers) {

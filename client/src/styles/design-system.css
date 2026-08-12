@@ -1,18 +1,18 @@
-/* 🎨 Hama Estate Design System CSS */
+﻿/* 🎨 Hama Estate Design System CSS */
 
 /* CSS Variables for Design System */
 :root {
   /* Primary Colors */
-  --primary-green: #3b82f6;
-  --primary-gold: #06b6d4;
+  --primary-green: #51faaa;
+  --primary-gold: #dbd5a4;
   --dark-bg: #0a0c19;
   
   /* Gradient Combinations */
-  --gradient-primary: linear-gradient(to right, #3b82f6, #06b6d4);
-  --gradient-primary-br: linear-gradient(to bottom right, #3b82f6, #06b6d4);
-  --gradient-card: linear-gradient(to bottom right, #3b82f620, #06b6d430);
-  --gradient-card-gold: linear-gradient(to bottom right, #06b6d420, #06b6d430);
-  --gradient-mixed: linear-gradient(to bottom right, #3b82f620, #06b6d430);
+  --gradient-primary: linear-gradient(to right, #51faaa, #dbd5a4);
+  --gradient-primary-br: linear-gradient(to bottom right, #51faaa, #dbd5a4);
+  --gradient-card: linear-gradient(to bottom right, #51faaa20, #dbd5a430);
+  --gradient-card-gold: linear-gradient(to bottom right, #dbd5a420, #dbd5a430);
+  --gradient-mixed: linear-gradient(to bottom right, #51faaa20, #dbd5a430);
   
   /* Background Colors - Light Theme */
   --bg-primary: #ffffff;
@@ -27,10 +27,10 @@
   --text-light: #d1d5db;
   
   /* Status Colors */
-  --success: #3b82f6;
+  --success: #51faaa;
   --warning: #f59e0b;
   --error: #ef4444;
-  --info: #3b82f6;
+  --info: #51faaa;
   
   /* Spacing Scale */
   --space-1: 0.25rem;

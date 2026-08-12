@@ -39,13 +39,13 @@ const EnvironmentValidator = ({ onValidationComplete }) => {
       'VITE_FIREBASE_STORAGE_BUCKET',
       'VITE_FIREBASE_MESSAGING_SENDER_ID',
       'VITE_FIREBASE_APP_ID',
-      'VITE_FIREBASE_MEASUREMENT_ID',
       'VITE_GOOGLE_MAPS_API_KEY'
     ];
 
     // Optional environment variables (warn if missing but don't fail)
     const optionalVars = [
-      'VITE_GEMINI_API_KEY' // AI features will be disabled if missing
+      'VITE_GEMINI_API_KEY',          // AI features disabled if missing
+      'VITE_FIREBASE_MEASUREMENT_ID', // Analytics disabled if missing
     ];
 
     // Check each required variable
@@ -99,7 +99,7 @@ const EnvironmentValidator = ({ onValidationComplete }) => {
       <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
         <div className="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full mx-4">
           <div className="flex items-center justify-center mb-4">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-600"></div>
           </div>
           <p className="text-center text-gray-600 dark:text-gray-400">
             Validating environment configuration...
@@ -152,9 +152,9 @@ const EnvironmentValidator = ({ onValidationComplete }) => {
               </div>
             )}
 
-            <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded p-4">
-              <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">How to Fix:</h4>
-              <ol className="list-decimal list-inside space-y-1 text-sm text-blue-700 dark:text-blue-300">
+            <div className="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded p-4">
+              <h4 className="font-semibold text-emerald-800 dark:text-emerald-200 mb-2">How to Fix:</h4>
+              <ol className="list-decimal list-inside space-y-1 text-sm text-emerald-700 dark:text-emerald-300">
                 <li>Set all required environment variables in your deployment platform</li>
                 <li>For Firebase Hosting: Use Firebase CLI or Firebase Console</li>
                 <li>For Vercel: Go to Project Settings → Environment Variables</li>
@@ -166,7 +166,7 @@ const EnvironmentValidator = ({ onValidationComplete }) => {
             <div className="flex justify-end space-x-3">
               <button
                 onClick={() => window.location.reload()}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700"
               >
                 Retry
               </button>

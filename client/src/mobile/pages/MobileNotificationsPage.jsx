@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Bell, BellOff, MessageCircle, Info, Sparkles, ChevronRight, Settings } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
@@ -38,20 +38,20 @@ const MobileNotificationsPage = () => {
             exit={{ opacity: 0, scale: 0.95 }}
             className={`relative p-5 rounded-3xl border transition-all ${
                 isDark 
-                ? `${notification.read ? 'bg-white/5 border-white/5' : 'bg-white/10 border-white/10 shadow-lg shadow-[#3b82f6]/5'}` 
-                : `${notification.read ? 'bg-white border-gray-100 shadow-sm' : 'bg-blue-50/50 border-blue-100 shadow-sm'}`
+                ? `${notification.read ? 'bg-white/5 border-white/5' : 'bg-white/10 border-white/10 shadow-lg shadow-[#51faaa]/5'}` 
+                : `${notification.read ? 'bg-white border-gray-100 shadow-sm' : 'bg-emerald-50/50 border-emerald-100 shadow-sm'}`
             }`}
             onClick={() => handleNotificationClick(notification)}
         >
             {!notification.read && (
-                <div className="absolute top-5 right-5 w-2.5 h-2.5 rounded-full bg-gradient-to-br from-[#3b82f6] to-[#06b6d4] shadow-lg shadow-[#3b82f6]/40" />
+                <div className="absolute top-5 right-5 w-2.5 h-2.5 rounded-full bg-gradient-to-br from-[#51faaa] to-[#dbd5a4] shadow-lg shadow-[#51faaa]/40" />
             )}
 
             <div className="flex gap-4">
                 <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${
                     isDark ? 'bg-gray-800' : 'bg-white shadow-sm'
                 }`}>
-                    {notification.type === 'message' && <MessageCircle className="text-blue-500" size={20} />}
+                    {notification.type === 'message' && <MessageCircle className="text-emerald-500" size={20} />}
                     {notification.type === 'alert' && <Bell className="text-orange-500" size={20} />}
                     {notification.type === 'system' && <Info className="text-purple-500" size={20} />}
                     {!['message', 'alert', 'system'].includes(notification.type) && <Sparkles className="text-emerald-500" size={20} />}
@@ -90,7 +90,7 @@ const MobileNotificationsPage = () => {
                         <div>
                             <h1 className={`text-xl font-black tracking-tight ${isDark ? 'text-white' : 'text-gray-900'}`}>Notifications</h1>
                             {unreadCount > 0 && (
-                                <p className="text-[10px] font-black uppercase tracking-widest text-[#3b82f6]">
+                                <p className="text-[10px] font-black uppercase tracking-widest text-[#51faaa]">
                                     {unreadCount} Unread
                                 </p>
                             )}
@@ -100,7 +100,7 @@ const MobileNotificationsPage = () => {
                         <button 
                             onClick={markAllAsRead}
                             className={`text-[11px] font-black uppercase tracking-wider px-3 py-1.5 rounded-lg transition-colors ${
-                                isDark ? 'text-blue-400 hover:bg-blue-400/10' : 'text-blue-600 hover:bg-blue-50'
+                                isDark ? 'text-emerald-400 hover:bg-emerald-400/10' : 'text-emerald-600 hover:bg-emerald-50'
                             }`}
                         >
                             Mark all read
@@ -144,15 +144,15 @@ const MobileNotificationsPage = () => {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         className={`p-5 rounded-3xl border border-dashed text-center ${
-                            isDark ? 'bg-blue-500/5 border-blue-500/20' : 'bg-blue-50 border-blue-200'
+                            isDark ? 'bg-emerald-500/5 border-emerald-500/20' : 'bg-emerald-50 border-emerald-200'
                         }`}
                     >
-                        <Bell className={`mx-auto mb-3 ${isDark ? 'text-blue-400' : 'text-blue-600'}`} size={24} />
+                        <Bell className={`mx-auto mb-3 ${isDark ? 'text-emerald-400' : 'text-emerald-600'}`} size={24} />
                         <h3 className={`font-bold mb-1 ${isDark ? 'text-white' : 'text-gray-900'}`}>Don't miss updates</h3>
                         <p className={`text-xs mb-4 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Enable push notifications to get instant property alerts.</p>
                         <button 
                             onClick={requestPermission}
-                            className="w-full py-3 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] text-[#0a0c19] font-black rounded-xl text-xs uppercase tracking-widest shadow-lg shadow-[#3b82f6]/20"
+                            className="w-full py-3 bg-gradient-to-r from-[#51faaa] to-[#dbd5a4] text-[#0a0c19] font-black rounded-xl text-xs uppercase tracking-widest shadow-lg shadow-[#51faaa]/20"
                         >
                             Enable Notifications
                         </button>

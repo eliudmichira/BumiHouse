@@ -41,14 +41,17 @@ exports.resolveShortUrl = functions.https.onCall(async (data, context) => {
   }
 });
 
-// Email configuration using Gmail or SendGrid
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'eliudmichira7@gmail.com', // your-email@gmail.com
-    pass: 'REDACTED' // your app password
-  }
-});
+// Email configuration from Firebase config or env vars — never hardcode credentials.
+// Set with: firebase functions:config:set email.user="..." email.pass="..."
+// (or the EMAIL_USER / EMAIL_PASS environment variables).
+const EMAIL_USER = functions.config().email?.user || process.env.EMAIL_USER;
+const EMAIL_PASS = functions.config().email?.pass || process.env.EMAIL_PASS;
+const transporter = EMAIL_USER && EMAIL_PASS
+  ? nodemailer.createTransport({
+      service: 'gmail',
+      auth: { user: EMAIL_USER, pass: EMAIL_PASS }
+    })
+  : null;
 
 // Alternative: Using SendGrid
 /*
@@ -100,6 +103,10 @@ exports.processEmailQueue = functions.firestore
 // Send trial welcome email
 const sendTrialWelcomeEmail = async (emailData) => {
   const { recipientEmail, recipientName, templateData } = emailData;
+
+  if (!transporter) {
+    throw new Error('Email not configured: set EMAIL_USER/EMAIL_PASS or `firebase functions:config:set email.user=... email.pass=...`');
+  }
 
   const emailTemplate = `
     <!DOCTYPE html>
@@ -185,7 +192,7 @@ const sendTrialWelcomeEmail = async (emailData) => {
             <li><strong>Access your dashboard</strong> - Click the button above to log in</li>
             <li><strong>Onboarding call</strong> - Our team will contact you within 24 hours</li>
             <li><strong>Explore features</strong> - Test M-Pesa integration, analytics, and more</li>
-            <li><strong>Get support</strong> - Reach out anytime at eliudmichira7@gmail.com</li>
+            <li><strong>Get support</strong> - Reach out anytime at ${EMAIL_USER}</li>
           </ol>
           
           <div class="features">
@@ -207,7 +214,7 @@ const sendTrialWelcomeEmail = async (emailData) => {
         </div>
         
         <div class="footer">
-          <p>Rental Management | Nairobi, Kenya | <a href="mailto:eliudmichira7@gmail.com" style="color: #51faaa;">eliudmichira7@gmail.com</a></p>
+          <p>Rental Management | Nairobi, Kenya | <a href="mailto:${EMAIL_USER}" style="color: #51faaa;">${EMAIL_USER}</a></p>
           <p>This email was sent because you signed up for a Rental Management trial account.</p>
         </div>
       </div>
@@ -216,7 +223,7 @@ const sendTrialWelcomeEmail = async (emailData) => {
   `;
 
   return transporter.sendMail({
-    from: '"Rental Management Team" <eliudmichira7@gmail.com>',
+    from: `"Rental Management Team" <${EMAIL_USER}>`,
     to: recipientEmail,
     subject: '🎉 Welcome to Rental Management - Your Trial is Active!',
     html: emailTemplate
@@ -286,8 +293,12 @@ const sendSalesNotification = async (emailData) => {
     </html>
   `;
 
+  if (!transporter) {
+    throw new Error('Email not configured: set EMAIL_USER/EMAIL_PASS or `firebase functions:config:set email.user=... email.pass=...`');
+  }
+
   return transporter.sendMail({
-    from: '"Rental Management System" <eliudmichira7@gmail.com>',
+    from: `"Rental Management System" <${EMAIL_USER}>`,
     to: emailData.recipientEmail,
     subject: `🎯 New Trial: ${templateData.fullName} - ${templateData.propertyCount} properties`,
     html: salesEmailTemplate
